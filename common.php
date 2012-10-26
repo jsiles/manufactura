@@ -2,9 +2,9 @@
 error_reporting (E_ALL ^ E_NOTICE);
 include("./template.php");
 include("./db_mysql.inc");
-define("DATABASE_NAME","devzone_manufactura");
-define("DATABASE_USER","devzone_manu");
-define("DATABASE_PASSWORD","12345");
+define("DATABASE_NAME","simulado_manufactura2");
+define("DATABASE_USER","simulado_gen");
+define("DATABASE_PASSWORD","generico123");
 define("DATABASE_HOST","localhost");
 @session_start();
 // Database Initialize
@@ -13,7 +13,7 @@ $db->Database = DATABASE_NAME;
 $db->User     = DATABASE_USER;
 $db->Password = DATABASE_PASSWORD;
 $db->Host     = DATABASE_HOST;
-
+s
 $db1 = new DB_Sql();
 $db1->Database = DATABASE_NAME;
 $db1->User     = DATABASE_USER;
