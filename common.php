@@ -13,7 +13,7 @@ $db->Database = DATABASE_NAME;
 $db->User     = DATABASE_USER;
 $db->Password = DATABASE_PASSWORD;
 $db->Host     = DATABASE_HOST;
-s
+
 $db1 = new DB_Sql();
 $db1->Database = DATABASE_NAME;
 $db1->User     = DATABASE_USER;
