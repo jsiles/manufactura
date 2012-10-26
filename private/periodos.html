@@ -1,0 +1,102 @@
+<html>
+<head>
+<title>siges</title>
+<meta name="Gen" content="Jsiles">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><link rel="stylesheet" href="Site.css" type="text/css"></head>
+<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+{javascript}
+<body class="PageBODY">
+<table border="0">
+<tr>
+ <td>
+ <table>
+  <tr>
+   <td valign="top">
+   <!--BeginFormvaloresRecord-->
+  <form method="Get" action="{FileName}" name="valoresRecord">
+  <font class="ClearFormHeaderFont">Activar Periodos&nbsp; </font> 
+  <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+     <!--BeginvaloresRecordErr-->
+     <tr>
+      <td class="ClearErrorDataTD" colspan="2">{svaloresRecordErr}</td>
+     </tr>
+     <!--EndvaloresRecordErr-->
+     <tr>
+      <td class="ClearFieldCaptionTD">Juego:</td>
+      <td class="ClearDataTD" >{juego}</td>
+	  <td class="ClearDataTD" >Inicio a:</td>
+	  
+     </tr>
+
+   
+     <td class="ClearFieldCaptionTD">ID/Responsabilidad/Subasta/Ventas</td>
+      <td class="ClearDataTD">
+        <!--BeginInvestigaciones-->
+        <LABEL><INPUT TYPE="checkbox" id="{investigacion}" NAME="investigacion[{investigacion}]" {disabled} {checked1} > {etq_investigaciones}</LABEL>
+      <!--EndInvestigaciones-->
+      </td>
+      <td  class="ClearDataTD"><select name="tiempo" id="tiempo">
+		  <option value="120" {selected120}>2 hrs.</option>
+		  <option value="90" {selected90}>1 hr. 30 min.</option>
+		  <option value="60" {selected60}>1 hr.</option>
+		  <option value="30" {selected30}>30 min.</option>
+		  <option value="15" {selected15}>15 min.</option>
+		  <option value="10" {selected10}>10 min.</option>
+		  <option value="5" {selected5}>5 min.</option>
+		  <option value="2" {selected2}>2 min.</option>
+
+	</select></td>
+     </tr>
+     </tr> 
+     <tr>
+      <td class="ClearFieldCaptionTD">Compra de Material </td>
+      <td class="ClearDataTD">
+      <!--BeginCompras-->
+        <LABEL><INPUT TYPE="checkbox" NAME="compra[{compra}]" {checked2} > {etq_compra}</LABEL>
+      <!--EndCompras-->
+     </td>
+	 <td class="ClearDataTD">&nbsp;</td>
+     </tr> 
+    
+    <tr>
+      <td class="ClearFieldCaptionTD">Periodo {vai_inicial} a {vai_final} </td>
+      <td class="ClearDataTD">
+      <!--BeginPeriodos-->
+        <LABEL><INPUT TYPE="checkbox" NAME="periodo[{periodo}]" {checked} > {etq_periodo}</LABEL>
+      <!--EndPeriodos-->
+     </td>
+	 <td class="ClearDataTD">&nbsp;</td>
+     <tr> 
+     
+    
+      <tr><td>&nbsp;</td>
+        <td align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="aceptar" type="submit" onClick="document.valoresRecord.FormName.value='valoresRecord'" value="Activar"></td>
+      </tr>
+      <input type="hidden" name="FormName" value="valoresRecord"/>
+      <input type="hidden" name="FormvaloresGrid_Page" value="{FormvaloresGrid_Page}"/> 
+      <input type="hidden" name="vai_jue_id" value="{vai_jue_id}"/>
+      <input type="hidden" name="jue_id" value="{vai_jue_id}"/>
+      <input type="hidden" name="vai_cantidad" value="{vai_cantidad}"/>
+      <input type="hidden" name="cant" value="{vai_cantidad}"/>
+      <input type="hidden" name="vai_inicial" value="{vai_inicial}"/>
+      <input type="hidden" name="per_ini" value="{vai_inicial}"/>
+      <input type="hidden" name="PK_vai_id" value="{PK_vai_id}"/>
+      
+     </td>
+    </tr>
+   </table>
+  </form>
+<!--EndFormvaloresRecord-->
+   </td>
+  </tr>
+ </table>
+ </td></tr>
+</table>
+
+{Footer}
+
+</body>
+</html>

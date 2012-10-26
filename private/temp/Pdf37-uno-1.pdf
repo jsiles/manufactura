@@ -1,0 +1,40 @@
+-- phpMyAdmin SQL Dump
+-- version 3.3.7
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Oct 21, 2010 at 05:09 PM
+-- Server version: 5.0.91
+-- PHP Version: 5.2.9
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Database: `devzone_subasta`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mdl_pro_category`
+--
+
+CREATE TABLE IF NOT EXISTS `mdl_pro_category` (
+  `pca_uid` int(11) NOT NULL,
+  `pca_name` varchar(255) default NULL,
+  `pca_url` varchar(255) NOT NULL,
+  PRIMARY KEY  (`pca_uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mdl_pro_category`
+--
+
+INSERT INTO `mdl_pro_category` (`pca_uid`, `pca_name`, `pca_url`) VALUES
+(1, 'Celulares', 'celulares');

@@ -1,0 +1,168 @@
+
+
+
+/* Root = Horizontal, Secondary = Vertical */
+/* navmenu = 500px */
+
+#nav {
+    background-color: #000c4c;
+}
+
+/* estaba a 821 ancho gen de la pagina del contenido pero reducimos por los borde redondos */
+
+/* Root = Horizontal, Secondary = Vertical */
+ul#navmenu {
+  margin: 0;
+  border: 0 none;
+  padding: 0;
+  /*width: 608px; For KHTML*/
+  list-style: none;
+  height: 35px;
+}
+
+ul#navmenu li {
+  margin: 0;
+  border: 0 none;
+  padding: 0;
+  float: left; /*For Gecko*/
+  display: inline;
+  list-style: none;
+  position: relative;
+  height: 35px;
+}
+ul#navmenu li a#first  {
+padding-bottom: 12px;    /*espacio para nivel-1 menu - espacio bottom */
+  color: #fff;
+}
+
+ul#navmenu ul {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  width: 120px;
+  list-style: none;
+  display: none;
+  position: absolute;
+  top: 35px;
+  left: 0;
+}
+
+ul#navmenu ul:after /*From IE 7 lack of compliance*/{
+  clear: both;
+  display: block;
+  font: 1px/0px serif;
+  content: ".";
+  height: 0;
+  visibility: hidden;
+}
+
+ul#navmenu ul li {
+  width: 180px;
+  float: left; /*For IE 7 lack of compliance*/
+  display: block !important;
+  display: inline; /*For IE*/
+  vertical-align: middle;
+}
+
+/* Root Menu */
+ul#navmenu a {
+  padding: 0 19px;
+  padding-top: 10px;  /*quitar*/  
+  float: none !important; /*For Opera*/
+  float: left; /*For IE*/
+  display: block;
+  color: #fff;
+  font-family: Tahoma, Arial, Helvetica, Sans, Sans-serif 100%/22px; 
+  /*For font:  100%/22px Arial, Verdana, Helvetica, sans-serif;*/
+  text-decoration: none;
+  height: auto !important;
+  height: 1%; /*For IE*/
+vertical-align: middle;
+font-size: 11px;
+}
+
+/* Root Menu Hover Persistence */
+ul#navmenu a:hover,
+ul#navmenu li:hover a,
+ul#navmenu li.iehover a {
+  padding-bottom: 2px;    /*espacio para nivel-1 menu - espacio bottom */
+  background: #000528;
+  color:  #fdd700;
+  padding-bottom: 12px;    /*quitar*/ 
+}
+
+/* 2nd Menu */
+ul#navmenu li:hover li a,
+ul#navmenu li.iehover li a {
+  float: none;
+   background: #000528;
+  color:  #fdd700;
+  padding-top: 10px;  /*quitar*/ 
+  padding-bottom: 15px; /*espacio para nivel-2 menu cortando el bottom  */
+  height: 0px; /*espacio para nivel-2 menu  */
+   border: 0px;
+	 width: 130px;
+	    border-bottom: 1px solid #fdd700;
+}
+
+/* 2nd Menu Hover Persistence */
+ul#navmenu li:hover li a:hover,
+ul#navmenu li:hover li:hover a,
+ul#navmenu li.iehover li a:hover,
+ul#navmenu li.iehover li.iehover a {
+  background: #00021a;
+   padding-top: 10px;  /*quitar*/ 
+  padding-bottom:15px; 
+  color: #FFF;
+   height: 0px; /*espacio para nivel-2 menu  */
+	  float: none;
+	   border-bottom: 1px solid #fdd700;
+}
+
+/* 3rd Menu */
+ul#navmenu li:hover li:hover li a,
+ul#navmenu li.iehover li.iehover li a {
+  width: 297px;
+  border: 1px solid #e2e1e1;
+  border-top-color: #fff;
+  background: #eee;
+  color: #4e4e4e;
+  padding-bottom: 0px;  /*espacio para nivel-2 menu cortando el bottom  */
+}
+
+/* 3rd Menu Hover Persistence */
+ul#navmenu li:hover li:hover li a:hover,
+ul#navmenu li:hover li:hover li:hover a,
+ul#navmenu li.iehover li.iehover li a:hover,
+ul#navmenu li.iehover li.iehover li.iehover a {
+  width: 297px;
+  background: #f9a70b;
+  color: #FFF;
+  padding-bottom: 0px;   /*espacio para nivel-2 menu cortando el bottom  */
+}
+
+
+ul#navmenu ul ul,
+ul#navmenu ul ul ul {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 180px;
+}
+
+/* Do Not Move - Must Come Before display:block for Gecko */
+ul#navmenu li:hover ul ul,
+ul#navmenu li:hover ul ul ul,
+ul#navmenu li.iehover ul ul,
+ul#navmenu li.iehover ul ul ul {
+  display: none;
+}
+
+ul#navmenu li:hover ul,
+ul#navmenu ul li:hover ul,
+ul#navmenu ul ul li:hover ul,
+ul#navmenu li.iehover ul,
+ul#navmenu ul li.iehover ul,
+ul#navmenu ul ul li.iehover ul {
+  display: block;
+}

@@ -1,0 +1,13 @@
+<table width="100%" align="center" border="0">
+  <tr>
+    <td valign="middle" align="center">&nbsp;<a href="atributos.php" title="Atributos generales" target="cuerpo">Atributos</a></td> 
+    <td valign="middle" align="center">&nbsp;<a href="elementos.php" title="Cuentas" target="cuerpo">Elementos</a></td> 
+    <td valign="middle" align="center">&nbsp;<a href="items.php" title="Operaciones" target="cuerpo">Items</a></td> 
+    <td valign="middle" align="center">&nbsp;<a href="trimestre.php" target="cuerpo">Trimestre</a></td> 
+    <td class="" valign="middle" align="center"><a href="juegos.php">Juegos</a></td> 
+    <td class="" valign="middle" align="center"><a href="">Reporte por Juego</a> 
+    </td> 
+    <td valign="middle" align="center"><a href="">Reporte por Usuario</a>&nbsp;</td> 
+    <td valign="middle" align="center">&nbsp;<img id="Image1" height="70" src="./image/siges.jpg" width="220" border="0" name="Image1"></td> 
+  </tr>
+</table>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Reporte</title>
+<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+<!--
+.style1 {
+    font-size: 16;
+    font-weight: bold;
+}
+.style2 {
+    font-size: 14;
+    font-weight: bold;
+}
+-->
+</style>
+</head>
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff">
+<p class="style1">Investigaciones de mercado</p>
+<form name="consolidado" action="reporte3.php" method="get">
+<!--BeginGriddatos1-->
+<p><font class="style2">
+Juego:<select name="dat_juego" onChange="submit();"><!--BeginJuego-->
+              <option value="{ID}" {Selected}>{Value}</option><!--EndJuego-->
+              </select>
+</font></p>
+<p><font class="style2">
+Periodo:<select name="dat_periodo" onChange="submit();">
+<!--BeginPeriodo-->
+              <option value="{ID}" {Selected}>{Value}</option>
+<!--EndPeriodo-->
+              </select>
+</font>
+<!--BeginDatos-->              
+<p><font class="ClearFormHeaderFont">Datos</font><br>
+</p>
+<table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+  <tr>
+    <td class="ClearColumnTD" nowrap align="left" >&nbsp; 
+      <font color="#0000ff">Grupos</font>&nbsp;</td> 
+    <td class="ClearColumnTD" nowrap colspan="10">&nbsp; 
+      <font color="#0000ff">Compras</font>&nbsp;</td>
+  </tr>
+
+  <!--Beginusuario-->
+  <tr>
+    <td class="ClearDataTD">{nombre}&nbsp;</td> 
+<!--BeginInvD-->
+    <td width="10%" align="center"><font style="font-size:9">{Dproducto}<br>{Dmercado}<br>Periodo:<font style="color:red;font-size:9">{Dperiodo}</font><br>Costo Ac: {Dcosto}<br><font style="color:red;font-size:9">{Dcompra}</font></font>
+    </td>
+<!--EndInvD-->
+  </tr>
+ <!--Endusuario-->
+ <!--BeginNoRecords-->
+  <tr>
+    <td class="ClearFooterTD" nowrap align="center" colspan="4"></td>
+  </tr>
+  <!--EndNoRecords-->
+</table>
+<!--EndDatos-->             
+<!--EndGriddatos1-->
+<p><br>
+</form>
+&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="Themes/Clear/Style.css">
+<script language="JavaScript">
+//Begin CCS script
+//Include JSFunctions @1-252A7665
+</script>
+<script language="JavaScript" src="ClientI18N.php?file=Functions.js&locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+  <script language="JavaScript" type="text/javascript">
+//End Include JSFunctions
+
+//page_OnLoad @1-D0F4E1D3
+function page_OnLoad()
+{
+    var result;
+//End page_OnLoad
+
+//Set Focus @7-D20FE9BF
+    if (document.forms["Login"] && document.forms["Login"].login) document.forms["Login"].login.focus();
+//End Set Focus
+
+//Close page_OnLoad @1-BC33A33A
+    return result;
+}
+//End Close page_OnLoad
+
+//bind_events @1-B716D3FC
+function bind_events() {
+    page_OnLoad();
+    forms_onload();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+//End CCS script
+</script>
+</head>
+<body bgcolor="#ffffff" link="#000099" alink="#ff0000" vlink="#000099" text="#000000" class="ClearPageBODY" leftmargin="280" topmargin="120">
+<!-- BEGIN Record Login -->
+<form method="post" action="{Action}" name="{HTMLFormName}" AUTOCOMPLETE = "OFF">
+  <font class="ClearFormHeaderFont">Login</font> 
+  <table cellpadding="3" cellspacing="1" border="0" class="ClearFormTABLE">
+    <!-- BEGIN Error -->
+    <tr>
+      <td colspan="2" class="ClearErrorDataTD">{Error}</td> 
+    </tr>
+ <!-- END Error -->
+    <tr>
+      <td class="ClearFieldCaptionTD">Login&nbsp;</td> 
+      <td class="ClearDataTD"><input name="{login_Name}" value="{login}" maxlength="100" class="ClearInput" >&nbsp;</td> 
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Password&nbsp;</td> 
+      <td class="ClearDataTD"><input type="password" name="{password_Name}" value="{password}" maxlength="100" class="ClearInput">&nbsp;</td> 
+    </tr>
+ 
+    <tr>
+      <td colspan="2" align="right" nowrap class="ClearFooterTD">
+        <!-- BEGIN Button Button_DoLogin --><input name="{Button_Name}" type="submit" value="Login" class="ClearButton"><!-- END Button Button_DoLogin -->&nbsp; </td> 
+    </tr>
+ 
+  </table>
+</form>
+<!-- END Record Login -->
+</body>
+</html>

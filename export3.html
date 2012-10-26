@@ -1,0 +1,904 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="CodeCharge Studio 3.0.1.6">
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Reporte</title>
+<title>Reporte</title>
+<style type="text/css">
+<!--
+
+/* CCSTheme v 3.x */
+/* General */
+
+/* BEGIN Common */
+body {
+    font-family: Arial; font-size: 70%;
+    margin: 25px;  
+    background-color: #fff;
+     
+    }
+
+p {
+    margin-top: 5px;
+    }
+
+a:link {
+    color: #941616;
+    }
+
+a:visited {
+    color: #9e6949;
+    }
+
+a:hover,a:active {
+    color: #bb4d43;
+    }
+
+ul, ol, blockquote {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 20px
+    }
+
+form {
+    margin: 0px;
+    }
+
+h1    {
+    font-size: 140%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    }
+
+h2    {
+    font-size: 120%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    }
+
+h3    {
+    font-size: 100%; font-style: italic;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    }
+
+h4    {
+    font-size: 90%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    }
+
+h5    {
+    font-size: 95%; font-style: italic;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    }
+
+h6    {
+    font-size: 80%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    }
+
+th    {
+    font-family: Arial; font-size: 70%;
+    }
+
+td {
+    font-family: Arial; font-size: 70%;
+    }
+
+/* END Common */
+
+.Header {
+    width: 170px;
+    }
+
+.Header th {
+    font-size: 90%; text-align: left;
+    padding: 4px;
+    background-color: #d8814d; color: #fcfcfc;
+    width: 100%;
+    white-space: nowrap;
+    }
+
+.Header a:link {
+    color: #fcfcfc;
+    }
+
+.Header a:visited {
+    color: #fcfcfc;
+    }
+
+.Header a:hover, .Caption a:active {
+    color: #f0c522; text-decoration: none;
+    }
+
+.HeaderLeft {
+    background-image: url('Images/HeaderLeft.gif');
+    }
+
+.HeaderRight {
+    background-image: url('Images/HeaderRight.gif');
+    }
+
+.HeaderLeft img{
+    width: 7px;
+    }
+
+.HeaderRight img{
+    width: 14px;
+    }
+
+
+/* Grid Options */
+.Grid {
+
+    width: 100%;
+    }
+
+.Caption th {
+    font-size: 70%; text-align: left; vertical-align: top;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    background-color: #f0c522; color: #000000;
+    white-space: nowrap;
+    }
+
+.Caption td {
+    font-size: 70%; text-align: left; vertical-align: top;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    background-color: #f0c522; color: #000000;
+    white-space: nowrap;
+    }
+
+.Caption a:link {
+    color: #000000;
+    }
+
+.Caption a:visited {
+    color: #000000;
+    }
+
+.Caption a:hover, .Caption a:active {
+    color: #bb4d43;
+    }
+
+.Caption img {
+    margin: 2px;
+    vertical-align: middle;
+    }
+
+.Caption input {
+    vertical-align: middle;
+    }
+
+.Row th {
+    font-size: 70%; font-weight: normal; vertical-align: top;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    background-color: #f4f4f4; color: #000000;
+    white-space: nowrap;
+    color: #000000;
+    }
+
+.Row td {
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    vertical-align: top;
+    background-color: #f4f4f4;
+    color: #000000;
+    }
+
+.Row a:link {
+    color: #941616;
+    }
+
+.Row a:visited {
+    color: #9e6949;
+    }
+
+.Row a:hover, .Row a:active {
+    color: #bb4d43;
+    }
+
+.Separator{
+    color: #d8814d;
+    }
+
+.Separator td{
+    height: 1px;
+    }
+
+
+.AltRow th {
+    font-size: 70%; font-weight: normal; text-align: left; vertical-align: top;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    background-color: #f4f4f4; color: #000000;
+    white-space: nowrap;
+    color: #000000;
+    }
+
+.AltRow td {
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    vertical-align: top;
+    background-color: #f4f1e5;
+    color: #000000;
+    }
+
+.AltRow a:link {
+    color: #941616;
+    }
+
+.AltRow a:visited {
+    color: #9e6949;
+    }
+
+.AltRow a:hover, .AltRow a:active {
+    color: #bb4d43;
+    }
+
+.NoRecords td {
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    background-color: #f4f4f4;
+    color: #000000;
+    vertical-align: top;
+    }
+
+.Footer td {
+    font-size: 70%;
+    padding: 4px;
+
+    background-color: #f0c522; color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: #000000;
+    }
+
+.Footer a:link {
+    color: #000000;
+    }
+
+.Footer a:visited {
+    color: #000000;
+    }
+
+.Footer a:hover, .Footer a:active {
+    color: #bb4d43;
+    }
+
+.Footer img {
+    margin: 2px;
+    vertical-align: middle;
+    }
+
+.Footer input {
+    vertical-align: middle;
+    }
+
+/* Record Options */
+.Record {
+
+    width: 100%;
+    }
+
+.Error td {
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    color: #FF0000;
+    vertical-align: top;
+    background-color: #f4f4f4;
+    }
+
+.Controls th {
+    font-size: 70%; font-weight: normal; text-align: left; vertical-align: top;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    background-color: #f4f4f4; color: #000000;
+    white-space: nowrap;
+    color: #000000;
+    }
+
+.Controls td {
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    vertical-align: top;
+    background-color: #f4f4f4;
+    color: #000000;
+    }
+
+.Bottom td {
+    font-size: 70%;
+    padding: 4px;
+
+    background-color: #f2d18b; color: #000000;
+    text-align: right;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: #000000;
+    }
+
+.Bottom a:link {
+    color: #000000;
+    }
+
+.Bottom a:visited {
+    color: #000000;
+    }
+
+.Bottom a:hover, .Caption a:active {
+    color: #bb4d43;
+    }
+
+.Bottom img {
+    margin: 2px;
+    vertical-align: middle;
+    }
+
+.Bottom input {
+    vertical-align: middle;
+    }
+
+/* Report */
+.GroupCaption th{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    white-space: nowrap;
+    text-align: left;
+    vertical-align: top;
+    font-weight: bold;
+    background-color: #f4f1e5;
+    color: #000000;
+    }
+
+.GroupCaption td{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    vertical-align: top;
+    font-weight: bold;
+    background-color: #f4f4f4;
+    color: #000000;
+    }
+
+.GroupCaption a:link {
+    color: #000000;
+    }
+
+.GroupCaption a:visited{
+    color: #000000;
+    }
+
+.GroupCaption a:hover, .GroupCaption a:active{
+    color: #bb4d43;
+    }
+
+.GroupFooter td{
+    font-size: 70%;
+    padding: 4px;
+
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    background-color: #f2d18b;
+    color: #000000;
+    }
+
+.GroupFooter a:link {
+    color: #000000;
+    }
+
+.GroupFooter a:visited{
+    color: #000000;
+    }
+
+.GroupFooter a:hover,.GroupFooter a:active{
+    color: #bb4d43;
+    }
+
+.GroupFooter img {
+    margin: 2px;
+    vertical-align: middle;
+    }
+
+.GroupFooter input {
+    vertical-align: middle;
+    }
+
+.SubTotal td{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    vertical-align: top;
+    font-weight: bold;
+    background-color: #f4f1e5;
+    color: #000000;
+    border-bottom: 2px solid #d8814d;
+    }
+
+.SubTotal a:link {
+    color: #941616;
+    }
+
+.SubTotal a:visited{
+    color: #9e6949;
+    }
+
+.SubTotal a:hover, .SubTotal a:active{
+    color: #bb4d43;
+    }
+
+.Total td{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    vertical-align: top;
+    white-space: nowrap;
+    font-weight: bold;
+    background-color: #f4f1e5;
+    color: #000000;
+    }
+
+.Total a:link {
+    color: #941616;
+    }
+
+.Total a:visited{
+    color: #9e6949;
+    }
+
+.Total a:hover, .Total a:active{
+    color: #bb4d43;
+    }
+
+/* Form Options */
+.Button {
+    margin: 2px
+    }
+
+/* Calendar */
+
+.Calendar {
+
+    width: 100%;
+    }
+
+.CalendarWeekdayName{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    text-align: center;
+    vertical-align: top;
+    white-space: nowrap;
+    background-color: #f4f1e5;
+    color: #000000;
+    }
+
+.CalendarWeekdayName a:link {
+    color: #941616;
+    }
+
+.CalendarWeekdayName a:visited{
+    color: #9e6949;
+    }
+
+.CalendarWeekdayName a:hover, .CalendarWeekdayName a:active{
+    color: #bb4d43;
+    }
+
+.CalendarWeekendName{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: top;
+    background-color: #f4f1e5;
+    color: #000000;
+    }
+
+.CalendarWeekendName a:link {
+    color: #000000;
+    }
+
+.CalendarWeekendName a:visited{
+    color: #000000;
+    }
+
+.CalendarWeekendName a:link, .CalendarWeekendName a:visited{
+    color: #bb4d43;
+    }
+
+/* Calendar Day */
+.CalendarDay{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #000000;
+    }
+
+.CalendarDay a:link {
+    color: #941616;
+    }
+
+.CalendarDay a:visited{
+    color: #9e6949;
+    }
+
+.CalendarDay a:hover, .CalendarDay a:active{
+    color: #bb4d43;
+    }
+
+/* Calendar Weekend */
+.CalendarWeekend{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    text-align: center;
+    background-color: #f4f1e5;
+    color: #000000;
+    }
+
+.CalendarWeekend a:link {
+    color: #941616;
+    }
+
+.CalendarWeekend a:visited{
+    color: #9e6949;
+    }
+
+.CalendarWeekend a:hover, .CalendarWeekend a:active{
+    color: #bb4d43;
+    }
+
+/* Calendar Today */
+.CalendarToday {
+    font-size: 70%;
+    border: 2px solid #d8814d;
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #000000;
+    }
+
+.CalendarToday a:link {
+    color: #941616;
+    }
+
+.CalendarToday a:visited{
+    color: #9e6949;
+    }
+
+.CalendarToday a:hover, .CalendarToday a:active {
+    color: #bb4d43;
+    }
+
+/* Calendar Weekend Today */
+.CalendarWeekendToday {
+    font-size: 70%;
+    border: 2px solid #d8814d;
+    text-align: center;
+    background-color: #f4f1e5;
+    color: #000000;
+    }
+
+.CalendarWeekendToday a:link {
+    color: #941616;
+    }
+
+.CalendarWeekendToday a:visited{
+    color: #9e6949;
+    }
+
+.CalendarWeekendToday a:hover, .CalendarWeekendToday a:active{
+    color: #bb4d43;
+    }
+
+/* Calendar Other Month's Day */
+.CalendarOtherMonthDay{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthDay a:link {
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthDay a:visited{
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthDay a:hover, .CalendarOtherMonthDay a:active{
+    color: #bb4d43;
+    }
+
+/* Calendar Other Month's Today */
+.CalendarOtherMonthToday {
+    font-size: 70%;
+    border: 2px solid #d8814d;
+    text-align: center;
+    background-color: #f4f4f4;
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthToday a:link {
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthToday a:visited{
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthToday a:hover,.CalendarOtherMonthToday a:active{
+    color: #bb4d43;
+    }
+
+/* Calendar Other Month's Weekend */
+.CalendarOtherMonthWeekend {
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    text-align: center;
+    background-color: #f4f1e5;
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthWeekend a:link {
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthWeekend a:visited{
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthWeekend a:hover, .CalendarOtherMonthWeekend a:active{
+    color: #bb4d43;
+    }
+
+/* Calendar Other Month's Weekend Today */
+.CalendarOtherMonthWeekendToday {
+    font-size: 70%;
+    border: 2px solid #d8814d;
+    text-align: center;
+    color: #d8814d;
+    background-color: #f4f1e5;
+    }
+
+.CalendarOtherMonthWeekendToday a:link {
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthWeekendToday a:visited{
+    color: #d8814d;
+    }
+
+.CalendarOtherMonthWeekendToday a:hover, .CalendarOtherMonthWeekendToday a:active{
+    color: #bb4d43;
+    }
+
+/* Calendar Selected Day (for DatePicker) */
+.CalendarSelectedDay{
+    font-size: 70%;
+    padding: 4px;
+    border-bottom: solid 2px #FFFFFF;
+    background-color: #f2d18b;
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+    }
+
+.CalendarSelectedDay a:link {
+    color: #000000;
+    }
+
+.CalendarSelectedDay a:visited{
+    color: #000000;
+    }
+
+.CalendarSelectedDay a:hover, .CalendarSelectedDay a:active{
+    color: #bb4d43;
+    }
+
+/* Calendar Navigator */
+.CalendarNavigator {
+    font-size: 70%;
+    padding: 4px;
+    background-color: #f2d18b; color: #000000;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: #000000;
+    }
+
+.CalendarNavigator a:link {
+    color: #941616;
+    }
+
+.CalendarNavigator a:visited{
+    color: #9e6949;
+    }
+
+.CalendarNavigator a:hover, .CalendarNavigator a:active{
+    color: #bb4d43;
+    }
+
+.CalendarNavigator img{
+    margin: 2px;
+    vertical-align: middle;
+    }
+
+/* Calendar Extra */
+.CalendarEvent{
+    font-size: 80%;
+    text-align: left;
+    }
+
+.CalendarEvent a:link {
+    color: #941616;
+    }
+
+.CalendarEvent a:visited{
+    color: #9e6949;
+    }
+
+.CalendarEvent a:hover, .CalendarEvent a:active{
+    color: #bb4d43;
+    }
+
+.textoCaja {
+color: #000000;
+font-family: tahoma, Trebuchet, Arial, Helvetica, Sans, Sans-serif;
+font-size: 10px;
+text-decoration: none;
+text-align: right;
+font-weight: 700;
+}
+-->
+</style>
+</head>
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff">
+<table width="100%" border="0">
+
+<tr>
+
+<td width="55%" align="right"><a href="export3.php?&id={id}&id_usuario={id_usuario}&"><img src="./image/excel.jpg" width="20" height="18" border="0"></a></td>
+
+<td width="45%">&nbsp;</td>
+
+</tr>
+
+</table>
+{header}
+<p class="style1">Reporte Consolidado por Juego y Gestión</p>
+<form name="consolidado" action="reporte.php" method="get">
+<!--BeginGriddatos1-->
+<p><font class="style2">
+Juego:{juego}
+
+</font></p>
+<p><font class="style2">
+Gestión: {dat_periodo}
+</font>
+              </p>
+              
+<!--BeginDatos-->              
+<p><font class="ClearFormHeaderFont">Datos</font><br>
+</p>
+<table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="1">
+  <tr class="Caption">
+    <td class="ClearColumnTD" nowrap align="left" rowspan="2">&nbsp; 
+      <font color="#0000ff">Items</font>&nbsp;</td> 
+    <td class="ClearColumnTD" nowrap colspan="5">&nbsp; 
+      <font color="#0000ff">Usuarios</font>&nbsp;</td>
+  </tr>
+     <tr class="Caption">
+     <!--BeginUsuarios-->
+        <td class="ClearColumnTD" nowrap align="left" >{usuarios}</td>
+     <!--EndUsuarios-->
+    </tr> 
+  <!--BeginRow-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label1}&nbsp;%</td> 
+    <!--BeginTotal-->
+    <td class="ClearDataTD" align="right">{Label2}&nbsp;</td>
+    <!--EndTotal-->
+  </tr>
+ <!--EndRow-->
+  <!--BeginRow1-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label11}&nbsp;%</td> 
+    <!--BeginTotal1-->
+    <td class="ClearDataTD" align="right">{Label21}&nbsp;</td>
+    <!--EndTotal1-->
+  </tr>
+ <!--EndRow1-->
+
+  <!--BeginRow3-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label13}&nbsp;</td> 
+    <!--BeginTotal3-->
+    <td class="ClearDataTD" align="right">{Label23}&nbsp;</td>
+    <!--EndTotal3-->
+  </tr>
+ <!--EndRow3--> 
+  <!--BeginRow4-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label14}&nbsp;%</td> 
+    <!--BeginTotal4-->
+    <td class="ClearDataTD" align="right">{Label24}&nbsp;</td>
+    <!--EndTotal4-->
+  </tr>
+ <!--EndRow4--> 
+  <!--BeginRow5-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label15}&nbsp;%</td> 
+    <!--BeginTotal5-->
+    <td class="ClearDataTD" align="right">{Label25}&nbsp;</td>
+    <!--EndTotal5-->
+  </tr>
+ <!--EndRow5--> 
+  <!--BeginRow6-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label16}&nbsp;%</td> 
+    <!--BeginTotal6-->
+    <td class="ClearDataTD" align="right">{Label26}&nbsp;</td>
+    <!--EndTotal6-->
+  </tr>
+ <!--EndRow6-->  
+ <!--BeginRow7-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label17}&nbsp;</td> 
+    <!--BeginTotal7-->
+    <td class="ClearDataTD" align="right">{Label27}&nbsp;</td>
+    <!--EndTotal7-->
+  </tr>
+ <!--EndRow7--> 
+   <!--BeginRow8-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label18}&nbsp;M$</td> 
+    <!--BeginTotal8-->
+    <td class="ClearDataTD" align="right">{Label28}&nbsp;</td>
+    <!--EndTotal8-->
+  </tr>
+ <!--EndRow8-->  
+  <!--BeginRow9-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label19}&nbsp;M$</td> 
+    <!--BeginTotal9-->
+    <td class="ClearDataTD" align="right">{Label29}&nbsp;</td>
+    <!--EndTotal9-->
+  </tr>
+ <!--EndRow9-->
+ 
+  <!--BeginRow2-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label12}&nbsp;%</td> 
+    <!--BeginTotal2-->
+    <td class="ClearDataTD" align="right">{Label22}&nbsp;</td>
+    <!--EndTotal2-->
+  </tr>
+ <!--EndRow2--> 
+   
+</table>
+<!--EndDatos-->             
+<!--EndGriddatos1-->
+</form>
+</body>
+</html>

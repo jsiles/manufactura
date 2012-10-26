@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="CodeCharge Studio 3.0.1.6">
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Reporte</title>
+<meta content="CodeCharge Studio 3.0.1.6" name="GENERATOR">
+<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+<!--
+.style1 {
+    font-size: 16;
+    font-weight: bold;
+}
+.style2 {
+    font-size: 14;
+    font-weight: bold;
+}
+-->
+</style>
+</head>
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff">
+{header}
+<form name="nuevo" action="nuevo.php" method="get">
+<br>
+<br>
+<br>
+<br>
+<br>
+<table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+  <tr>
+    <td class="ClearColumnTD" nowrap align="left">Nombre del Juego:&nbsp;</td>
+    <td class="ClearColumnTD" nowrap colspan="10"><input type="text" name="nuevo" value="" size="40" maxlength="75"></td> 
+  </tr>
+  <tr>
+    <td class="ClearColumnTD" nowrap align="left">&nbsp;</td>
+    <td class="ClearColumnTD" nowrap align="right"><input type="submit" name="aceptar" value="Copiar Juego" onclick="document.nuevo.FormAction.value='nuevo';"><input type="submit" name="cerrar" value="Cerrar" onclick="javascript:window.opener.location.reload();window.close();"></td>
+  </tr>
+</table>
+<input type="hidden" name="FormAction" value="">
+<input type="hidden" name="jue_id" value="{jue_id}">
+</form>
+</body>
+</html>

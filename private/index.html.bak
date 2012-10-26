@@ -1,0 +1,14 @@
+<html>
+<head>
+<title>index</title>
+</head>
+<FRAMESET rows="100,*" border="0">
+<frame name="menu" src="header.html">
+<frame name="cuerpo" src="login.php" >
+</FRAMESET>
+    <NOFRAMES>
+    <BODY>
+    </BODY>
+    </NOFRAMES>
+
+</html>

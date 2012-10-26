@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="JSILES">
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Login</title>
+<link href="Styles/Coco/Style1.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<!--BeginLogin-->
+<form name="{HTMLFormName}" action="{Action}" method="post" AUTOCOMPLETE = "off">
+
+  <table cellspacing="0" cellpadding="0" border="0" align="center">
+  	<tr>
+	<td>&nbsp;</td>
+	</tr>
+	  	<tr>
+	<td>&nbsp;</td>
+	</tr>
+	  	<tr>
+	<td>&nbsp;</td>
+	</tr>
+	  	<tr>
+	<td>&nbsp;</td>
+	</tr>
+	  	<tr>
+	<td>&nbsp;</td>
+	</tr>
+    <tr>
+      <td valign="top">{FormTitle}
+        <table class="Header" cellspacing="0" cellpadding="0" border="0">
+          <tr> 
+            <td class="HeaderLeft"><img src="Styles/Coco/Images/Spacer.gif" border="0"></td>
+            <th>Login</th>
+
+            <td class="HeaderRight"><img src="Styles/Coco/Images/Spacer.gif" border="0"></td>
+          </tr>
+        </table>
+
+        <table class="Record" cellspacing="0" cellpadding="0">
+          <!--BeginError-->
+          <tr class="Error">
+            <td colspan="2">{Error}</td>
+          </tr>
+          <!--EndError-->
+          <tr class="Controls">
+            <th>Login</th>
+
+            <td><input maxlength="100" value="{login}" name="Login"></td>
+          </tr>
+
+          <tr class="Controls">
+            <th>Password</th>
+
+            <td><input type="password" maxlength="100" value="{password}" name="Password"></td>
+            <input type="hidden" name="FormName"  value="ingreso">
+			<input type="hidden" name="FormAction"  value="login">
+			<input type="hidden" name="ret_page" value="{ret_page}">
+			<input type="hidden" name="Err" value="{Err}">
+          </tr>
+
+          <tr class="Bottom">
+            <td align="right" colspan="2">
+              <!-- BEGIN Button Button_DoLogin -->
+			  	<input type="submit" value="Login" name="Aceptar">
+			  <!-- END Button Button_DoLogin --></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+<!--EndLogin-->
+</body>
+</html>

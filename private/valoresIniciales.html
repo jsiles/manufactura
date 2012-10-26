@@ -1,0 +1,187 @@
+<html>
+<head>
+<title>siges</title>
+<meta name="GENERATOR" content="YesSoftware CodeCharge v.2.0.5 / Templates.ccp build 11/01/2001">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><link rel="stylesheet" href="Site.css" type="text/css"></head>
+<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+<body class="PageBODY">
+<p>
+<font class="ClearFormHeaderFont">Lista
+de Parámetros </font><br>
+Total de Registros:&nbsp; {th_valoresiniciales_TotalRecords}&nbsp; 
+<table border="0">
+<tr>
+<td>
+ <table>
+  <tr>
+   <td valign="top">
+   <!--BeginFormvaloresGridHeader-->
+   
+   <!--EndFormvaloresGridHeader-->
+   <!--BeginFormvaloresGrid--><table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+     <tr>
+       <td class="ClearColumnTD" nowrap>&nbsp; &nbsp;</td> 
+       <td class="ClearColumnTD" nowrap><a class="ClearSorterLink" href="{FileName}?{FormParams}FormvaloresGrid_Sorting=1&FormvaloresGrid_Sorted={Form_Sorting}&">Atributos</a></td>
+       <td class="ClearColumnTD" nowrap><a class="ClearSorterLink" href="{FileName}?{FormParams}FormvaloresGrid_Sorting=2&FormvaloresGrid_Sorted={Form_Sorting}&">Productos</a></td>
+       <td class="ClearColumnTD" nowrap><a class="ClearSorterLink" href="{FileName}?{FormParams}FormvaloresGrid_Sorting=3&FormvaloresGrid_Sorted={Form_Sorting}&">Mercados</a></td>
+<!--       <td class="ClearColumnTD" nowrap><a class="ClearSorterLink" href="{FileName}?{FormParams}FormvaloresGrid_Sorting=4&FormvaloresGrid_Sorted={Form_Sorting}&">Segmentos</a></td>-->
+       <td class="ClearColumnTD" nowrap><a class="ClearSorterLink" href="{FileName}?{FormParams}FormvaloresGrid_Sorting=5&FormvaloresGrid_Sorted={Form_Sorting}&">Monto</a></td>
+       <td class="ClearColumnTD" nowrap><a class="ClearSorterLink" href="{FileName}?{FormParams}FormvaloresGrid_Sorting=6&FormvaloresGrid_Sorted={Form_Sorting}&">Periodo</a></td>
+       <td class="ClearColumnTD" nowrap><a class="ClearSorterLink" href="{FileName}?{FormParams}FormvaloresGrid_Sorting=7&FormvaloresGrid_Sorted={Form_Sorting}&">Estado</a></td>
+     </tr>
+     <!--BeginGrid--> 
+     <!--BeginDListvaloresGrid-->
+     <tr>
+      <td class="ClearAltDataTD"><a href="{vai_id_URLLink}?vai_id={Prmvai_id_vai_id}&{TransitParams}"> {vai_id}</a>&nbsp;</td>
+      <td class="ClearAltDataTD">{vai_atr_id}&nbsp;</td>
+      <td class="ClearAltDataTD">{vai_pro_id}&nbsp;</td>
+      <td class="ClearAltDataTD">{vai_mer_id}&nbsp;</td>
+   <!--   <td class="ClearAltDataTD">{vai_cli_id}&nbsp;</td>-->
+      <td class="ClearAltDataTD">{vai_monto}&nbsp;</td>
+      <td class="ClearAltDataTD">{vai_periodo}&nbsp;</td>
+      <td class="ClearAltDataTD">{vai_sw}&nbsp;</td>
+     </tr>
+     <!--EndDListvaloresGrid--> 
+     <!--BeginDListvaloresAltGrid-->
+     <tr>
+      <td class="ClearDataTD"><a href="{Alt_vai_id_URLLink}?vai_id={Alt_Prmvai_id_vai_id}&{TransitParams}">{Alt_vai_id}</a>&nbsp;</td>
+      <td class="ClearDataTD">{Alt_vai_atr_id}&nbsp;</td>
+      <td class="ClearDataTD">{Alt_vai_pro_id}&nbsp;</td>
+      <td class="ClearDataTD">{Alt_vai_mer_id}&nbsp;</td>
+<!--      <td class="ClearDataTD">{Alt_vai_cli_id}&nbsp;</td>-->
+      <td class="ClearDataTD">{Alt_vai_monto}&nbsp;</td>
+      <td class="ClearDataTD">{Alt_vai_periodo}&nbsp;</td>
+      <td class="ClearDataTD">{Alt_vai_sw}&nbsp;</td>
+     </tr>
+     <!--EndDListvaloresAltGrid--> 
+     <!--EndGrid--> 
+
+     <!--BeginvaloresGridNoRecords-->
+     <tr><td colspan="8" class="ClearDataTD">No hay Registros</td></tr>
+     <!--EndvaloresGridNoRecords--> 
+     <tr>
+      <td colspan="8" class="ClearColumnTD" nowrap align="center">
+        <a href="{FormAction}?{TransitParams}">Agregar Nuevo</a>&nbsp;
+        <!--BeginvaloresGridNavigator-->
+        <a href{valoresGridNavigatorFirstPage}="{FileName}?{FormParams}{SortParams}FormvaloresGrid_Page=1#valoresGrid">Inicio</a>
+        <a href{valoresGridNavigatorFirstPage}="{FileName}?{FormParams}{SortParams}FormvaloresGrid_Page={PrevPage}#valoresGrid">Anterior</a>
+        [ {valoresGridCurrentPage} of {valoresGridPageCount} ]
+        <a href{valoresGridNavigatorLastPage}="{FileName}?{FormParams}{SortParams}FormvaloresGrid_Page={NextPage}#valoresGrid">Siguiente</a>
+        <a href{valoresGridNavigatorLastPage}="{FileName}?{FormParams}{SortParams}FormvaloresGrid_Page=last#valoresGrid">Final</a>
+        <!--EndvaloresGridNavigator-->
+      </td>
+     </tr>
+    </table>
+    </td>
+    <td width="15">&nbsp;
+    </td><td>
+
+   <!--EndFormvaloresGrid-->
+   <!--BeginFormvaloresGridFooter-->
+   
+   <!--EndFormvaloresGridFooter-->
+   <!--BeginFormvaloresRecordHeader-->
+   
+   <!--EndFormvaloresRecordHeader-->
+   <!--BeginFormvaloresRecord-->
+   <form method="Get" action="{FileName}" name="valoresRecord">
+  <font class="ClearFormHeaderFont">Agregar/Editar Parámetros&nbsp; </font> 
+  <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+     <!--BeginvaloresRecordErr-->
+     <tr>
+      <td class="ClearErrorDataTD" colspan="2">{svaloresRecordErr}</td>
+     </tr>
+     <!--EndvaloresRecordErr-->
+     <tr>
+      <td class="ClearFieldCaptionTD">Atributos</td>
+      <td class="ClearDataTD"><select name="vai_atr_id"><!--BeginvaloresRecordLBvai_atr_id--><option value="{ID}" {Selected}>{Value}</option><!--EndvaloresRecordLBvai_atr_id--></select></td>
+     </tr>
+
+     <tr>
+      <td class="ClearFieldCaptionTD">Producto</td>
+      <td class="ClearDataTD"><select name="vai_pro_id"><!--BeginvaloresRecordLBvai_pro_id--><option value="{ID}" {Selected}>{Value}</option><!--EndvaloresRecordLBvai_pro_id--></select></td>
+     </tr>
+     
+     <tr>
+      <td class="ClearFieldCaptionTD">Mercado</td>
+      <td class="ClearDataTD"><select name="vai_mer_id"><!--BeginvaloresRecordLBvai_mer_id--><option value="{ID}" {Selected}>{Value}</option><!--EndvaloresRecordLBvai_mer_id--></select></td>
+     </tr>
+     <!--
+     <tr>
+      <td class="ClearFieldCaptionTD">Segmento&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td class="ClearDataTD"><select name="vai_cli_id"><!--BeginvaloresRecordLBvai_cli_id--><option value="{ID}" {Selected}>{Value}</option><!--EndvaloresRecordLBvai_cli_id--></select></td>
+     </tr>
+     -->
+     <tr>
+      <td class="ClearFieldCaptionTD">Monto/Valor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td class="ClearDataTD"><input type="text" name="vai_monto" maxlength="12" value="{vai_monto}" size="12"></td>
+     </tr>
+     
+     <tr>
+      <td class="ClearFieldCaptionTD">Periodo {vai_inicial} a {vai_final} </td>
+      <td class="ClearDataTD"><input type="text" name="vai_periodo" maxlength="20" value="{vai_periodo}" size="20"></td>
+     </tr>
+     
+     <tr>
+      <td class="ClearFieldCaptionTD">Estado</td>
+      <td class="ClearDataTD"><select name="vai_sw"><!--BeginvaloresRecordLBvai_sw--><option value="{ID}" {Selected}>{Value}</option><!--EndvaloresRecordLBvai_sw--></select></td>
+     </tr>
+     
+     <tr>
+      <td class="ClearFooterTD" nowrap align="right" colspan="2">
+
+      <!-- ***   Buttons   *** -->
+      
+      <!--BeginvaloresRecordInsert-->
+      <input type="hidden" value="insert" name="FormAction">
+      <input class="ClearButton" type="submit" value="Agregar" onclick="document.valoresRecord.FormAction.value = 'insert';">
+      <!--EndvaloresRecordInsert-->
+      
+      <!--BeginvaloresRecordEdit-->
+      <input type="hidden" value="update" name="FormAction"/>
+      
+      <!--BeginvaloresRecordUpdate-->
+      <input class="ClearButton" type="submit" value="Enviar" onclick="document.valoresRecord.FormAction.value = 'update';"/>
+      <!--EndvaloresRecordUpdate-->
+      
+      <!--BeginvaloresRecordDelete-->
+      <input class="ClearButton" type="submit" value="Borrar" onclick="document.valoresRecord.FormAction.value = 'delete';"/>
+      <!--EndvaloresRecordDelete-->
+      
+      <!--EndvaloresRecordEdit-->
+      
+      <!--BeginvaloresRecordCancel-->
+      <input class="ClearButton" type="submit" value="Cancelar" onclick="document.valoresRecord.FormAction.value = 'cancel';"/>
+      <!--EndvaloresRecordCancel-->
+      
+      <input type="hidden" name="FormName" value="valoresRecord"/>
+      <input type="hidden" name="FormvaloresGrid_Page" value="{FormvaloresGrid_Page}"/> 
+      <input type="hidden" name="vai_jue_id" value="{vai_jue_id}"/>
+      <input type="hidden" name="jue_id" value="{vai_jue_id}"/>
+      <input type="hidden" name="vai_cantidad" value="{vai_cantidad}"/>
+      <input type="hidden" name="cant" value="{vai_cantidad}"/>
+      <input type="hidden" name="vai_inicial" value="{vai_inicial}"/>
+      <input type="hidden" name="per_ini" value="{vai_inicial}"/>
+      <input type="hidden" name="PK_vai_id" value="{PK_vai_id}"/>
+      
+     </td>
+    </tr>
+   </table>
+  </form>
+<!--EndFormvaloresRecord-->
+   <!--BeginFormvaloresRecordFooter-->
+   
+   <!--EndFormvaloresRecordFooter-->
+   </td>
+  </tr>
+ </table>
+ </td></tr>
+</table>
+
+{Footer}
+
+</body>
+</html>

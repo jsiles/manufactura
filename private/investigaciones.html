@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>siges</title>
+<meta name="Gen" content="Jsiles">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.MultiFile.js"></script>
+<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+<script>
+function clean(e)
+    {
+        e.value="";
+        return true;
+    }
+</script>
+<script type="text/javascript" language="javascript">
+$(function(){
+ $('.multi-pt').MultiFile({
+  accept:'pdf', max:1, STRING: {
+   remove:'Remover',
+   selected:'Selecionado: $file',
+   denied:'Invalido archivo de tipo $ext!'
+  }
+ });
+});
+</script>
+</head>
+<body class="PageBODY">
+
+   <!--BeginFormvaloresRecord-->
+  <form method="POST" enctype="multipart/form-data" action="{FileName}" name="valoresRecord">
+  <table class="ClearFormTABLE">
+     <!--BeginvaloresRecordErr-->
+     <tr>
+      <td class="ClearErrorDataTD" colspan="{val1}">{svaloresRecordErr}</td>
+     </tr>
+     <!--EndvaloresRecordErr-->
+     <tr>
+     <td> Periodo:<select name="dat_periodo" onChange="submit();"><!--BeginPeriodo-->
+              <option value="{ID}" {Selected}>{Value}</option><!--EndPeriodo-->
+              </select>
+     </td>
+      <td class="ClearFieldCaptionTD" colspan="{val}" align="center">Juego: {juego}</td>
+      </tr>
+     <tr>
+     <td class="ClearFieldCaptionTD" >Investigaci&oacute;n
+     </td>
+      <!--BeginEtiquetas-->
+     <td class="ClearFieldCaptionTD"  width="100">Costo&nbsp;
+     </td>
+     <td class="ClearFieldCaptionTD">Costo exclusividad&nbsp;
+     </td>
+     <td class="ClearFieldCaptionTD" width="100">Cantidad&nbsp;
+     </td>
+     <td class="ClearFieldCaptionTD">PDF&nbsp;
+     </td>
+     <td class="ClearFieldCaptionTD"></td>
+     <!--EndEtiquetas-->
+  
+     </tr>  
+          
+    <!--BeginProductos-->
+     <tr>
+      <td class="ClearFieldCaptionTD"><input name="investigacion[]" onClick="clean(this);" type="text" size="20" value="{investigacion}"></td>
+    <!--BeginData-->
+      <td class="ClearDataTD"><input name="costo[]" onClick="clean(this);" type="text" size="3" value="{costo}">
+      </td>
+      <td class="ClearDataTD"  ><input name="costo_exclusividad[]" onClick="clean(this);" type="text" size="3" value="{costo_exclusividad}">
+      </td>
+      <td class="ClearDataTD"  ><input name="cantidad[]" onClick="clean(this);" type="text" size="3" value="{cantidad}">
+      </td>
+      <td class="ClearDataTD">{pdfname} {eliminar}<input name="pdf[]" class="multi-pt" type="file" size="15">
+      </td>
+      <td class="ClearDataTD">{linkAdd}</td>
+    <!--EndData-->                        
+     </tr>
+    <!--EndProductos-->
+      
+      <tr><td>&nbsp;</td>
+        <td align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input name="aceptar" type="submit" onClick="document.valoresRecord.FormName.value='valoresRecord'" value="Guardar"></td>
+      </tr>
+      <input type="hidden" name="FormName" value=""/>
+      <input type="hidden" name="FormvaloresGrid_Page" value="{FormvaloresGrid_Page}"/> 
+      <input type="hidden" name="vai_jue_id" value="{vai_jue_id}"/>
+      <input type="hidden" name="jue_id" value="{vai_jue_id}"/>
+      <input type="hidden" name="vai_cantidad" value="{vai_cantidad}"/>
+      <input type="hidden" name="cant" value="{vai_cantidad}"/>
+      <input type="hidden" name="vai_inicial" value="{vai_inicial}"/>
+      <input type="hidden" name="per_ini" value="{vai_inicial}"/>
+      <input type="hidden" name="periodo" value="{periodo}"/>
+      <input type="hidden" name="PK_vai_id" value="{PK_vai_id}"/>
+   </table>
+  </form>
+<!--EndFormvaloresRecord-->
+
+{Footer}
+
+</body>
+</html>

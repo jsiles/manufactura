@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="CodeCharge Studio 3.0.1.6">
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Th Inicio</title>
+<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+</head>
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff">
+<!-- BEGIN Grid th_inicio --><font class="ClearFormHeaderFont">Valores&nbsp;Iniciales</font> 
+<table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+  <tr>
+    <td class="ClearColumnTD" nowrap>&nbsp;</td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_ini_pro_id --><a class="ClearSorterLink" href="{Sort_URL}">Productos</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_ini_pro_id --></td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_ini_mer_id --><a class="ClearSorterLink" href="{Sort_URL}">Mercados</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_ini_mer_id --></td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_ini_tic_id --><a class="ClearSorterLink" href="{Sort_URL}">Segmento</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_ini_tic_id --></td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_ini_monto --><a class="ClearSorterLink" href="{Sort_URL}">Valor</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_ini_monto --></td>
+  </tr>
+ 
+  <!-- BEGIN Row -->
+  <tr>
+    <td class="ClearDataTD"><a class="ClearDataLink" href="{Detail_Src}">Detalles</a>&nbsp;</td> 
+    <td class="ClearDataTD">{ini_pro_id}&nbsp;</td> 
+    <td class="ClearDataTD">{ini_mer_id}&nbsp;</td> 
+    <td class="ClearDataTD">{ini_tic_id}&nbsp;</td> 
+    <td class="ClearDataTD">{ini_monto}&nbsp;</td>
+  </tr>
+ <!-- END Row -->
+  <!-- BEGIN AltRow -->
+  <tr>
+    <td class="ClearAltDataTD"><a href="{Alt_Detail_Src}">Detalles</a>&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_ini_pro_id}&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_ini_mer_id}&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_ini_tic_id}&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_ini_monto}&nbsp;</td>
+  </tr>
+ <!-- END AltRow -->
+  <!-- BEGIN NoRecords -->
+  <tr>
+    <td class="ClearDataTD" colspan="5">No hay registros</td>
+  </tr>
+  <!-- END NoRecords -->
+  <tr>
+    <td class="ClearFooterTD" nowrap align="center" colspan="5"><a class="ClearNavigatorLink" href="{th_inicio_Insert_Src}">Agregar
+      Nuevo</a>&nbsp; 
+      <!-- BEGIN Navigator Navigator -->
+      <!-- BEGIN First_On --><a class="ClearNavigatorLink" href="{First_URL}">|&lt;</a> <!-- END First_On -->
+      <!-- BEGIN Prev_On --><a class="ClearNavigatorLink" href="{Prev_URL}">&lt;&lt;</a> <!-- END Prev_On -->&nbsp;{Page_Number}
+      de&nbsp;{Total_Pages}&nbsp; 
+      <!-- BEGIN Next_On --><a class="ClearNavigatorLink" href="{Next_URL}">&gt;&gt;</a> <!-- END Next_On -->
+      <!-- BEGIN Last_On --><a class="ClearNavigatorLink" href="{Last_URL}">&gt;|</a> <!-- END Last_On --><!-- END Navigator Navigator --></td>
+  </tr>
+</table>
+<!-- END Grid th_inicio -->
+<!-- BEGIN Record th_inicio1 -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <font class="ClearFormHeaderFont">Valores Iniciales Agregar/Editar</font> 
+  <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+    <!-- BEGIN Error -->
+    <tr>
+      <td class="ClearErrorDataTD" colspan="2">{Error}</td>
+    </tr>
+    <!-- END Error -->
+    <tr>
+      <td class="ClearFieldCaptionTD">Producto</td> 
+      <td class="ClearDataTD">
+        <select class="ClearSelect" name="{ini_pro_id_Name}">
+          <option value="" selected>Seleccionar Valor</option>
+          {ini_pro_id_Options}
+        </select>
+ </td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Mercado</td> 
+      <td class="ClearDataTD">
+        <select class="ClearSelect" name="{ini_mer_id_Name}">
+          <option value="" selected>Seleccionar Valor</option>
+          {ini_mer_id_Options}
+        </select>
+ </td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Segmento</td> 
+      <td class="ClearDataTD">
+        <select class="ClearSelect" name="{ini_tic_id_Name}">
+          <option value="" selected>Seleccionar Valor</option>
+          {ini_tic_id_Options}
+        </select>
+ </td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Valor</td> 
+      <td class="ClearDataTD"><input class="ClearInput" maxlength="20" value="{ini_monto}" name="{ini_monto_Name}"></td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFooterTD" nowrap align="right" colspan="2">
+        <!-- BEGIN Button Button_Insert --><input class="ClearButton" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+        <!-- BEGIN Button Button_Update --><input class="ClearButton" type="submit" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+        <!-- BEGIN Button Button_Delete --><input class="ClearButton" type="submit" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete --></td>
+    </tr>
+  </table>
+  <input type="hidden" value="{ini_jue_id}" name="{ini_jue_id_Name}">
+</form>
+&nbsp;<!-- END Record th_inicio1 --><br>
+<br>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="CodeCharge Studio 3.0.1.6">
+<title>trimestre</title>
+<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+<script language="JavaScript">
+//Begin CCS script
+//Include JSFunctions @1-252A7665
+</script>
+<script language="JavaScript" src="ClientI18N.php?file=Functions.js&locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include JSFunctions
+
+//page_tb_trimestres1_Button_Delete_OnClick @25-8EC7D0C3
+function page_tb_trimestres1_Button_Delete_OnClick()
+{
+    var result;
+//End page_tb_trimestres1_Button_Delete_OnClick
+
+//Confirmation Message @26-BED55CD3
+    return confirm('Borrar registro?');
+//End Confirmation Message
+
+//Close page_tb_trimestres1_Button_Delete_OnClick @25-BC33A33A
+    return result;
+}
+//End Close page_tb_trimestres1_Button_Delete_OnClick
+
+//page_tb_trimestres1_Button_Cancel_OnClick @27-DFA244BC
+function page_tb_trimestres1_Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End page_tb_trimestres1_Button_Cancel_OnClick
+
+//bind_events @1-4C5A3160
+function bind_events() {
+    if (document.forms["tb_trimestres1"]) check_and_bind('document.forms["tb_trimestres1"].Button_Delete','onclick',page_tb_trimestres1_Button_Delete_OnClick);
+    if (document.forms["tb_trimestres1"]) check_and_bind('document.forms["tb_trimestres1"].Button_Cancel','onclick',page_tb_trimestres1_Button_Cancel_OnClick);
+    forms_onload();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+//End CCS script
+</script>
+</head>
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff">
+&nbsp;
+<!-- BEGIN Record tb_trimestresSearch -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <font class="ClearFormHeaderFont">Buscar Trimestres </font>
+  <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+    <!-- BEGIN Error -->
+    <tr>
+      <td class="ClearErrorDataTD" colspan="2">{Error}</td>
+    </tr>
+    <!-- END Error -->
+    <tr>
+      <td class="ClearFieldCaptionTD">Nombre&nbsp;</td> 
+      <td class="ClearDataTD"><input class="ClearInput" maxlength="20" value="{s_tri_nombre}" name="{s_tri_nombre_Name}">&nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFooterTD" nowrap align="center"><a class="ClearSorterLink" href="{ClearParameters_Src}">Limpiar</a>&nbsp; </td> 
+      <td class="ClearFooterTD" nowrap align="right">
+        <!-- BEGIN Button Button_DoSearch --><input class="ClearButton" type="submit" value="Buscar" name="{Button_Name}"><!-- END Button Button_DoSearch -->&nbsp; </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record tb_trimestresSearch -->
+<!-- BEGIN Grid tb_trimestres --><font class="ClearFormHeaderFont">Lista de
+Trimestres </font><br>
+Total de Registros:&nbsp; {tb_trimestres_TotalRecords}&nbsp; 
+<table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+  <tr>
+    <td class="ClearColumnTD" nowrap>&nbsp; &nbsp;</td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_tri_nombre --><a class="ClearSorterLink" href="{Sort_URL}">Nombre</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tri_nombre -->&nbsp;</td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_tri_sw --><a class="ClearSorterLink" href="{Sort_URL}">Estado</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_tri_sw -->&nbsp;</td>
+  </tr>
+ 
+  <!-- BEGIN Row -->
+  <tr>
+    <td class="ClearDataTD"><a class="ClearDataLink" href="{Detail_Src}">Detalles</a>&nbsp;</td> 
+    <td class="ClearDataTD">{tri_nombre}&nbsp;</td> 
+    <td class="ClearDataTD">{tri_sw}&nbsp;</td>
+  </tr>
+ <!-- END Row -->
+  <!-- BEGIN AltRow -->
+  <tr>
+    <td class="ClearAltDataTD"><a class="ClearDataLink" href="{Alt_Detail_Src}">Detalles</a>&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_tri_nombre}&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_tri_sw}&nbsp;</td>
+  </tr>
+ <!-- END AltRow -->
+  <!-- BEGIN NoRecords -->
+  <tr>
+    <td class="ClearAltDataTD" colspan="3">No hay registros&nbsp;</td>
+  </tr>
+  <!-- END NoRecords -->
+  <tr>
+    <td class="ClearFooterTD" nowrap align="center" colspan="3"><a class="ClearNavigatorLink" href="{tb_trimestres_Insert_Src}">Agregar
+      Nuevo</a>&nbsp; 
+      <!-- BEGIN Navigator Navigator -->
+      <!-- BEGIN First_On --><a class="ClearNavigatorLink" href="{First_URL}">Inicio</a> <!-- END First_On -->
+      <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+      <!-- BEGIN Prev_On --><a class="ClearNavigatorLink" href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+      <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+      <!-- BEGIN Pages -->
+      <!-- BEGIN Page_On --><a class="ClearNavigatorLink" href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+      <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de
+      {Total_Pages}&nbsp; 
+      <!-- BEGIN Next_On --><a class="ClearNavigatorLink" href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+      <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+      <!-- BEGIN Last_On --><a class="ClearNavigatorLink" href="{Last_URL}">Final</a> <!-- END Last_On -->
+      <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp; </td>
+  </tr>
+</table>
+<!-- END Grid tb_trimestres -->
+<!-- BEGIN Record tb_trimestres1 -->
+<form name="{HTMLFormName}" action="{Action}" method="post">
+  <font class="ClearFormHeaderFont">Agregar/Editar Trimestres </font>
+  <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+    <!-- BEGIN Error -->
+    <tr>
+      <td class="ClearErrorDataTD" colspan="2">{Error}</td>
+    </tr>
+    <!-- END Error -->
+    <tr>
+      <td class="ClearFieldCaptionTD">Nombre&nbsp;</td> 
+      <td class="ClearDataTD"><input class="ClearInput" maxlength="20" value="{tri_nombre}" name="{tri_nombre_Name}">&nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Estado&nbsp;</td> 
+      <td class="ClearDataTD">
+        <select class="ClearSelect" name="{tri_sw_Name}">
+          <option value="" selected>Seleccionar Valor</option>
+          {tri_sw_Options}
+        </select>
+ &nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFooterTD" nowrap align="right" colspan="2">
+        <!-- BEGIN Button Button_Insert --><input class="ClearButton" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+        <!-- BEGIN Button Button_Update --><input class="ClearButton" type="submit" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+        <!-- BEGIN Button Button_Delete --><input class="ClearButton" type="submit" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
+        <!-- BEGIN Button Button_Cancel --><input class="ClearButton" type="submit" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel -->&nbsp; </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record tb_trimestres1 -->
+</body>
+</html>

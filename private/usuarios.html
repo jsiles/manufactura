@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="CodeCharge Studio 3.0.1.6">
+<title>usuarios</title>
+<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+<script language="JavaScript">
+//Begin CCS script
+//Include JSFunctions @1-252A7665
+</script>
+<script language="JavaScript" src="ClientI18N.php?file=Functions.js&locale={res:CCS_LocaleID}" type="text/javascript" charset="utf-8"></script>
+<script language="JavaScript" type="text/javascript">
+//End Include JSFunctions
+
+//page_tb_usuarios1_Button_Delete_OnClick @38-DE23C20B
+function page_tb_usuarios1_Button_Delete_OnClick()
+{
+    var result;
+//End page_tb_usuarios1_Button_Delete_OnClick
+
+//Confirmation Message @39-BED55CD3
+    return confirm('Borrar registro?');
+//End Confirmation Message
+
+//Close page_tb_usuarios1_Button_Delete_OnClick @38-BC33A33A
+    return result;
+}
+//End Close page_tb_usuarios1_Button_Delete_OnClick
+
+//page_tb_usuarios1_Button_Cancel_OnClick @40-C947B4BB
+function page_tb_usuarios1_Button_Cancel_OnClick()
+{
+    disableValidation = true;
+}
+//End page_tb_usuarios1_Button_Cancel_OnClick
+
+//bind_events @1-51812C21
+function bind_events() {
+    if (document.forms["tb_usuarios1"]) check_and_bind('document.forms["tb_usuarios1"].Button_Delete','onclick',page_tb_usuarios1_Button_Delete_OnClick);
+    if (document.forms["tb_usuarios1"]) check_and_bind('document.forms["tb_usuarios1"].Button_Cancel','onclick',page_tb_usuarios1_Button_Cancel_OnClick);
+    forms_onload();
+}
+//End bind_events
+
+window.onload = bind_events; //Assign bind_events @1-19F7B649
+//End CCS script
+</script>
+</head>
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff">
+<!-- BEGIN Grid tb_usuarios --><font class="ClearFormHeaderFont">Lista de Grupos </font><br>
+Total de Registros:&nbsp; {tb_usuarios_TotalRecords}&nbsp; 
+<table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+  <tr>
+    <td class="ClearColumnTD" nowrap>&nbsp; &nbsp;</td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_usu_nombre --><a class="ClearSorterLink" href="{Sort_URL}">Nombre</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_usu_nombre -->&nbsp;</td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_usu_imagen --><a class="ClearSorterLink" href="{Sort_URL}">Imagen</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_usu_imagen -->&nbsp;</td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_usu_login --><a class="ClearSorterLink" href="{Sort_URL}">Login</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_usu_login -->&nbsp;</td> 
+      <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_usu_password --><a class="ClearSorterLink" href="{Sort_URL}">Password</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_usu_password -->&nbsp;</td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_usu_nivel --><a class="ClearSorterLink" href="{Sort_URL}">Nivel</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_usu_nivel -->&nbsp;</td> 
+    <td class="ClearColumnTD" nowrap>
+      <!-- BEGIN Sorter Sorter_usu_sw --><a class="ClearSorterLink" href="{Sort_URL}">Estado</a> 
+      <!-- BEGIN Asc_On --><img src="Themes/Clear/AscOn.gif" border="0"><!-- END Asc_On -->
+      <!-- BEGIN Desc_On --><img src="Themes/Clear/DescOn.gif" border="0"><!-- END Desc_On --><!-- END Sorter Sorter_usu_sw -->&nbsp;</td>
+  </tr>
+ 
+  <!-- BEGIN Row -->
+  <tr>
+    <td class="ClearDataTD"><a class="ClearDataLink" href="{Detail_Src}">Detalles</a>&nbsp;</td> 
+    <td class="ClearDataTD">{usu_nombre}&nbsp;</td> 
+    <td class="ClearDataTD" valign="middle" align="center">&nbsp;<img class="ClearInput" height="70" src="{Imagen}" width="90" border="0"></td> 
+    <td class="ClearDataTD">{usu_login}&nbsp;</td>
+    <td class="ClearDataTD">{usu_password}&nbsp;</td> 
+    <td class="ClearDataTD">{usu_nivel}&nbsp;</td> 
+    <td class="ClearDataTD">{usu_sw}&nbsp;</td>
+  </tr>
+ <!-- END Row -->
+  <!-- BEGIN AltRow -->
+  <tr>
+    <td class="ClearAltDataTD"><a class="ClearDataLink" href="{Alt_Detail_Src}">Detalles</a>&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_usu_nombre}&nbsp;</td> 
+    <td class="ClearAltDataTD" valign="middle" align="center">&nbsp;<img class="ClearInput" height="70" src="{Alt_Imagen}" width="90" border="0"></td> 
+    <td class="ClearAltDataTD">{Alt_usu_login}&nbsp;</td>     
+    <td class="ClearAltDataTD">{Alt_usu_password}&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_usu_nivel}&nbsp;</td> 
+    <td class="ClearAltDataTD">{Alt_usu_sw}&nbsp;</td>
+  </tr>
+ <!-- END AltRow -->
+  <!-- BEGIN NoRecords -->
+  <tr>
+    <td class="ClearAltDataTD" colspan="6">No hay registros&nbsp;</td>
+  </tr>
+  <!-- END NoRecords -->
+  <tr>
+    <td class="ClearFooterTD" nowrap align="center" colspan="6"><a class="ClearNavigatorLink" href="{tb_usuarios_Insert_Src}">Agregar
+      Nuevo</a>&nbsp; 
+      <!-- BEGIN Navigator Navigator -->
+      <!-- BEGIN First_On --><a class="ClearNavigatorLink" href="{First_URL}">Inicio</a> <!-- END First_On -->
+      <!-- BEGIN First_Off -->Inicio <!-- END First_Off -->
+      <!-- BEGIN Prev_On --><a class="ClearNavigatorLink" href="{Prev_URL}">Anterior</a> <!-- END Prev_On -->
+      <!-- BEGIN Prev_Off -->Anterior <!-- END Prev_Off -->&nbsp; 
+      <!-- BEGIN Pages -->
+      <!-- BEGIN Page_On --><a class="ClearNavigatorLink" href="{Page_URL}">{Page_Number}</a>&nbsp;<!-- END Page_On -->
+      <!-- BEGIN Page_Off -->{Page_Number}&nbsp;<!-- END Page_Off --><!-- END Pages -->de
+      {Total_Pages}&nbsp; 
+      <!-- BEGIN Next_On --><a class="ClearNavigatorLink" href="{Next_URL}">Siguiente</a> <!-- END Next_On -->
+      <!-- BEGIN Next_Off -->Siguiente <!-- END Next_Off -->
+      <!-- BEGIN Last_On --><a class="ClearNavigatorLink" href="{Last_URL}">Final</a> <!-- END Last_On -->
+      <!-- BEGIN Last_Off -->Final <!-- END Last_Off --><!-- END Navigator Navigator -->&nbsp; </td>
+  </tr>
+</table>
+<!-- END Grid tb_usuarios -->
+<!-- BEGIN Record tb_usuarios1 -->
+<form name="{HTMLFormName}" action="{Action}" method="post" enctype="{HTMLFormEnctype}">
+  <font class="ClearFormHeaderFont">Agregar/Editar Grupos </font>
+  <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+    <!-- BEGIN Error -->
+    <tr>
+      <td class="ClearErrorDataTD" colspan="2">{Error}</td>
+    </tr>
+    <!-- END Error -->
+    <tr>
+      <td class="ClearFieldCaptionTD">Nombre&nbsp;</td> 
+      <td class="ClearDataTD"><input class="ClearInput" maxlength="50" size="50" value="{usu_nombre}" name="{usu_nombre_Name}">&nbsp;<input type="hidden" value="{jue_id}" name="{jue_id_Name}"></td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Imagen&nbsp;</td> 
+      <td class="ClearDataTD">
+        <!-- BEGIN FileUpload FileUpload1 --><input type="hidden" value="{State}" name="{ControlName}">
+        <!-- BEGIN Info -->&nbsp;{FileName}&nbsp;{FileSize}&nbsp;bytes. <!-- END Info -->
+        <!-- BEGIN Upload --><input class="ClearInput" style="WIDTH: 242px; HEIGHT: 20px" type="file" name="{FileControl}"><!-- END Upload -->
+        <!-- BEGIN DeleteControl -->Borrar <input class="ClearInput" type="checkbox" name="{DeleteControl}" {DeleteChecked}><!-- END DeleteControl --><!-- END FileUpload FileUpload1 -->&nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Login&nbsp;</td> 
+      <td class="ClearDataTD"><input class="ClearInput" maxlength="20" value="{usu_login}" name="{usu_login_Name}">&nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Password&nbsp;</td> 
+      <td class="ClearDataTD"><input class="ClearInput" type="text" maxlength="20" value="{usu_password}" name="{usu_password_Name}">&nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Nivel&nbsp;</td> 
+      <td class="ClearDataTD">
+        <select class="ClearSelect" name="{usu_nivel_Name}">
+          <option value="" selected>Seleccionar Valor</option>
+          {usu_nivel_Options}
+        </select>
+ &nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFieldCaptionTD">Estado&nbsp;</td> 
+      <td class="ClearDataTD">
+        <select class="ClearSelect" name="{usu_sw_Name}">
+          <option value="" selected>Seleccionar Valor</option>
+          {usu_sw_Options}
+        </select>
+ &nbsp;</td>
+    </tr>
+ 
+    <tr>
+      <td class="ClearFooterTD" nowrap align="right" colspan="2">
+        <!-- BEGIN Button Button_Insert --><input class="ClearButton" type="submit" value="Agregar" name="{Button_Name}"><!-- END Button Button_Insert -->
+        <!-- BEGIN Button Button_Update --><input class="ClearButton" type="submit" value="Enviar" name="{Button_Name}"><!-- END Button Button_Update -->
+        <!-- BEGIN Button Button_Delete --><input class="ClearButton" type="submit" value="Borrar" name="{Button_Name}"><!-- END Button Button_Delete -->
+        <!-- BEGIN Button Button_Cancel --><input class="ClearButton" type="submit" value="Cancelar" name="{Button_Name}"><!-- END Button Button_Cancel -->&nbsp; </td>
+    </tr>
+  </table>
+</form>
+<!-- END Record tb_usuarios1 -->
+</body>
+</html>

@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^siges.simuladoresdegestion.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www.siges.simuladoresdegestion.com$
+RewriteRule ^(.*)$ http://simuladoresdegestion.com/siges/index.php [R=301,L]

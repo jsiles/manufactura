@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="CodeCharge Studio 3.0.1.6">
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Investigaciones de mercado</title>
+<meta content="CodeCharge Studio 3.0.1.6" name="GENERATOR">
+<link href="Styles/Coco/Style1.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+<!--
+.style1 {
+    font-size: 16;
+    font-weight: bold;
+}
+.style2 {
+    font-size: 14;
+    font-weight: bold;
+}
+-->
+</style> 
+<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+<script>
+ var milisec=0;
+ var seconds={clock};
+ var sw=false;
+ if (document.getElementById("clock2"))
+ document.getElementById("clock2").innerHTML='{clock}';
+
+function display(){ 
+ if (milisec<=0){ 
+    milisec=9 
+    seconds-=1 
+ } 
+ if (seconds<=-1){ 
+    milisec=0 
+    seconds+=1
+	if(seconds==0&&sw==false) {
+	sw=true;
+	document.getElementById("clock2").style.display= "none";
+	//document.getElementById("comprar").disabled="";
+	$(".compra").attr('disabled','');
+	}
+ } 
+ else 
+    milisec-=1 
+	 if (document.getElementById("clock2"))
+    document.getElementById("clock2").innerHTML=seconds+"."+milisec 
+	if(sw==false)
+    setTimeout("display()",100) 
+} 
+function valida(e,f)
+ {
+       var message = "Está realizando una compra ";
+	   sw=0;
+       if (document.getElementById('exclusividad'+e+"_"+f).checked) 
+       {
+		 costo =  document.getElementById('costoexclusividad'+e+"_"+f).value;
+         message = message+' por exclusividad';
+         message = message+ ' con un costo de:' + costo;
+         message = message+ ', desea continuar?';
+		 sw=1;
+		 
+       }
+         else 
+         {
+			costo = document.getElementById('costo'+e+"_"+f).value;
+            message = message+' normal';
+            message = message+ ' con un costo de:' + costo;
+            message = message+ ', desea continuar?';
+			
+         }
+       if (confirm(message)) {
+       document.investigaciones.formAction.value='comprar';
+	   document.getElementById('exclusividad').value=sw;
+	   document.getElementById('id').value=e;
+	   document.getElementById('inv_id').value=f;
+	   document.investigaciones.submit();
+       }
+       else return false;       
+  }                                                    
+</script>
+</head>
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff" onLoad="display();">
+<table width="100%" border="0">
+<tr>
+<td width="50%" align="right" rowspan="2">Resumen<a href="comprasResumen.php?jue_id={jue_idLink}&usu_id={usu_idLink}" title="Compra resumen"><img src="./image/excel.jpg" alt="Reporte resumen" border="0"></a>&nbsp;<img name="chart" src="image/chart.gif" alt="Carrito de compra" title="Carrito de compra">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<!--BeginInvC-->
+    <td width="10%" align="center">
+        <a href="private/temp/{linkInvC}" target="_blank">
+            <img src="./image/pdf.jpg" width="20" height="18" border="0">
+        </a>
+    </td>
+<!--EndInvC-->
+</tr>
+<tr>
+
+<!--BeginInvD-->
+    <td width="10%" align="center">{Dproducto}<br>Periodo:{Dperiodo}<br>Costo Ac: {Dcosto}
+    </td>
+<!--EndInvD-->
+
+</tr>
+
+</table>
+<form name="investigaciones" action="investigaciones.php" method="get">
+<!--BeginGriddatos1-->
+
+<table width="60%" class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+<tr> 
+    <td>Gestión:
+      <select name="dat_periodo" onChange="submit();">
+      <!--BeginPeriodo-->
+      <option value="{ID}" {Selected}>{Value}</option>
+      <!--EndPeriodo-->
+      </select>
+</tr>      
+<tr>
+<td height="30px">&nbsp;
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center" height="30px"><div><div id="clock2" style="float:center" class="title2"></div><div></div></div>&nbsp;
+</td>
+</tr>
+<!--BeginDatos--> 
+
+<!--BeginDatosInfo-->
+<tr><td colspan="2"><hr></td></tr>
+<tr>
+<td class="title2"> Informaci&oacute;n:</td><td class="title" align="left">{pro_nombre}</td>
+</tr>
+<tr>
+<td class="title2"> Costo:</td><td class="title">{costo}<input name="costo{id}_{inv_id}" id="costo{id}_{inv_id}" value="{costo}" type="hidden"></td>
+</tr>
+
+<tr>
+<td class="title2"> Costo por exclusividad:</td><td class="title">{costoexclusividad}<input name="costoexclusividad{id}_{inv_id}" type="hidden" id="costoexclusividad{id}_{inv_id}" value="{costoexclusividad}"></td>
+</tr>
+
+<tr>
+<td class="title2" colspan="2" align="center"><input name="exclusividad{id}_{inv_id}" id="exclusividad{id}_{inv_id}" {costoEE} type="checkbox" value="1">Comprar por exclusividad</td>
+</tr>
+
+<tr>
+<td height="30px">&nbsp;
+
+</td>
+</tr>
+<tr>
+<td class="title">&nbsp;</td><td><input type="button" disabled="disabled" class="compra" value="Comprar" onClick="valida({id},{inv_id});">
+
+</td>
+</tr>
+<!--EndDatosInfo-->
+<!--EndDatos-->   
+ <!--BeginNoRecords-->
+
+<tr>
+    <td class="title2" colspan="3">No existen informaci&oacute;n disponible para la venta</td>
+</tr>
+  <!--EndNoRecords-->
+ <!--BeginErrors-->
+<tr>
+    <td class="title2" colspan="3">No existen informaci&oacute;n disponible para la venta</td>
+  </tr>
+  <!--EndErrors-->  
+</table>                             
+          
+<!--EndGriddatos1-->
+<!--BeginNoDatos-->
+<table>
+
+<tr>
+   <td class="title2" colspan="3">No existen informaci&oacute;n disponible para la venta</td>
+</tr>
+
+</table>
+<!--EndNoDatos-->
+<p><br>
+<input name="formAction" value="" type="hidden">
+<input name="id" id="id" value="{id}" type="hidden">
+<input name="inv_id" id="inv_id" value="" type="hidden">
+<input name="exclusividad" id="exclusividad" value="" type="hidden">
+
+</form>
+&nbsp;</p>
+</body>
+</html>
