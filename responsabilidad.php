@@ -127,7 +127,7 @@ $scripDin1="";
 	{
 		?>
         <tr>
-<td class="title2">Beneficios indirectos:<br />(Ranking final de IMAGEN RS)<br /><span id="ranking" class="title"><?=file_get_contents("http://".$_SERVER['HTTP_HOST']."/listGanadores.php?jue_id=$dat_juego&per_id=$per_periodo")?></span></td>
+<td class="title2">Beneficios indirectos:<br />(Ranking final de IMAGEN RS)<br /><span id="ranking" class="title"><?=file_get_contents("http://".$_SERVER['HTTP_HOST']."/manufactura/listGanadores.php?jue_id=$dat_juego&per_id=$per_periodo")?></span></td>
 <td class="title">Primer lugar:<?=$db1->f("reg_beneficio1");?><br />Segundo lugar:<?=$db1->f("reg_beneficio2");?><br />Tercer lugar:<?=$db1->f("reg_beneficio3");?><br />&Uacute;ltimo lugar:<?=$db1->f("reg_beneficio4");?><br /></td>
 </tr><?php
 		

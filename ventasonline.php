@@ -180,7 +180,7 @@ $scripDin1="";
 				$etiqueta="<td colspan=\"2\" class=\"title2\">La subasta fue concluida, gracias por participar!.";// <a href='ofertas.php?id=$id' target='_blank'>Listado de Ofertas <img src='./image/excel.jpg' border=0></a></td>
 				$displayStatus ="";
 				
-				$includeFile = file_get_contents("http://".$_SERVER['HTTP_HOST']."/ofertastbl.php?id=$id&user_id=$userId");		
+				$includeFile = file_get_contents("http://".$_SERVER['HTTP_HOST']."/manufactura/ofertastbl.php?id=$id&user_id=$userId");		
 				//.$_SERVER['REQUEST_URI']
 				}
 				
