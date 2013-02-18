@@ -281,6 +281,8 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
         $this->Link11->Page = "ventasonline.php";
 		$this->Link13 = & new clsControl(ccsLink, "Link13", "Link13", ccsText, "", CCGetRequestParam("Link13", ccsGet), $this);
         $this->Link13->Page = "responsabilidad.php";
+		$this->Link15 = & new clsControl(ccsLink, "Link15", "Link15", ccsText, "", CCGetRequestParam("Link15", ccsGet), $this);
+        $this->Link15->Page = "compras3.php";
 
 
         $this->jue_nombre = & new clsControl(ccsLabel, "jue_nombre", "jue_nombre", ccsText, "", CCGetRequestParam("jue_nombre", ccsGet), $this);
@@ -321,7 +323,8 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
         $this->Link12->Page = "ventasonline.php";
         $this->Link14 = & new clsControl(ccsLink, "Link14", "Link14", ccsText, "", CCGetRequestParam("Link14", ccsGet), $this);
         $this->Link14->Page = "responsabilidad.php";
-        
+        $this->Link16 = & new clsControl(ccsLink, "Link16", "Link16", ccsText, "", CCGetRequestParam("Link16", ccsGet), $this);
+        $this->Link16->Page = "compras3.php";        
 		
         $this->Alt_jue_nombre = & new clsControl(ccsLabel, "Alt_jue_nombre", "Alt_jue_nombre", ccsText, "", CCGetRequestParam("Alt_jue_nombre", ccsGet), $this);
         $this->Alt_Imagen = & new clsControl(ccsImage, "Alt_Imagen", "Alt_Imagen", ccsText, "", CCGetRequestParam("Alt_Imagen", ccsGet), $this);
@@ -435,6 +438,11 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
                     $this->Link13->Parameters = CCAddParam($this->Link13->Parameters, "jue_id", $this->DataSource->f("jue_id"));
 					$this->Link13->Parameters = CCAddParam($this->Link13->Parameters, "per_ini", $this->DataSource->f("jue_periodoInicial"));
                     $this->Link13->Parameters = CCAddParam($this->Link13->Parameters, "cant", $this->DataSource->f("jue_cantidad"));
+
+                    $this->Link15->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                    $this->Link15->Parameters = CCAddParam($this->Link15->Parameters, "jue_id", $this->DataSource->f("jue_id"));
+					$this->Link15->Parameters = CCAddParam($this->Link15->Parameters, "per_ini", $this->DataSource->f("jue_periodoInicial"));
+                    $this->Link15->Parameters = CCAddParam($this->Link15->Parameters, "cant", $this->DataSource->f("jue_cantidad"));
 					
                     $this->jue_nombre->SetValue($this->DataSource->jue_nombre->GetValue());
                     $this->Imagen->SetValue($this->DataSource->Imagen->GetValue());
@@ -460,6 +468,7 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
                     $this->Link9->Show();
 					$this->Link11->Show();
 					$this->Link13->Show();
+					$this->Link15->Show();
 
                     $this->jue_nombre->Show();
                     $this->Imagen->Show();
@@ -523,6 +532,11 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
 					$this->Link14->Parameters = CCAddParam($this->Link14->Parameters, "per_ini", $this->DataSource->f("jue_periodoInicial"));
                     $this->Link14->Parameters = CCAddParam($this->Link14->Parameters, "cant", $this->DataSource->f("jue_cantidad"));
 					
+					$this->Link16->Parameters = CCGetQueryString("QueryString", array("ccsForm"));
+                    $this->Link16->Parameters = CCAddParam($this->Link16->Parameters, "jue_id", $this->DataSource->f("jue_id"));
+					$this->Link16->Parameters = CCAddParam($this->Link16->Parameters, "per_ini", $this->DataSource->f("jue_periodoInicial"));
+                    $this->Link16->Parameters = CCAddParam($this->Link16->Parameters, "cant", $this->DataSource->f("jue_cantidad"));
+					
 					$this->Alt_jue_nombre->SetValue($this->DataSource->Alt_jue_nombre->GetValue());
                     $this->Alt_Imagen->SetValue($this->DataSource->Alt_Imagen->GetValue());
                     $this->Alt_jue_periodoInicial->SetValue($this->DataSource->Alt_jue_periodoInicial->GetValue());
@@ -547,6 +561,7 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
                     $this->Link10->Show();
 					$this->Link12->Show();
 					$this->Link14->Show();
+					$this->Link16->Show();
 										
                     $this->Alt_jue_nombre->Show();
                     $this->Alt_Imagen->Show();

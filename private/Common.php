@@ -9,11 +9,11 @@ include(RelativePath . "/db_mysql.php");
 $CCConnectionSettings = array (
     "siges" => array(
         "Type" => "MySQL",
-        "Database" => "simulado_manufactura2",
+        "Database" => "manufactura2", //simulado_manufactura2
         "Host" => "localhost",
         "Port" => "3306",
-        "User" => "simulado_gen",
-        "Password" => "generico123",
+        "User" => "root", //simulado_gen
+        "Password" => "", //generico123
         "Persistent" => true,
         "DateFormat" => array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss"),
         "BooleanFormat" => array(1, 0, ""),

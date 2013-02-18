@@ -81,7 +81,7 @@ function insert ()
 <script src="js/ajaxlib.js" language="javascript" type="text/javascript"></script>
 <body class="PageBODY">
 <p>
- <form method="POST" action="compras.php" name="valoresRecord">
+ <form method="POST" action="compras3.php" name="valoresRecord">
  <font class="ClearFormHeaderFont">Agregar/Editar Parámetros&nbsp; </font> 
   <br>
   <br>

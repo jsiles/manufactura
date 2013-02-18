@@ -1,0 +1,19 @@
+CREATE TABLE `manufactura2`.`tb_productos2` (
+`pro_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
+`pro_name` VARCHAR( 255 ) NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `manufactura2`.`tb_incoterms` (
+`inc_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
+`inc_name` VARCHAR( 255 ) NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `manufactura2`.`tb_transporte` (
+`tra_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
+`tra_name` VARCHAR( 255 ) NOT NULL
+) ENGINE = MYISAM
+
+CREATE TABLE `manufactura2`.`tb_proveedor` (
+`pro_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
+`pro_name` VARCHAR( 255 ) NOT NULL
+) ENGINE = MYISAM 
