@@ -17,3 +17,5 @@ CREATE TABLE `manufactura2`.`tb_proveedor` (
 `pro_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
 `pro_name` VARCHAR( 255 ) NOT NULL
 ) ENGINE = MYISAM 
+
+ALTER TABLE `tb_productos2` ADD `pro_jue_id` INT NOT NULL 

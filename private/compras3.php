@@ -3,50 +3,13 @@ include ("./common2.php");
 include ("./globals.php");
 session_start();
 $jue_id= get_param("jue_id");
-$sSQL = "select t.jue_periodoInicial as inicio, t.jue_cantidad as cantidad, ".
-	"t.jue_id as id from tb_juegos t where t.jue_id=$jue_id ".
-	"  and t.jue_sw='A' " ;
-    //echo $sSQL;die;
-	$db->query($sSQL);
-	$next_record = $db->next_record();
-	$per_inicio = $db->f("inicio");
-	$per_cantidad = $db->f("cantidad");
-	$jue_id = $db->f("id");
-	$per_in = $per_inicio;
-$arrayPeriodo = db_fill_array("select per_periodo, per_periodo from tb_periodos where per_jue_id=".get_param("jue_id")." limit $per_cantidad");
-$per_periodo = get_param("per_periodo");
-$jue_id= get_param("jue_id");
-if (!$per_periodo) $per_periodo=1;
-//print_r($arrayPeriodo);
-	$material = "";
-	$calidad = "";
-	$unidad = "";	
-	$pedido_cero[]= "";	
-	$pedido_treinta[]= "";	
-	$pedido_sesenta[]= "";	
-$FormAction = get_param("FormAction");
 
 if ($FormAction=='update') insert();
-/*
-$sSQL="select * from tb_materiales where mat_jue_id=$jue_id and mat_per_id=$per_periodo order by mat_pedido asc";
-//echo "select * from tb_materiales where mat_jue_id=$jue_id and mat_per_id=$per_periodo order by mat_pedido asc";
-$db->query($sSQL);
-$j=0;
-while($result=$db->next_record())
-{
-	$material = $db->f('mat_descripcion');
-	$calidad = $db->f('mat_calidad');
-	$unidad = $db->f('mat_unidad');	
-	$pedido_cero[$j]= $db->f('mat_diascero');	
-	$pedido_treinta[$j]= $db->f('mat_diastreinta');	
-	$pedido_sesenta[$j]= $db->f('mat_diassesenta');
-	//echo $material."#".$result['mat_descripcion']."//";
-$j++;
-}
-*/
+
+
+
 //print_r($arrayMateriales);
 
-$arrayCalidad = db_fill_array("select pro_id, pro_nombre from tb_productos where pro_jue_id=".get_param("jue_id"));
 function insert ()
 {
 	global $db;
@@ -71,87 +34,86 @@ function insert ()
 }
 ?>
 <html>
-<head>
-<title>siges</title>
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><link rel="stylesheet" href="Site.css" type="text/css"></head>
-<link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
-<script src="js/ajaxlib.js" language="javascript" type="text/javascript"></script>
-<body class="PageBODY">
-<p>
- <form method="POST" action="compras3.php" name="valoresRecord">
- <font class="ClearFormHeaderFont">Agregar/Editar Parámetros&nbsp; </font> 
-  <br>
-  <br>
-  Seleccionar periodo: <select name="per_periodo" id="per_periodo" onChange="submit();">
-  <?php
-  foreach($arrayPeriodo as $key=>$value)
-  {
-   if($key==$per_periodo) $selValue="Selected"; else $selValue="";
-  ?>
-  <option value="<?=$key?>" <?=$selValue?>><?=$value?></option>
-  <?
-  }
-  ?>
-  </select>
-  <br>
-  <br>
-  <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
-     <tr>
-      <td class="ClearFieldCaptionTD">MATERIAL</td>
-      <td class="ClearDataTD" colspan="3"><select name="material" id="material" onChange="changeMaterial(this,<?=$per_periodo?>,<?=$jue_id?>);"><option value="">Seleccionar Valor</option>
-      <?php
-	  foreach($arrayMateriales as $key=>$value)
-	  {
-	  ?>
-      <option value="<?=$key?>"><?=$value?></option>
-      <?php
-	  }
-	  ?>
-      </select></td>
-     </tr>
-    <tr>
-      <td class="ClearFieldCaptionTD">CALIDAD</td>
-      <td class="ClearDataTD" colspan="3"><select name="calidad" id="calidad"><option value="">Seleccionar Valor</option>
-      <?php
-	  foreach($arrayCalidad as $key=>$value)
-	  {
-	  ?>
-      <option value="<?=$key?>"><?=$value?></option>
-      <?php
-	  }
-	  ?>
-      </select></td>
-     </tr>
-     <tr>
-      <td class="ClearFieldCaptionTD">UNIDAD DE PEDIDO</td>
-      <td class="ClearDataTD" colspan="3">
-      <div id="listPedido">
-      <select name="unidad" onChange="changeData(this,<?=$per_periodo?>,<?=$jue_id?>);"><option value="">Seleccionar Valor</option>
-      <?php
-	  foreach($arrayUnidades as $arrayUnidad)
-	  {
-		foreach($arrayUnidad as $key=>$value) 
-		{
-	  ?>
-      <option value="<?=$key?>"><?=$value?></option>
-      <?php
-		}
-	  }
-	  ?>
-      </select>
-      </div></td>
-     </tr>
-     </table>
-     <br>
-     <input type="hidden" name="jue_id" value="<?=$jue_id?>">
-<div id="tablaData">
-   </div>  
-  </form>
-<!--EndFormvaloresRecord-->
-   <!--BeginFormvaloresRecordFooter-->
-   <!--EndFormvaloresRecordFooter-->
-</body>
+        <head>
+                <title>Compras</title>
+                <link rel="stylesheet" href="./Themes/jquery-ui.css" />
+                <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+                <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.min.js"></script>
+               
+                <link rel="stylesheet" href="./Themes/style.css" />
+                <script>
+                        $(function() {
+                                $( "#tabs" ).tabs({
+                                        beforeLoad: function( event, ui ) {
+                                                ui.jqXHR.error(function() {
+                                                        ui.panel.html(
+                                                        "La página no se encuentra disponible, intente nuevamente." );
+                                                });
+                                        }
+                                });
+								
+								$( "#tabs-1" ).tabs({
+                                        beforeLoad: function( event, ui ) {
+                                                ui.jqXHR.error(function() {
+                                                        ui.panel.html(
+                                                        "La página no se encuentra disponible, intente nuevamente." );
+                                                });
+                                        }
+                                });
+                        });
+                </script>
+        </head>
+        <body>
+                <div id="tabs">
+                        <ul>
+                                <li><a href="#tabs-1">Param&eacute;tricas</a></li>
+                                <li><a href="ajax/content1.html">Mesa Proveedores</a></li>
+                                <li><a href="ajax/content2.html">Descuentos</a></li>
+                        </ul>
+                        <div id="tabs-1">
+                                <ul>
+                                	<li><a href="#tabs-1-1">Productos</a></li>
+                                	<li><a href="#tabs-1-2">Incoterms</a></li>
+									<li><a href="#tabs-1-3">Tipo de transporte</a></li>
+									<li><a href="#tabs-1-4">Proveedor</a></li>
+									<li><a href="#tabs-1-5">Tipo Suministro</a></li>
+                                </ul>
+                                <div id="tabs-1-1" >
+                                 <table
+									<tr>
+                                      <td class="ClearFieldCaptionTD">Id</td>
+                                      <td class="ClearFieldCaptionTD">Productos</td>
+                                    </tr>
+                                    <?php
+										$sSQL="select * from tb_productos2 where pro_jue_id=$jue_id order by pro_id asc";
+										$db->query($sSQL);
+										if($db->num_rows()>0)
+										{
+											while($result=$db->next_record())
+											{
+									?>
+                                            <tr>  
+                                              <td class="ClearDataTD"><?= $db->f("pro_id")?></td>
+                                              <td class="ClearDataTD"><?= $db->f("pro_name")?></td>
+                                             </tr>
+									<?php
+											}
+										}
+										else{
+									?>
+                                    		<tr>  
+                                              <td class="ClearDataTD" colspan="2">No hay Registros</td>
+                                             </tr>
+                                    	
+                                    <?php
+										}
+									?>
+                                 </table>
+                                </div>
+                                <div id="tabs-1-2" >
+                                	Second tab
+                                </div>
+                        </div>
+                </div>
+        </body>
 </html>
