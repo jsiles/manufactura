@@ -1,44 +1,43 @@
 <?php
-include ("./common2.php");
-include ("./globals.php");
+include ("common2.php");
+include ("globals.php");
 session_start();
 $jue_id= get_param("jue_id");
-$pro_id= get_param("pro_id");
+$inc_id= get_param("inc_id");
 
 $FormAction= get_param("FormAction");
 
 if ($FormAction=='insert') insert($jue_id);
-if ($FormAction=='update') update($jue_id, $pro_id);
-if ($FormAction=='delete') delete($jue_id, $pro_id);
+if ($FormAction=='update') update($jue_id, $inc_id);
+if ($FormAction=='delete') delete($jue_id, $inc_id);
 
 //print_r($arrayMateriales);
 
 function insert ($jue_id)
 {
 	global $db;
-	$fldProducto = get_param("producto");
-	$sSQL="insert into tb_productos2 values(null, ". tosql($fldProducto,"Text").", ". tosql($jue_id,"Text").")";
+	$fldIncoterm = get_param("incoterm");
+	$sSQL="insert into tb_incoterms values(null, ". tosql($fldIncoterm,"Text").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
-	header("location: compras3.php?jue_id=$jue_id");
-	
+	header("location: incoterms.php?jue_id=$jue_id");
 }
 
-function update($jue_id, $pro_id)
+function update($jue_id, $inc_id)
 {
 	global $db;
-	$fldProducto = get_param("producto");
-	$sSQL="update tb_productos2 set pro_name=". tosql($fldProducto,"Text")." where pro_jue_id=". tosql($jue_id,"Text")." and pro_id=". tosql($pro_id,"Number");
+	$fldIncoterm = get_param("incoterm");
+	$sSQL="update tb_incoterms set inc_name=". tosql($fldIncoterm,"Text")." where inc_jue_id=". tosql($jue_id,"Text")." and inc_id=". tosql($inc_id,"Number");
 	$db->query($sSQL);
-	header("location: compras3.php?jue_id=$jue_id");	
+	header("location: incoterms.php?jue_id=$jue_id");
 }
 
-function delete($jue_id, $pro_id)
+function delete($jue_id, $inc_id)
 {
 	global $db;
-	$fldProducto = get_param("producto");
-	$sSQL="delete from tb_productos2 where pro_jue_id=". tosql($jue_id,"Text")." and pro_id=". tosql($pro_id,"Number");
+	$fldIncoterm = get_param("incoterm");
+	$sSQL="delete from tb_incoterms where inc_jue_id=". tosql($jue_id,"Text")." and inc_id=". tosql($inc_id,"Number");
 	$db->query($sSQL);
-	header("location: compras3.php?jue_id=$jue_id");	
+	header("location: incoterms.php?jue_id=$jue_id");
 }
 ?>
 <html>
@@ -68,20 +67,19 @@ function delete($jue_id, $pro_id)
                             </ul>
                         </div>
                         <div id="tabs-1">
-                               
-                                <div id="tabs-1-1" >
+              <div id="tabs-1-1" >
                                 <p>
                                     <font class="ClearFormHeaderFont">Lista
-                                    de Productos </font><br>
+                                    de Incoterms </font><br>
                                     </p>
                                  <table>
 									<tr>
                                       <td class="ClearColumnTD" nowrap="nowrap">&nbsp;&nbsp;</td>	
                                       <td class="ClearColumnTD" nowrap="nowrap">Id</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Productos</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Incoterm</td>
                                     </tr>
                                     <?php
-										$sSQL="select * from tb_productos2 where pro_jue_id=$jue_id order by pro_id asc";
+										$sSQL="select * from tb_incoterms where inc_jue_id=$jue_id order by inc_id asc";
 										$db->query($sSQL);
 										if($db->num_rows()>0)
 										{
@@ -89,9 +87,9 @@ function delete($jue_id, $pro_id)
 											{
 									?>
                                             <tr>  
-                                              <td class="ClearDataTD"><a href="compras3.php?pro_id=<?=$db->f("pro_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
-                                              <td class="ClearDataTD"><?= $db->f("pro_id")?></td>
-                                              <td class="ClearDataTD"><?= $db->f("pro_name")?></td>
+                                              <td class="ClearDataTD"><a href="incoterms.php?inc_id=<?=$db->f("inc_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
+                                              <td class="ClearDataTD"><?= $db->f("inc_id")?></td>
+                                              <td class="ClearDataTD"><?= $db->f("inc_name")?></td>
                                              </tr>
 									<?php
 											}
@@ -107,25 +105,25 @@ function delete($jue_id, $pro_id)
 									?>
                                  </table>
                                  <br>
-                                  <form method="Get" action="compras3.php" name="valoresRecord">
-                                  <font class="ClearFormHeaderFont">Agregar/Editar Productos&nbsp; </font> 
+                                  <form method="Get" action="incoterms.php" name="valoresRecord">
+                                  <font class="ClearFormHeaderFont">Agregar/Editar Incoterm&nbsp; </font> 
                                   <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
                                      <tr>
                                       <td class="ClearErrorDataTD" colspan="2"></td>
                                      </tr>
                                      <tr>
-                                      <td class="ClearFieldCaptionTD">Producto</td>
+                                      <td class="ClearFieldCaptionTD">Incoterm</td>
                                       <?php
-									  	if($pro_id!=NULL) $fldProducto = get_db_value("select pro_name from tb_productos2 where pro_id=$pro_id and pro_jue_id=$jue_id");
+									  	if($inc_id!=NULL) $fldIncoterm = get_db_value("select inc_name from tb_incoterms where inc_id=$inc_id and inc_jue_id=$jue_id");
 									  ?>
-                                      <td class="ClearDataTD"><input name="producto" value="<?=$fldProducto?>"></td>
+                                      <td class="ClearDataTD"><input name="incoterm" value="<?=$fldIncoterm?>"></td>
                                      </tr>
                                      <tr>
                                       <td class="ClearFooterTD" nowrap align="right" colspan="2">
                                 
                                       <!-- ***   Buttons   *** -->
                                       <?php
-									  if($pro_id==NULL)
+									  if($inc_id==NULL)
 									  {
 									  ?>
 									  
@@ -150,13 +148,13 @@ function delete($jue_id, $pro_id)
 									  }
 									  ?>
                                       <!--BeginvaloresRecordCancel-->
-                                      <input class="ClearButton" type="submit" value="Cancelar" onClick="document.valoresRecord.FormAction.value = 'cancel';document.valoresRecord.pro_id.value = '';"/>
+                                      <input class="ClearButton" type="submit" value="Cancelar" onClick="document.valoresRecord.FormAction.value = 'cancel';document.valoresRecord.inc_id.value = '';"/>
                                       <!--EndvaloresRecordCancel-->
                                       
                                       <input type="hidden" name="FormName" value="valoresRecord"/>
                                       <input type="hidden" name="FormAction" value=""/> 
                                       <input type="hidden" name="jue_id" value="<?=$jue_id?>"/>
-                                      <input type="hidden" name="pro_id" value="<?=$pro_id?>"/>
+                                      <input type="hidden" name="inc_id" value="<?=$inc_id?>"/>
                                       
                                      </td>
                                     </tr>
@@ -166,6 +164,7 @@ function delete($jue_id, $pro_id)
                                 </div>
                                 
                         </div>
-                </div>
+                </div>                                
+                                
         </body>
 </html>

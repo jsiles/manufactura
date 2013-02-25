@@ -183,7 +183,7 @@ class Spreadsheet_Excel_Writer_Workbook extends Spreadsheet_Excel_Writer_BIFFwri
         $this->Spreadsheet_Excel_Writer_BIFFwriter();
     
         $this->_filename         = $filename;
-        $this->_parser           =& new Spreadsheet_Excel_Writer_Parser($this->_byte_order, $this->_BIFF_version);
+        $this->_parser           = new Spreadsheet_Excel_Writer_Parser($this->_byte_order, $this->_BIFF_version);
         $this->_1904             = 0;
         $this->_activesheet      = 0;
         $this->_firstsheet       = 0;
@@ -192,7 +192,7 @@ class Spreadsheet_Excel_Writer_Workbook extends Spreadsheet_Excel_Writer_BIFFwri
         $this->_fileclosed       = 0;
         $this->_biffsize         = 0;
         $this->_sheetname        = "Sheet";
-        $this->_tmp_format       =& new Spreadsheet_Excel_Writer_Format($this->_BIFF_version);
+        $this->_tmp_format       = new Spreadsheet_Excel_Writer_Format($this->_BIFF_version);
         $this->_worksheets       = array();
         $this->_sheetnames       = array();
         $this->_formats          = array();
@@ -202,7 +202,7 @@ class Spreadsheet_Excel_Writer_Workbook extends Spreadsheet_Excel_Writer_BIFFwri
         $this->_string_sizeinfo  = 3;
 
         // Add the default format for hyperlinks
-        $this->_url_format =& $this->addFormat(array('color' => 'blue', 'underline' => 1));
+        $this->_url_format = $this->addFormat(array('color' => 'blue', 'underline' => 1));
         $this->_str_total       = 0;
         $this->_str_unique      = 0;
         $this->_str_table       = array();
@@ -311,7 +311,7 @@ class Spreadsheet_Excel_Writer_Workbook extends Spreadsheet_Excel_Writer_BIFFwri
     * @return mixed reference to a worksheet object on success, PEAR_Error
     *               on failure
     */
-    function &addWorksheet($name = '')
+    function addWorksheet($name = '')
     {
         $index     = count($this->_worksheets);
         $sheetname = $this->_sheetname;
@@ -341,7 +341,7 @@ class Spreadsheet_Excel_Writer_Workbook extends Spreadsheet_Excel_Writer_BIFFwri
                                    $this->_str_table, $this->_url_format,
                                    $this->_parser);
 
-        $this->_worksheets[$index] = &$worksheet;    // Store ref for iterator
+        $this->_worksheets[$index] = $worksheet;    // Store ref for iterator
         $this->_sheetnames[$index] = $name;          // Store EXTERNSHEET names
         $this->_parser->setExtSheet($name, $index);  // Register worksheet name with parser
         return $worksheet;
@@ -355,11 +355,11 @@ class Spreadsheet_Excel_Writer_Workbook extends Spreadsheet_Excel_Writer_BIFFwri
     * @param array $properties array with properties for initializing the format.
     * @return &Spreadsheet_Excel_Writer_Format reference to an Excel Format
     */
-    function &addFormat($properties = array())
+    function addFormat($properties = array())
     {
         $format = new Spreadsheet_Excel_Writer_Format($this->_BIFF_version, $this->_xf_index,$properties);
         $this->_xf_index += 1;
-        $this->_formats[] = &$format;
+        $this->_formats[] = $format;
         return $format;
     }
     
@@ -369,7 +369,7 @@ class Spreadsheet_Excel_Writer_Workbook extends Spreadsheet_Excel_Writer_BIFFwri
      * @access public
      * @return &Spreadsheet_Excel_Writer_Validator reference to a Validator
      */
-    function &addValidator()
+    function addValidator()
     {
         include_once('Spreadsheet/Excel/Writer/Validator.php');
         /* FIXME: check for successful inclusion*/

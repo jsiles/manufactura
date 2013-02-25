@@ -1,6 +1,6 @@
 <?php
-include ("./common2.php");
-include ("./globals.php");
+include ("common2.php");
+include ("globals.php");
 session_start();
 $jue_id= get_param("jue_id");
 $pro_id= get_param("pro_id");
@@ -16,29 +16,29 @@ if ($FormAction=='delete') delete($jue_id, $pro_id);
 function insert ($jue_id)
 {
 	global $db;
-	$fldProducto = get_param("producto");
-	$sSQL="insert into tb_productos2 values(null, ". tosql($fldProducto,"Text").", ". tosql($jue_id,"Text").")";
+	$fldproveedor = get_param("proveedor");
+	$sSQL="insert into tb_proveedor values(null, ". tosql($fldproveedor,"Text").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
-	header("location: compras3.php?jue_id=$jue_id");
-	
+	header("location: proveedor.php?jue_id=$jue_id");
 }
 
 function update($jue_id, $pro_id)
 {
 	global $db;
-	$fldProducto = get_param("producto");
-	$sSQL="update tb_productos2 set pro_name=". tosql($fldProducto,"Text")." where pro_jue_id=". tosql($jue_id,"Text")." and pro_id=". tosql($pro_id,"Number");
+	$fldproveedor = get_param("proveedor");
+	$sSQL="update tb_proveedor set pro_name=". tosql($fldproveedor,"Text")." where pro_jue_id=". tosql($jue_id,"Text")." and pro_id=". tosql($pro_id,"Number");
 	$db->query($sSQL);
-	header("location: compras3.php?jue_id=$jue_id");	
+	header("location: proveedor.php?jue_id=$jue_id");
 }
 
 function delete($jue_id, $pro_id)
 {
 	global $db;
-	$fldProducto = get_param("producto");
-	$sSQL="delete from tb_productos2 where pro_jue_id=". tosql($jue_id,"Text")." and pro_id=". tosql($pro_id,"Number");
+	$fldproveedor = get_param("proveedor");
+	$sSQL="delete from tb_proveedor where pro_jue_id=". tosql($jue_id,"Text")." and pro_id=". tosql($pro_id,"Number");
 	$db->query($sSQL);
-	header("location: compras3.php?jue_id=$jue_id");	
+	header("location: proveedor.php?jue_id=$jue_id");
+
 }
 ?>
 <html>
@@ -68,20 +68,19 @@ function delete($jue_id, $pro_id)
                             </ul>
                         </div>
                         <div id="tabs-1">
-                               
                                 <div id="tabs-1-1" >
                                 <p>
                                     <font class="ClearFormHeaderFont">Lista
-                                    de Productos </font><br>
+                                    de Proveedores </font><br>
                                     </p>
                                  <table>
 									<tr>
                                       <td class="ClearColumnTD" nowrap="nowrap">&nbsp;&nbsp;</td>	
                                       <td class="ClearColumnTD" nowrap="nowrap">Id</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Productos</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Proveedor</td>
                                     </tr>
                                     <?php
-										$sSQL="select * from tb_productos2 where pro_jue_id=$jue_id order by pro_id asc";
+										$sSQL="select * from tb_proveedor where pro_jue_id=$jue_id order by pro_id asc";
 										$db->query($sSQL);
 										if($db->num_rows()>0)
 										{
@@ -89,7 +88,7 @@ function delete($jue_id, $pro_id)
 											{
 									?>
                                             <tr>  
-                                              <td class="ClearDataTD"><a href="compras3.php?pro_id=<?=$db->f("pro_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
+                                              <td class="ClearDataTD"><a href="proveedor.php?pro_id=<?=$db->f("pro_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
                                               <td class="ClearDataTD"><?= $db->f("pro_id")?></td>
                                               <td class="ClearDataTD"><?= $db->f("pro_name")?></td>
                                              </tr>
@@ -107,18 +106,18 @@ function delete($jue_id, $pro_id)
 									?>
                                  </table>
                                  <br>
-                                  <form method="Get" action="compras3.php" name="valoresRecord">
-                                  <font class="ClearFormHeaderFont">Agregar/Editar Productos&nbsp; </font> 
+                                  <form method="Get" action="proveedor.php" name="valoresRecord">
+                                  <font class="ClearFormHeaderFont">Agregar/Editar Proveedores&nbsp; </font> 
                                   <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
                                      <tr>
                                       <td class="ClearErrorDataTD" colspan="2"></td>
                                      </tr>
                                      <tr>
-                                      <td class="ClearFieldCaptionTD">Producto</td>
+                                      <td class="ClearFieldCaptionTD">Proveedor</td>
                                       <?php
-									  	if($pro_id!=NULL) $fldProducto = get_db_value("select pro_name from tb_productos2 where pro_id=$pro_id and pro_jue_id=$jue_id");
+									  	if($pro_id!=NULL) $fldproveedor = get_db_value("select pro_name from tb_proveedor where pro_id=$pro_id and pro_jue_id=$jue_id");
 									  ?>
-                                      <td class="ClearDataTD"><input name="producto" value="<?=$fldProducto?>"></td>
+                                      <td class="ClearDataTD"><input name="proveedor" value="<?=$fldproveedor?>"></td>
                                      </tr>
                                      <tr>
                                       <td class="ClearFooterTD" nowrap align="right" colspan="2">
@@ -166,6 +165,7 @@ function delete($jue_id, $pro_id)
                                 </div>
                                 
                         </div>
-                </div>
+                </div>                                
+                                
         </body>
 </html>
