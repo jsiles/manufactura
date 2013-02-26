@@ -19,3 +19,9 @@ CREATE TABLE `manufactura2`.`tb_proveedor` (
 ) ENGINE = MYISAM 
 
 ALTER TABLE `tb_productos2` ADD `pro_jue_id` INT NOT NULL 
+
+ALTER TABLE `tb_incoterms` ADD `inc_jue_id` INT NOT NULL 
+
+ALTER TABLE `tb_transporte` ADD `tra_jue_id` INT NOT NULL 
+
+ALTER TABLE `tb_proveedor` ADD `pro_jue_id` INT NOT NULL 

@@ -4,17 +4,17 @@
         $admin = get_param("PHPsession");
 
         if ($admin=='1q2w3e4r5t6y') {
-        session_unregister("UserID");
-        session_unregister("UserLogin");
-        session_unregister("GroupID");
+        unset($_SESSION["UserID"]);
+        unset($_SESSION["UserLogin"]);
+        unset($_SESSION["GroupID"]);
         header("Location: ./private/index.php");
         exit;
         }
         else
         {
-        session_unregister("UserID");
-        session_unregister("GroupID");
-        session_unregister("UserLogin");
+        unset($_SESSION["UserID"]);
+        unset($_SESSION["GroupID"]);
+        unset($_SESSION["UserLogin"]);
         header("Location: atributos.php");
         exit;
         }

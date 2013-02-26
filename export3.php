@@ -68,12 +68,12 @@ function reporte()
         {            
             $periodo[$periodoinicial+$i] = $periodoinicial+$i;
         }
-        if(is_array($periodo))
+      /*  if(is_array($periodo))
                 {
                   reset($periodo);
                             $tpl->set_var("ID", "");
                               $tpl->set_var("Value", "Seleccionar valor");
-                            $tpl->parse("Periodo", true);
+                         //   $tpl->parse("Periodo", true);
                   while(list($key, $value) = each($periodo))
                   {
                     $tpl->set_var("ID", $key);
@@ -82,15 +82,15 @@ function reporte()
                       $tpl->set_var("Selected", "SELECTED" );
                     else
                       $tpl->set_var("Selected", "");
-                    $tpl->parse("Periodo", true);
+                   // $tpl->parse("Periodo", true);
                   }
-                }
+                }*/
 
     } else 
     {
-                 $tpl->set_var("ID", "");
+               /*  $tpl->set_var("ID", "");
                  $tpl->set_var("Value", "Seleccionar valor");
-                 $tpl->parse("Periodo", true);
+                 $tpl->parse("Periodo", true);*/
                  $tpl->set_var("Datos", "");
     
     }

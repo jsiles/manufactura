@@ -100,9 +100,9 @@ function reporte()
                         $nombre = $db->f("usu_nombre");
                         $next_record = $db->next_record();
                         
-                        $ingreso = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=22 and t.dat_usu_id=$id and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
+                        $ingreso = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=130 and t.dat_usu_id=$id and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
                         if ($ingreso=='') $ingreso=0;
-                        $totaligresos = get_db_value ("select sum(t.dat_monto) from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=22 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
+                        $totaligresos = get_db_value ("select sum(t.dat_monto) from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=130 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
                         if ($totaligresos=='') $totaligresos=0;    
                         if ($totaligresos==0) $market_share = 0 ;
                         else $market_share = $ingreso/$totaligresos;
@@ -113,44 +113,38 @@ function reporte()
                 $sUsuario = "select usu_id, usu_nombre from tb_usuarios where usu_jue_id=$dat_juego";
                 $db->query($sUsuario);
                 $next_record = $db->next_record();
+				$Z=0;
                     while ($next_record)
                     {
                         $id = $db->f("usu_id");
                         $nombre = $db->f("usu_nombre");
                         $next_record = $db->next_record();
                         
-                        $ingreso = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=22 and t.dat_usu_id=$id and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($ingreso=='') $ingreso=0;
-                        $totaligresos = get_db_value ("select sum(t.dat_monto) from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=22 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($totaligresos=='') $totaligresos=0;    
-                        if ($totaligresos==0) $market_share = 0 ;
-                        else $market_share = $ingreso/$totaligresos;
-                        $id2 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=2 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id2=='') $id2=0;
-                        $id3 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=3 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id3=='') $id3=0;
-                        $id7 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=7 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id7=='') $id7=0;
-                        $id8 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=8 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id8=='') $id8=0;
-                        $id9 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=9 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id9=='') $id9=0;
-                        $id11 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=11 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id11=='') $id11=0;
-                        $id15 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=15 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id15=='') $id15=0;
-                        $id41 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=41 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id41=='') $id41=0;
-                        $id42 = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=42 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
-                        if ($id42=='') $id42=0;
-                        $costoscomunes = $id2 + $id3 + $id7 + $id8 + $id9 + $id11 + $id15 + $id41 + $id42;    
-                        $utilidadbruta = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=24 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id"); 
-                        $utilidadoperativa = $utilidadbruta - $costoscomunes;
-                        if ($ingreso!=0) $margenutilidad = $utilidadoperativa/$ingreso;
-                        else $margenutilidad=0;
-                        $tpl->set_var("Label21", number_format($margenutilidad * 100,0)." %" );
-                        $tpl->parse ("Total1" , true);
+                        $ingreso = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=130 and t.dat_usu_id=$id and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id");
+                     	
+						$utilidadoperativa = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=81 and t.dat_periodo=$dat_periodo and t.dat_usu_id=t1.usu_id"); 
+                        if ($ingreso!=0) $margenutilidad [$z] = $utilidadoperativa/$ingreso;
+                        else $margenutilidad [$z]=0;
+						
+                  	if($z>0)
+						{
+						if($margenutilidad[$z]>$superior) $superior=$margenutilidad[$z];
+						}
+						else $superior=$margenutilidad[$z];
+						$z++;
+					                       
                     }
+					foreach($margenutilidad as $key=>$value)
+					{
+					if ($superior!=$value)
+					$tpl->set_var("Label21",number_format($value * 100,0)." %");
+					else
+					$tpl->set_var("Label21", "<font color=\"#ff0000\">".number_format($value * 100,0)." %"."</font>" );
+					$tpl->parse ("Total1" , true);
+					}
+					
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+				/*	
                 $tpl->set_var("Label12", "MARGEN DE CONTRIBUCIÓN" );
                 $sUsuario = "select usu_id, usu_nombre from tb_usuarios where usu_jue_id=$dat_juego";
                 $db->query($sUsuario);
@@ -192,7 +186,7 @@ function reporte()
                         else $margencontribucion=0;
                         $tpl->set_var("Label22",number_format($margencontribucion * 100,0)." %");
                         $tpl->parse ("Total2" , true);
-                    }
+                    }*/
 
                 $tpl->set_var("Label13", "GIRO DE CAPITAL" );
                 $sUsuario = "select usu_id, usu_nombre from tb_usuarios where usu_jue_id=$dat_juego";
@@ -203,7 +197,7 @@ function reporte()
                         $id = $db->f("usu_id");
                         $nombre = $db->f("usu_nombre");
                         $next_record = $db->next_record();
-                        $ingreso = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=22 and t.dat_usu_id=$id and t.dat_periodo=$dat_periodo  and t.dat_usu_id=t1.usu_id");
+                        $ingreso = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=130 and t.dat_usu_id=$id and t.dat_periodo=$dat_periodo  and t.dat_usu_id=t1.usu_id");
                         if ($ingreso=='') $ingreso=0;
                         $totalactivos = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_usu_id=$id and t.dat_ite_id=46 and t.dat_periodo=$dat_periodo  and t.dat_usu_id=t1.usu_id"); 
                         if ($totalactivos=='') $totalactivos=0;                            

@@ -59,8 +59,8 @@ function ingreso_action($sAction)
       }
     break;
     case "logout":
-      session_unregister("cliID");
-      session_unregister("UserRights");
+      unset($_SESSION["cliID"]);
+      unset($_SESSION["UserRights"]);
       if(strlen(get_param("ret_page")))
       {
         header("Location:" . $filename . "?ret_page=" . urlencode(get_param("ret_page")));

@@ -1,7 +1,7 @@
 <?php
 error_reporting (E_ALL ^ E_NOTICE);
-include("./template2.php");
-include("./db_mysql2.inc");
+include("template2.php");
+include("db_mysql2.inc");
 define("DATABASE_NAME","manufactura2");//simulado_manufactura2
 define("DATABASE_USER","root");//simulado_gen
 define("DATABASE_PASSWORD","");//generico123
