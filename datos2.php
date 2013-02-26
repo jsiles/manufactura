@@ -128,8 +128,11 @@ function elementos_action($sAction)
 	$sTransitParams = "?ele_id=$ele_id&dat_periodo=$dat_periodo&dat_producto=$pro_id&dat_mercado=$mer_id&";
 	$sError = "";
 
+	//echo $dat_periodo;
+	//echo $dat_ele_id;
+
 	if (!strlen($dat_periodo)) $sError .= "El valor en el campo Periodo es requerido<br>";
-	if (!strlen($dat_ele_id)) $sError .= "El valor en el campo Elemento es requerido<br>";
+	//if (!strlen($dat_ele_id)) $sError .= "El valor en el campo Elemento es requerido<br>";
 	if (!is_numeric($dat_periodo)) $sError .= "El valor en el campo Periodo es incorrecto<br>";
 	if (strlen($sError)) {echo $sError; return;}
 	switch($sAction)

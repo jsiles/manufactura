@@ -134,7 +134,7 @@ function elementos_action($sAction)
 	$sError = "";
 
 	if (!strlen($dat_periodo)) $sError .= "El valor en el campo Periodo es requerido<br>";
-	if (!strlen($dat_ele_id)) $sError .= "El valor en el campo Elemento es requerido<br>";
+	//if (!strlen($dat_ele_id)) $sError .= "El valor en el campo Elemento es requerido<br>";
 	if (!is_numeric($dat_periodo)) $sError .= "El valor en el campo Periodo es incorrecto<br>";
 	if (strlen($sError)) {echo $sError; return;}
 	switch($sAction)
