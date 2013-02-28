@@ -3,41 +3,45 @@ include ("common2.php");
 include ("globals.php");
 session_start();
 $jue_id= get_param("jue_id");
-$tra_id= get_param("tra_id");
+$sum_id= get_param("sum_id");
 
 $FormAction= get_param("FormAction");
 
 if ($FormAction=='insert') insert($jue_id);
-if ($FormAction=='update') update($jue_id, $tra_id);
-if ($FormAction=='delete') delete($jue_id, $tra_id);
+if ($FormAction=='update') update($jue_id, $sum_id);
+if ($FormAction=='delete') delete($jue_id, $sum_id);
 
 //print_r($arrayMateriales);
 
 function insert ($jue_id)
 {
 	global $db;
-	$fldtransporte = get_param("transporte");
-	$sSQL="insert into tb_transporte values(null, ". tosql($fldtransporte,"Text").", ". tosql($jue_id,"Text").")";
+	$fldsuministro = get_param("suministro");
+	$fldsuministrocosto = get_param("costo");
+	$fldsuministrotiempo = get_param("tiempo");
+			
+	$sSQL="insert into tb_suministro values(null, ". tosql($fldsuministro,"Text").", ". tosql($fldsuministrocosto,"Number").", ". tosql($fldsuministrotiempo,"Number").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
-	header("location: transporte.php?jue_id=$jue_id");
+	header("location: suministro.php?jue_id=$jue_id");
 }
 
-function update($jue_id, $tra_id)
+function update($jue_id, $sum_id)
 {
 	global $db;
-	$fldtransporte = get_param("transporte");
-	$sSQL="update tb_transporte set tra_name=". tosql($fldtransporte,"Text")." where tra_jue_id=". tosql($jue_id,"Text")." and tra_id=". tosql($tra_id,"Number");
+	$fldsuministro = get_param("suministro");
+	$fldsuministrocosto = get_param("costo");
+	$fldsuministrotiempo = get_param("tiempo");
+	$sSQL="update tb_suministro set sum_name=". tosql($fldsuministro,"Text").", sum_cost=". tosql($fldsuministrocosto,"Number").", sum_time=". tosql($fldsuministrotiempo,"Number")." where sum_jue_id=". tosql($jue_id,"Text")." and sum_id=". tosql($sum_id,"Number");
 	$db->query($sSQL);
-	header("location: transporte.php?jue_id=$jue_id");
+	header("location: suministro.php?jue_id=$jue_id");
 }
 
-function delete($jue_id, $tra_id)
+function delete($jue_id, $sum_id)
 {
 	global $db;
-	$fldtransporte = get_param("transporte");
-	$sSQL="delete from tb_transporte where tra_jue_id=". tosql($jue_id,"Text")." and tra_id=". tosql($tra_id,"Number");
+	$sSQL="delete from tb_suministro where sum_jue_id=". tosql($jue_id,"Text")." and sum_id=". tosql($sum_id,"Number");
 	$db->query($sSQL);
-	header("location: transporte.php?jue_id=$jue_id");
+	header("location: suministro.php?jue_id=$jue_id");
 
 }
 ?>
@@ -71,16 +75,18 @@ function delete($jue_id, $tra_id)
                                 <div id="tabs-1-1" >
                                 <p>
                                     <font class="ClearFormHeaderFont">Lista
-                                    de Transportes </font><br>
+                                    de suministros </font><br>
                                     </p>
                                  <table>
 									<tr>
                                       <td class="ClearColumnTD" nowrap="nowrap">&nbsp;&nbsp;</td>	
                                       <td class="ClearColumnTD" nowrap="nowrap">Id</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Transporte</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Suministro</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Costo Suministro</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Tiempo de Suministro</td>
                                     </tr>
                                     <?php
-										$sSQL="select * from tb_transporte where tra_jue_id=$jue_id order by tra_id asc";
+										$sSQL="select * from tb_suministro where sum_jue_id=$jue_id order by sum_id asc";
 										$db->query($sSQL);
 										if($db->num_rows()>0)
 										{
@@ -88,9 +94,11 @@ function delete($jue_id, $tra_id)
 											{
 									?>
                                             <tr>  
-                                              <td class="ClearDataTD"><a href="transporte.php?tra_id=<?=$db->f("tra_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
-                                              <td class="ClearDataTD"><?= $db->f("tra_id")?></td>
-                                              <td class="ClearDataTD"><?= $db->f("tra_name")?></td>
+                                              <td class="ClearDataTD"><a href="suministro.php?sum_id=<?=$db->f("sum_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
+                                              <td class="ClearDataTD"><?= $db->f("sum_id")?></td>
+                                              <td class="ClearDataTD"><?= $db->f("sum_name")?></td>
+                                              <td class="ClearDataTD"><?= $db->f("sum_cost")?></td>
+                                              <td class="ClearDataTD"><?= $db->f("sum_time")?></td>
                                              </tr>
 									<?php
 											}
@@ -98,7 +106,7 @@ function delete($jue_id, $tra_id)
 										else{
 									?>
                                     		<tr>  
-                                              <td class="ClearDataTD" colspan="3">No hay Registros</td>
+                                              <td class="ClearDataTD" colspan="5">No hay Registros</td>
                                              </tr>
                                     	
                                     <?php
@@ -106,25 +114,38 @@ function delete($jue_id, $tra_id)
 									?>
                                  </table>
                                  <br>
-                                  <form method="Get" action="transporte.php" name="valoresRecord">
-                                  <font class="ClearFormHeaderFont">Agregar/Editar Transportes&nbsp; </font> 
+                                  <form method="Get" action="suministro.php" name="valoresRecord">
+                                  <font class="ClearFormHeaderFont">Agregar/Editar suministros&nbsp; </font> 
                                   <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
                                      <tr>
                                       <td class="ClearErrorDataTD" colspan="2"></td>
                                      </tr>
                                      <tr>
-                                      <td class="ClearFieldCaptionTD">Transporte</td>
+                                      <td class="ClearFieldCaptionTD">Suministro</td>
                                       <?php
-									  	if($tra_id!=NULL) $fldtransporte = get_db_value("select tra_name from tb_transporte where tra_id=$tra_id and tra_jue_id=$jue_id");
+									  	if($sum_id!=NULL) {
+											$fldsuministro = get_db_value("select sum_name from tb_suministro where sum_id=$sum_id and sum_jue_id=$jue_id");
+											$fldsuministrocosto = get_db_value("select sum_cost from tb_suministro where sum_id=$sum_id and sum_jue_id=$jue_id");
+											$fldsuministrotiempo = get_db_value("select sum_time from tb_suministro where sum_id=$sum_id and sum_jue_id=$jue_id");
+										}
 									  ?>
-                                      <td class="ClearDataTD"><input name="transporte" value="<?=$fldtransporte?>"></td>
+                                      <td class="ClearDataTD"><input name="suministro" value="<?=$fldsuministro?>"></td>
+                                      </tr>
+                                      <tr>
+                                      <td class="ClearFieldCaptionTD">Costo Suministro</td>
+                                      <td class="ClearDataTD"><input name="costo" value="<?=$fldsuministrocosto?>"></td>
+                                      </tr>
+                                      <tr>
+                                      <td class="ClearFieldCaptionTD">Tiempo de Suministro</td>
+                                      <td class="ClearDataTD"><input name="tiempo" value="<?=$fldsuministrotiempo?>"></td>
+                                      
                                      </tr>
                                      <tr>
                                       <td class="ClearFooterTD" nowrap align="right" colspan="2">
                                 
                                       <!-- ***   Buttons   *** -->
                                       <?php
-									  if($tra_id==NULL)
+									  if($sum_id==NULL)
 									  {
 									  ?>
 									  
@@ -149,13 +170,13 @@ function delete($jue_id, $tra_id)
 									  }
 									  ?>
                                       <!--BeginvaloresRecordCancel-->
-                                      <input class="ClearButton" type="submit" value="Cancelar" onClick="document.valoresRecord.FormAction.value = 'cancel';document.valoresRecord.tra_id.value = '';"/>
+                                      <input class="ClearButton" type="submit" value="Cancelar" onClick="document.valoresRecord.FormAction.value = 'cancel';document.valoresRecord.sum_id.value = '';"/>
                                       <!--EndvaloresRecordCancel-->
                                       
                                       <input type="hidden" name="FormName" value="valoresRecord"/>
                                       <input type="hidden" name="FormAction" value=""/> 
                                       <input type="hidden" name="jue_id" value="<?=$jue_id?>"/>
-                                      <input type="hidden" name="tra_id" value="<?=$tra_id?>"/>
+                                      <input type="hidden" name="sum_id" value="<?=$sum_id?>"/>
                                       
                                      </td>
                                     </tr>
