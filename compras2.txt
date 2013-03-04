@@ -62,3 +62,13 @@ CREATE TABLE `manufactura2`.`tb_incotran` (
 `int_tiempoTra` INT NOT NULL ,
 `int_jue_id` INT NOT NULL
 ) ENGINE = MYISAM 
+
+CREATE TABLE `manufactura2`.`tb_compras2` (
+`com_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`com_mes_id` INT NOT NULL ,
+`com_cantidad` INT NOT NULL ,
+`com_int_id` INT NOT NULL ,
+`com_sum_id` INT NOT NULL ,
+`com_usu_id` INT NOT NULL ,
+`com_jue_id` INT NOT NULL
+) ENGINE = MYISAM 

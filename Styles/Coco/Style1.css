@@ -1,4 +1,4 @@
-/* CCSTheme v 3.x */
+/* CCSTheme v 3.1 */
 /* General */
 
 /* BEGIN Common */
@@ -135,6 +135,13 @@ td {
 	background-color: #f0c522; color: #000000;
 	white-space: nowrap;
 	}
+	
+.Caption2 th {
+	font-size: 70%; text-align: left; vertical-align: top;
+	padding: 4px;
+	border-bottom: solid 2px #FFFFFF;
+	background-color: #f0c522; color: #000000;
+	}
 
 .Caption td {
 	font-size: 70%; text-align: left; vertical-align: top;
@@ -142,6 +149,13 @@ td {
 	border-bottom: solid 2px #FFFFFF;
 	background-color: #f0c522; color: #000000;
 	white-space: nowrap;
+	}
+
+.Caption2 td {
+	font-size: 70%; text-align: left; vertical-align: top;
+	padding: 4px;
+	border-bottom: solid 2px #FFFFFF;
+	background-color: #f0c522; color: #000000;
 	}
 
 .Caption a:link {
@@ -786,15 +800,10 @@ font-weight:bold;
 color:#dd2d26;	
 }
 
-
-
-
-/*kljerkjlesklre jkfr esklfj asdklfmadsjfkm;ladsfmads
-fads
-f
-adsf
-adsf
-ads
-f
-asd
-fads*/
+.textCajonEdit{
+text-align:right;
+font-size:9;
+color:#000066;
+border:thin;
+background-color:#F4F4F4
+}
