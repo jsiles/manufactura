@@ -33,3 +33,21 @@ CREATE TABLE `manufactura2`.`tb_suministro` (
 `sum_time` INT NOT NULL ,
 `sum_jue_id` INT NOT NULL
 ) ENGINE = MYISAM 
+
+
+CREATE TABLE `manufactura2`.`tb_mesaproveedores` (
+`mes_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`mes_com_id` INT NOT NULL ,
+`mes_pro_id` INT NOT NULL ,
+`mes_precio` DOUBLE NOT NULL ,
+`mes_pedido` INT NOT NULL ,
+`mes_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `manufactura2`.`tb_descuentos` (
+`des_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`des_usu_id` INT NOT NULL ,
+`des_pro_id` INT NOT NULL ,
+`des_porcentaje` INT NOT NULL ,
+`des_jue_id` INT NOT NULL
+) ENGINE = MYISAM 

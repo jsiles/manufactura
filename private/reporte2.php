@@ -1,6 +1,5 @@
 <?php
 include ("./common2.php");
-
 session_start();
 $filename = "reporte2.php";
 $template_filename = "reporte2.html";
