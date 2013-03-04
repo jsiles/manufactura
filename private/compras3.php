@@ -54,7 +54,7 @@ function delete($jue_id, $pro_id)
                 <div id="tabs">
                 		<div id="nav2">
                             <ul id="navmenu2">
-                                    <li><a id="active" href="#tabs-1">Param&eacute;tricas</a>
+                                    <li><a id="active" href="compras3.php?jue_id=<?=$jue_id?>">Param&eacute;tricas</a>
                                      <ul>
                                         <li><a href="compras3.php?jue_id=<?=$jue_id?>">Productos</a></li>
                                         <li><a href="incoterms.php?jue_id=<?=$jue_id?>">Incoterms</a></li>
@@ -65,6 +65,7 @@ function delete($jue_id, $pro_id)
                                     </li>
                                     <li><a href="mesa.php?jue_id=<?=$jue_id?>">Mesa Proveedores</a></li>
                                     <li><a href="descuentos.php?jue_id=<?=$jue_id?>">Descuentos</a></li>
+									<li><a href="incotran.php?jue_id=<?=$jue_id?>">Factor Incoterms &amp; Transporte</a></li>
                             </ul>
                         </div>
                         <div id="tabs-1">

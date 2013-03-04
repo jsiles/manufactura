@@ -65,6 +65,7 @@ function delete($jue_id, $tra_id)
                                     </li>
                                     <li><a href="mesa.php?jue_id=<?=$jue_id?>">Mesa Proveedores</a></li>
                                     <li><a href="descuentos.php?jue_id=<?=$jue_id?>">Descuentos</a></li>
+                                    <li><a href="incotran.php?jue_id=<?=$jue_id?>">Factor Incoterms &amp; Transporte</a></li>
                             </ul>
                         </div>
                         <div id="tabs-1">
