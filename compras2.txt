@@ -51,3 +51,14 @@ CREATE TABLE `manufactura2`.`tb_descuentos` (
 `des_porcentaje` INT NOT NULL ,
 `des_jue_id` INT NOT NULL
 ) ENGINE = MYISAM 
+
+CREATE TABLE `manufactura2`.`tb_incotran` (
+`int_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`int_inc_id` INT NOT NULL ,
+`int_factorInc` DOUBLE(32,2) NOT NULL ,
+`int_tiempoInc` INT NOT NULL ,
+`int_tra_id` INT NOT NULL ,
+`int_factorTra` DOUBLE(32,2) NOT NULL ,
+`int_tiempoTra` INT NOT NULL ,
+`int_jue_id` INT NOT NULL
+) ENGINE = MYISAM 

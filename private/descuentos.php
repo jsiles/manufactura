@@ -73,8 +73,8 @@ function update($jue_id)
                                       <td class="ClearColumnTD" nowrap="nowrap">Descuento (%)</td>
                                     </tr>
                                     <?php
-										$arrayProveedor= db_fill_array("select pro_id, pro_name from tb_proveedor where pro_jue_id=$jue_id");
-
+										$arrayProveedor = db_fill_array("select pro_id, pro_name from tb_proveedor where pro_jue_id=$jue_id");
+										$cantProveedor = count($arrayProveedor);
 										$sSQL="select * from tb_usuarios where usu_jue_id=$jue_id order by usu_id asc";
 										$db->query($sSQL);
 										if($db->num_rows()>0)
@@ -84,7 +84,7 @@ function update($jue_id)
 								
 									?>
                                             <tr>  
-                                              <td class="ClearDataTD" rowspan="2"><?= $db->f("usu_nombre")?></td>
+                                              <td class="ClearDataTD" rowspan="<?=$cantProveedor?>"><?= $db->f("usu_nombre")?></td>
                                               <?php
 											  foreach($arrayProveedor as $key=>$value)
 											  {
