@@ -26,14 +26,81 @@ if (!$per_periodo) $per_periodo=1;
 	
 $FormAction = get_param("FormAction");
 
-if ($FormAction=='update') update();
+if ($FormAction=='update') update( $jue_id, $user_id);
 $columnas =14;
 
-function insert ()
+function update ($jue_id, $user_id)
 {
 	global $db;
+	$fldCantidadPedido = get_param("cantPedido");
+	$fldMesId = get_param("mesa");
+	$fldIncotermsTra = get_param("incoterm");
+	$fldSuministro = get_param("suministro");
+	$cantArray = count($fldCantidadPedido);
+	if($cantArray>0)
+	{
+		$sSQL = "delete from tb_compras2 where com_jue_id= ".tosql($jue_id, "Number")." and com_usu_id=". tosql($user_id, "Number");
+		$db->query($sSQL);
+		for($x=0;$x<$cantArray;$x++)
+		{
+		  if($fldIncotermsTra[$x]&&$fldSuministro[$x]){
+			$sSQL="insert into tb_compras2 values(null, ". tosql($fldMesId[$x], "Number") .", ". tosql($fldCantidadPedido[$x], "Number") .", ". tosql($fldIncotermsTra[$x], "Number") .", ". tosql($fldSuministro[$x], "Number") .", ". tosql($user_id, "Number") .", ". tosql($jue_id, "Number") .")";
+			$db->query($sSQL);
+			}
+		}
+	}
+	
 }
 
+function fMontoBasico($a,$b,$c)
+{
+	if(is_number($a) && is_number($b) && is_number($c)) return $a*$b*$c;
+	else return 0;
+}
+function fFactorIncoterms($fldIncoterms)
+{
+	global $db;
+	if($fldIncoterms)
+	{
+		$factorInc = get_db_value("select int_factorInc from tb_incotran where int_id=".tosql($fldIncoterms, "Text"));
+		$factorTra = get_db_value("select int_factorTra from tb_incotran where int_id=".tosql($fldIncoterms, "Text"));
+		return ($factorInc + $factorTra - 1);
+	}else return 0;
+}
+
+function fTipoSuministro($fldSuministro)
+{
+	global $db;
+	if($fldSuministro)
+	{
+		$montoSuministro = get_db_value("select sum_cost from tb_suministro where sum_id=".tosql($fldSuministro, "Text"));
+		return $montoSuministro;
+	}else return 0;
+
+}
+
+function fDescuento($proveedor, $fldMontoBasico, $user_id, $jue_id)
+{
+	$porcentajeDesc = get_db_value("select des_porcentaje from tb_descuentos where des_jue_id=". tosql($jue_id, "Numer")." and des_pro_id = ". tosql($proveedor, "Numer"). " and des_usu_id= ". tosql($user_id, "Numer"));
+	return round($porcentajeDesc * $fldMontoBasico/100);
+}
+
+function fMontoTotal($fldMontoBasico, $fldFactorIncoterms, $fldImporteSuministro, $fldDescuento)
+{
+	return ($fldMontoBasico * $fldFactorIncoterms + $fldImporteSuministro - $fldDescuento);
+}
+
+function fTiempoLlegada($fldSuministro, $fldIncoterms)
+{
+	global $db;
+	if($fldIncoterms&&$fldSuministro)
+	{
+		$tiempoInc = get_db_value("select int_tiempoInc from tb_incotran where int_id=".tosql($fldIncoterms, "Text"));
+		$tiempoTra = get_db_value("select int_tiempoTra from tb_incotran where int_id=".tosql($fldIncoterms, "Text"));
+		$tiempoSuministro = get_db_value("select sum_time from tb_suministro where sum_id=".tosql($fldSuministro, "Text"));
+		return ($tiempoInc + $tiempoTra + $tiempoSuministro);
+	}else return 0;
+}
 ?>
 <html>
 <head>
@@ -47,26 +114,19 @@ function insert ()
 </head>
 <body class="PageBODY">
 <p>
- <form method="POST" action="compramateriales3.php" name="valoresRecord">
-  <br>
-  <br>
-  Seleccionar gesti&oacute;n: 
-  <select name="per_periodo" onChange="submit();">
-  <?php
-  foreach($arrayPeriodo as $key=>$value)
-  {
-	  if($key==$per_periodo) $selValue="Selected"; else $selValue="";
-  ?>
-  <option value="<?=$key?>" <?=$selValue?>><?=$value?></option>
-  <?
-  }
-  ?>
-  </select>
-  <br>
-  <br>
-  <table cellspacing="0" cellpadding="0" border="0">
+<table width="100%" border="0">
+<tr>
+<td width="50%" align="right" >Reporte Salida <a href="comprasReporte.php?jue_id=<?=$jue_id?>&" title="Reporte Salida"><img src="./image/excel.jpg" alt="Reporte resumen" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    <td width="10%" align="center">
+        
+    </td>
+</tr>
 
-    <td valign="top">
+</table>
+
+
+ <form method="POST" action="compramateriales3.php" name="valoresRecord">
+  
   <table class="Grid" cellspacing="0" cellpadding="0" border="1">
      <tr class="Caption2">
       <td>Producto</td>
@@ -98,7 +158,16 @@ function insert ()
 			$fldcantidadPedido = get_db_value("select com_cantidad from tb_compras2 where com_jue_id=".tosql($jue_id, "Number")." and com_mes_id=".tosql($db->f("mes_id"), "Number")." and com_usu_id=".tosql($user_id, "Number"));
 			$fldcantidadPedido = ($fldcantidadPedido == NULL)?0:$fldcantidadPedido;
 			$fldIncoterms = get_db_value("select com_int_id from tb_compras2 where com_jue_id=".tosql($jue_id, "Number")." and com_mes_id=".tosql($db->f("mes_id"), "Number")." and com_usu_id=".tosql($user_id, "Number"));
-			$fldSuministro = get_db_value("select com_sum_id from tb_compras2 where com_jue_id=".tosql($jue_id, "Number")." and com_mes_id=".tosql($db->f("mes_id"), "Number")." and com_usu_id=".tosql($user_id, "Number"));			
+
+			$fldSuministro = get_db_value("select com_sum_id from tb_compras2 where com_jue_id=".tosql($jue_id, "Number")." and com_mes_id=".tosql($db->f("mes_id"), "Number")." and com_usu_id=".tosql($user_id, "Number"));
+			
+			$fldMontoBasico= fMontoBasico($fldcantidadPedido, $db->f("mes_pedido"), $db->f("mes_precio") );
+            $fldFactorIncoterms= fFactorIncoterms($fldIncoterms);
+            $fldImporteSuministro= fTipoSuministro($fldSuministro);
+            $fldDescuento= fDescuento($db->f("mes_pro_id"), $fldMontoBasico, $user_id, $jue_id);
+            $fldMontoTotal= fMontoTotal($fldMontoBasico, $fldFactorIncoterms, $fldImporteSuministro, $fldDescuento);
+            $fldTiempoLlegada= fTiempoLlegada($fldSuministro, $fldIncoterms);
+						
 			 ?>
 			 <tr class="Row">
 				  <td><?= $fldCompra?></td>
@@ -107,7 +176,7 @@ function insert ()
 				  <td><?= $db->f("mes_precio")?></td>
 				  <td><input name="cantPedido[]" value="<?=$fldcantidadPedido?>" type="text" size="4" class="textoCaja"/> </td>
                   <td><select name="incoterm[]">
-                                      	<option value="">Seleccione valor</option>
+                                      	<option value="">Seleccione</option>
  										  <?php
 										  	foreach($arrayIncoterms as $key=>$value)
 											{
@@ -119,7 +188,7 @@ function insert ()
                                       </select>
                   </td>
                   <td><select name="suministro[]">
-                                      	<option value="">Seleccione valor</option>
+                                      	<option value="">Seleccione </option>
  										  <?php
 										  	foreach($arraySuministro as $key=>$value)
 											{
@@ -128,8 +197,14 @@ function insert ()
                                           <?php
 											}
 										  ?>
-                                      </select>
+                                      </select><input name="mesa[]" value="<?=$db->f("mes_id")?>" type="hidden"/>
                  </td>
+                 <td><?=$fldMontoBasico?></td>
+                 <td><?=$fldFactorIncoterms?></td>
+                 <td><?=$fldImporteSuministro?></td>
+                 <td><?=$fldDescuento?></td>
+                 <td><?=$fldMontoTotal?></td>
+                 <td><?=$fldTiempoLlegada?></td>
 			 </tr>
 			 <?php
 	 	}
@@ -148,7 +223,7 @@ function insert ()
       <input type="hidden" value="<?=$jue_id?>" name="id"/>
       
       <input type="hidden" name="FormName" value="valoresRecord"/>
-      <input class="ClearButton" type="submit" value="Aceptar" onClick="document.valoresRecord.FormAction.value = 'update';"/>&nbsp;&nbsp;
+      <input class="ClearButton" type="submit" value="Calcular" onClick="document.valoresRecord.FormAction.value = 'update';"/>&nbsp;&nbsp;
       </td>
      </tr>
  </table>
