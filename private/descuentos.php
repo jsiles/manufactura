@@ -86,6 +86,9 @@ function update($jue_id)
                                             <tr>  
                                               <td class="ClearDataTD" rowspan="<?=$cantProveedor?>"><?= $db->f("usu_nombre")?></td>
                                               <?php
+											  if($arrayProveedor)
+											  {
+											  $valButton=0;
 											  foreach($arrayProveedor as $key=>$value)
 											  {
 											  $descuentosValue = get_db_value("select des_porcentaje from tb_descuentos where des_jue_id=$jue_id and des_usu_id=".$db->f("usu_id")." and des_pro_id=".$key);
@@ -96,10 +99,15 @@ function update($jue_id)
                                                </tr>
 											  <?php
 											  }
+											  }else{
+											  $valButton=1;
 											  ?>
-                                                                                           
-                                            
+                                              <td class="ClearDataTD">&nbsp;</td>
+                                              <td class="ClearDataTD" align="right">&nbsp;</td>
+                                              </tr>                                       
+                                            	
 									<?php
+												}
 											}
 										}
 										else{
@@ -116,7 +124,15 @@ function update($jue_id)
                                 
                                       <!-- ***   Buttons   *** -->
                                       <!--BeginvaloresRecordUpdate-->
+                                      <?php
+									  	if($valButton==0)
+										{
+										
+									  ?>
                                       <input class="ClearButton" type="submit" value="Modificar" onClick="document.valoresRecord.FormAction.value = 'update';"/>&nbsp;&nbsp;
+                                      <?php
+									  	}
+									  ?>
                                       <!--EndvaloresRecordUpdate-->
                                       <input type="hidden" name="FormName" value="valoresRecord"/>
                                       <input type="hidden" name="FormAction" value=""/> 
