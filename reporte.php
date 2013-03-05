@@ -135,7 +135,7 @@ function reporte()
 				$tpl->parse ("Total" , true);
 				}
 ///////////////////////////////////////////////////////////////////////////////////////////////////////				
-                $tpl->set_var("Label11", "MARGEN DE UTILIDAD" );
+                $tpl->set_var("Label11", "EBITDA" );
                 $sUsuario = "select usu_id, usu_nombre from tb_usuarios where usu_jue_id=$dat_juego";
                 $db->query($sUsuario);
                 $next_record = $db->next_record();

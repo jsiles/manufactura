@@ -72,3 +72,15 @@ CREATE TABLE `manufactura2`.`tb_compras2` (
 `com_usu_id` INT NOT NULL ,
 `com_jue_id` INT NOT NULL
 ) ENGINE = MYISAM 
+
+CREATE TABLE `manufactura2`.`tb_totalcompras` (
+`tot_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`tot_sumatotal` DOUBLE( 32, 2 ) NOT NULL ,
+`tot_productototal` DOUBLE( 32, 2 ) NOT NULL ,
+`tot_porcentaje` DOUBLE( 32, 2 ) NOT NULL ,
+`tot_usu_id` INT NOT NULL ,
+`tot_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+ALTER TABLE `tb_totalcompras` ADD `tot_pro_id` INT NOT NULL AFTER `tot_porcentaje` 
+ALTER TABLE `tb_totalcompras` DROP `tot_porcentaje`

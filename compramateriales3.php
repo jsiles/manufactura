@@ -101,6 +101,17 @@ function fTiempoLlegada($fldSuministro, $fldIncoterms)
 		return ($tiempoInc + $tiempoTra + $tiempoSuministro);
 	}else return 0;
 }
+function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $pro_id, $user_id, $jue_id)
+{
+		global $db;
+		
+		$sSQL = "delete from tb_totalcompras where tot_jue_id= ".tosql($jue_id, "Number")." and tot_usu_id=". tosql($user_id, "Number");
+		$db->query($sSQL);
+		
+		$sSQL = "insert into tb_totalcompras values(null, ". tosql($SumMontoTotal,"Number") .", ". tosql($ProductoSumMontoTotal,"Number") . ", ". tosql($pro_id,"Number") . ", ". tosql($user_id, "Number").", ".tosql($jue_id, "Number").")";
+		$db->query($sSQL);
+
+}
 ?>
 <html>
 <head>
@@ -150,7 +161,8 @@ function fTiempoLlegada($fldSuministro, $fldIncoterms)
 		{
 		$arrayIncoterms = db_fill_array("select int_id, int_id from tb_incotran where int_jue_id=$jue_id");
 		$arraySuministro = db_fill_array("select sum_id, sum_name from tb_suministro where sum_jue_id=$jue_id");
-
+		$SumMontoTotal = 0;
+		$ProductoSumMontoTotal = 0;
 		while($db->next_record())
 		{
 			$fldCompra = get_db_value("select pro_name from tb_productos2 where  pro_id = ".tosql($db->f("mes_com_id"), "Number"));
@@ -167,7 +179,11 @@ function fTiempoLlegada($fldSuministro, $fldIncoterms)
             $fldDescuento= fDescuento($db->f("mes_pro_id"), $fldMontoBasico, $user_id, $jue_id);
             $fldMontoTotal= fMontoTotal($fldMontoBasico, $fldFactorIncoterms, $fldImporteSuministro, $fldDescuento);
             $fldTiempoLlegada= fTiempoLlegada($fldSuministro, $fldIncoterms);
-						
+			
+			$SumMontoTotal = $fldMontoTotal;
+			$ProductoSumMontoTotal = (	$fldcantidadPedido	* $db->f("mes_pedido"));	
+			
+			fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $db->f("mes_com_id"),  $user_id, $jue_id);
 			 ?>
 			 <tr class="Row">
 				  <td><?= $fldCompra?></td>
@@ -208,6 +224,7 @@ function fTiempoLlegada($fldSuministro, $fldIncoterms)
 			 </tr>
 			 <?php
 	 	}
+		
 	 }else{
 	 ?>
      <tr class="Row">

@@ -69,7 +69,7 @@ function reporte()
                         $tpl->parse ("Total" , true);
                     }
 					
-                $tpl->set_var("Label11", "MARGEN DE UTILIDAD" );
+                $tpl->set_var("Label11", "EBITDA" );
                     foreach ($periodo as $id_periodo => $valor) 
                     {
                         $ingreso = get_db_value ("select t.dat_monto from tb_datos t, tb_usuarios t1 where t1.usu_jue_id=$dat_juego and t.dat_ite_id=130 and t.dat_usu_id=$dat_usuario and t.dat_periodo=$id_periodo and t.dat_usu_id=t1.usu_id");
