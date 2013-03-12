@@ -87,11 +87,13 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
                                                                           'Border' => 1,
                                                                           'BorderColor'  => 'white'));
 					$jue_id = get_param("jue_id");
+					$per_id = get_param("per_id");
 					$arrayUsuario = db_fill_array("select usu_id, usu_nombre from tb_usuarios where usu_jue_id=".tosql($jue_id, "Number"));
 					$arrayProducto = db_fill_array("select pro_id, pro_name from tb_productos2 where pro_jue_id=".tosql($jue_id, "Number"));
 					
 					$worksheet =& $workbook->addWorksheet("Reporte de Compras Realizadas");
 					$worksheet->write(0,0,"Compras",$format_title2);
+					$worksheet->write(1,0,"Periodo:".$per_id, $format_title2);
 					$worksheet->write(2,0,"Producto",$format_title);
 					$worksheet->write(2,1,"Concepto",$format_title);
 					$k=2;
@@ -115,9 +117,9 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 						$k=2;
 						foreach($arrayUsuario as $key2=>$value2)
 						{
-							$fldTotalCosto = get_db_value("select sum(tot_sumatotal) from tb_totalcompras where tot_pro_id=". tosql($key, "Number") ." and tot_usu_id=".tosql($key2,"Number")." and tot_jue_id=".tosql($jue_id,"Number"));
+							$fldTotalCosto = get_db_value("select sum(tot_sumatotal) from tb_totalcompras where tot_pro_id=". tosql($key, "Number") ." and tot_usu_id=".tosql($key2,"Number")." and tot_jue_id=".tosql($jue_id,"Number")." and tot_per_id=".tosql($per_id,"Number"));
 							if(!$fldTotalCosto) $fldTotalCosto=0;
-							$fldUnidadesCompradas = get_db_value("select sum(tot_productototal) from tb_totalcompras where tot_pro_id=". tosql($key, "Number") ." and tot_usu_id=".tosql($key2,"Number")." and tot_jue_id=".tosql($jue_id,"Number"));
+							$fldUnidadesCompradas = get_db_value("select sum(tot_productototal) from tb_totalcompras where tot_pro_id=". tosql($key, "Number") ." and tot_usu_id=".tosql($key2,"Number")." and tot_jue_id=".tosql($jue_id,"Number")." and tot_per_id=".tosql($per_id,"Number"));
 							if(!$fldUnidadesCompradas) $fldUnidadesCompradas=0;
 							if($fldUnidadesCompradas>0) $fldCostoUnitario = round($fldTotalCosto/$fldUnidadesCompradas,2);
 							else $fldCostoUnitario = 0;

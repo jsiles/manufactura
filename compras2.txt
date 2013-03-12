@@ -84,3 +84,7 @@ CREATE TABLE `manufactura2`.`tb_totalcompras` (
 
 ALTER TABLE `tb_totalcompras` ADD `tot_pro_id` INT NOT NULL AFTER `tot_porcentaje` 
 ALTER TABLE `tb_totalcompras` DROP `tot_porcentaje`
+
+ALTER TABLE `tb_descuentos` ADD `des_per_id` INT NOT NULL 
+ALTER TABLE `tb_compras2` ADD `com_per_id` INT NOT NULL 
+ALTER TABLE `tb_totalcompras` ADD `tot_per_id` INT NOT NULL 
