@@ -150,6 +150,29 @@ function alta()
         $sSQL = "insert into tb_periodos (select null, $max_juego, per_periodo, per_estado, per_inv_estado, per_compra, per_tiempo, per_datetime from tb_periodos where per_jue_id=$juego order by per_id)";
         $db->query($sSQL);      
         
+		/****************************************
+                Alta de Compras Materiales V2
+        ****************************************/
+		//PRODUCTOS
+		$sSQL = "insert into tb_productos2 (select null, pro_name, $max_juego from tb_productos2 where pro_jue_id=$juego order by pro_id)";
+        $db->query($sSQL);  
+		//INCOTERMS
+		$sSQL = "insert into tb_incoterms (select null, inc_name, $max_juego from tb_incoterms where inc_jue_id=$juego order by inc_id)";
+        $db->query($sSQL);  
+		//TRANSPORTE
+		$sSQL = "insert into tb_transporte (select null, tra_name, $max_juego from tb_transporte where tra_jue_id=$juego order by tra_id)";
+        $db->query($sSQL);  
+		//PROVEEDOR
+		$sSQL = "insert into tb_proveedor (select null, pro_name, $max_juego from tb_proveedor where pro_jue_id=$juego order by pro_id)";
+        $db->query($sSQL);  
+		//SUMINISTRO
+		$sSQL = "insert into tb_suministro (select null, sum_name, sum_cost, sum_time, $max_juego from tb_suministro where sum_jue_id=$juego order by sum_id)";
+        $db->query($sSQL);  
+		//MESA PROVEEDORES NO CORRESPONDE
+		//DESCUENTOS NO CORRESPONDE
+		//INCOTRAN NO CORRESPONDE
+		//COMPRAS2 NO CORRESPONDE
+		
                  
         echo "<script>javascript:window.opener.location.reload();</script>";
     }
