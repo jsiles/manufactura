@@ -255,7 +255,17 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $pro_id, $user_
       <input type="hidden" value="<?=$jue_id?>" name="id"/>
       
       <input type="hidden" name="FormName" value="valoresRecord"/>
-      <input class="ClearButton" type="submit" value="Calcular" onClick="document.valoresRecord.FormAction.value = 'update';"/>&nbsp;&nbsp;
+      <?php
+	  $valCheckedCompras = get_db_value("select coh_activo from tb_comprashabilita where coh_jue_id=".tosql($jue_id, "Number")." and coh_per_id=". tosql($per_periodo, "Number"));
+	  if($valCheckedCompras==1)
+	  {
+	  ?>
+      <input class="ClearButton" type="submit" value="Calcular" onClick="document.valoresRecord.FormAction.value = 'update';"/>
+      <?php
+	  }
+	  ?>
+      &nbsp;&nbsp;
+      
       </td>
      </tr>
  </table>

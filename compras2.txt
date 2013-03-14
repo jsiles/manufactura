@@ -88,3 +88,10 @@ ALTER TABLE `tb_totalcompras` DROP `tot_porcentaje`
 ALTER TABLE `tb_descuentos` ADD `des_per_id` INT NOT NULL 
 ALTER TABLE `tb_compras2` ADD `com_per_id` INT NOT NULL 
 ALTER TABLE `tb_totalcompras` ADD `tot_per_id` INT NOT NULL 
+
+CREATE TABLE `manufactura2`.`tb_comprashabilita` (
+`coh_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`coh_per_id` INT NOT NULL ,
+`coh_activo` INT NOT NULL ,
+`coh_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
