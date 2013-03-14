@@ -22,8 +22,17 @@ function insert ($jue_id)
 	$fldTransporte = get_param("transporte");
 	$fldFactorTra = get_param("factorTra");
 	$fldTiempoTra = get_param("tiempoTra");
+	
+	$valCant = get_db_value("select count(*) from tb_incotran where int_jue_id=". tosql($jue_id,"Number"));
+	if($valCant==0) {
+	$iniValue=1;
+	}
+	else {
+		$maxValue = get_db_value("select max(int_id) from tb_incotran where int_jue_id=". tosql($jue_id,"Number"));
+		$iniValue=$maxValue+1;
+	}
 			
-	$sSQL="insert into tb_incotran values(null, ". tosql($fldIncoterms,"Number").", ". tosql($fldFactorInc,"Number").", ". tosql($fldTiempoInc,"Number").", ". tosql($fldTransporte,"Number").", ". tosql($fldFactorTra,"Number").", ". tosql($fldTiempoTra,"Number").", ". tosql($jue_id,"Number").")";
+	$sSQL="insert into tb_incotran values(". tosql($iniValue,"Number").", ". tosql($fldIncoterms,"Number").", ". tosql($fldFactorInc,"Number").", ". tosql($fldTiempoInc,"Number").", ". tosql($fldTransporte,"Number").", ". tosql($fldFactorTra,"Number").", ". tosql($fldTiempoTra,"Number").", ". tosql($jue_id,"Number").")";
 	$db->query($sSQL);
 	header("location: incotran.php?jue_id=$jue_id");
 }

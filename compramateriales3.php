@@ -140,7 +140,8 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $pro_id, $user_
  <form method="POST" action="compramateriales3.php" name="valoresRecord">
     <br>
   <br>
-  Seleccionar periodo: <select name="per_periodo" onChange="submit();">
+  Seleccionar Gesti&oacute;n: 
+  <select name="per_periodo" onChange="submit();">
   <?php
   foreach($arrayPeriodo as $key=>$value)
   {

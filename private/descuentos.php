@@ -66,7 +66,8 @@ function update($jue_id, $per_periodo)
                                  <table>
 	                                <tr>
                                      <td colspan="4">
-                                     	Seleccionar periodo: <select name="per_periodo" onChange="submit();">
+                                     	Seleccionar Gesti&oacute;n: 
+                                     	  <select name="per_periodo" onChange="submit();">
 										  <?php
                                           foreach($arrayPeriodo as $key=>$value)
                                           {
@@ -142,7 +143,7 @@ function update($jue_id, $per_periodo)
 										{
 										
 									  ?>
-                                      <input class="ClearButton" type="submit" value="Modificar" onClick="document.valoresRecord.FormAction.value = 'update';"/>&nbsp;&nbsp;
+                                      <input class="ClearButton" type="submit" value="Aceptar" onClick="document.valoresRecord.FormAction.value = 'update';"/>&nbsp;&nbsp;
                                       <?php
 									  	}
 									  ?>

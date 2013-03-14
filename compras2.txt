@@ -95,3 +95,8 @@ CREATE TABLE `manufactura2`.`tb_comprashabilita` (
 `coh_activo` INT NOT NULL ,
 `coh_jue_id` INT NOT NULL
 ) ENGINE = MYISAM 
+
+ALTER TABLE `tb_incotran` CHANGE `int_id` `int_id` INT( 11 ) NOT NULL
+
+ALTER TABLE `manufactura2`.`tb_incotran` DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( `int_id` , `int_jue_id` ) 
