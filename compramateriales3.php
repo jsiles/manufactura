@@ -104,13 +104,13 @@ function fTiempoLlegada($fldSuministro, $fldIncoterms)
 //acá va el periodo
 function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $pro_id, $user_id, $jue_id, $per_periodo)
 {
-		global $db;
+		global $db1;
 		
 		$sSQL = "delete from tb_totalcompras where tot_jue_id= ".tosql($jue_id, "Number")." and tot_usu_id=". tosql($user_id, "Number")." and tot_per_id=". tosql($per_periodo, "Number");
-		$db->query($sSQL);
+		$db1->query($sSQL);
 		
 		$sSQL = "insert into tb_totalcompras values(null, ". tosql($SumMontoTotal,"Number") .", ". tosql($ProductoSumMontoTotal,"Number") . ", ". tosql($pro_id,"Number") . ", ". tosql($user_id, "Number").", ".tosql($jue_id, "Number").", ".tosql($per_periodo, "Number").")";
-		$db->query($sSQL);
+		$db1->query($sSQL);
 
 }
 ?>
