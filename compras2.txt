@@ -100,3 +100,7 @@ ALTER TABLE `tb_incotran` CHANGE `int_id` `int_id` INT( 11 ) NOT NULL
 
 ALTER TABLE `manufactura2`.`tb_incotran` DROP PRIMARY KEY ,
 ADD PRIMARY KEY ( `int_id` , `int_jue_id` ) 
+
+ALTER TABLE `tb_totalcompras` ADD `tot_mes_id` INT NOT NULL 
+
+ALTER TABLE `tb_compras2` ADD `com_gasto` INT NOT NULL AFTER `com_cantidad` 
