@@ -231,7 +231,7 @@ function elementos_show()
               $tpl->parse("Row",true);
 			  
 			  $tpl->set_var("Detail_Src", "compramateriales3.php?id=$jue_id&per_periodo=$dat_periodo&apl=1&dat_periodo=$dat_periodo&");
-              $tpl->set_var("ele_nombre","COMPRA DE MATERIALES V2");
+              $tpl->set_var("ele_nombre","COMPRAS");
               $tpl->parse("Row",true);
 			  
 			  
