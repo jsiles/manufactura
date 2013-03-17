@@ -1,58 +1,58 @@
-CREATE TABLE `manufactura2`.`tb_productos2` (
+CREATE TABLE `tb_productos2` (
 `pro_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
 `pro_name` VARCHAR( 255 ) NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM; 
 
-CREATE TABLE `manufactura2`.`tb_incoterms` (
+CREATE TABLE `tb_incoterms` (
 `inc_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
 `inc_name` VARCHAR( 255 ) NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM; 
 
-CREATE TABLE `manufactura2`.`tb_transporte` (
+CREATE TABLE `tb_transporte` (
 `tra_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
 `tra_name` VARCHAR( 255 ) NOT NULL
-) ENGINE = MYISAM
+) ENGINE = MYISAM;
 
-CREATE TABLE `manufactura2`.`tb_proveedor` (
+CREATE TABLE `tb_proveedor` (
 `pro_id` INT NOT NULL DEFAULT NULL AUTO_INCREMENT PRIMARY KEY ,
 `pro_name` VARCHAR( 255 ) NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM;
 
-ALTER TABLE `tb_productos2` ADD `pro_jue_id` INT NOT NULL 
+ALTER TABLE `tb_productos2` ADD `pro_jue_id` INT NOT NULL; 
 
-ALTER TABLE `tb_incoterms` ADD `inc_jue_id` INT NOT NULL 
+ALTER TABLE `tb_incoterms` ADD `inc_jue_id` INT NOT NULL;
 
-ALTER TABLE `tb_transporte` ADD `tra_jue_id` INT NOT NULL 
+ALTER TABLE `tb_transporte` ADD `tra_jue_id` INT NOT NULL; 
 
-ALTER TABLE `tb_proveedor` ADD `pro_jue_id` INT NOT NULL 
+ALTER TABLE `tb_proveedor` ADD `pro_jue_id` INT NOT NULL;
 
-CREATE TABLE `manufactura2`.`tb_suministro` (
+CREATE TABLE `tb_suministro` (
 `sum_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `sum_name` VARCHAR( 255 ) NOT NULL ,
 `sum_cost` INT NOT NULL ,
 `sum_time` INT NOT NULL ,
 `sum_jue_id` INT NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM; 
 
 
-CREATE TABLE `manufactura2`.`tb_mesaproveedores` (
+CREATE TABLE `tb_mesaproveedores` (
 `mes_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `mes_com_id` INT NOT NULL ,
 `mes_pro_id` INT NOT NULL ,
 `mes_precio` DOUBLE NOT NULL ,
 `mes_pedido` INT NOT NULL ,
 `mes_jue_id` INT NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM; 
 
-CREATE TABLE `manufactura2`.`tb_descuentos` (
+CREATE TABLE `tb_descuentos` (
 `des_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `des_usu_id` INT NOT NULL ,
 `des_pro_id` INT NOT NULL ,
 `des_porcentaje` INT NOT NULL ,
 `des_jue_id` INT NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM;
 
-CREATE TABLE `manufactura2`.`tb_incotran` (
+CREATE TABLE `tb_incotran` (
 `int_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `int_inc_id` INT NOT NULL ,
 `int_factorInc` DOUBLE(32,2) NOT NULL ,
@@ -61,9 +61,9 @@ CREATE TABLE `manufactura2`.`tb_incotran` (
 `int_factorTra` DOUBLE(32,2) NOT NULL ,
 `int_tiempoTra` INT NOT NULL ,
 `int_jue_id` INT NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM;
 
-CREATE TABLE `manufactura2`.`tb_compras2` (
+CREATE TABLE `tb_compras2` (
 `com_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `com_mes_id` INT NOT NULL ,
 `com_cantidad` INT NOT NULL ,
@@ -71,36 +71,80 @@ CREATE TABLE `manufactura2`.`tb_compras2` (
 `com_sum_id` INT NOT NULL ,
 `com_usu_id` INT NOT NULL ,
 `com_jue_id` INT NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM; 
 
-CREATE TABLE `manufactura2`.`tb_totalcompras` (
+CREATE TABLE `tb_totalcompras` (
 `tot_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `tot_sumatotal` DOUBLE( 32, 2 ) NOT NULL ,
 `tot_productototal` DOUBLE( 32, 2 ) NOT NULL ,
 `tot_porcentaje` DOUBLE( 32, 2 ) NOT NULL ,
 `tot_usu_id` INT NOT NULL ,
 `tot_jue_id` INT NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM;
 
-ALTER TABLE `tb_totalcompras` ADD `tot_pro_id` INT NOT NULL AFTER `tot_porcentaje` 
-ALTER TABLE `tb_totalcompras` DROP `tot_porcentaje`
+ALTER TABLE `tb_totalcompras` ADD `tot_pro_id` INT NOT NULL AFTER `tot_porcentaje`; 
+ALTER TABLE `tb_totalcompras` DROP `tot_porcentaje`;
 
-ALTER TABLE `tb_descuentos` ADD `des_per_id` INT NOT NULL 
-ALTER TABLE `tb_compras2` ADD `com_per_id` INT NOT NULL 
-ALTER TABLE `tb_totalcompras` ADD `tot_per_id` INT NOT NULL 
+ALTER TABLE `tb_descuentos` ADD `des_per_id` INT NOT NULL; 
+ALTER TABLE `tb_compras2` ADD `com_per_id` INT NOT NULL;
+ALTER TABLE `tb_totalcompras` ADD `tot_per_id` INT NOT NULL;
 
-CREATE TABLE `manufactura2`.`tb_comprashabilita` (
+CREATE TABLE `tb_comprashabilita` (
 `coh_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
 `coh_per_id` INT NOT NULL ,
 `coh_activo` INT NOT NULL ,
 `coh_jue_id` INT NOT NULL
-) ENGINE = MYISAM 
+) ENGINE = MYISAM;
 
+--16/03
 ALTER TABLE `tb_incotran` CHANGE `int_id` `int_id` INT( 11 ) NOT NULL
 
-ALTER TABLE `manufactura2`.`tb_incotran` DROP PRIMARY KEY ,
+ALTER TABLE `tb_incotran` DROP PRIMARY KEY ,
 ADD PRIMARY KEY ( `int_id` , `int_jue_id` ) 
 
 ALTER TABLE `tb_totalcompras` ADD `tot_mes_id` INT NOT NULL 
 
 ALTER TABLE `tb_compras2` ADD `com_gasto` INT NOT NULL AFTER `com_cantidad` 
+
+--17/03
+ALTER TABLE `tb_productos2` CHANGE `pro_id` `pro_id` INT( 11 ) NOT NULL;
+
+ALTER TABLE `tb_productos2` DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( `pro_id` , `pro_jue_id` );
+
+ALTER TABLE `tb_incoterms` CHANGE `inc_id` `inc_id` INT( 11 ) NOT NULL;
+
+ALTER TABLE `tb_incoterms` DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( `inc_id` , `inc_jue_id` );
+
+ALTER TABLE `tb_transporte` CHANGE `tra_id` `tra_id` INT( 11 ) NOT NULL;
+
+ALTER TABLE `tb_transporte` DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( `tra_id` , `tra_jue_id` );
+
+ALTER TABLE `tb_proveedor` CHANGE `pro_id` `pro_id` INT( 11 ) NOT NULL;
+
+ALTER TABLE `tb_proveedor` DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( `pro_id` , `pro_jue_id` ); 
+
+ALTER TABLE `tb_suministro` CHANGE `sum_id` `sum_id` INT( 11 ) NOT NULL;
+
+ALTER TABLE `tb_suministro` DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( `sum_id` , `sum_jue_id` );
+
+ALTER TABLE `tb_mesaproveedores` CHANGE `mes_id` `mes_id` INT( 11 ) NOT NULL;
+
+ALTER TABLE `tb_mesaproveedores` DROP PRIMARY KEY ,
+ADD PRIMARY KEY ( `mes_id` , `mes_jue_id` ) ;
+
+----incializa parametricas
+TRUNCATE TABLE tb_productos2;
+TRUNCATE TABLE tb_proveedor;
+TRUNCATE TABLE tb_transporte;
+TRUNCATE TABLE tb_incoterms;
+TRUNCATE TABLE tb_incotran;
+TRUNCATE TABLE tb_suministro;
+TRUNCATE TABLE tb_mesaproveedores;
+TRUNCATE TABLE tb_descuentos;
+TRUNCATE TABLE tb_compras2;
+TRUNCATE TABLE tb_comprashabilita;

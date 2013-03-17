@@ -20,8 +20,17 @@ function insert ($jue_id)
 	$fldproveedor = get_param("proveedor");
 	$fldunidadpedido = get_param("unidadpedido");
 	$fldpreciounitario = get_param("preciounitario");
+	
+	$valCant = get_db_value("select count(*) from tb_mesaproveedores where mes_jue_id=". tosql($jue_id,"Number"));
+	if($valCant==0) {
+	$iniValue=1;
+	}
+	else {
+		$maxValue = get_db_value("select max(mes_id) from tb_mesaproveedores where mes_jue_id=". tosql($jue_id,"Number"));
+		$iniValue=$maxValue+1;
+	}
 			
-	$sSQL="insert into tb_mesaproveedores values(null, ". tosql($fldproducto,"Number").", ". tosql($fldproveedor,"Number").", ". tosql($fldpreciounitario,"Number").", ". tosql($fldunidadpedido,"Number").", ". tosql($jue_id,"Number").")";
+	$sSQL="insert into tb_mesaproveedores values(".tosql($iniValue,"Number").", ". tosql($fldproducto,"Number").", ". tosql($fldproveedor,"Number").", ". tosql($fldpreciounitario,"Number").", ". tosql($fldunidadpedido,"Number").", ". tosql($jue_id,"Number").")";
 	$db->query($sSQL);
 	header("location: mesa.php?jue_id=$jue_id");
 }

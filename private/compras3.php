@@ -16,7 +16,16 @@ function insert ($jue_id)
 {
 	global $db;
 	$fldProducto = get_param("producto");
-	$sSQL="insert into tb_productos2 values(null, ". tosql($fldProducto,"Text").", ". tosql($jue_id,"Text").")";
+	$valCant = get_db_value("select count(*) from tb_productos2 where pro_jue_id=". tosql($jue_id,"Number"));
+	if($valCant==0) {
+	$iniValue=1;
+	}
+	else {
+		$maxValue = get_db_value("select max(pro_id) from tb_productos2 where pro_jue_id=". tosql($jue_id,"Number"));
+		$iniValue=$maxValue+1;
+	}
+	
+	$sSQL="insert into tb_productos2 values(". tosql($iniValue,"Number") .", ". tosql($fldProducto,"Text").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
 	header("location: compras3.php?jue_id=$jue_id");
 	

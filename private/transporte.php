@@ -17,7 +17,17 @@ function insert ($jue_id)
 {
 	global $db;
 	$fldtransporte = get_param("transporte");
-	$sSQL="insert into tb_transporte values(null, ". tosql($fldtransporte,"Text").", ". tosql($jue_id,"Text").")";
+	
+	$valCant = get_db_value("select count(*) from tb_transporte where tra_jue_id=". tosql($jue_id,"Number"));
+	if($valCant==0) {
+	$iniValue=1;
+	}
+	else {
+		$maxValue = get_db_value("select max(tra_id) from tb_transporte where tra_jue_id=". tosql($jue_id,"Number"));
+		$iniValue=$maxValue+1;
+	}
+	
+	$sSQL="insert into tb_transporte values(". tosql($iniValue,"Number") .", ". tosql($fldtransporte,"Text").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
 	header("location: transporte.php?jue_id=$jue_id");
 }

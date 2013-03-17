@@ -19,8 +19,17 @@ function insert ($jue_id)
 	$fldsuministro = get_param("suministro");
 	$fldsuministrocosto = get_param("costo");
 	$fldsuministrotiempo = get_param("tiempo");
+	
+	$valCant = get_db_value("select count(*) from tb_suministro where sum_jue_id=". tosql($jue_id,"Number"));
+	if($valCant==0) {
+	$iniValue=1;
+	}
+	else {
+		$maxValue = get_db_value("select max(sum_id) from tb_suministro where sum_jue_id=". tosql($jue_id,"Number"));
+		$iniValue=$maxValue+1;
+	}
 			
-	$sSQL="insert into tb_suministro values(null, ". tosql($fldsuministro,"Text").", ". tosql($fldsuministrocosto,"Number").", ". tosql($fldsuministrotiempo,"Number").", ". tosql($jue_id,"Text").")";
+	$sSQL="insert into tb_suministro values(".tosql($iniValue,"Number").", ". tosql($fldsuministro,"Text").", ". tosql($fldsuministrocosto,"Number").", ". tosql($fldsuministrotiempo,"Number").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
 	header("location: suministro.php?jue_id=$jue_id");
 }

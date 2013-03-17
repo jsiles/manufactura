@@ -17,7 +17,17 @@ function insert ($jue_id)
 {
 	global $db;
 	$fldIncoterm = get_param("incoterm");
-	$sSQL="insert into tb_incoterms values(null, ". tosql($fldIncoterm,"Text").", ". tosql($jue_id,"Text").")";
+	
+	$valCant = get_db_value("select count(*) from tb_incoterms where inc_jue_id=". tosql($jue_id,"Number"));
+	if($valCant==0) {
+	$iniValue=1;
+	}
+	else {
+		$maxValue = get_db_value("select max(inc_id) from tb_incoterms where inc_jue_id=". tosql($jue_id,"Number"));
+		$iniValue=$maxValue+1;
+	}
+	
+	$sSQL="insert into tb_incoterms values(". tosql($iniValue,"Number") .", ". tosql($fldIncoterm,"Text").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
 	header("location: incoterms.php?jue_id=$jue_id");
 }
