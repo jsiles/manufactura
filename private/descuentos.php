@@ -51,7 +51,7 @@ function update($jue_id, $per_periodo)
                                     <li><a href="compras3.php?jue_id=<?=$jue_id?>">Param&eacute;tricas</a></li>
                                     <li><a href="mesa.php?jue_id=<?=$jue_id?>">Mesa Proveedores</a></li>
                                     <li><a id="active" href="descuentos.php?jue_id=<?=$jue_id?>">Descuentos</a></li>
-                                    <li><a href="incotran.php?jue_id=<?=$jue_id?>">Factor Incoterms &amp; Transporte</a></li>
+                                    <li><a href="incotran.php?jue_id=<?=$jue_id?>">Transporte &amp; Aduana</a></li>
                             </ul>
                         </div>
                         <div id="tabs-1">

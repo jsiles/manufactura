@@ -17,8 +17,6 @@ function insert ($jue_id)
 {
 	global $db;
 	$fldIncoterms = get_param("incoterm");
-	$fldFactorInc = get_param("factorInc");
-	$fldTiempoInc = get_param("tiempoInc");
 	$fldTransporte = get_param("transporte");
 	$fldFactorTra = get_param("factorTra");
 	$fldTiempoTra = get_param("tiempoTra");
@@ -32,7 +30,7 @@ function insert ($jue_id)
 		$iniValue=$maxValue+1;
 	}
 			
-	$sSQL="insert into tb_incotran values(". tosql($iniValue,"Number").", ". tosql($fldIncoterms,"Number").", ". tosql($fldFactorInc,"Number").", ". tosql($fldTiempoInc,"Number").", ". tosql($fldTransporte,"Number").", ". tosql($fldFactorTra,"Number").", ". tosql($fldTiempoTra,"Number").", ". tosql($jue_id,"Number").")";
+	$sSQL="insert into tb_incotran values(". tosql($iniValue,"Number").", ". tosql($fldIncoterms,"Number").", ". tosql($fldTransporte,"Number").", ". tosql($fldFactorTra,"Number").", ". tosql($fldTiempoTra,"Number").", ". tosql($jue_id,"Number").")";
 	$db->query($sSQL);
 	header("location: incotran.php?jue_id=$jue_id");
 }
@@ -41,13 +39,11 @@ function update($jue_id, $int_id)
 {
 	global $db;
 	$fldIncoterms = get_param("incoterm");
-	$fldFactorInc = get_param("factorInc");
-	$fldTiempoInc = get_param("tiempoInc");
 	$fldTransporte = get_param("transporte");
 	$fldFactorTra = get_param("factorTra");
 	$fldTiempoTra = get_param("tiempoTra");
 
-	$sSQL="update tb_incotran set int_tra_id=". tosql($fldIncoterms,"Number").", int_factorInc=". tosql($fldFactorInc,"Number").", int_tiempoInc=". tosql($fldTiempoInc,"Number").", int_tra_id=". tosql($fldTransporte,"Number").", int_factorTra=". tosql($fldFactorTra,"Number").", int_tiempoTra=". tosql($fldTiempoTra,"Number")." where int_jue_id=". tosql($jue_id,"Number")." and int_id=". tosql($int_id,"Number");
+	$sSQL="update tb_incotran set int_tra_id=". tosql($fldIncoterms,"Number").", int_tra_id=". tosql($fldTransporte,"Number").", int_factorTra=". tosql($fldFactorTra,"Number").", int_tiempoTra=". tosql($fldTiempoTra,"Number")." where int_jue_id=". tosql($jue_id,"Number")." and int_id=". tosql($int_id,"Number");
 	$db->query($sSQL);
 	header("location: incotran.php?jue_id=$jue_id");
 }
@@ -77,25 +73,23 @@ function delete($jue_id, $int_id)
                                     <li><a href="compras3.php?jue_id=<?=$jue_id?>">Param&eacute;tricas</a></li>
                                     <li><a href="mesa.php?jue_id=<?=$jue_id?>">Mesa Proveedores</a></li>
                                     <li><a href="descuentos.php?jue_id=<?=$jue_id?>">Descuentos</a></li>
-                                    <li><a id="active" href="incotran.php?jue_id=<?=$jue_id?>">Factor Incoterms &amp; Transporte</a></li>
+                                    <li><a id="active" href="incotran.php?jue_id=<?=$jue_id?>">Transporte &amp; Aduana</a></li>
                             </ul>
                         </div>
                         <div id="tabs-1">
                                 <div id="tabs-1-1" >
                                 <p>
                                     <font class="ClearFormHeaderFont">Lista
-                                    de Factor Incoterms &amp; Transporte </font><br>
+                                    de Transporte &amp; Aduana </font><br>
                                     </p>
                                  <table>
 									<tr>
                                       <td class="ClearColumnTD" nowrap="nowrap">&nbsp;&nbsp;</td>	
                                       <td class="ClearColumnTD" nowrap="nowrap">Id</td>
                                       <td class="ClearColumnTD" nowrap="nowrap">Incoterm</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Factor Incoterm</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Tiempo Incoterm</td>
                                       <td class="ClearColumnTD" nowrap="nowrap">Transporte</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Factor Transporte</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Tiempo Transporte</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Factor Transporte &amp; Aduana</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Tiempo Transporte &amp; Aduana</td>
                                     </tr>
                                     <?php
 										$sSQL="select * from tb_incotran where int_jue_id=$jue_id order by int_id asc";
@@ -111,8 +105,6 @@ function delete($jue_id, $int_id)
                                               <td class="ClearDataTD"><a href="incotran.php?int_id=<?=$db->f("int_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
                                               <td class="ClearDataTD"><?= $db->f("int_id")?></td>
                                               <td class="ClearDataTD"><?= $fldIncoterms?></td>
-                                              <td class="ClearDataTD"><?= $db->f("int_factorInc")?></td>
-                                              <td class="ClearDataTD"><?= $db->f("int_tiempoInc")?></td>
                                               <td class="ClearDataTD"><?= $fldTransporte?></td>
                                               <td class="ClearDataTD"><?= $db->f("int_factorTra")?></td>
                                               <td class="ClearDataTD"><?= $db->f("int_tiempoTra")?></td>
@@ -146,8 +138,6 @@ function delete($jue_id, $int_id)
 
 									  	if($int_id!=NULL) {
 											$fldIncoterms = get_db_value("select int_inc_id from tb_incotran where int_id=$int_id and int_jue_id=$jue_id");
-											$fldFactorInc = get_db_value("select int_factorInc from tb_incotran where int_id=$int_id and int_jue_id=$jue_id");
-											$fldTiempoInc = get_db_value("select int_tiempoInc from tb_incotran where int_id=$int_id and int_jue_id=$jue_id");
 											$fldTransporte = get_db_value("select int_tra_id from tb_incotran where int_id=$int_id and int_jue_id=$jue_id");
 											$fldFactorTra = get_db_value("select int_factorTra from tb_incotran where int_id=$int_id and int_jue_id=$jue_id");
 											$fldTiempoTra = get_db_value("select int_tiempoTra from tb_incotran where int_id=$int_id and int_jue_id=$jue_id");
@@ -167,16 +157,7 @@ function delete($jue_id, $int_id)
 										  ?>
                                       </select>
                                       </tr>
-                                      <tr>
-                                      <td class="ClearFieldCaptionTD">Factor Incoterm</td>
-                                      <td class="ClearDataTD"><input name="factorInc" value="<?=$fldFactorInc?>"></td>
-                                      </tr>
-
-                                      <tr>
-                                      <td class="ClearFieldCaptionTD">Tiempo Incoterm</td>
-                                      <td class="ClearDataTD"><input name="tiempoInc" value="<?=$fldTiempoInc?>"></td>
-                                      </tr>
-
+                                      
                                       <tr>
                                       <td class="ClearFieldCaptionTD">Transporte</td>
                                       <td class="ClearDataTD"><select name="transporte">
@@ -194,12 +175,12 @@ function delete($jue_id, $int_id)
                                      </tr>
                                      
                                       <tr>
-                                      <td class="ClearFieldCaptionTD">Factor Transporte</td>
+                                      <td class="ClearFieldCaptionTD">Factor Transporte &amp; Aduana</td>
                                       <td class="ClearDataTD"><input name="factorTra" value="<?=$fldFactorTra?>"></td>
                                       </tr>
 
                                       <tr>
-                                      <td class="ClearFieldCaptionTD">Tiempo Transporte</td>
+                                      <td class="ClearFieldCaptionTD">Tiempo Transporte &amp; Aduana</td>
                                       <td class="ClearDataTD"><input name="tiempoTra" value="<?=$fldTiempoTra?>"></td>
                                       </tr>
 

@@ -20,6 +20,8 @@ function insert ($jue_id)
 	$fldproveedor = get_param("proveedor");
 	$fldunidadpedido = get_param("unidadpedido");
 	$fldpreciounitario = get_param("preciounitario");
+	$fldincoterms = get_param("incoterms");
+	$fldtiempo = get_param("tiempo");
 	
 	$valCant = get_db_value("select count(*) from tb_mesaproveedores where mes_jue_id=". tosql($jue_id,"Number"));
 	if($valCant==0) {
@@ -30,7 +32,7 @@ function insert ($jue_id)
 		$iniValue=$maxValue+1;
 	}
 			
-	$sSQL="insert into tb_mesaproveedores values(".tosql($iniValue,"Number").", ". tosql($fldproducto,"Number").", ". tosql($fldproveedor,"Number").", ". tosql($fldpreciounitario,"Number").", ". tosql($fldunidadpedido,"Number").", ". tosql($jue_id,"Number").")";
+	$sSQL="insert into tb_mesaproveedores values(".tosql($iniValue,"Number").", ". tosql($fldproducto,"Number").", ". tosql($fldproveedor,"Number").", ". tosql($fldpreciounitario,"Number").", ". tosql($fldunidadpedido,"Number").", ". tosql($jue_id,"Number").", ". tosql($fldincoterms,"Number").", ". tosql($fldtiempo,"Number").")";
 	$db->query($sSQL);
 	header("location: mesa.php?jue_id=$jue_id");
 }
@@ -42,8 +44,10 @@ function update($jue_id, $mes_id)
 	$fldproveedor = get_param("proveedor");
 	$fldunidadpedido = get_param("unidadpedido");
 	$fldpreciounitario = get_param("preciounitario");
-
-	$sSQL="update tb_mesaproveedores set mes_com_id=". tosql($fldproducto,"Number").", mes_pro_id=". tosql($fldproveedor,"Number").", mes_pedido=". tosql($fldunidadpedido,"Number").", mes_precio=". tosql($fldpreciounitario,"Number")." where mes_jue_id=". tosql($jue_id,"Number")." and mes_id=". tosql($mes_id,"Number");
+	$fldincoterms = get_param("incoterms");
+	$fldtiempo = get_param("tiempo");
+	
+	$sSQL="update tb_mesaproveedores set mes_com_id=". tosql($fldproducto,"Number").", mes_pro_id=". tosql($fldproveedor,"Number").", mes_pedido=". tosql($fldunidadpedido,"Number").", mes_precio=". tosql($fldpreciounitario,"Number").", mes_inc_id=". tosql($fldincoterms,"Number") .", mes_tiempo=". tosql($fldtiempo,"Number") ." where mes_jue_id=". tosql($jue_id,"Number")." and mes_id=". tosql($mes_id,"Number");
 	$db->query($sSQL);
 	header("location: mesa.php?jue_id=$jue_id");
 }
@@ -73,7 +77,7 @@ function delete($jue_id, $mes_id)
                                     <li><a href="compras3.php?jue_id=<?=$jue_id?>">Param&eacute;tricas</a></li>
                                     <li><a id="active" href="mesa.php?jue_id=<?=$jue_id?>">Mesa Proveedores</a></li>
                                     <li><a href="descuentos.php?jue_id=<?=$jue_id?>">Descuentos</a></li>
-                                    <li><a href="incotran.php?jue_id=<?=$jue_id?>">Factor Incoterms &amp; Transporte</a></li>
+                                    <li><a href="incotran.php?jue_id=<?=$jue_id?>">Transporte &amp; Aduana</a></li>
                             </ul>
                         </div>
                         <div id="tabs-1">
@@ -89,7 +93,9 @@ function delete($jue_id, $mes_id)
                                       <td class="ClearColumnTD" nowrap="nowrap">Productos</td>
                                       <td class="ClearColumnTD" nowrap="nowrap">Unidades de Pedido</td>
                                       <td class="ClearColumnTD" nowrap="nowrap">Proveedor</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Incoterm</td>
                                       <td class="ClearColumnTD" nowrap="nowrap">Precio Unitario</td>
+									  <td class="ClearColumnTD" nowrap="nowrap">Tiempo de entrega</td>
                                     </tr>
                                     <?php
 										$sSQL="select * from tb_mesaproveedores where mes_jue_id=$jue_id order by mes_id asc";
@@ -98,8 +104,9 @@ function delete($jue_id, $mes_id)
 										{
 											while($result=$db->next_record())
 											{
-												$fldCompra = get_db_value("select pro_name from tb_productos2 where  pro_id = ".tosql($db->f("mes_com_id"), "Number"));
-												$fldProveedores = get_db_value("select pro_name from tb_proveedor where  pro_id = ".tosql($db->f("mes_pro_id"), "Number"));
+												$fldCompra = get_db_value("select pro_name from tb_productos2 where  pro_id = ".tosql($db->f("mes_com_id"), "Number"). " and pro_jue_id=".tosql($jue_id, "Number"));
+												$fldProveedores = get_db_value("select pro_name from tb_proveedor where  pro_id = ".tosql($db->f("mes_pro_id"), "Number"). " and pro_jue_id=".tosql($jue_id, "Number"));
+												$fldIncoterms = get_db_value("select inc_name from tb_incoterms where  inc_id = ".tosql($db->f("mes_inc_id"), "Number") . " and inc_jue_id=".tosql($jue_id, "Number"));
 									?>
                                             <tr>  
                                               <td class="ClearDataTD"><a href="mesa.php?mes_id=<?=$db->f("mes_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
@@ -107,7 +114,9 @@ function delete($jue_id, $mes_id)
                                               <td class="ClearDataTD"><?= $fldCompra?></td>
                                               <td class="ClearDataTD"><?= $db->f("mes_pedido")?></td>
                                               <td class="ClearDataTD"><?= $fldProveedores?></td>
+                                              <td class="ClearDataTD"><?= $fldIncoterms?></td>
                                               <td class="ClearDataTD"><?= $db->f("mes_precio")?></td>
+                                              <td class="ClearDataTD"><?= $db->f("mes_tiempo")?></td>
                                              </tr>
 									<?php
 											}
@@ -135,12 +144,15 @@ function delete($jue_id, $mes_id)
 									  
 									  	$arrayProducto = db_fill_array("select pro_id, pro_name from tb_productos2 where pro_jue_id=$jue_id");
 										$arrayProveedor = db_fill_array("select pro_id, pro_name from tb_proveedor where pro_jue_id=$jue_id");
+										$arrayIncoterms = db_fill_array("select inc_id, inc_name from tb_incoterms where inc_jue_id=$jue_id");
 
 									  	if($mes_id!=NULL) {
 											$fldproducto = get_db_value("select mes_com_id from tb_mesaproveedores where mes_id=$mes_id and mes_jue_id=$jue_id");
 											$fldunidadpedido = get_db_value("select mes_pedido from tb_mesaproveedores where mes_id=$mes_id and mes_jue_id=$jue_id");
 											$fldproveedor = get_db_value("select mes_pro_id from tb_mesaproveedores where mes_id=$mes_id and mes_jue_id=$jue_id");
 											$fldpreciounitario = get_db_value("select mes_precio from tb_mesaproveedores where mes_id=$mes_id and mes_jue_id=$jue_id");
+											$fldincoterms = get_db_value("select mes_inc_id from tb_mesaproveedores where mes_id=$mes_id and mes_jue_id=$jue_id");
+											$fldtiempo = get_db_value("select mes_tiempo from tb_mesaproveedores where mes_id=$mes_id and mes_jue_id=$jue_id");
 										}
 									  ?>
                                       <td class="ClearDataTD">
@@ -175,11 +187,30 @@ function delete($jue_id, $mes_id)
 										  ?>
                                       </select></td>
                                      </tr>
+                                     <tr>
+                                      <td class="ClearFieldCaptionTD">Incoterms</td>
+                                      <td class="ClearDataTD"><select name="incoterms">
+                                      	<option value="">Seleccione valor</option>
+ 										  <?php
+										  	foreach($arrayIncoterms as $key=>$value)
+											{
+											
+										  ?>
+                                          <option value="<?=$key?>" <?php if ($key==$fldincoterms) echo "Selected"; ?>><?=$value?></option>                 
+                                          <?php
+											}
+										  ?>
+                                      </select></td>
+                                     </tr>
                                       <tr>
                                       <td class="ClearFieldCaptionTD">Precio Unitario</td>
                                       <td class="ClearDataTD"><input name="preciounitario" value="<?=$fldpreciounitario?>"></td>
                                      </tr>
 
+									<tr>
+                                      <td class="ClearFieldCaptionTD">Tiempo de entrega</td>
+                                      <td class="ClearDataTD"><input name="tiempo" value="<?=$fldtiempo?>"></td>
+                                     </tr>
                                      <tr>
                                       <td class="ClearFooterTD" nowrap align="right" colspan="2">
                                 

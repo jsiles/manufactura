@@ -46,24 +46,13 @@ function update($jue_id, $arrayPeriodo)
         </head>
         <body>
                 <div id="tabs">
-                		<div id="nav2">
-                            <ul id="navmenu2">
-                                    <li><a  id="active" href="compras3.php?jue_id=<?=$jue_id?>">Param&eacute;tricas</a></li>
-                                    <li><a href="mesa.php?jue_id=<?=$jue_id?>">Mesa Proveedores</a></li>
-                                    <li><a href="descuentos.php?jue_id=<?=$jue_id?>">Descuentos</a></li>
-                                    <li><a href="incotran.php?jue_id=<?=$jue_id?>">Factor Incoterms &amp; Transporte</a></li>
-                            </ul>
-                        </div>
-                        <div id="nav3">
-                            <ul id="navmenu3">
-                                <li><a href="compras3.php?jue_id=<?=$jue_id?>">Productos</a></li>
-                                <li><a href="incoterms.php?jue_id=<?=$jue_id?>">Incoterms</a></li>
-                                <li><a href="transporte.php?jue_id=<?=$jue_id?>">Tipo de transporte</a></li>
-                                <li><a href="proveedor.php?jue_id=<?=$jue_id?>">Proveedor</a></li>
-                                <li><a href="suministro.php?jue_id=<?=$jue_id?>">Tipo Suministro</a></li>
-                                <li><a id="active" href="gestion.php?jue_id=<?=$jue_id?>">Gesti&oacute;n</a></li>
-                             </ul>
-                        </div>
+                		  <?php
+							$idActive1 = "id=\"active\"";
+							$idActive16 = "id=\"active\"";
+							
+                        	include("menu_horiz.php");
+						?>		
+                        
                         <div id="tabs-1">
                                 <div id="tabs-1-1" >
                                 <p>
