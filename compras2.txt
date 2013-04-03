@@ -156,3 +156,6 @@ ADD `mes_tiempo` INT NOT NULL;
 ALTER TABLE `tb_incotran` DROP `int_factorInc` ,
 DROP `int_tiempoInc`;
 
+--- 02/04/2013
+ALTER TABLE `tb_compras2` DROP `com_sum_id` 
+
