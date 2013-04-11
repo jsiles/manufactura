@@ -27,7 +27,7 @@ if (!$per_periodo) $per_periodo=1;
 $FormAction = get_param("FormAction");
 //acá va el periodo
 if ($FormAction=='update') update( $jue_id, $user_id, $per_periodo);
-$columnas =14;
+$columnas =16;
 //acá va el periodo
 function update ($jue_id, $user_id, $per_periodo)
 {
@@ -35,7 +35,6 @@ function update ($jue_id, $user_id, $per_periodo)
 	$fldCantidadPedido = get_param("cantPedido");
 	$fldMesId = get_param("mesa");
 	$fldIncotermsTra = get_param("incoterm");
-	$fldSuministro = get_param("suministro");
 	$fldgasto = get_param("gasto");
 	$cantArray = count($fldCantidadPedido);
 	if($cantArray>0)
@@ -44,8 +43,8 @@ function update ($jue_id, $user_id, $per_periodo)
 		$db->query($sSQL);
 		for($x=0;$x<$cantArray;$x++)
 		{
-		  if($fldIncotermsTra[$x]&&$fldSuministro[$x]){
-			$sSQL="insert into tb_compras2 values(null, ". tosql($fldMesId[$x], "Number") .", ". tosql($fldCantidadPedido[$x], "Number") .", ". tosql($fldgasto[$x], "Number") . ", ". tosql($fldIncotermsTra[$x], "Number") .", ". tosql($fldSuministro[$x], "Number") .", ". tosql($user_id, "Number") .", ". tosql($jue_id, "Number") .", ". tosql($per_periodo, "Number") .")";
+		  if($fldIncotermsTra[$x]){
+			$sSQL="insert into tb_compras2 values(null, ". tosql($fldMesId[$x], "Number") .", ". tosql($fldCantidadPedido[$x], "Number") .", ". tosql($fldgasto[$x], "Number") . ", ". tosql($fldIncotermsTra[$x], "Number") .", ". tosql($user_id, "Number") .", ". tosql($jue_id, "Number") .", ". tosql($per_periodo, "Number") .")";
 			$db->query($sSQL);
 			}
 		}
@@ -58,27 +57,16 @@ function fMontoBasico($a,$b,$c)
 	if(is_number($a) && is_number($b) && is_number($c)) return $a*$b*$c;
 	else return 0;
 }
-function fFactorIncoterms($fldIncoterms)
+function fFactorIncoterms($fldIncoterms, $jue_id)
 {
 	global $db;
 	if($fldIncoterms)
 	{
-		$factorInc = get_db_value("select int_factorInc from tb_incotran where int_id=".tosql($fldIncoterms, "Text"));
-		$factorTra = get_db_value("select int_factorTra from tb_incotran where int_id=".tosql($fldIncoterms, "Text"));
-		return ($factorInc + $factorTra - 1);
+		$factorTra = get_db_value("select int_factorTra from tb_incotran where int_id=".tosql($fldIncoterms, "Text") . " and int_jue_id=".tosql($jue_id, "Text"));
+		return $factorTra;
 	}else return 0;
 }
 
-function fTipoSuministro($fldSuministro)
-{
-	global $db;
-	if($fldSuministro)
-	{
-		$montoSuministro = get_db_value("select sum_cost from tb_suministro where sum_id=".tosql($fldSuministro, "Text"));
-		return $montoSuministro;
-	}else return 0;
-
-}
 //acá va el periodo
 function fDescuento($proveedor, $fldMontoBasico, $user_id, $jue_id, $per_periodo)
 {
@@ -86,20 +74,19 @@ function fDescuento($proveedor, $fldMontoBasico, $user_id, $jue_id, $per_periodo
 	return round($porcentajeDesc * $fldMontoBasico/100);
 }
 
-function fMontoTotal($fldMontoBasico, $fldFactorIncoterms, $fldImporteSuministro, $fldDescuento, $fldgasto)
+function fMontoTotal($fldMontoBasico, $fldFactorIncoterms, $fldDescuento, $fldgasto)
 {
-	return ($fldMontoBasico * $fldFactorIncoterms + $fldImporteSuministro - $fldDescuento + $fldgasto);
+	return ($fldMontoBasico * $fldFactorIncoterms - $fldDescuento + $fldgasto);
 }
 
-function fTiempoLlegada($fldSuministro, $fldIncoterms)
+function fTiempoLlegada($tiempoMesa, $fldIncoterms,  $jue_id)
 {
 	global $db;
-	if($fldIncoterms&&$fldSuministro)
+	if($fldIncoterms)
 	{
-		$tiempoInc = get_db_value("select int_tiempoInc from tb_incotran where int_id=".tosql($fldIncoterms, "Text"));
-		$tiempoTra = get_db_value("select int_tiempoTra from tb_incotran where int_id=".tosql($fldIncoterms, "Text"));
-		$tiempoSuministro = get_db_value("select sum_time from tb_suministro where sum_id=".tosql($fldSuministro, "Text"));
-		return ($tiempoInc + $tiempoTra + $tiempoSuministro);
+		$tiempoTra = get_db_value("select int_tiempoTra from tb_incotran where int_id=".tosql($fldIncoterms, "Text"). " and int_jue_id=".tosql($jue_id, "Number"));
+		//$tiempoSuministro = get_db_value("select sum_time from tb_suministro where sum_id=".tosql($fldSuministro, "Text"));
+		return ($tiempoTra + $tiempoMesa);
 	}else return 0;
 }
 //acá va el periodo
@@ -123,7 +110,11 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $pro_id, $user_
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="Styles/Coco/Style1.css" type="text/css" rel="stylesheet">
-<script src="./js/ajaxlib.js" language="javascript" type="text/javascript"></script>
+<link href="facebox/facebox.css" type="text/css" rel="stylesheet">
+<script src="js/ajaxlib.js" language="javascript" type="text/javascript"></script>
+<script src="js/loadMenu.js" language="javascript" type="text/javascript"></script>
+<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+<script src="facebox/facebox.js" language="javascript" type="text/javascript"></script>
 </head>
 <body class="PageBODY">
 <p>
@@ -160,60 +151,88 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $pro_id, $user_
       <td>Producto</td>
       <td>Unidades Pedido</td>
       <td>Proveedor</td>
-      <td>Precio</td>
+      <td>Incoterm</td>      
+      <td>Precio unitario</td>
+      <td>Tiempo de entrega</td>      
       <td>Cantidad de pedidos</td>
-      <td>Incoterms &amp; Transporte</td>
-      <td>Tipo Suministro</td>
+      <td>Transporte</td>
       <td>Gasto realizado</td>
       <td>Monto B&aacute;sico</td>
-      <td>Factor Incoterms &amp; Transporte</td>
-      <td>Importe por tipo suministro</td>
+      <td>Factor Transporte &amp; Aduana</td>
+      <td>Tiempo Transporte &amp; Aduana</td>
       <td>Descuento Negociado</td>
       <td>Monto Total (M)</td>
       <td>Tiempo de llegada</td>
+      <td>Unidades de pedido compradas</td>
      </tr>
      <?php
 	 	$sSQL = "select * from tb_mesaproveedores where mes_jue_id=". tosql($jue_id,"Number"). " order by mes_id asc";
 		$db->query($sSQL);
 		if($db->num_rows())
 		{
-		$arrayIncoterms = db_fill_array("select int_id, int_id from tb_incotran where int_jue_id=$jue_id");
-		$arraySuministro = db_fill_array("select sum_id, sum_name from tb_suministro where sum_jue_id=$jue_id");
 		$SumMontoTotal = 0;
 		$ProductoSumMontoTotal = 0;
+		
 		while($db->next_record())
 		{
+
+			$sSQL="select int_tra_id from tb_incotran where int_jue_id=$jue_id and int_inc_id= ".tosql($db->f("mes_inc_id"),"Number");
+			$db2->query($sSQL);
+			$sTraId ="";
+			if($db2->num_rows())
+			{
+			//echo $db2->num_rows()."num:";
+				$sTraId ="";
+				while($db2->next_record())
+				{
+					
+					$sTraId .= $db2->f("int_tra_id") .",";
+				}
+				//echo $sTraId;
+			}
+			$sTraId = substr($sTraId,0,strlen($sTraId)-1);
+			//echo $sTraId. "<br>";
+			$arrayIncoterms = null;
+			if(strlen($sTraId)>0)
+			{
+				$arrayIncoterms = db_fill_array("select tra_id, tra_name from tb_transporte where tra_jue_id=$jue_id and tra_id in(".$sTraId.")");
+			}
 			$fldCompra = get_db_value("select pro_name from tb_productos2 where  pro_id = ".tosql($db->f("mes_com_id"), "Number"));
 			$fldProveedores = get_db_value("select pro_name from tb_proveedor where  pro_id = ".tosql($db->f("mes_pro_id"), "Number"));
 			$fldcantidadPedido = get_db_value("select com_cantidad from tb_compras2 where com_jue_id=".tosql($jue_id, "Number")." and com_mes_id=".tosql($db->f("mes_id"), "Number")." and com_usu_id=".tosql($user_id, "Number")." and com_per_id=".tosql($per_periodo, "Number"));
 			$fldcantidadPedido = ($fldcantidadPedido == NULL)?0:$fldcantidadPedido;
+			
+			$fldincoterms = get_db_value("select inc_name from tb_incoterms where inc_id = ".tosql($db->f("mes_inc_id"), "Number")." and inc_jue_id=".tosql($jue_id, "Number"));
 			
 			$fldgasto = get_db_value("select com_gasto from tb_compras2 where com_jue_id=".tosql($jue_id, "Number")." and com_mes_id=".tosql($db->f("mes_id"), "Number")." and com_usu_id=".tosql($user_id, "Number")." and com_per_id=".tosql($per_periodo, "Number"));
 			$fldgasto = ($fldgasto == NULL)?0:$fldgasto;
 			
 			$fldIncoterms = get_db_value("select com_int_id from tb_compras2 where com_jue_id=".tosql($jue_id, "Number")." and com_mes_id=".tosql($db->f("mes_id"), "Number")." and com_usu_id=".tosql($user_id, "Number")." and com_per_id=".tosql($per_periodo, "Number"));
 
-			$fldSuministro = get_db_value("select com_sum_id from tb_compras2 where com_jue_id=".tosql($jue_id, "Number")." and com_mes_id=".tosql($db->f("mes_id"), "Number")." and com_usu_id=".tosql($user_id, "Number")." and com_per_id=".tosql($per_periodo, "Number"));
-			
+			$fldTiempoTransporte = get_db_value("select int_tiempoTra from tb_incotran where int_id=".tosql($fldIncoterms, "Text"). " and int_jue_id=".tosql($jue_id, "Number"));
+			if(!$fldTiempoTranporte) $fldTiempoTransporte = 0;
 			$fldMontoBasico= fMontoBasico($fldcantidadPedido, $db->f("mes_pedido"), $db->f("mes_precio") );
-            $fldFactorIncoterms= fFactorIncoterms($fldIncoterms);
-            $fldImporteSuministro= fTipoSuministro($fldSuministro);
+            $fldFactorIncoterms= fFactorIncoterms($fldIncoterms, $jue_id);
             $fldDescuento= fDescuento($db->f("mes_pro_id"), $fldMontoBasico, $user_id, $jue_id, $per_periodo);
-            $fldMontoTotal= fMontoTotal($fldMontoBasico, $fldFactorIncoterms, $fldImporteSuministro, $fldDescuento, $fldgasto);
-            $fldTiempoLlegada= fTiempoLlegada($fldSuministro, $fldIncoterms);
+            $fldMontoTotal= fMontoTotal($fldMontoBasico, $fldFactorIncoterms,  $fldDescuento, $fldgasto);
+            $fldTiempoLlegada= fTiempoLlegada($db->f("mes_tiempo"), $fldIncoterms, $jue_id);
 			
 			$SumMontoTotal = $fldMontoTotal;
 			$ProductoSumMontoTotal = (	$fldcantidadPedido	* $db->f("mes_pedido"));	
 			
 			fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $db->f("mes_com_id"),  $user_id, $jue_id, $per_periodo, $db->f("mes_id"));
+			
+			$fldUnidadesCompradas= $db->f("mes_pedido") * $fldcantidadPedido;
 			 ?>
 			 <tr class="Row">
 				  <td><?= $fldCompra?></td>
 				  <td><?= $db->f("mes_pedido")?></td>
 				  <td><?= $fldProveedores?></td>
+                  <td><?= $fldincoterms?></td>
 				  <td><?= $db->f("mes_precio")?></td>
+                  <td><?= $db->f("mes_tiempo")?></td>
 				  <td><input name="cantPedido[]" value="<?=$fldcantidadPedido?>" type="text" size="4" class="textoCaja"/> </td>
-                  <td><select name="incoterm[]">
+                  <td><select name="incoterm[]" onChange="loadOption(<?=$jue_id?>,<?=$db->f("mes_inc_id")?>, this.value);">
                                       	<option value="">Seleccione</option>
  										  <?php
 										  	foreach($arrayIncoterms as $key=>$value)
@@ -223,27 +242,18 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $pro_id, $user_
                                           <?php
 											}
 										  ?>
-                                      </select>
-                  </td>
-                  <td><select name="suministro[]">
-                                      	<option value="">Seleccione </option>
- 										  <?php
-										  	foreach($arraySuministro as $key=>$value)
-											{
-										  ?>
-                                          <option value="<?=$key?>" <?php if ($key==$fldSuministro) echo "Selected"; ?>><?=$value?></option>                 
-                                          <?php
-											}
-										  ?>
                                       </select><input name="mesa[]" value="<?=$db->f("mes_id")?>" type="hidden"/>
-                 </td>
+                  </td>
+                  
+                 
                  <td><input name="gasto[]" value="<?=$fldgasto?>" type="text" size="3"></td>
                  <td><?=$fldMontoBasico?></td>
                  <td><?=$fldFactorIncoterms?></td>
-                 <td><?=$fldImporteSuministro?></td>
+                 <td><?=$fldTiempoTransporte?></td>
                  <td><?=$fldDescuento?></td>
                  <td><?=$fldMontoTotal?></td>
                  <td><?=$fldTiempoLlegada?></td>
+                 <td><?=$fldUnidadesCompradas?></td>
 			 </tr>
 			 <?php
 	 	}
