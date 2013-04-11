@@ -233,6 +233,7 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $pro_id, $user_
                   <td><?= $db->f("mes_tiempo")?></td>
 				  <td><input name="cantPedido[]" value="<?=$fldcantidadPedido?>" type="text" size="4" class="textoCaja"/> </td>
                   <td><select name="incoterm[]" onChange="loadOption(<?=$jue_id?>,<?=$db->f("mes_inc_id")?>, this.value);">
+
                                       	<option value="">Seleccione</option>
  										  <?php
 										  	foreach($arrayIncoterms as $key=>$value)
