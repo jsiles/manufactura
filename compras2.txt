@@ -159,3 +159,26 @@ DROP `int_tiempoInc`;
 --- 02/04/2013
 ALTER TABLE `tb_compras2` DROP `com_sum_id` 
 
+--- 12/04/2013
+ALTER TABLE `tb_totalcompras` ADD `tot_descuentototal` DOUBLE( 32, 2 ) NOT NULL AFTER `tot_productototal` ,
+ADD `tot_tiempototal` DOUBLE( 32, 2 ) NOT NULL AFTER `tot_descuentototal` 
+
+ALTER TABLE `tb_totalcompras` CHANGE `tot_tiempototal` `tot_tiempototal` INT NOT NULL;
+
+ALTER TABLE `tb_totalcompras` ADD `tot_proDescuentoMontoTotal` DOUBLE( 32, 2 ) NOT NULL AFTER `tot_tiempototal`;
+
+
+CREATE TABLE IF NOT EXISTS `tb_totalcompras` (
+  `tot_id` int(11) NOT NULL AUTO_INCREMENT,
+  `tot_sumatotal` double(32,2) NOT NULL,
+  `tot_productototal` double(32,2) NOT NULL,
+  `tot_descuentototal` double(32,2) NOT NULL,
+  `tot_tiempototal` int(11) NOT NULL,
+  `tot_productotiempomontototal` double(32,2) NOT NULL,
+  `tot_pro_id` int(11) NOT NULL,
+  `tot_usu_id` int(11) NOT NULL,
+  `tot_jue_id` int(11) NOT NULL,
+  `tot_per_id` int(11) NOT NULL,
+  `tot_mes_id` int(11) NOT NULL,
+  PRIMARY KEY (`tot_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
