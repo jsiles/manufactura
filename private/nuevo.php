@@ -165,15 +165,15 @@ function alta()
 		//PROVEEDOR
 		$sSQL = "insert into tb_proveedor (select pro_id, pro_name, $max_juego from tb_proveedor where pro_jue_id=$juego order by pro_id)";
         $db->query($sSQL);  
-		//SUMINISTRO
-		$sSQL = "insert into tb_suministro (select sum_id, sum_name, sum_cost, sum_time, $max_juego from tb_suministro where sum_jue_id=$juego order by sum_id)";
-        $db->query($sSQL);  
+		//SUMINISTRO ELIMNADO V3
+//		$sSQL = "insert into tb_suministro (select sum_id, sum_name, sum_cost, sum_time, $max_juego from tb_suministro where sum_jue_id=$juego order by sum_id)";
+//        $db->query($sSQL);  
 		//MESA PROVEEDORES
-		$sSQL = "insert into tb_mesaproveedores (select mes_id, mes_com_id, mes_pro_id, mes_precio, mes_pedido, $max_juego from tb_mesaproveedores where mes_jue_id=$juego order by mes_id)";
+		$sSQL = "insert into tb_mesaproveedores (select mes_id, mes_com_id, mes_pro_id, mes_precio, mes_pedido, $max_juego, mes_inc_id, mes_tiempo from tb_mesaproveedores where mes_jue_id=$juego order by mes_id)"; //V3
         $db->query($sSQL);
 		//DESCUENTOS NO CORRESPONDE
 		//INCOTRAN
-		$sSQL = "insert into tb_incotran (select int_id, int_inc_id, int_factorInc, int_tiempoInc, int_tra_id, int_factorTra, int_tiempoTra, $max_juego from tb_incotran where int_jue_id=$juego order by int_id)";
+		$sSQL = "insert into tb_incotran (select int_id, int_inc_id, int_tra_id, int_factorTra, int_tiempoTra, $max_juego from tb_incotran where int_jue_id=$juego order by int_id)";   //V3
         $db->query($sSQL);
 		//COMPRAS2 NO CORRESPONDE
 		

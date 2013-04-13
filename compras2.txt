@@ -143,7 +143,7 @@ TRUNCATE TABLE tb_proveedor;
 TRUNCATE TABLE tb_transporte;
 TRUNCATE TABLE tb_incoterms;
 TRUNCATE TABLE tb_incotran;
-TRUNCATE TABLE tb_suministro;
+--TRUNCATE TABLE tb_suministro;
 TRUNCATE TABLE tb_mesaproveedores;
 TRUNCATE TABLE tb_descuentos;
 TRUNCATE TABLE tb_compras2;
