@@ -91,9 +91,10 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 					$user_id = get_session("cliID");
 					$arrayUsuario = db_fill_array("select usu_id, usu_nombre from tb_usuarios where usu_jue_id=".tosql($jue_id, "Number"));
 					$arrayProducto = db_fill_array("select pro_id, pro_name from tb_productos2 where pro_jue_id=".tosql($jue_id, "Number"));
-					
+					$usuarioNombre = get_db_value("select usu_nombre from tb_usuarios where usu_id=".tosql($user_id,"Number")); 
 					$worksheet =& $workbook->addWorksheet("Reporte de Compras Realizadas");
 					$worksheet->write(0,0,"Compras",$format_title2);
+					$worksheet->write(0,1,$usuarioNombre,$format_title2);
 					$worksheet->write(1,0,"Periodo:".$per_id, $format_title2);
 					$worksheet->write(2,0,"Producto",$format_title);
 					$worksheet->write(2,1,"Concepto",$format_title);
@@ -141,9 +142,9 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 							
 							
 							
-							$worksheet->write($i,$k,$fldTotalCosto, $format_title);
-							$worksheet->write($i+1,$k,$fldUnidadesCompradas, $format_title);
-							$worksheet->write($i+2,$k,$fldCostoUnitario, $format_title);
+							$worksheet->write($i,$k, number_format($fldTotalCosto,0,".",","), $format_title);
+							$worksheet->write($i+1,$k, number_format($fldUnidadesCompradas,0,".",","), $format_title);
+							$worksheet->write($i+2,$k, $fldCostoUnitario, $format_title);
 							$worksheet->write($i+3,$k, round($fldAhorro*100,0)."%", $format_title);
 							$worksheet->write($i+4,$k,$fldTiempoPromedio, $format_title);
 							$k++;
@@ -178,9 +179,9 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 						$MillonesComprasPedido1 = get_db_value("select sum(tot_sumatotal) from tb_totalcompras where tot_tiempototal=" . tosql($aux1,"Number") . " and tot_pro_id and tot_usu_id=".tosql($user_id,"Number")." and tot_jue_id = ".tosql($jue_id,"Number")." and tot_per_id=".tosql($per_id,"Number"));
 						$MillonesComprasPedido2 = get_db_value("select sum(tot_sumatotal) from tb_totalcompras where tot_tiempototal=" . tosql($aux2,"Number") . " and tot_pro_id and tot_usu_id=".tosql($user_id,"Number")." and tot_jue_id = ".tosql($jue_id,"Number")." and tot_per_id=".tosql($per_id,"Number"));
 							
-						$worksheet->write($i+3,1,$MillonesComprasPedido0, $format_title);
-						$worksheet->write($i+3,2,$MillonesComprasPedido1, $format_title);
-						$worksheet->write($i+3,3,$MillonesComprasPedido2, $format_title);
+						$worksheet->write($i+3,1, number_format($MillonesComprasPedido0,0,".",","), $format_title);
+						$worksheet->write($i+3,2, number_format($MillonesComprasPedido1,0,".",","), $format_title);
+						$worksheet->write($i+3,3, number_format($MillonesComprasPedido2,0,".",","), $format_title);
 
 						$UnidadesComprasPedido0 = get_db_value("select sum(tot_productototal) from tb_totalcompras where tot_tiempototal=" . tosql($aux0,"Number") . " and tot_pro_id and tot_usu_id=".tosql($user_id,"Number")." and tot_jue_id = ".tosql($jue_id,"Number")." and tot_per_id=".tosql($per_id,"Number"));
 						if(!$UnidadesComprasPedido0) $UnidadesComprasPedido0=0;
@@ -189,9 +190,9 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 						$UnidadesComprasPedido2 = get_db_value("select sum(tot_productototal) from tb_totalcompras where tot_tiempototal=" . tosql($aux2,"Number") . " and tot_pro_id and tot_usu_id=".tosql($user_id,"Number")." and tot_jue_id = ".tosql($jue_id,"Number")." and tot_per_id=".tosql($per_id,"Number"));																											
 						if(!$UnidadesComprasPedido2) $UnidadesComprasPedido2=0;
 
-						$worksheet->write($i+4,1,$UnidadesComprasPedido0, $format_title);
-						$worksheet->write($i+4,2,$UnidadesComprasPedido1, $format_title);
-						$worksheet->write($i+4,3,$UnidadesComprasPedido2, $format_title);
+						$worksheet->write($i+4,1, number_format($UnidadesComprasPedido0,0,".",","), $format_title);
+						$worksheet->write($i+4,2, number_format($UnidadesComprasPedido1,0,".",","), $format_title);
+						$worksheet->write($i+4,3, number_format($UnidadesComprasPedido2,0,".",","), $format_title);
 						if($UnidadesComprasPedido0>0)
 						$factor0 = round($MillonesComprasPedido0 / $UnidadesComprasPedido0,2);
 						else $factor0 = 0;

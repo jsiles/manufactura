@@ -246,10 +246,10 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $DescuentoTotal
 			 ?>
 			 <tr class="Row">
 				  <td><?= $fldCompra?></td>
-				  <td><?= $db->f("mes_pedido")?></td>
+				  <td><?= number_format($db->f("mes_pedido"),0,".",",")?></td>
 				  <td><?= $fldProveedores?></td>
                   <td><?= $fldincoterms?></td>
-				  <td><?= $db->f("mes_precio")?></td>
+				  <td><?= number_format($db->f("mes_precio"),0,".",",")?></td>
                   <td><?= $db->f("mes_tiempo")?></td>
 				  <td><input name="cantPedido[]" value="<?=$fldcantidadPedido?>" type="text" size="4" class="textoCaja"/> </td>
                   <td><select name="incoterm[]" onChange="loadOption(<?=$jue_id?>,<?=$db->f("mes_inc_id")?>, this.value);">
@@ -268,13 +268,13 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $DescuentoTotal
                   
                  
                  <td><input name="gasto[]" value="<?=$fldgasto?>" type="text" size="3"></td>
-                 <td><?=$fldMontoBasico?></td>
+                 <td><?=number_format($fldMontoBasico,0,".",",")?></td>
                  <td><?=$fldFactorIncoterms?></td>
                  <td><?=$fldTiempoTransporte?></td>
-                 <td><?=$fldDescuento?></td>
-                 <td><?=$fldMontoTotal?></td>
+                 <td><?=number_format($fldDescuento,0,".",",")?></td>
+                 <td><?=number_format($fldMontoTotal,0,".",",")?></td>
                  <td><?=$fldTiempoLlegada?></td>
-                 <td><?=$fldUnidadesCompradas?></td>
+                 <td><?=number_format($fldUnidadesCompradas,0,".",",")?></td>
 			 </tr>
 			 <?php
 	 	}
