@@ -91,14 +91,14 @@ function fTiempoLlegada($tiempoMesa, $fldIncoterms,  $jue_id)
 	}else return 0;
 }
 //acá va el periodo
-function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $DescuentoTotal, $TiempoTotal, $ProductoTiempoMontoTotal, $pro_id, $user_id, $jue_id, $per_periodo, $mes_id )
+function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $DescuentoTotal, $TiempoTotal, $ProductoTiempoMontoTotal, $pro_id, $user_id, $jue_id, $per_periodo, $mes_id, $tot_aux )
 {
 		global $db1;
 		
 		$sSQL = "delete from tb_totalcompras where tot_jue_id= ".tosql($jue_id, "Number")." and tot_usu_id=". tosql($user_id, "Number")." and tot_per_id=". tosql($per_periodo, "Number")." and tot_mes_id=". tosql($mes_id, "Number");
 		$db1->query($sSQL);
 		
-		$sSQL = "insert into tb_totalcompras values(null, ". tosql($SumMontoTotal,"Number") .", ". tosql($ProductoSumMontoTotal,"Number") . ",". tosql($DescuentoTotal,"Number") .", ". tosql($TiempoTotal,"Number") . ", ". tosql($ProductoTiempoMontoTotal,"Number") . ", ". tosql($pro_id,"Number") . ", ". tosql($user_id, "Number").", ".tosql($jue_id, "Number").", ".tosql($per_periodo, "Number").", ". tosql($mes_id, "Number").")";
+		$sSQL = "insert into tb_totalcompras values(null, ". tosql($SumMontoTotal,"Number") .", ". tosql($ProductoSumMontoTotal,"Number") . ",". tosql($DescuentoTotal,"Number") .", ". tosql($TiempoTotal,"Number") . ", ". tosql($ProductoTiempoMontoTotal,"Number") . ", ". tosql($pro_id,"Number") . ", ". tosql($user_id, "Number").", ".tosql($jue_id, "Number").", ".tosql($per_periodo, "Number").", ". tosql($mes_id, "Number").", ". tosql($tot_aux, "Number").")";
 		$db1->query($sSQL);
 
 }
@@ -239,17 +239,17 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $DescuentoTotal
 			$ProductoTiempoMontoTotal = $fldTiempoLlegada * $fldMontoTotal;
 					
 			$ProductoSumMontoTotal = ($fldcantidadPedido * $db->f("mes_pedido"));	
-			
-			fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal,  $DescuentoTotal, $TiempoTotal, $ProductoTiempoMontoTotal, $db->f("mes_com_id"),  $user_id, $jue_id, $per_periodo, $db->f("mes_id"));
+			$aux=($per_periodo*3)-3;
+			fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal,  $DescuentoTotal, $TiempoTotal, $ProductoTiempoMontoTotal, $db->f("mes_com_id"),  $user_id, $jue_id, $per_periodo, $db->f("mes_id"), $aux + $TiempoTotal);
 			
 			$fldUnidadesCompradas= $db->f("mes_pedido") * $fldcantidadPedido;
 			 ?>
 			 <tr class="Row">
 				  <td><?= $fldCompra?></td>
-				  <td><?= $db->f("mes_pedido")?></td>
+				  <td><?= number_format($db->f("mes_pedido"),0,".",",")?></td>
 				  <td><?= $fldProveedores?></td>
                   <td><?= $fldincoterms?></td>
-				  <td><?= $db->f("mes_precio")?></td>
+				  <td><?= number_format($db->f("mes_precio"),0,".",",")?></td>
                   <td><?= $db->f("mes_tiempo")?></td>
 				  <td><input name="cantPedido[]" value="<?=$fldcantidadPedido?>" type="text" size="4" class="textoCaja"/> </td>
                   <td><select name="incoterm[]" onChange="loadOption(<?=$jue_id?>,<?=$db->f("mes_inc_id")?>, this.value);">
@@ -268,13 +268,13 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $DescuentoTotal
                   
                  
                  <td><input name="gasto[]" value="<?=$fldgasto?>" type="text" size="3"></td>
-                 <td><?=$fldMontoBasico?></td>
+                 <td><?=number_format($fldMontoBasico,0,".",",")?></td>
                  <td><?=$fldFactorIncoterms?></td>
                  <td><?=$fldTiempoTransporte?></td>
-                 <td><?=$fldDescuento?></td>
-                 <td><?=$fldMontoTotal?></td>
+                 <td><?=number_format($fldDescuento,0,".",",")?></td>
+                 <td><?=number_format($fldMontoTotal,0,".",",")?></td>
                  <td><?=$fldTiempoLlegada?></td>
-                 <td><?=$fldUnidadesCompradas?></td>
+                 <td><?=number_format($fldUnidadesCompradas,0,".",",")?></td>
 			 </tr>
 			 <?php
 	 	}

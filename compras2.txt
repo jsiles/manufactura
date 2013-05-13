@@ -182,3 +182,10 @@ CREATE TABLE IF NOT EXISTS `tb_totalcompras` (
   `tot_mes_id` int(11) NOT NULL,
   PRIMARY KEY (`tot_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+
+---  13-May-2013
+
+ALTER TABLE `tb_totalcompras` ADD `tot_aux` INT NOT NULL 
+
+

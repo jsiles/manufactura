@@ -59,8 +59,8 @@ if (!$per_periodo) $per_periodo=1;
 										{
 											while($result=$db->next_record())
 											{
-												$fldIncoterms = get_db_value("select inc_name from tb_incoterms where  inc_id = ".tosql($db->f("int_inc_id"), "Number"));
-												$fldTransporte = get_db_value("select tra_name from tb_transporte where  tra_id = ".tosql($db->f("int_tra_id"), "Number"));
+												$fldIncoterms = get_db_value("select inc_name from tb_incoterms where  inc_id = ".tosql($db->f("int_inc_id"), "Number") . " and inc_jue_id= ". tosql($jue_id,"Number"));
+												$fldTransporte = get_db_value("select tra_name from tb_transporte where  tra_id = ".tosql($db->f("int_tra_id"), "Number") . " and tra_jue_id= ". tosql($jue_id,"Number"));
 									?>
                                             <tr class="Row">  
                                               <td class="ClearDataTD"><?= $fldIncoterms?></td>
