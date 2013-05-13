@@ -95,6 +95,7 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 					$worksheet =& $workbook->addWorksheet("Reporte de Compras Realizadas");
 					$worksheet->write(0,0,"Compras",$format_title2);
 					$worksheet->write(0,1,$usuarioNombre,$format_title2);
+
 					$worksheet->write(1,0,"Gestion:".$per_id, $format_title2);
 					$worksheet->write(2,0,"Producto",$format_title);
 					$worksheet->write(2,1,"Concepto",$format_title);
