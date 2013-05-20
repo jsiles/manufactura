@@ -249,7 +249,7 @@ function fArchivoSalida ($SumMontoTotal, $ProductoSumMontoTotal, $DescuentoTotal
 				  <td><?= number_format($db->f("mes_pedido"),0,".",",")?></td>
 				  <td><?= $fldProveedores?></td>
                   <td><?= $fldincoterms?></td>
-				  <td><?= number_format($db->f("mes_precio"),0,".",",")?></td>
+				  <td><?= number_format($db->f("mes_precio"),2,".",",")?></td>
                   <td><?= $db->f("mes_tiempo")?></td>
 				  <td><input name="cantPedido[]" value="<?=$fldcantidadPedido?>" type="text" size="4" class="textoCaja"/> </td>
                   <td><select name="incoterm[]" onChange="loadOption(<?=$jue_id?>,<?=$db->f("mes_inc_id")?>, this.value);">
