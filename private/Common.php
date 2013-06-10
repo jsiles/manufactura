@@ -3,17 +3,18 @@
 //Include Files @0-6CA7C540
 include(RelativePath . "/Classes.php");
 include(RelativePath . "/db_mysql.php");
+include(RelativePath . "/config.php");
 //End Include Files
 
 //Connection Settings @0-3511B515
 $CCConnectionSettings = array (
     "siges" => array(
         "Type" => "MySQL",
-        "Database" => "manufactura2", //simulado_manufactura2
-        "Host" => "localhost",
-        "Port" => "3306",
-        "User" => "root", //simulado_gen
-        "Password" => "", //generico123
+        "Database" => DB_NAME, 
+        "Host" => DB_HOST,
+        "Port" => DB_PORT,
+        "User" => DB_USER, 
+        "Password" => DB_PASSWORD, 
         "Persistent" => true,
         "DateFormat" => array("yyyy", "-", "mm", "-", "dd", " ", "HH", ":", "nn", ":", "ss"),
         "BooleanFormat" => array(1, 0, ""),

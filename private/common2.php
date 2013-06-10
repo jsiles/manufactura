@@ -2,10 +2,11 @@
 error_reporting (E_ALL ^ E_NOTICE);
 include("template2.php");
 include("db_mysql2.inc");
-define("DATABASE_NAME","manufactura2");//simulado_manufactura2
-define("DATABASE_USER","root");//simulado_gen
-define("DATABASE_PASSWORD","");//generico123
-define("DATABASE_HOST","localhost");
+include("config.php");
+define("DATABASE_NAME", DB_NAME);
+define("DATABASE_USER", DB_USER);
+define("DATABASE_PASSWORD", DB_PASSWORD);
+define("DATABASE_HOST", DB_HOST);
 @session_start();
 // Database Initialize
 $db = new DB_Sql();
