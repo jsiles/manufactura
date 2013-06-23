@@ -60,18 +60,18 @@ class clsRecordLogin { //Login Class @2-58926B8F
         if($this->Visible)
         {
             $this->ComponentName = "Login";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->login = & new clsControl(ccsTextBox, "login", "login", ccsText, "", CCGetRequestParam("login", $Method), $this);
+            $this->login = new clsControl(ccsTextBox, "login", "login", ccsText, "", CCGetRequestParam("login", $Method), $this);
             $this->login->Required = true;
-            $this->password = & new clsControl(ccsTextBox, "password", "password", ccsText, "", CCGetRequestParam("password", $Method), $this);
+            $this->password = new clsControl(ccsTextBox, "password", "password", ccsText, "", CCGetRequestParam("password", $Method), $this);
             $this->password->Required = true;
-            $this->Button_DoLogin = & new clsButton("Button_DoLogin", $Method, $this);
+            $this->Button_DoLogin = new clsButton("Button_DoLogin", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -211,7 +211,7 @@ include("./login_events.php");
 //Initialize Objects @1-22E0077B
 
 // Controls
-$Login = & new clsRecordLogin("", $MainPage);
+$Login = new clsRecordLogin("", $MainPage);
 $MainPage->Login = & $Login;
 
 BindEvents();

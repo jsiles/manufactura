@@ -70,24 +70,24 @@ class clsGridtb_atributos { //tb_atributos class @2-23966EC7
         $this->SorterName = CCGetParam("tb_atributosOrder", "");
         $this->SorterDirection = CCGetParam("tb_atributosDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "atributos.php";
-        $this->atr_nombre = & new clsControl(ccsLabel, "atr_nombre", "atr_nombre", ccsText, "", CCGetRequestParam("atr_nombre", ccsGet), $this);
-        $this->atr_tipoValor = & new clsControl(ccsLabel, "atr_tipoValor", "atr_tipoValor", ccsText, "", CCGetRequestParam("atr_tipoValor", ccsGet), $this);
-        $this->atr_sw = & new clsControl(ccsLabel, "atr_sw", "atr_sw", ccsText, "", CCGetRequestParam("atr_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->atr_nombre = new clsControl(ccsLabel, "atr_nombre", "atr_nombre", ccsText, "", CCGetRequestParam("atr_nombre", ccsGet), $this);
+        $this->atr_tipoValor = new clsControl(ccsLabel, "atr_tipoValor", "atr_tipoValor", ccsText, "", CCGetRequestParam("atr_tipoValor", ccsGet), $this);
+        $this->atr_sw = new clsControl(ccsLabel, "atr_sw", "atr_sw", ccsText, "", CCGetRequestParam("atr_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "atributos.php";
-        $this->Alt_atr_nombre = & new clsControl(ccsLabel, "Alt_atr_nombre", "Alt_atr_nombre", ccsText, "", CCGetRequestParam("Alt_atr_nombre", ccsGet), $this);
-        $this->Alt_atr_tipoValor = & new clsControl(ccsLabel, "Alt_atr_tipoValor", "Alt_atr_tipoValor", ccsText, "", CCGetRequestParam("Alt_atr_tipoValor", ccsGet), $this);
-        $this->Alt_atr_sw = & new clsControl(ccsLabel, "Alt_atr_sw", "Alt_atr_sw", ccsText, "", CCGetRequestParam("Alt_atr_sw", ccsGet), $this);
-        $this->tb_atributos_TotalRecords = & new clsControl(ccsLabel, "tb_atributos_TotalRecords", "tb_atributos_TotalRecords", ccsText, "", CCGetRequestParam("tb_atributos_TotalRecords", ccsGet), $this);
-        $this->Sorter_atr_nombre = & new clsSorter($this->ComponentName, "Sorter_atr_nombre", $FileName, $this);
-        $this->Sorter_atr_tipoValor = & new clsSorter($this->ComponentName, "Sorter_atr_tipoValor", $FileName, $this);
-        $this->Sorter_atr_sw = & new clsSorter($this->ComponentName, "Sorter_atr_sw", $FileName, $this);
-        $this->tb_atributos_Insert = & new clsControl(ccsLink, "tb_atributos_Insert", "tb_atributos_Insert", ccsText, "", CCGetRequestParam("tb_atributos_Insert", ccsGet), $this);
+        $this->Alt_atr_nombre = new clsControl(ccsLabel, "Alt_atr_nombre", "Alt_atr_nombre", ccsText, "", CCGetRequestParam("Alt_atr_nombre", ccsGet), $this);
+        $this->Alt_atr_tipoValor = new clsControl(ccsLabel, "Alt_atr_tipoValor", "Alt_atr_tipoValor", ccsText, "", CCGetRequestParam("Alt_atr_tipoValor", ccsGet), $this);
+        $this->Alt_atr_sw = new clsControl(ccsLabel, "Alt_atr_sw", "Alt_atr_sw", ccsText, "", CCGetRequestParam("Alt_atr_sw", ccsGet), $this);
+        $this->tb_atributos_TotalRecords = new clsControl(ccsLabel, "tb_atributos_TotalRecords", "tb_atributos_TotalRecords", ccsText, "", CCGetRequestParam("tb_atributos_TotalRecords", ccsGet), $this);
+        $this->Sorter_atr_nombre = new clsSorter($this->ComponentName, "Sorter_atr_nombre", $FileName, $this);
+        $this->Sorter_atr_tipoValor = new clsSorter($this->ComponentName, "Sorter_atr_tipoValor", $FileName, $this);
+        $this->Sorter_atr_sw = new clsSorter($this->ComponentName, "Sorter_atr_sw", $FileName, $this);
+        $this->tb_atributos_Insert = new clsControl(ccsLink, "tb_atributos_Insert", "tb_atributos_Insert", ccsText, "", CCGetRequestParam("tb_atributos_Insert", ccsGet), $this);
         $this->tb_atributos_Insert->Parameters = CCGetQueryString("QueryString", array("atr_id", "ccsForm"));
         $this->tb_atributos_Insert->Page = "atributos.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -377,7 +377,7 @@ class clsRecordtb_atributos1 { //tb_atributos1 Class @29-6567FD00
         if($this->Visible)
         {
             $this->ComponentName = "tb_atributos1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -385,20 +385,20 @@ class clsRecordtb_atributos1 { //tb_atributos1 Class @29-6567FD00
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->atr_nombre = & new clsControl(ccsTextBox, "atr_nombre", "Nombre", ccsText, "", CCGetRequestParam("atr_nombre", $Method), $this);
+            $this->atr_nombre = new clsControl(ccsTextBox, "atr_nombre", "Nombre", ccsText, "", CCGetRequestParam("atr_nombre", $Method), $this);
             $this->atr_nombre->Required = true;
-            $this->atr_tipoValor = & new clsControl(ccsListBox, "atr_tipoValor", "Tipo Valor", ccsText, "", CCGetRequestParam("atr_tipoValor", $Method), $this);
+            $this->atr_tipoValor = new clsControl(ccsListBox, "atr_tipoValor", "Tipo Valor", ccsText, "", CCGetRequestParam("atr_tipoValor", $Method), $this);
             $this->atr_tipoValor->DSType = dsListOfValues;
             $this->atr_tipoValor->Values = array(array("P", "Porcentual"), array("Q", "Cantidad"));
             $this->atr_tipoValor->Required = true;
-            $this->atr_sw = & new clsControl(ccsListBox, "atr_sw", "Estado", ccsText, "", CCGetRequestParam("atr_sw", $Method), $this);
+            $this->atr_sw = new clsControl(ccsListBox, "atr_sw", "Estado", ccsText, "", CCGetRequestParam("atr_sw", $Method), $this);
             $this->atr_sw->DSType = dsListOfValues;
             $this->atr_sw->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->atr_sw->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -782,8 +782,8 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$tb_atributos = & new clsGridtb_atributos("", $MainPage);
-$tb_atributos1 = & new clsRecordtb_atributos1("", $MainPage);
+$tb_atributos = new clsGridtb_atributos("", $MainPage);
+$tb_atributos1 = new clsRecordtb_atributos1("", $MainPage);
 $MainPage->tb_atributos = & $tb_atributos;
 $MainPage->tb_atributos1 = & $tb_atributos1;
 $tb_atributos->Initialize();

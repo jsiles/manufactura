@@ -60,18 +60,18 @@ class clsRecordtb_juegosSearch { //tb_juegosSearch Class @3-105BA948
         if($this->Visible)
         {
             $this->ComponentName = "tb_juegosSearch";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->s_jue_nombre = & new clsControl(ccsTextBox, "s_jue_nombre", "s_jue_nombre", ccsText, "", CCGetRequestParam("s_jue_nombre", $Method), $this);
-            $this->ClearParameters = & new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
+            $this->s_jue_nombre = new clsControl(ccsTextBox, "s_jue_nombre", "s_jue_nombre", ccsText, "", CCGetRequestParam("s_jue_nombre", $Method), $this);
+            $this->ClearParameters = new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
             $this->ClearParameters->Parameters = CCGetQueryString("QueryString", array("s_jue_nombre", "ccsForm"));
             $this->ClearParameters->Page = "juegos.php";
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch = new clsButton("Button_DoSearch", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -247,100 +247,100 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
         $this->SorterName = CCGetParam("tb_juegosOrder", "");
         $this->SorterDirection = CCGetParam("tb_juegosDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "juegos.php";
 
-        $this->Detail2 = & new clsControl(ccsLink, "Detail2", "Detail2", ccsText, "", CCGetRequestParam("Detail2", ccsGet), $this);
+        $this->Detail2 = new clsControl(ccsLink, "Detail2", "Detail2", ccsText, "", CCGetRequestParam("Detail2", ccsGet), $this);
         $this->Detail2->Page = "nuevo.php";
 
-        $this->usuarios = & new clsControl(ccsLink, "usuarios", "usuarios", ccsText, "", CCGetRequestParam("usuarios", ccsGet), $this);
+        $this->usuarios = new clsControl(ccsLink, "usuarios", "usuarios", ccsText, "", CCGetRequestParam("usuarios", ccsGet), $this);
         $this->usuarios->Page = "usuarios.php";
-        $this->productos = & new clsControl(ccsLink, "productos", "productos", ccsText, "", CCGetRequestParam("productos", ccsGet), $this);
+        $this->productos = new clsControl(ccsLink, "productos", "productos", ccsText, "", CCGetRequestParam("productos", ccsGet), $this);
         $this->productos->Page = "productos.php";
-        $this->mercados = & new clsControl(ccsLink, "mercados", "mercados", ccsText, "", CCGetRequestParam("mercados", ccsGet), $this);
+        $this->mercados = new clsControl(ccsLink, "mercados", "mercados", ccsText, "", CCGetRequestParam("mercados", ccsGet), $this);
         $this->mercados->Page = "mercados.php";
-        $this->tipoClientes = & new clsControl(ccsLink, "tipoClientes", "tipoClientes", ccsText, "", CCGetRequestParam("tipoClientes", ccsGet), $this);
+        $this->tipoClientes = new clsControl(ccsLink, "tipoClientes", "tipoClientes", ccsText, "", CCGetRequestParam("tipoClientes", ccsGet), $this);
         $this->tipoClientes->Page = "tipoClientes.php";
-        $this->conjuntos = & new clsControl(ccsLink, "conjuntos", "conjuntos", ccsText, "", CCGetRequestParam("conjuntos", ccsGet), $this);
+        $this->conjuntos = new clsControl(ccsLink, "conjuntos", "conjuntos", ccsText, "", CCGetRequestParam("conjuntos", ccsGet), $this);
         $this->conjuntos->Page = "conjuntos.php";
-        $this->valoresIn = & new clsControl(ccsLink, "valoresIn", "valoresIn", ccsText, "", CCGetRequestParam("valoresIn", ccsGet), $this);
+        $this->valoresIn = new clsControl(ccsLink, "valoresIn", "valoresIn", ccsText, "", CCGetRequestParam("valoresIn", ccsGet), $this);
         $this->valoresIn->Page = "valoresIniciales.php";
-        $this->items = & new clsControl(ccsLink, "items", "items", ccsText, "", CCGetRequestParam("items", ccsGet), $this);
+        $this->items = new clsControl(ccsLink, "items", "items", ccsText, "", CCGetRequestParam("items", ccsGet), $this);
         $this->items->Page = "grupos.php";
-        $this->Link1 = & new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet), $this);
+        $this->Link1 = new clsControl(ccsLink, "Link1", "Link1", ccsText, "", CCGetRequestParam("Link1", ccsGet), $this);
         $this->Link1->Page = "inicio.php";
-        $this->Link3 = & new clsControl(ccsLink, "Link3", "Link3", ccsText, "", CCGetRequestParam("Link3", ccsGet), $this);
+        $this->Link3 = new clsControl(ccsLink, "Link3", "Link3", ccsText, "", CCGetRequestParam("Link3", ccsGet), $this);
         $this->Link3->Page = "periodos.php";
-        $this->Link5 = & new clsControl(ccsLink, "Link5", "Link5", ccsText, "", CCGetRequestParam("Link5", ccsGet), $this);
+        $this->Link5 = new clsControl(ccsLink, "Link5", "Link5", ccsText, "", CCGetRequestParam("Link5", ccsGet), $this);
         $this->Link5->Page = "investigaciones.php";
-        $this->Link7 = & new clsControl(ccsLink, "Link7", "Link7", ccsText, "", CCGetRequestParam("Link7", ccsGet), $this);
+        $this->Link7 = new clsControl(ccsLink, "Link7", "Link7", ccsText, "", CCGetRequestParam("Link7", ccsGet), $this);
         $this->Link7->Page = "compras.php";
-		$this->Link9 = & new clsControl(ccsLink, "Link9", "Link9", ccsText, "", CCGetRequestParam("Link9", ccsGet), $this);
+		$this->Link9 = new clsControl(ccsLink, "Link9", "Link9", ccsText, "", CCGetRequestParam("Link9", ccsGet), $this);
         $this->Link9->Page = "celebridades.php";
-		$this->Link11 = & new clsControl(ccsLink, "Link11", "Link11", ccsText, "", CCGetRequestParam("Link11", ccsGet), $this);
+		$this->Link11 = new clsControl(ccsLink, "Link11", "Link11", ccsText, "", CCGetRequestParam("Link11", ccsGet), $this);
         $this->Link11->Page = "ventasonline.php";
-		$this->Link13 = & new clsControl(ccsLink, "Link13", "Link13", ccsText, "", CCGetRequestParam("Link13", ccsGet), $this);
+		$this->Link13 = new clsControl(ccsLink, "Link13", "Link13", ccsText, "", CCGetRequestParam("Link13", ccsGet), $this);
         $this->Link13->Page = "responsabilidad.php";
-		$this->Link15 = & new clsControl(ccsLink, "Link15", "Link15", ccsText, "", CCGetRequestParam("Link15", ccsGet), $this);
+		$this->Link15 = new clsControl(ccsLink, "Link15", "Link15", ccsText, "", CCGetRequestParam("Link15", ccsGet), $this);
         $this->Link15->Page = "compras3.php";
 
 
-        $this->jue_nombre = & new clsControl(ccsLabel, "jue_nombre", "jue_nombre", ccsText, "", CCGetRequestParam("jue_nombre", ccsGet), $this);
-        $this->Imagen = & new clsControl(ccsImage, "Imagen", "Imagen", ccsText, "", CCGetRequestParam("Imagen", ccsGet), $this);
-        $this->jue_periodoInicial = & new clsControl(ccsLabel, "jue_periodoInicial", "jue_periodoInicial", ccsInteger, "", CCGetRequestParam("jue_periodoInicial", ccsGet), $this);
-        $this->jue_cantidad = & new clsControl(ccsLabel, "jue_cantidad", "jue_cantidad", ccsInteger, "", CCGetRequestParam("jue_cantidad", ccsGet), $this);
-        $this->jue_sw = & new clsControl(ccsLabel, "jue_sw", "jue_sw", ccsText, "", CCGetRequestParam("jue_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->jue_nombre = new clsControl(ccsLabel, "jue_nombre", "jue_nombre", ccsText, "", CCGetRequestParam("jue_nombre", ccsGet), $this);
+        $this->Imagen = new clsControl(ccsImage, "Imagen", "Imagen", ccsText, "", CCGetRequestParam("Imagen", ccsGet), $this);
+        $this->jue_periodoInicial = new clsControl(ccsLabel, "jue_periodoInicial", "jue_periodoInicial", ccsInteger, "", CCGetRequestParam("jue_periodoInicial", ccsGet), $this);
+        $this->jue_cantidad = new clsControl(ccsLabel, "jue_cantidad", "jue_cantidad", ccsInteger, "", CCGetRequestParam("jue_cantidad", ccsGet), $this);
+        $this->jue_sw = new clsControl(ccsLabel, "jue_sw", "jue_sw", ccsText, "", CCGetRequestParam("jue_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "juegos.php";
         
-        $this->Alt_Detail2 = & new clsControl(ccsLink, "Alt_Detail2", "Alt_Detail2", ccsText, "", CCGetRequestParam("Alt_Detail2", ccsGet), $this);
+        $this->Alt_Detail2 = new clsControl(ccsLink, "Alt_Detail2", "Alt_Detail2", ccsText, "", CCGetRequestParam("Alt_Detail2", ccsGet), $this);
         $this->Alt_Detail2->Page = "nuevo.php";
-        $this->Alt_usuarios = & new clsControl(ccsLink, "Alt_usuarios", "Alt_usuarios", ccsText, "", CCGetRequestParam("Alt_usuarios", ccsGet), $this);
+        $this->Alt_usuarios = new clsControl(ccsLink, "Alt_usuarios", "Alt_usuarios", ccsText, "", CCGetRequestParam("Alt_usuarios", ccsGet), $this);
         $this->Alt_usuarios->Page = "usuarios.php";
-        $this->Alt_productos = & new clsControl(ccsLink, "Alt_productos", "Alt_productos", ccsText, "", CCGetRequestParam("Alt_productos", ccsGet), $this);
+        $this->Alt_productos = new clsControl(ccsLink, "Alt_productos", "Alt_productos", ccsText, "", CCGetRequestParam("Alt_productos", ccsGet), $this);
         $this->Alt_productos->Page = "productos.php";
-        $this->Alt_mercados = & new clsControl(ccsLink, "Alt_mercados", "Alt_mercados", ccsText, "", CCGetRequestParam("Alt_mercados", ccsGet), $this);
+        $this->Alt_mercados = new clsControl(ccsLink, "Alt_mercados", "Alt_mercados", ccsText, "", CCGetRequestParam("Alt_mercados", ccsGet), $this);
         $this->Alt_mercados->Page = "mercados.php";
-        $this->Alt_tipoClientes = & new clsControl(ccsLink, "Alt_tipoClientes", "Alt_tipoClientes", ccsText, "", CCGetRequestParam("Alt_tipoClientes", ccsGet), $this);
+        $this->Alt_tipoClientes = new clsControl(ccsLink, "Alt_tipoClientes", "Alt_tipoClientes", ccsText, "", CCGetRequestParam("Alt_tipoClientes", ccsGet), $this);
         $this->Alt_tipoClientes->Page = "tipoClientes.php";
-        $this->Alt_conjuntos = & new clsControl(ccsLink, "Alt_conjuntos", "Alt_conjuntos", ccsText, "", CCGetRequestParam("Alt_conjuntos", ccsGet), $this);
+        $this->Alt_conjuntos = new clsControl(ccsLink, "Alt_conjuntos", "Alt_conjuntos", ccsText, "", CCGetRequestParam("Alt_conjuntos", ccsGet), $this);
         $this->Alt_conjuntos->Page = "conjuntos.php";
-        $this->Alt_valoresIn = & new clsControl(ccsLink, "Alt_valoresIn", "Alt_valoresIn", ccsText, "", CCGetRequestParam("Alt_valoresIn", ccsGet), $this);
+        $this->Alt_valoresIn = new clsControl(ccsLink, "Alt_valoresIn", "Alt_valoresIn", ccsText, "", CCGetRequestParam("Alt_valoresIn", ccsGet), $this);
         $this->Alt_valoresIn->Page = "valoresIniciales.php";
-        $this->Alt_items = & new clsControl(ccsLink, "Alt_items", "Alt_items", ccsText, "", CCGetRequestParam("Alt_items", ccsGet), $this);
+        $this->Alt_items = new clsControl(ccsLink, "Alt_items", "Alt_items", ccsText, "", CCGetRequestParam("Alt_items", ccsGet), $this);
         $this->Alt_items->Page = "grupos.php";
-        $this->Link2 = & new clsControl(ccsLink, "Link2", "Link2", ccsText, "", CCGetRequestParam("Link2", ccsGet), $this);
+        $this->Link2 = new clsControl(ccsLink, "Link2", "Link2", ccsText, "", CCGetRequestParam("Link2", ccsGet), $this);
         $this->Link2->Page = "inicio.php";
-        $this->Link4 = & new clsControl(ccsLink, "Link4", "Link4", ccsText, "", CCGetRequestParam("Link4", ccsGet), $this);
+        $this->Link4 = new clsControl(ccsLink, "Link4", "Link4", ccsText, "", CCGetRequestParam("Link4", ccsGet), $this);
         $this->Link4->Page = "periodos.php";
-        $this->Link6 = & new clsControl(ccsLink, "Link6", "Link6", ccsText, "", CCGetRequestParam("Link6", ccsGet), $this);
+        $this->Link6 = new clsControl(ccsLink, "Link6", "Link6", ccsText, "", CCGetRequestParam("Link6", ccsGet), $this);
         $this->Link6->Page = "investigaciones.php";
-        $this->Link8 = & new clsControl(ccsLink, "Link8", "Link8", ccsText, "", CCGetRequestParam("Link8", ccsGet), $this);
+        $this->Link8 = new clsControl(ccsLink, "Link8", "Link8", ccsText, "", CCGetRequestParam("Link8", ccsGet), $this);
         $this->Link8->Page = "compras.php";
-        $this->Link10 = & new clsControl(ccsLink, "Link10", "Link10", ccsText, "", CCGetRequestParam("Link10", ccsGet), $this);
+        $this->Link10 = new clsControl(ccsLink, "Link10", "Link10", ccsText, "", CCGetRequestParam("Link10", ccsGet), $this);
         $this->Link10->Page = "celebridades.php";
-        $this->Link12 = & new clsControl(ccsLink, "Link12", "Link12", ccsText, "", CCGetRequestParam("Link12", ccsGet), $this);
+        $this->Link12 = new clsControl(ccsLink, "Link12", "Link12", ccsText, "", CCGetRequestParam("Link12", ccsGet), $this);
         $this->Link12->Page = "ventasonline.php";
-        $this->Link14 = & new clsControl(ccsLink, "Link14", "Link14", ccsText, "", CCGetRequestParam("Link14", ccsGet), $this);
+        $this->Link14 = new clsControl(ccsLink, "Link14", "Link14", ccsText, "", CCGetRequestParam("Link14", ccsGet), $this);
         $this->Link14->Page = "responsabilidad.php";
-        $this->Link16 = & new clsControl(ccsLink, "Link16", "Link16", ccsText, "", CCGetRequestParam("Link16", ccsGet), $this);
+        $this->Link16 = new clsControl(ccsLink, "Link16", "Link16", ccsText, "", CCGetRequestParam("Link16", ccsGet), $this);
         $this->Link16->Page = "compras3.php";        
 		
-        $this->Alt_jue_nombre = & new clsControl(ccsLabel, "Alt_jue_nombre", "Alt_jue_nombre", ccsText, "", CCGetRequestParam("Alt_jue_nombre", ccsGet), $this);
-        $this->Alt_Imagen = & new clsControl(ccsImage, "Alt_Imagen", "Alt_Imagen", ccsText, "", CCGetRequestParam("Alt_Imagen", ccsGet), $this);
-        $this->Alt_jue_periodoInicial = & new clsControl(ccsLabel, "Alt_jue_periodoInicial", "Alt_jue_periodoInicial", ccsInteger, "", CCGetRequestParam("Alt_jue_periodoInicial", ccsGet), $this);
-        $this->Alt_jue_cantidad = & new clsControl(ccsLabel, "Alt_jue_cantidad", "Alt_jue_cantidad", ccsInteger, "", CCGetRequestParam("Alt_jue_cantidad", ccsGet), $this);
-        $this->Alt_jue_sw = & new clsControl(ccsLabel, "Alt_jue_sw", "Alt_jue_sw", ccsText, "", CCGetRequestParam("Alt_jue_sw", ccsGet), $this);
-        $this->tb_juegos_TotalRecords = & new clsControl(ccsLabel, "tb_juegos_TotalRecords", "tb_juegos_TotalRecords", ccsText, "", CCGetRequestParam("tb_juegos_TotalRecords", ccsGet), $this);
-        $this->Sorter_jue_nombre = & new clsSorter($this->ComponentName, "Sorter_jue_nombre", $FileName, $this);
-        $this->Sorter_jue_imagen = & new clsSorter($this->ComponentName, "Sorter_jue_imagen", $FileName, $this);
-        $this->Sorter_jue_periodoInicial = & new clsSorter($this->ComponentName, "Sorter_jue_periodoInicial", $FileName, $this);
-        $this->Sorter_jue_cantidad = & new clsSorter($this->ComponentName, "Sorter_jue_cantidad", $FileName, $this);
-        $this->Sorter_jue_sw = & new clsSorter($this->ComponentName, "Sorter_jue_sw", $FileName, $this);
-        $this->tb_juegos_Insert = & new clsControl(ccsLink, "tb_juegos_Insert", "tb_juegos_Insert", ccsText, "", CCGetRequestParam("tb_juegos_Insert", ccsGet), $this);
+        $this->Alt_jue_nombre = new clsControl(ccsLabel, "Alt_jue_nombre", "Alt_jue_nombre", ccsText, "", CCGetRequestParam("Alt_jue_nombre", ccsGet), $this);
+        $this->Alt_Imagen = new clsControl(ccsImage, "Alt_Imagen", "Alt_Imagen", ccsText, "", CCGetRequestParam("Alt_Imagen", ccsGet), $this);
+        $this->Alt_jue_periodoInicial = new clsControl(ccsLabel, "Alt_jue_periodoInicial", "Alt_jue_periodoInicial", ccsInteger, "", CCGetRequestParam("Alt_jue_periodoInicial", ccsGet), $this);
+        $this->Alt_jue_cantidad = new clsControl(ccsLabel, "Alt_jue_cantidad", "Alt_jue_cantidad", ccsInteger, "", CCGetRequestParam("Alt_jue_cantidad", ccsGet), $this);
+        $this->Alt_jue_sw = new clsControl(ccsLabel, "Alt_jue_sw", "Alt_jue_sw", ccsText, "", CCGetRequestParam("Alt_jue_sw", ccsGet), $this);
+        $this->tb_juegos_TotalRecords = new clsControl(ccsLabel, "tb_juegos_TotalRecords", "tb_juegos_TotalRecords", ccsText, "", CCGetRequestParam("tb_juegos_TotalRecords", ccsGet), $this);
+        $this->Sorter_jue_nombre = new clsSorter($this->ComponentName, "Sorter_jue_nombre", $FileName, $this);
+        $this->Sorter_jue_imagen = new clsSorter($this->ComponentName, "Sorter_jue_imagen", $FileName, $this);
+        $this->Sorter_jue_periodoInicial = new clsSorter($this->ComponentName, "Sorter_jue_periodoInicial", $FileName, $this);
+        $this->Sorter_jue_cantidad = new clsSorter($this->ComponentName, "Sorter_jue_cantidad", $FileName, $this);
+        $this->Sorter_jue_sw = new clsSorter($this->ComponentName, "Sorter_jue_sw", $FileName, $this);
+        $this->tb_juegos_Insert = new clsControl(ccsLink, "tb_juegos_Insert", "tb_juegos_Insert", ccsText, "", CCGetRequestParam("tb_juegos_Insert", ccsGet), $this);
         $this->tb_juegos_Insert->Parameters = CCGetQueryString("QueryString", array("jue_id", "ccsForm"));
         $this->tb_juegos_Insert->Page = "juegos.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -824,7 +824,7 @@ class clsRecordtb_juegos1 { //tb_juegos1 Class @31-AA18C186
         if($this->Visible)
         {
             $this->ComponentName = "tb_juegos1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -832,27 +832,27 @@ class clsRecordtb_juegos1 { //tb_juegos1 Class @31-AA18C186
             $this->FormEnctype = "multipart/form-data";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->jue_nombre = & new clsControl(ccsTextBox, "jue_nombre", "Nombre", ccsText, "", CCGetRequestParam("jue_nombre", $Method), $this);
+            $this->jue_nombre = new clsControl(ccsTextBox, "jue_nombre", "Nombre", ccsText, "", CCGetRequestParam("jue_nombre", $Method), $this);
             $this->jue_nombre->Required = true;
-            $this->FileUpload1 = & new clsFileUpload("FileUpload1", "Imagen", "./image/temp/", "./image/", "*.jpg;*.gif;*.bmp;*.png", "", 2500000, $this);
-            $this->jue_periodoInicial = & new clsControl(ccsTextBox, "jue_periodoInicial", "Periodo Inicial", ccsInteger, "", CCGetRequestParam("jue_periodoInicial", $Method), $this);
+            $this->FileUpload1 = new clsFileUpload("FileUpload1", "Imagen", "./image/temp/", "./image/", "*.jpg;*.gif;*.bmp;*.png", "", 2500000, $this);
+            $this->jue_periodoInicial = new clsControl(ccsTextBox, "jue_periodoInicial", "Periodo Inicial", ccsInteger, "", CCGetRequestParam("jue_periodoInicial", $Method), $this);
             $this->jue_periodoInicial->Required = true;
-            $this->jue_cantidad = & new clsControl(ccsTextBox, "jue_cantidad", "Cantidad", ccsInteger, "", CCGetRequestParam("jue_cantidad", $Method), $this);
+            $this->jue_cantidad = new clsControl(ccsTextBox, "jue_cantidad", "Cantidad", ccsInteger, "", CCGetRequestParam("jue_cantidad", $Method), $this);
             $this->jue_cantidad->Required = true;
-            $this->jue_sw = & new clsControl(ccsListBox, "jue_sw", "Estado", ccsText, "", CCGetRequestParam("jue_sw", $Method), $this);
+            $this->jue_sw = new clsControl(ccsListBox, "jue_sw", "Estado", ccsText, "", CCGetRequestParam("jue_sw", $Method), $this);
             $this->jue_sw->DSType = dsListOfValues;
             $this->jue_sw->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->jue_sw->Required = true;
             
-            $this->jue_resumen = & new clsControl(ccsListBox, "jue_resumen", "Estado", ccsText, "", CCGetRequestParam("jue_resumen", $Method), $this);
+            $this->jue_resumen = new clsControl(ccsListBox, "jue_resumen", "Estado", ccsText, "", CCGetRequestParam("jue_resumen", $Method), $this);
             $this->jue_resumen->DSType = dsListOfValues;
             $this->jue_resumen->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->jue_resumen->Required = true;
             
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -1287,9 +1287,9 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$tb_juegosSearch = & new clsRecordtb_juegosSearch("", $MainPage);
-$tb_juegos = & new clsGridtb_juegos("", $MainPage);
-$tb_juegos1 = & new clsRecordtb_juegos1("", $MainPage);
+$tb_juegosSearch = new clsRecordtb_juegosSearch("", $MainPage);
+$tb_juegos = new clsGridtb_juegos("", $MainPage);
+$tb_juegos1 = new clsRecordtb_juegos1("", $MainPage);
 $MainPage->tb_juegosSearch = & $tb_juegosSearch;
 $MainPage->tb_juegos = & $tb_juegos;
 $MainPage->tb_juegos1 = & $tb_juegos1;

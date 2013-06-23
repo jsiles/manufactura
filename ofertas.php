@@ -8,7 +8,7 @@
 include ("./common.php");
 include_once "./Spreadsheet/Excel/Writer.php";
 session_start();
-$workbook =& new Spreadsheet_Excel_Writer();
+$workbook =new Spreadsheet_Excel_Writer();
 $workbook->setTempDir('/tmp/');
 $workbook->send('Ofertas.xls');
 $format_bold =& $workbook->addFormat();

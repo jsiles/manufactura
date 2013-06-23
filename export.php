@@ -11,7 +11,7 @@ global $db, $db1;
 session_start();
 check_security(1);
 
-  $xls =& new Spreadsheet_Excel_Writer();
+  $xls =new Spreadsheet_Excel_Writer();
   $xls->send("SIGES.xls");
   
   $format_titular =& $xls->addFormat();

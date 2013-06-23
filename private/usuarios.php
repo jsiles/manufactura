@@ -75,35 +75,35 @@ class clsGridtb_usuarios { //tb_usuarios class @2-108E4876
         $this->SorterName = CCGetParam("tb_usuariosOrder", "");
         $this->SorterDirection = CCGetParam("tb_usuariosDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "usuarios.php";
-        $this->usu_nombre = & new clsControl(ccsLabel, "usu_nombre", "usu_nombre", ccsText, "", CCGetRequestParam("usu_nombre", ccsGet), $this);
-        $this->Imagen = & new clsControl(ccsImage, "Imagen", "Imagen", ccsText, "", CCGetRequestParam("Imagen", ccsGet), $this);
-        $this->usu_login = & new clsControl(ccsLabel, "usu_login", "usu_login", ccsText, "", CCGetRequestParam("usu_login", ccsGet), $this);
-        $this->usu_password = & new clsControl(ccsLabel, "usu_password", "usu_password", ccsText, "", CCGetRequestParam("usu_password", ccsGet), $this);
+        $this->usu_nombre = new clsControl(ccsLabel, "usu_nombre", "usu_nombre", ccsText, "", CCGetRequestParam("usu_nombre", ccsGet), $this);
+        $this->Imagen = new clsControl(ccsImage, "Imagen", "Imagen", ccsText, "", CCGetRequestParam("Imagen", ccsGet), $this);
+        $this->usu_login = new clsControl(ccsLabel, "usu_login", "usu_login", ccsText, "", CCGetRequestParam("usu_login", ccsGet), $this);
+        $this->usu_password = new clsControl(ccsLabel, "usu_password", "usu_password", ccsText, "", CCGetRequestParam("usu_password", ccsGet), $this);
 
-        $this->usu_nivel = & new clsControl(ccsLabel, "usu_nivel", "usu_nivel", ccsInteger, "", CCGetRequestParam("usu_nivel", ccsGet), $this);
-        $this->usu_sw = & new clsControl(ccsLabel, "usu_sw", "usu_sw", ccsText, "", CCGetRequestParam("usu_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->usu_nivel = new clsControl(ccsLabel, "usu_nivel", "usu_nivel", ccsInteger, "", CCGetRequestParam("usu_nivel", ccsGet), $this);
+        $this->usu_sw = new clsControl(ccsLabel, "usu_sw", "usu_sw", ccsText, "", CCGetRequestParam("usu_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "usuarios.php";
-        $this->Alt_usu_nombre = & new clsControl(ccsLabel, "Alt_usu_nombre", "Alt_usu_nombre", ccsText, "", CCGetRequestParam("Alt_usu_nombre", ccsGet), $this);
-        $this->Alt_Imagen = & new clsControl(ccsImage, "Alt_Imagen", "Alt_Imagen", ccsText, "", CCGetRequestParam("Alt_Imagen", ccsGet), $this);
-        $this->Alt_usu_login = & new clsControl(ccsLabel, "Alt_usu_login", "Alt_usu_login", ccsText, "", CCGetRequestParam("Alt_usu_login", ccsGet), $this);
+        $this->Alt_usu_nombre = new clsControl(ccsLabel, "Alt_usu_nombre", "Alt_usu_nombre", ccsText, "", CCGetRequestParam("Alt_usu_nombre", ccsGet), $this);
+        $this->Alt_Imagen = new clsControl(ccsImage, "Alt_Imagen", "Alt_Imagen", ccsText, "", CCGetRequestParam("Alt_Imagen", ccsGet), $this);
+        $this->Alt_usu_login = new clsControl(ccsLabel, "Alt_usu_login", "Alt_usu_login", ccsText, "", CCGetRequestParam("Alt_usu_login", ccsGet), $this);
 
- 	$this->Alt_usu_password = & new clsControl(ccsLabel, "Alt_usu_password", "Alt_usu_password", ccsText, "", CCGetRequestParam("Alt_usu_password", ccsGet), $this);
-        $this->Alt_usu_nivel = & new clsControl(ccsLabel, "Alt_usu_nivel", "Alt_usu_nivel", ccsInteger, "", CCGetRequestParam("Alt_usu_nivel", ccsGet), $this);
-        $this->Alt_usu_sw = & new clsControl(ccsLabel, "Alt_usu_sw", "Alt_usu_sw", ccsText, "", CCGetRequestParam("Alt_usu_sw", ccsGet), $this);
-        $this->tb_usuarios_TotalRecords = & new clsControl(ccsLabel, "tb_usuarios_TotalRecords", "tb_usuarios_TotalRecords", ccsText, "", CCGetRequestParam("tb_usuarios_TotalRecords", ccsGet), $this);
-        $this->Sorter_usu_nombre = & new clsSorter($this->ComponentName, "Sorter_usu_nombre", $FileName, $this);
-        $this->Sorter_usu_imagen = & new clsSorter($this->ComponentName, "Sorter_usu_imagen", $FileName, $this);
-        $this->Sorter_usu_login = & new clsSorter($this->ComponentName, "Sorter_usu_login", $FileName, $this);
-        $this->Sorter_usu_password = & new clsSorter($this->ComponentName, "Sorter_usu_password", $FileName, $this);
-        $this->Sorter_usu_nivel = & new clsSorter($this->ComponentName, "Sorter_usu_nivel", $FileName, $this);
-        $this->Sorter_usu_sw = & new clsSorter($this->ComponentName, "Sorter_usu_sw", $FileName, $this);
-        $this->tb_usuarios_Insert = & new clsControl(ccsLink, "tb_usuarios_Insert", "tb_usuarios_Insert", ccsText, "", CCGetRequestParam("tb_usuarios_Insert", ccsGet), $this);
+ 	$this->Alt_usu_password = new clsControl(ccsLabel, "Alt_usu_password", "Alt_usu_password", ccsText, "", CCGetRequestParam("Alt_usu_password", ccsGet), $this);
+        $this->Alt_usu_nivel = new clsControl(ccsLabel, "Alt_usu_nivel", "Alt_usu_nivel", ccsInteger, "", CCGetRequestParam("Alt_usu_nivel", ccsGet), $this);
+        $this->Alt_usu_sw = new clsControl(ccsLabel, "Alt_usu_sw", "Alt_usu_sw", ccsText, "", CCGetRequestParam("Alt_usu_sw", ccsGet), $this);
+        $this->tb_usuarios_TotalRecords = new clsControl(ccsLabel, "tb_usuarios_TotalRecords", "tb_usuarios_TotalRecords", ccsText, "", CCGetRequestParam("tb_usuarios_TotalRecords", ccsGet), $this);
+        $this->Sorter_usu_nombre = new clsSorter($this->ComponentName, "Sorter_usu_nombre", $FileName, $this);
+        $this->Sorter_usu_imagen = new clsSorter($this->ComponentName, "Sorter_usu_imagen", $FileName, $this);
+        $this->Sorter_usu_login = new clsSorter($this->ComponentName, "Sorter_usu_login", $FileName, $this);
+        $this->Sorter_usu_password = new clsSorter($this->ComponentName, "Sorter_usu_password", $FileName, $this);
+        $this->Sorter_usu_nivel = new clsSorter($this->ComponentName, "Sorter_usu_nivel", $FileName, $this);
+        $this->Sorter_usu_sw = new clsSorter($this->ComponentName, "Sorter_usu_sw", $FileName, $this);
+        $this->tb_usuarios_Insert = new clsControl(ccsLink, "tb_usuarios_Insert", "tb_usuarios_Insert", ccsText, "", CCGetRequestParam("tb_usuarios_Insert", ccsGet), $this);
         $this->tb_usuarios_Insert->Parameters = CCGetQueryString("QueryString", array("usu_id", "ccsForm"));
         $this->tb_usuarios_Insert->Page = "usuarios.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -444,7 +444,7 @@ class clsRecordtb_usuarios1 { //tb_usuarios1 Class @35-CBE4CABB
         if($this->Visible)
         {
             $this->ComponentName = "tb_usuarios1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -452,27 +452,27 @@ class clsRecordtb_usuarios1 { //tb_usuarios1 Class @35-CBE4CABB
             $this->FormEnctype = "multipart/form-data";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->usu_nombre = & new clsControl(ccsTextBox, "usu_nombre", "Nombre", ccsText, "", CCGetRequestParam("usu_nombre", $Method), $this);
+            $this->usu_nombre = new clsControl(ccsTextBox, "usu_nombre", "Nombre", ccsText, "", CCGetRequestParam("usu_nombre", $Method), $this);
             $this->usu_nombre->Required = true;
-            $this->jue_id = & new clsControl(ccsHidden, "jue_id", "Juego", ccsText, "", CCGetRequestParam("jue_id", $Method), $this);
+            $this->jue_id = new clsControl(ccsHidden, "jue_id", "Juego", ccsText, "", CCGetRequestParam("jue_id", $Method), $this);
             $this->jue_id->Required = true;
-            $this->FileUpload1 = & new clsFileUpload("FileUpload1", "Imagen", "./image/temp/", "./image/", "*.jpg;*.gif;*.bmp;*.png", "", 6500000, $this);
-            $this->usu_login = & new clsControl(ccsTextBox, "usu_login", "Login", ccsText, "", CCGetRequestParam("usu_login", $Method), $this);
+            $this->FileUpload1 = new clsFileUpload("FileUpload1", "Imagen", "./image/temp/", "./image/", "*.jpg;*.gif;*.bmp;*.png", "", 6500000, $this);
+            $this->usu_login = new clsControl(ccsTextBox, "usu_login", "Login", ccsText, "", CCGetRequestParam("usu_login", $Method), $this);
             $this->usu_login->Required = true;
-            $this->usu_password = & new clsControl(ccsTextBox, "usu_password", "Password", ccsText, "", CCGetRequestParam("usu_password", $Method), $this);
+            $this->usu_password = new clsControl(ccsTextBox, "usu_password", "Password", ccsText, "", CCGetRequestParam("usu_password", $Method), $this);
             $this->usu_password->Required = true;
-            $this->usu_nivel = & new clsControl(ccsListBox, "usu_nivel", "Nivel", ccsInteger, "", CCGetRequestParam("usu_nivel", $Method), $this);
+            $this->usu_nivel = new clsControl(ccsListBox, "usu_nivel", "Nivel", ccsInteger, "", CCGetRequestParam("usu_nivel", $Method), $this);
             $this->usu_nivel->DSType = dsListOfValues;
             $this->usu_nivel->Values = array(array("1", "Consulta"), array("2", "Usuario"), array("3", "Administrador"));
             $this->usu_nivel->Required = true;
-            $this->usu_sw = & new clsControl(ccsListBox, "usu_sw", "Estado", ccsText, "", CCGetRequestParam("usu_sw", $Method), $this);
+            $this->usu_sw = new clsControl(ccsListBox, "usu_sw", "Estado", ccsText, "", CCGetRequestParam("usu_sw", $Method), $this);
             $this->usu_sw->DSType = dsListOfValues;
             $this->usu_sw->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->usu_sw->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->jue_id->Value) && !strlen($this->jue_id->Value) && $this->jue_id->Value !== false)
                     $this->jue_id->SetText(CCGetParam("jue_id"));
@@ -931,8 +931,8 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$tb_usuarios = & new clsGridtb_usuarios("", $MainPage);
-$tb_usuarios1 = & new clsRecordtb_usuarios1("", $MainPage);
+$tb_usuarios = new clsGridtb_usuarios("", $MainPage);
+$tb_usuarios1 = new clsRecordtb_usuarios1("", $MainPage);
 $MainPage->tb_usuarios = & $tb_usuarios;
 $MainPage->tb_usuarios1 = & $tb_usuarios1;
 $tb_usuarios->Initialize();

@@ -71,21 +71,21 @@ class clsGridth_grupos { //th_grupos class @9-71075049
         $this->SorterName = CCGetParam("th_gruposOrder", "");
         $this->SorterDirection = CCGetParam("th_gruposDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "conjuntos.php";
-        $this->gru_ite_id = & new clsControl(ccsLabel, "gru_ite_id", "gru_ite_id", ccsInteger, "", CCGetRequestParam("gru_ite_id", ccsGet), $this);
-        $this->gru_sw = & new clsControl(ccsLabel, "gru_sw", "gru_sw", ccsText, "", CCGetRequestParam("gru_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->gru_ite_id = new clsControl(ccsLabel, "gru_ite_id", "gru_ite_id", ccsInteger, "", CCGetRequestParam("gru_ite_id", ccsGet), $this);
+        $this->gru_sw = new clsControl(ccsLabel, "gru_sw", "gru_sw", ccsText, "", CCGetRequestParam("gru_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "conjuntos.php";
-        $this->Alt_gru_ite_id = & new clsControl(ccsLabel, "Alt_gru_ite_id", "Alt_gru_ite_id", ccsInteger, "", CCGetRequestParam("Alt_gru_ite_id", ccsGet), $this);
-        $this->Alt_gru_sw = & new clsControl(ccsLabel, "Alt_gru_sw", "Alt_gru_sw", ccsText, "", CCGetRequestParam("Alt_gru_sw", ccsGet), $this);
-        $this->th_grupos_TotalRecords = & new clsControl(ccsLabel, "th_grupos_TotalRecords", "th_grupos_TotalRecords", ccsText, "", CCGetRequestParam("th_grupos_TotalRecords", ccsGet), $this);
-        $this->Sorter_gru_ite_id = & new clsSorter($this->ComponentName, "Sorter_gru_ite_id", $FileName, $this);
-        $this->Sorter_gru_sw = & new clsSorter($this->ComponentName, "Sorter_gru_sw", $FileName, $this);
-        $this->th_grupos_Insert = & new clsControl(ccsLink, "th_grupos_Insert", "th_grupos_Insert", ccsText, "", CCGetRequestParam("th_grupos_Insert", ccsGet), $this);
+        $this->Alt_gru_ite_id = new clsControl(ccsLabel, "Alt_gru_ite_id", "Alt_gru_ite_id", ccsInteger, "", CCGetRequestParam("Alt_gru_ite_id", ccsGet), $this);
+        $this->Alt_gru_sw = new clsControl(ccsLabel, "Alt_gru_sw", "Alt_gru_sw", ccsText, "", CCGetRequestParam("Alt_gru_sw", ccsGet), $this);
+        $this->th_grupos_TotalRecords = new clsControl(ccsLabel, "th_grupos_TotalRecords", "th_grupos_TotalRecords", ccsText, "", CCGetRequestParam("th_grupos_TotalRecords", ccsGet), $this);
+        $this->Sorter_gru_ite_id = new clsSorter($this->ComponentName, "Sorter_gru_ite_id", $FileName, $this);
+        $this->Sorter_gru_sw = new clsSorter($this->ComponentName, "Sorter_gru_sw", $FileName, $this);
+        $this->th_grupos_Insert = new clsControl(ccsLink, "th_grupos_Insert", "th_grupos_Insert", ccsText, "", CCGetRequestParam("th_grupos_Insert", ccsGet), $this);
         $this->th_grupos_Insert->Parameters = CCGetQueryString("QueryString", array("gru_jue_id", "ccsForm"));
         $this->th_grupos_Insert->Page = "conjuntos.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -363,7 +363,7 @@ class clsRecordth_grupos1 { //th_grupos1 Class @32-328E3319
         if($this->Visible)
         {
             $this->ComponentName = "th_grupos1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -371,7 +371,7 @@ class clsRecordth_grupos1 { //th_grupos1 Class @32-328E3319
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->gru_ite_id = & new clsControl(ccsListBox, "gru_ite_id", "Grupo", ccsInteger, "", CCGetRequestParam("gru_ite_id", $Method), $this);
+            $this->gru_ite_id = new clsControl(ccsListBox, "gru_ite_id", "Grupo", ccsInteger, "", CCGetRequestParam("gru_ite_id", $Method), $this);
             $this->gru_ite_id->DSType = dsTable;
             list($this->gru_ite_id->BoundColumn, $this->gru_ite_id->TextColumn, $this->gru_ite_id->DBFormat) = array("ite_id", "ite_nombre", "");
             $this->gru_ite_id->DataSource = new clsDBsiges();
@@ -388,17 +388,17 @@ class clsRecordth_grupos1 { //th_grupos1 Class @32-328E3319
                  $this->gru_ite_id->DataSource->wp->Criterion[1], 
                  $this->gru_ite_id->DataSource->wp->Criterion[2]), 
                  $this->gru_ite_id->DataSource->wp->Criterion[3]);
-            $this->jue_id = & new clsControl(ccsHidden, "jue_id", "Juego", ccsText, "", CCGetRequestParam("jue_id", $Method), $this);
+            $this->jue_id = new clsControl(ccsHidden, "jue_id", "Juego", ccsText, "", CCGetRequestParam("jue_id", $Method), $this);
             $this->jue_id->Required = true;
-            $this->grp_apl = & new clsControl(ccsHidden, "grp_apl", "grp_apl", ccsInteger, "", CCGetRequestParam("grp_apl", $Method), $this);
-            $this->gru_sw = & new clsControl(ccsListBox, "gru_sw", "Estado", ccsText, "", CCGetRequestParam("gru_sw", $Method), $this);
+            $this->grp_apl = new clsControl(ccsHidden, "grp_apl", "grp_apl", ccsInteger, "", CCGetRequestParam("grp_apl", $Method), $this);
+            $this->gru_sw = new clsControl(ccsListBox, "gru_sw", "Estado", ccsText, "", CCGetRequestParam("gru_sw", $Method), $this);
             $this->gru_sw->DSType = dsListOfValues;
             $this->gru_sw->Values = array(array("A", "Activo"), array("i", "Inactivo"));
             $this->gru_sw->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->gru_ite_id->Value) && !strlen($this->gru_ite_id->Value) && $this->gru_ite_id->Value !== false)
                     $this->gru_ite_id->SetText(0);
@@ -772,8 +772,8 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$th_grupos = & new clsGridth_grupos("", $MainPage);
-$th_grupos1 = & new clsRecordth_grupos1("", $MainPage);
+$th_grupos = new clsGridth_grupos("", $MainPage);
+$th_grupos1 = new clsRecordth_grupos1("", $MainPage);
 $MainPage->th_grupos = & $th_grupos;
 $MainPage->th_grupos1 = & $th_grupos1;
 $th_grupos->Initialize();

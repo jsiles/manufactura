@@ -60,19 +60,19 @@ class clsRecordtb_tipoclientesSearch { //tb_tipoclientesSearch Class @3-6FE8843D
         if($this->Visible)
         {
             $this->ComponentName = "tb_tipoclientesSearch";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->s_cli_nombre = & new clsControl(ccsTextBox, "s_cli_nombre", "s_cli_nombre", ccsText, "", CCGetRequestParam("s_cli_nombre", $Method), $this);
-            $this->jue_id = & new clsControl(ccsHidden, "jue_id", "jue_id", ccsText, "", CCGetRequestParam("jue_id", $Method), $this);
-            $this->ClearParameters = & new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
+            $this->s_cli_nombre = new clsControl(ccsTextBox, "s_cli_nombre", "s_cli_nombre", ccsText, "", CCGetRequestParam("s_cli_nombre", $Method), $this);
+            $this->jue_id = new clsControl(ccsHidden, "jue_id", "jue_id", ccsText, "", CCGetRequestParam("jue_id", $Method), $this);
+            $this->ClearParameters = new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
             $this->ClearParameters->Parameters = CCGetQueryString("QueryString", array("s_cli_nombre", "ccsForm"));
             $this->ClearParameters->Page = "tipoClientes.php";
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch = new clsButton("Button_DoSearch", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->jue_id->Value) && !strlen($this->jue_id->Value) && $this->jue_id->Value !== false)
                     $this->jue_id->SetText(CCGetParam("jue_id"));
@@ -254,21 +254,21 @@ class clsGridtb_tipoclientes { //tb_tipoclientes class @2-798931F5
         $this->SorterName = CCGetParam("tb_tipoclientesOrder", "");
         $this->SorterDirection = CCGetParam("tb_tipoclientesDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "tipoClientes.php";
-        $this->cli_nombre = & new clsControl(ccsLabel, "cli_nombre", "cli_nombre", ccsText, "", CCGetRequestParam("cli_nombre", ccsGet), $this);
-        $this->cli_sw = & new clsControl(ccsLabel, "cli_sw", "cli_sw", ccsText, "", CCGetRequestParam("cli_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->cli_nombre = new clsControl(ccsLabel, "cli_nombre", "cli_nombre", ccsText, "", CCGetRequestParam("cli_nombre", ccsGet), $this);
+        $this->cli_sw = new clsControl(ccsLabel, "cli_sw", "cli_sw", ccsText, "", CCGetRequestParam("cli_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "tipoClientes.php";
-        $this->Alt_cli_nombre = & new clsControl(ccsLabel, "Alt_cli_nombre", "Alt_cli_nombre", ccsText, "", CCGetRequestParam("Alt_cli_nombre", ccsGet), $this);
-        $this->Alt_cli_sw = & new clsControl(ccsLabel, "Alt_cli_sw", "Alt_cli_sw", ccsText, "", CCGetRequestParam("Alt_cli_sw", ccsGet), $this);
-        $this->tb_tipoclientes_TotalRecords = & new clsControl(ccsLabel, "tb_tipoclientes_TotalRecords", "tb_tipoclientes_TotalRecords", ccsText, "", CCGetRequestParam("tb_tipoclientes_TotalRecords", ccsGet), $this);
-        $this->Sorter_cli_nombre = & new clsSorter($this->ComponentName, "Sorter_cli_nombre", $FileName, $this);
-        $this->Sorter_cli_sw = & new clsSorter($this->ComponentName, "Sorter_cli_sw", $FileName, $this);
-        $this->tb_tipoclientes_Insert = & new clsControl(ccsLink, "tb_tipoclientes_Insert", "tb_tipoclientes_Insert", ccsText, "", CCGetRequestParam("tb_tipoclientes_Insert", ccsGet), $this);
+        $this->Alt_cli_nombre = new clsControl(ccsLabel, "Alt_cli_nombre", "Alt_cli_nombre", ccsText, "", CCGetRequestParam("Alt_cli_nombre", ccsGet), $this);
+        $this->Alt_cli_sw = new clsControl(ccsLabel, "Alt_cli_sw", "Alt_cli_sw", ccsText, "", CCGetRequestParam("Alt_cli_sw", ccsGet), $this);
+        $this->tb_tipoclientes_TotalRecords = new clsControl(ccsLabel, "tb_tipoclientes_TotalRecords", "tb_tipoclientes_TotalRecords", ccsText, "", CCGetRequestParam("tb_tipoclientes_TotalRecords", ccsGet), $this);
+        $this->Sorter_cli_nombre = new clsSorter($this->ComponentName, "Sorter_cli_nombre", $FileName, $this);
+        $this->Sorter_cli_sw = new clsSorter($this->ComponentName, "Sorter_cli_sw", $FileName, $this);
+        $this->tb_tipoclientes_Insert = new clsControl(ccsLink, "tb_tipoclientes_Insert", "tb_tipoclientes_Insert", ccsText, "", CCGetRequestParam("tb_tipoclientes_Insert", ccsGet), $this);
         $this->tb_tipoclientes_Insert->Parameters = CCGetQueryString("QueryString", array("cli_id", "ccsForm"));
         $this->tb_tipoclientes_Insert->Page = "tipoClientes.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -539,7 +539,7 @@ class clsRecordtb_tipoclientes1 { //tb_tipoclientes1 Class @22-FCFE097A
         if($this->Visible)
         {
             $this->ComponentName = "tb_tipoclientes1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -547,17 +547,17 @@ class clsRecordtb_tipoclientes1 { //tb_tipoclientes1 Class @22-FCFE097A
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->cli_nombre = & new clsControl(ccsTextBox, "cli_nombre", "Tipo Nombre", ccsText, "", CCGetRequestParam("cli_nombre", $Method), $this);
+            $this->cli_nombre = new clsControl(ccsTextBox, "cli_nombre", "Tipo Nombre", ccsText, "", CCGetRequestParam("cli_nombre", $Method), $this);
             $this->cli_nombre->Required = true;
-            $this->jue_id = & new clsControl(ccsHidden, "jue_id", "jue_id", ccsText, "", CCGetRequestParam("jue_id", $Method), $this);
-            $this->cli_sw = & new clsControl(ccsListBox, "cli_sw", "Estado", ccsText, "", CCGetRequestParam("cli_sw", $Method), $this);
+            $this->jue_id = new clsControl(ccsHidden, "jue_id", "jue_id", ccsText, "", CCGetRequestParam("jue_id", $Method), $this);
+            $this->cli_sw = new clsControl(ccsListBox, "cli_sw", "Estado", ccsText, "", CCGetRequestParam("cli_sw", $Method), $this);
             $this->cli_sw->DSType = dsListOfValues;
             $this->cli_sw->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->cli_sw->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->jue_id->Value) && !strlen($this->jue_id->Value) && $this->jue_id->Value !== false)
                     $this->jue_id->SetText(CCGetParam("jue_id"));
@@ -947,9 +947,9 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$tb_tipoclientesSearch = & new clsRecordtb_tipoclientesSearch("", $MainPage);
-$tb_tipoclientes = & new clsGridtb_tipoclientes("", $MainPage);
-$tb_tipoclientes1 = & new clsRecordtb_tipoclientes1("", $MainPage);
+$tb_tipoclientesSearch = new clsRecordtb_tipoclientesSearch("", $MainPage);
+$tb_tipoclientes = new clsGridtb_tipoclientes("", $MainPage);
+$tb_tipoclientes1 = new clsRecordtb_tipoclientes1("", $MainPage);
 $MainPage->tb_tipoclientesSearch = & $tb_tipoclientesSearch;
 $MainPage->tb_tipoclientes = & $tb_tipoclientes;
 $MainPage->tb_tipoclientes1 = & $tb_tipoclientes1;

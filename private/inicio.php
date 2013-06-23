@@ -71,26 +71,26 @@ class clsGridth_inicio { //th_inicio class @2-506A4AE9
         $this->SorterName = CCGetParam("th_inicioOrder", "");
         $this->SorterDirection = CCGetParam("th_inicioDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "inicio.php";
-        $this->ini_pro_id = & new clsControl(ccsLabel, "ini_pro_id", "ini_pro_id", ccsInteger, "", CCGetRequestParam("ini_pro_id", ccsGet), $this);
-        $this->ini_mer_id = & new clsControl(ccsLabel, "ini_mer_id", "ini_mer_id", ccsInteger, "", CCGetRequestParam("ini_mer_id", ccsGet), $this);
-        $this->ini_tic_id = & new clsControl(ccsLabel, "ini_tic_id", "ini_tic_id", ccsInteger, "", CCGetRequestParam("ini_tic_id", ccsGet), $this);
-        $this->ini_monto = & new clsControl(ccsLabel, "ini_monto", "ini_monto", ccsFloat, "", CCGetRequestParam("ini_monto", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->ini_pro_id = new clsControl(ccsLabel, "ini_pro_id", "ini_pro_id", ccsInteger, "", CCGetRequestParam("ini_pro_id", ccsGet), $this);
+        $this->ini_mer_id = new clsControl(ccsLabel, "ini_mer_id", "ini_mer_id", ccsInteger, "", CCGetRequestParam("ini_mer_id", ccsGet), $this);
+        $this->ini_tic_id = new clsControl(ccsLabel, "ini_tic_id", "ini_tic_id", ccsInteger, "", CCGetRequestParam("ini_tic_id", ccsGet), $this);
+        $this->ini_monto = new clsControl(ccsLabel, "ini_monto", "ini_monto", ccsFloat, "", CCGetRequestParam("ini_monto", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "inicio.php";
-        $this->Alt_ini_pro_id = & new clsControl(ccsLabel, "Alt_ini_pro_id", "Alt_ini_pro_id", ccsInteger, "", CCGetRequestParam("Alt_ini_pro_id", ccsGet), $this);
-        $this->Alt_ini_mer_id = & new clsControl(ccsLabel, "Alt_ini_mer_id", "Alt_ini_mer_id", ccsInteger, "", CCGetRequestParam("Alt_ini_mer_id", ccsGet), $this);
-        $this->Alt_ini_tic_id = & new clsControl(ccsLabel, "Alt_ini_tic_id", "Alt_ini_tic_id", ccsInteger, "", CCGetRequestParam("Alt_ini_tic_id", ccsGet), $this);
-        $this->Alt_ini_monto = & new clsControl(ccsLabel, "Alt_ini_monto", "Alt_ini_monto", ccsFloat, "", CCGetRequestParam("Alt_ini_monto", ccsGet), $this);
-        $this->Sorter_ini_pro_id = & new clsSorter($this->ComponentName, "Sorter_ini_pro_id", $FileName, $this);
-        $this->Sorter_ini_mer_id = & new clsSorter($this->ComponentName, "Sorter_ini_mer_id", $FileName, $this);
-        $this->Sorter_ini_tic_id = & new clsSorter($this->ComponentName, "Sorter_ini_tic_id", $FileName, $this);
-        $this->Sorter_ini_monto = & new clsSorter($this->ComponentName, "Sorter_ini_monto", $FileName, $this);
-        $this->th_inicio_Insert = & new clsControl(ccsLink, "th_inicio_Insert", "th_inicio_Insert", ccsText, "", CCGetRequestParam("th_inicio_Insert", ccsGet), $this);
+        $this->Alt_ini_pro_id = new clsControl(ccsLabel, "Alt_ini_pro_id", "Alt_ini_pro_id", ccsInteger, "", CCGetRequestParam("Alt_ini_pro_id", ccsGet), $this);
+        $this->Alt_ini_mer_id = new clsControl(ccsLabel, "Alt_ini_mer_id", "Alt_ini_mer_id", ccsInteger, "", CCGetRequestParam("Alt_ini_mer_id", ccsGet), $this);
+        $this->Alt_ini_tic_id = new clsControl(ccsLabel, "Alt_ini_tic_id", "Alt_ini_tic_id", ccsInteger, "", CCGetRequestParam("Alt_ini_tic_id", ccsGet), $this);
+        $this->Alt_ini_monto = new clsControl(ccsLabel, "Alt_ini_monto", "Alt_ini_monto", ccsFloat, "", CCGetRequestParam("Alt_ini_monto", ccsGet), $this);
+        $this->Sorter_ini_pro_id = new clsSorter($this->ComponentName, "Sorter_ini_pro_id", $FileName, $this);
+        $this->Sorter_ini_mer_id = new clsSorter($this->ComponentName, "Sorter_ini_mer_id", $FileName, $this);
+        $this->Sorter_ini_tic_id = new clsSorter($this->ComponentName, "Sorter_ini_tic_id", $FileName, $this);
+        $this->Sorter_ini_monto = new clsSorter($this->ComponentName, "Sorter_ini_monto", $FileName, $this);
+        $this->th_inicio_Insert = new clsControl(ccsLink, "th_inicio_Insert", "th_inicio_Insert", ccsText, "", CCGetRequestParam("th_inicio_Insert", ccsGet), $this);
         $this->th_inicio_Insert->Parameters = CCGetQueryString("QueryString", array("ini_id", "ccsForm"));
         $this->th_inicio_Insert->Page = "inicio.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpSimple, $this);
     }
 //End Class_Initialize Event
 
@@ -377,7 +377,7 @@ class clsRecordth_inicio1 { //th_inicio1 Class @32-E479FDEB
         if($this->Visible)
         {
             $this->ComponentName = "th_inicio1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -385,7 +385,7 @@ class clsRecordth_inicio1 { //th_inicio1 Class @32-E479FDEB
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->ini_pro_id = & new clsControl(ccsListBox, "ini_pro_id", "Ini Pro Id", ccsInteger, "", CCGetRequestParam("ini_pro_id", $Method), $this);
+            $this->ini_pro_id = new clsControl(ccsListBox, "ini_pro_id", "Ini Pro Id", ccsInteger, "", CCGetRequestParam("ini_pro_id", $Method), $this);
             $this->ini_pro_id->DSType = dsTable;
             list($this->ini_pro_id->BoundColumn, $this->ini_pro_id->TextColumn, $this->ini_pro_id->DBFormat) = array("pro_id", "pro_nombre", "");
             $this->ini_pro_id->DataSource = new clsDBsiges();
@@ -399,7 +399,7 @@ class clsRecordth_inicio1 { //th_inicio1 Class @32-E479FDEB
             $this->ini_pro_id->DataSource->Where = 
                  $this->ini_pro_id->DataSource->wp->Criterion[1];
             $this->ini_pro_id->Required = true;
-            $this->ini_mer_id = & new clsControl(ccsListBox, "ini_mer_id", "Ini Mer Id", ccsInteger, "", CCGetRequestParam("ini_mer_id", $Method), $this);
+            $this->ini_mer_id = new clsControl(ccsListBox, "ini_mer_id", "Ini Mer Id", ccsInteger, "", CCGetRequestParam("ini_mer_id", $Method), $this);
             $this->ini_mer_id->DSType = dsTable;
             list($this->ini_mer_id->BoundColumn, $this->ini_mer_id->TextColumn, $this->ini_mer_id->DBFormat) = array("mer_id", "mer_nombre", "");
             $this->ini_mer_id->DataSource = new clsDBsiges();
@@ -413,7 +413,7 @@ class clsRecordth_inicio1 { //th_inicio1 Class @32-E479FDEB
             $this->ini_mer_id->DataSource->Where = 
                  $this->ini_mer_id->DataSource->wp->Criterion[1];
             $this->ini_mer_id->Required = true;
-            $this->ini_tic_id = & new clsControl(ccsListBox, "ini_tic_id", "Ini Tic Id", ccsInteger, "", CCGetRequestParam("ini_tic_id", $Method), $this);
+            $this->ini_tic_id = new clsControl(ccsListBox, "ini_tic_id", "Ini Tic Id", ccsInteger, "", CCGetRequestParam("ini_tic_id", $Method), $this);
             $this->ini_tic_id->DSType = dsTable;
             list($this->ini_tic_id->BoundColumn, $this->ini_tic_id->TextColumn, $this->ini_tic_id->DBFormat) = array("cli_id", "cli_nombre", "");
             $this->ini_tic_id->DataSource = new clsDBsiges();
@@ -427,12 +427,12 @@ class clsRecordth_inicio1 { //th_inicio1 Class @32-E479FDEB
             $this->ini_tic_id->DataSource->Where = 
                  $this->ini_tic_id->DataSource->wp->Criterion[1];
             $this->ini_tic_id->Required = true;
-            $this->ini_monto = & new clsControl(ccsTextBox, "ini_monto", "Ini Monto", ccsFloat, "", CCGetRequestParam("ini_monto", $Method), $this);
+            $this->ini_monto = new clsControl(ccsTextBox, "ini_monto", "Ini Monto", ccsFloat, "", CCGetRequestParam("ini_monto", $Method), $this);
             $this->ini_monto->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->ini_jue_id = & new clsControl(ccsHidden, "ini_jue_id", "Ini Jue Id", ccsInteger, "", CCGetRequestParam("ini_jue_id", $Method), $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->ini_jue_id = new clsControl(ccsHidden, "ini_jue_id", "Ini Jue Id", ccsInteger, "", CCGetRequestParam("ini_jue_id", $Method), $this);
             $this->ini_jue_id->Required = true;
             if(!$this->FormSubmitted) {
                 if(!is_array($this->ini_jue_id->Value) && !strlen($this->ini_jue_id->Value) && $this->ini_jue_id->Value !== false)
@@ -843,8 +843,8 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$th_inicio = & new clsGridth_inicio("", $MainPage);
-$th_inicio1 = & new clsRecordth_inicio1("", $MainPage);
+$th_inicio = new clsGridth_inicio("", $MainPage);
+$th_inicio1 = new clsRecordth_inicio1("", $MainPage);
 $MainPage->th_inicio = & $th_inicio;
 $MainPage->th_inicio1 = & $th_inicio1;
 $th_inicio->Initialize();
