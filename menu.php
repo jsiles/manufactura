@@ -27,14 +27,11 @@ $jue_id = get_param("id");
     $per_cantidad = $db->f("cantidad");
     $jue_id = $db->f("id");
     $per_in = $per_inicio;
-//    echo $per_inicio."-".$per_cantidad."<br>";
-
     for ($i=0;$i<=$per_cantidad;$i++)
     {
          if (is_numeric($per_inicio)) {
             $sSQL = "select count(*) from tb_balances where bal_usu_id=$user_id and bal_periodo=$per_inicio and bal_flag=1 and bal_sw='A'";
             $vCount = get_db_value($sSQL);
-//            echo $sSQL;
             if ($vCount!=0) {
                 $periodo[$per_inicio]=$per_inicio;
             }
@@ -49,7 +46,6 @@ $jue_id = get_param("id");
                 {
                 $sSQL = "insert into tb_balances values (null, $user_id, $per_inicio,'A',0)";
                  $db->query($sSQL);
-                 //echo $sSQL;
                  } else
                  {
                      $periodo_anterior = $per_inicio-1;
@@ -57,7 +53,6 @@ $jue_id = get_param("id");
                      $sTotalPasivo = get_db_value("select t.dat_monto from tb_datos t where t.dat_ite_id=56 and t.dat_usu_id=$user_id and t.dat_periodo=$periodo_anterior and t.dat_sw='A'");
                      if ($sTotalActivo=='') $sTotalActivo=0;
                      if ($sTotalPasivo=='') $sTotalPasivo=0;
-//                     echo $sTotalActivo . "--".$sTotalPasivo;
                      if (($sTotalActivo!=0) or ($sTotalPasivo!=0)) {
                                 $iBalance = abs($sTotalActivo-$sTotalPasivo);
                                 if ($iBalance<=2) {
@@ -85,18 +80,9 @@ $template_filename = "menu.html";
 
 $tpl = new Template($app_path);
 $tpl->load_file($template_filename, "main");
-//$tpl->load_file($header_filename, "header");
 $tpl->set_var("FileName", $filename);
 $tpl->set_var("CCS_Style","Coco");
-//header_show();
 elementos_show();
-//elementos_record();
-//datos_show();
-//if (get_param("apl")==2) {
-//items_show();
-//}
-
-//$tpl->parse("header", false);
 $tpl->pparse("main", false);
 function elementos_action($sAction)
 {
@@ -219,11 +205,11 @@ function elementos_show()
               $tpl->parse("Row",true);
 			  
  			  $tpl->set_var("Detail_Src", "celebridades.php?id=$jue_id&per_periodo=$dat_periodo&");
-              $tpl->set_var("ele_nombre","SUBASTA CELEBRIDADES");
+              $tpl->set_var("ele_nombre","SUBASTA PROYECTOS");
               $tpl->parse("Row",true);
 			  
 			  $tpl->set_var("Detail_Src", "ventasonline.php?id=$jue_id&per_periodo=$dat_periodo&");
-              $tpl->set_var("ele_nombre","VENTAS ONLINE");
+              $tpl->set_var("ele_nombre","LICITACIÓN PROYECTOS");
               $tpl->parse("Row",true);
             
 			  $tpl->set_var("Detail_Src", "compramateriales.php?id=$jue_id&per_periodo=$dat_periodo&apl=1&dat_periodo=$dat_periodo&");
@@ -238,10 +224,7 @@ function elementos_show()
               $tpl->set_var("Detail_Src", "datos2.php?id=$jue_id&per_periodo=$dat_periodo&apl=2&ele_id=96&");
               $tpl->set_var("ele_nombre","MANUFACTURA");
               $tpl->parse("Row",true);
-			 
-			 
-			 
- 
+
  while($next_record){
         $id = $db->f("ite_id");
         $nombre = $db->f("ite_nombre");
@@ -373,7 +356,6 @@ function datos_show()
                                     $sInsert = "insert into tb_datos values (null, $user_id, $id, $ele_monto, '$dat_fechahora', $key, 'A')";
                                 elseif (($sValida>0)&&($accion!='')) $sInsert = "update tb_datos set dat_monto=$ele_monto, dat_fechahora= '$dat_fechahora' where dat_usu_id=$user_id and dat_ite_id=$id and dat_periodo=$key";
                                 $db3->query($sInsert);
-                                //echo $sValida. $sInsert."<br>";
                               } else
                               {
                                   $ele_monto="&nbsp;";
@@ -522,8 +504,6 @@ function items_show()
         $tpl->set_var("Valores", "");
         $next_record = $db->next_record();
     }
-
-/******************************************************************/
     $sSQL1 = "select t.ite_id, t.ite_nombre from `tb_items`  t, `th_grupos` t1 where t.ite_apl=2 and t.ite_id_itemSuperior=$ele_id and t.ite_id=t1.gru_ite_id order by ite_orden";
     $db3->query($sSQL1);
     $next_record3 = $db3->next_record();
