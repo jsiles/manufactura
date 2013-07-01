@@ -1,5 +1,5 @@
 <?php
-include ("./common2.php");
+include ("../common2.php");
 session_start();
 $jue_id= get_param("jue_id");
 $pro_id= get_param("pro_id");
@@ -52,11 +52,11 @@ function delete($jue_id, $pro_id)
         <head>
                 <title>Compras</title>
                
-                <link rel="stylesheet" href="Themes/style.css" />
-                <link href="Themes/navmenu.css" type="text/css" rel="stylesheet">
-                <link href="Themes/navmenu3.css" type="text/css" rel="stylesheet">
-				<link href="Themes/style.css" type="text/css" rel="stylesheet">
-                <link href="Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+                <link rel="stylesheet" href="../Themes/style.css" />
+                <link href="../Themes/navmenu.css" type="text/css" rel="stylesheet">
+                <link href="../Themes/navmenu3.css" type="text/css" rel="stylesheet">
+				<link href="../Themes/style.css" type="text/css" rel="stylesheet">
+                <link href="../Themes/Clear/Style.css" type="text/css" rel="stylesheet">
         </head>
         <body>
                 <div id="tabs">
@@ -71,13 +71,13 @@ function delete($jue_id, $pro_id)
                                 <div id="tabs-1-1" >
                                 <p>
                                     <font class="ClearFormHeaderFont">Lista
-                                    de Productos </font><br>
+                                    de Costos </font><br>
                                     </p>
                                  <table>
 									<tr>
                                       <td class="ClearColumnTD" nowrap="nowrap">&nbsp;&nbsp;</td>	
                                       <td class="ClearColumnTD" nowrap="nowrap">Id</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Productos</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Costos</td>
                                     </tr>
                                     <?php
 										$sSQL="select * from tb_productos2 where pro_jue_id=$jue_id order by pro_id asc";
@@ -107,13 +107,13 @@ function delete($jue_id, $pro_id)
                                  </table>
                                  <br>
                                   <form method="Get" action="compras3.php" name="valoresRecord">
-                                  <font class="ClearFormHeaderFont">Agregar/Editar Productos&nbsp; </font> 
+                                  <font class="ClearFormHeaderFont">Agregar/Editar Costos&nbsp; </font> 
                                   <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
                                      <tr>
                                       <td class="ClearErrorDataTD" colspan="2"></td>
                                      </tr>
                                      <tr>
-                                      <td class="ClearFieldCaptionTD">Producto</td>
+                                      <td class="ClearFieldCaptionTD">Costo de mantenimiento ($M/Gesti&oacute;n)</td>
                                       <?php
 									  	if($pro_id!=NULL) $fldProducto = get_db_value("select pro_name from tb_productos2 where pro_id=$pro_id and pro_jue_id=$jue_id");
 									  ?>
