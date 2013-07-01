@@ -2,7 +2,7 @@
 include ("./common.php");
 include_once "./Spreadsheet/Excel/Writer.php";    
 session_start();
-  $xls =& new Spreadsheet_Excel_Writer();
+  $xls =new Spreadsheet_Excel_Writer();
   $xls->send("Reportes.xls");
   
   $format_titular =& $xls->addFormat();

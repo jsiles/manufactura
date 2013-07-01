@@ -60,18 +60,18 @@ class clsRecordtb_trimestresSearch { //tb_trimestresSearch Class @3-CFCEED90
         if($this->Visible)
         {
             $this->ComponentName = "tb_trimestresSearch";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->s_tri_nombre = & new clsControl(ccsTextBox, "s_tri_nombre", "s_tri_nombre", ccsText, "", CCGetRequestParam("s_tri_nombre", $Method), $this);
-            $this->ClearParameters = & new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
+            $this->s_tri_nombre = new clsControl(ccsTextBox, "s_tri_nombre", "s_tri_nombre", ccsText, "", CCGetRequestParam("s_tri_nombre", $Method), $this);
+            $this->ClearParameters = new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
             $this->ClearParameters->Parameters = CCGetQueryString("QueryString", array("s_tri_nombre", "ccsForm"));
             $this->ClearParameters->Page = "trimestre.php";
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch = new clsButton("Button_DoSearch", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -244,21 +244,21 @@ class clsGridtb_trimestres { //tb_trimestres class @2-09694BC7
         $this->SorterName = CCGetParam("tb_trimestresOrder", "");
         $this->SorterDirection = CCGetParam("tb_trimestresDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "trimestre.php";
-        $this->tri_nombre = & new clsControl(ccsLabel, "tri_nombre", "tri_nombre", ccsText, "", CCGetRequestParam("tri_nombre", ccsGet), $this);
-        $this->tri_sw = & new clsControl(ccsLabel, "tri_sw", "tri_sw", ccsText, "", CCGetRequestParam("tri_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->tri_nombre = new clsControl(ccsLabel, "tri_nombre", "tri_nombre", ccsText, "", CCGetRequestParam("tri_nombre", ccsGet), $this);
+        $this->tri_sw = new clsControl(ccsLabel, "tri_sw", "tri_sw", ccsText, "", CCGetRequestParam("tri_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "trimestre.php";
-        $this->Alt_tri_nombre = & new clsControl(ccsLabel, "Alt_tri_nombre", "Alt_tri_nombre", ccsText, "", CCGetRequestParam("Alt_tri_nombre", ccsGet), $this);
-        $this->Alt_tri_sw = & new clsControl(ccsLabel, "Alt_tri_sw", "Alt_tri_sw", ccsText, "", CCGetRequestParam("Alt_tri_sw", ccsGet), $this);
-        $this->tb_trimestres_TotalRecords = & new clsControl(ccsLabel, "tb_trimestres_TotalRecords", "tb_trimestres_TotalRecords", ccsText, "", CCGetRequestParam("tb_trimestres_TotalRecords", ccsGet), $this);
-        $this->Sorter_tri_nombre = & new clsSorter($this->ComponentName, "Sorter_tri_nombre", $FileName, $this);
-        $this->Sorter_tri_sw = & new clsSorter($this->ComponentName, "Sorter_tri_sw", $FileName, $this);
-        $this->tb_trimestres_Insert = & new clsControl(ccsLink, "tb_trimestres_Insert", "tb_trimestres_Insert", ccsText, "", CCGetRequestParam("tb_trimestres_Insert", ccsGet), $this);
+        $this->Alt_tri_nombre = new clsControl(ccsLabel, "Alt_tri_nombre", "Alt_tri_nombre", ccsText, "", CCGetRequestParam("Alt_tri_nombre", ccsGet), $this);
+        $this->Alt_tri_sw = new clsControl(ccsLabel, "Alt_tri_sw", "Alt_tri_sw", ccsText, "", CCGetRequestParam("Alt_tri_sw", ccsGet), $this);
+        $this->tb_trimestres_TotalRecords = new clsControl(ccsLabel, "tb_trimestres_TotalRecords", "tb_trimestres_TotalRecords", ccsText, "", CCGetRequestParam("tb_trimestres_TotalRecords", ccsGet), $this);
+        $this->Sorter_tri_nombre = new clsSorter($this->ComponentName, "Sorter_tri_nombre", $FileName, $this);
+        $this->Sorter_tri_sw = new clsSorter($this->ComponentName, "Sorter_tri_sw", $FileName, $this);
+        $this->tb_trimestres_Insert = new clsControl(ccsLink, "tb_trimestres_Insert", "tb_trimestres_Insert", ccsText, "", CCGetRequestParam("tb_trimestres_Insert", ccsGet), $this);
         $this->tb_trimestres_Insert->Parameters = CCGetQueryString("QueryString", array("tri_id", "ccsForm"));
         $this->tb_trimestres_Insert->Page = "trimestre.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -524,7 +524,7 @@ class clsRecordtb_trimestres1 { //tb_trimestres1 Class @22-1683C20A
         if($this->Visible)
         {
             $this->ComponentName = "tb_trimestres1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -532,16 +532,16 @@ class clsRecordtb_trimestres1 { //tb_trimestres1 Class @22-1683C20A
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->tri_nombre = & new clsControl(ccsTextBox, "tri_nombre", "Tri Nombre", ccsText, "", CCGetRequestParam("tri_nombre", $Method), $this);
+            $this->tri_nombre = new clsControl(ccsTextBox, "tri_nombre", "Tri Nombre", ccsText, "", CCGetRequestParam("tri_nombre", $Method), $this);
             $this->tri_nombre->Required = true;
-            $this->tri_sw = & new clsControl(ccsListBox, "tri_sw", "Tri Sw", ccsText, "", CCGetRequestParam("tri_sw", $Method), $this);
+            $this->tri_sw = new clsControl(ccsListBox, "tri_sw", "Tri Sw", ccsText, "", CCGetRequestParam("tri_sw", $Method), $this);
             $this->tri_sw->DSType = dsListOfValues;
             $this->tri_sw->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->tri_sw->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
         }
     }
 //End Class_Initialize Event
@@ -910,9 +910,9 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$tb_trimestresSearch = & new clsRecordtb_trimestresSearch("", $MainPage);
-$tb_trimestres = & new clsGridtb_trimestres("", $MainPage);
-$tb_trimestres1 = & new clsRecordtb_trimestres1("", $MainPage);
+$tb_trimestresSearch = new clsRecordtb_trimestresSearch("", $MainPage);
+$tb_trimestres = new clsGridtb_trimestres("", $MainPage);
+$tb_trimestres1 = new clsRecordtb_trimestres1("", $MainPage);
 $MainPage->tb_trimestresSearch = & $tb_trimestresSearch;
 $MainPage->tb_trimestres = & $tb_trimestres;
 $MainPage->tb_trimestres1 = & $tb_trimestres1;

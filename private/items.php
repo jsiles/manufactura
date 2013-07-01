@@ -74,34 +74,34 @@ class clsGridtb_items { //tb_items class @2-317E8AD2
         $this->SorterName = CCGetParam("tb_itemsOrder", "");
         $this->SorterDirection = CCGetParam("tb_itemsDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "items.php";
-        $this->operaciones = & new clsControl(ccsLink, "operaciones", "operaciones", ccsText, "", CCGetRequestParam("operaciones", ccsGet), $this);
+        $this->operaciones = new clsControl(ccsLink, "operaciones", "operaciones", ccsText, "", CCGetRequestParam("operaciones", ccsGet), $this);
         $this->operaciones->Page = "operacionesatr.php";
-        $this->ite_nombre = & new clsControl(ccsLabel, "ite_nombre", "ite_nombre", ccsText, "", CCGetRequestParam("ite_nombre", ccsGet), $this);
-        $this->ite_orden = & new clsControl(ccsLabel, "ite_orden", "ite_orden", ccsInteger, "", CCGetRequestParam("ite_orden", ccsGet), $this);
-        $this->ite_etiqueta = & new clsControl(ccsLabel, "ite_etiqueta", "ite_etiqueta", ccsText, "", CCGetRequestParam("ite_etiqueta", ccsGet), $this);
-        $this->ite_id_itemSuperior = & new clsControl(ccsLabel, "ite_id_itemSuperior", "ite_id_itemSuperior", ccsInteger, "", CCGetRequestParam("ite_id_itemSuperior", ccsGet), $this);
-        $this->ite_sw = & new clsControl(ccsLabel, "ite_sw", "ite_sw", ccsText, "", CCGetRequestParam("ite_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->ite_nombre = new clsControl(ccsLabel, "ite_nombre", "ite_nombre", ccsText, "", CCGetRequestParam("ite_nombre", ccsGet), $this);
+        $this->ite_orden = new clsControl(ccsLabel, "ite_orden", "ite_orden", ccsInteger, "", CCGetRequestParam("ite_orden", ccsGet), $this);
+        $this->ite_etiqueta = new clsControl(ccsLabel, "ite_etiqueta", "ite_etiqueta", ccsText, "", CCGetRequestParam("ite_etiqueta", ccsGet), $this);
+        $this->ite_id_itemSuperior = new clsControl(ccsLabel, "ite_id_itemSuperior", "ite_id_itemSuperior", ccsInteger, "", CCGetRequestParam("ite_id_itemSuperior", ccsGet), $this);
+        $this->ite_sw = new clsControl(ccsLabel, "ite_sw", "ite_sw", ccsText, "", CCGetRequestParam("ite_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "items.php";
-        $this->Alt_operaciones = & new clsControl(ccsLink, "Alt_operaciones", "Alt_operaciones", ccsText, "", CCGetRequestParam("Alt_operaciones", ccsGet), $this);
+        $this->Alt_operaciones = new clsControl(ccsLink, "Alt_operaciones", "Alt_operaciones", ccsText, "", CCGetRequestParam("Alt_operaciones", ccsGet), $this);
         $this->Alt_operaciones->Page = "operacionesatr.php";
-        $this->Alt_ite_nombre = & new clsControl(ccsLabel, "Alt_ite_nombre", "Alt_ite_nombre", ccsText, "", CCGetRequestParam("Alt_ite_nombre", ccsGet), $this);
-        $this->Alt_ite_orden = & new clsControl(ccsLabel, "Alt_ite_orden", "Alt_ite_orden", ccsInteger, "", CCGetRequestParam("Alt_ite_orden", ccsGet), $this);
-        $this->Alt_ite_etiqueta = & new clsControl(ccsLabel, "Alt_ite_etiqueta", "Alt_ite_etiqueta", ccsText, "", CCGetRequestParam("Alt_ite_etiqueta", ccsGet), $this);
-        $this->Alt_ite_id_itemSuperior = & new clsControl(ccsLabel, "Alt_ite_id_itemSuperior", "Alt_ite_id_itemSuperior", ccsInteger, "", CCGetRequestParam("Alt_ite_id_itemSuperior", ccsGet), $this);
-        $this->Alt_ite_sw = & new clsControl(ccsLabel, "Alt_ite_sw", "Alt_ite_sw", ccsText, "", CCGetRequestParam("Alt_ite_sw", ccsGet), $this);
-        $this->tb_items_TotalRecords = & new clsControl(ccsLabel, "tb_items_TotalRecords", "tb_items_TotalRecords", ccsText, "", CCGetRequestParam("tb_items_TotalRecords", ccsGet), $this);
-        $this->Sorter_ite_nombre = & new clsSorter($this->ComponentName, "Sorter_ite_nombre", $FileName, $this);
-        $this->Sorter_ite_orden = & new clsSorter($this->ComponentName, "Sorter_ite_orden", $FileName, $this);
-        $this->Sorter_ite_etiqueta = & new clsSorter($this->ComponentName, "Sorter_ite_etiqueta", $FileName, $this);
-        $this->Sorter_ite_id_itemSuperior = & new clsSorter($this->ComponentName, "Sorter_ite_id_itemSuperior", $FileName, $this);
-        $this->Sorter_ite_sw = & new clsSorter($this->ComponentName, "Sorter_ite_sw", $FileName, $this);
-        $this->tb_items_Insert = & new clsControl(ccsLink, "tb_items_Insert", "tb_items_Insert", ccsText, "", CCGetRequestParam("tb_items_Insert", ccsGet), $this);
+        $this->Alt_ite_nombre = new clsControl(ccsLabel, "Alt_ite_nombre", "Alt_ite_nombre", ccsText, "", CCGetRequestParam("Alt_ite_nombre", ccsGet), $this);
+        $this->Alt_ite_orden = new clsControl(ccsLabel, "Alt_ite_orden", "Alt_ite_orden", ccsInteger, "", CCGetRequestParam("Alt_ite_orden", ccsGet), $this);
+        $this->Alt_ite_etiqueta = new clsControl(ccsLabel, "Alt_ite_etiqueta", "Alt_ite_etiqueta", ccsText, "", CCGetRequestParam("Alt_ite_etiqueta", ccsGet), $this);
+        $this->Alt_ite_id_itemSuperior = new clsControl(ccsLabel, "Alt_ite_id_itemSuperior", "Alt_ite_id_itemSuperior", ccsInteger, "", CCGetRequestParam("Alt_ite_id_itemSuperior", ccsGet), $this);
+        $this->Alt_ite_sw = new clsControl(ccsLabel, "Alt_ite_sw", "Alt_ite_sw", ccsText, "", CCGetRequestParam("Alt_ite_sw", ccsGet), $this);
+        $this->tb_items_TotalRecords = new clsControl(ccsLabel, "tb_items_TotalRecords", "tb_items_TotalRecords", ccsText, "", CCGetRequestParam("tb_items_TotalRecords", ccsGet), $this);
+        $this->Sorter_ite_nombre = new clsSorter($this->ComponentName, "Sorter_ite_nombre", $FileName, $this);
+        $this->Sorter_ite_orden = new clsSorter($this->ComponentName, "Sorter_ite_orden", $FileName, $this);
+        $this->Sorter_ite_etiqueta = new clsSorter($this->ComponentName, "Sorter_ite_etiqueta", $FileName, $this);
+        $this->Sorter_ite_id_itemSuperior = new clsSorter($this->ComponentName, "Sorter_ite_id_itemSuperior", $FileName, $this);
+        $this->Sorter_ite_sw = new clsSorter($this->ComponentName, "Sorter_ite_sw", $FileName, $this);
+        $this->tb_items_Insert = new clsControl(ccsLink, "tb_items_Insert", "tb_items_Insert", ccsText, "", CCGetRequestParam("tb_items_Insert", ccsGet), $this);
         $this->tb_items_Insert->Parameters = CCGetQueryString("QueryString", array("ite_id", "ccsForm"));
         $this->tb_items_Insert->Page = "items.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -420,7 +420,7 @@ class clsRecordtb_items1 { //tb_items1 Class @31-C9945F72
         if($this->Visible)
         {
             $this->ComponentName = "tb_items1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -428,14 +428,14 @@ class clsRecordtb_items1 { //tb_items1 Class @31-C9945F72
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->ite_nombre = & new clsControl(ccsTextBox, "ite_nombre", "Nombre", ccsText, "", CCGetRequestParam("ite_nombre", $Method), $this);
+            $this->ite_nombre = new clsControl(ccsTextBox, "ite_nombre", "Nombre", ccsText, "", CCGetRequestParam("ite_nombre", $Method), $this);
             $this->ite_nombre->Required = true;
-            $this->ite_etiqueta = & new clsControl(ccsTextBox, "ite_etiqueta", "Etiqueta", ccsText, "", CCGetRequestParam("ite_etiqueta", $Method), $this);
-            $this->apl = & new clsControl(ccsHidden, "apl", "Aplicación", ccsText, "", CCGetRequestParam("apl", $Method), $this);
+            $this->ite_etiqueta = new clsControl(ccsTextBox, "ite_etiqueta", "Etiqueta", ccsText, "", CCGetRequestParam("ite_etiqueta", $Method), $this);
+            $this->apl = new clsControl(ccsHidden, "apl", "Aplicación", ccsText, "", CCGetRequestParam("apl", $Method), $this);
             $this->apl->Required = true;
-            $this->ite_orden = & new clsControl(ccsTextBox, "ite_orden", "Orden", ccsInteger, "", CCGetRequestParam("ite_orden", $Method), $this);
+            $this->ite_orden = new clsControl(ccsTextBox, "ite_orden", "Orden", ccsInteger, "", CCGetRequestParam("ite_orden", $Method), $this);
             $this->ite_orden->Required = true;
-            $this->ite_id_itemSuperior = & new clsControl(ccsListBox, "ite_id_itemSuperior", "Item Superior", ccsInteger, "", CCGetRequestParam("ite_id_itemSuperior", $Method), $this);
+            $this->ite_id_itemSuperior = new clsControl(ccsListBox, "ite_id_itemSuperior", "Item Superior", ccsInteger, "", CCGetRequestParam("ite_id_itemSuperior", $Method), $this);
             $this->ite_id_itemSuperior->DSType = dsTable;
             list($this->ite_id_itemSuperior->BoundColumn, $this->ite_id_itemSuperior->TextColumn, $this->ite_id_itemSuperior->DBFormat) = array("ite_id", "ite_nombre", "");
             $this->ite_id_itemSuperior->DataSource = new clsDBsiges();
@@ -449,14 +449,14 @@ class clsRecordtb_items1 { //tb_items1 Class @31-C9945F72
                  false, 
                  $this->ite_id_itemSuperior->DataSource->wp->Criterion[1], 
                  $this->ite_id_itemSuperior->DataSource->wp->Criterion[2]);
-            $this->ite_sw = & new clsControl(ccsListBox, "ite_sw", "Estado", ccsText, "", CCGetRequestParam("ite_sw", $Method), $this);
+            $this->ite_sw = new clsControl(ccsListBox, "ite_sw", "Estado", ccsText, "", CCGetRequestParam("ite_sw", $Method), $this);
             $this->ite_sw->DSType = dsListOfValues;
             $this->ite_sw->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->ite_sw->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->apl->Value) && !strlen($this->apl->Value) && $this->apl->Value !== false)
                     $this->apl->SetText(2);
@@ -886,8 +886,8 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$tb_items = & new clsGridtb_items("", $MainPage);
-$tb_items1 = & new clsRecordtb_items1("", $MainPage);
+$tb_items = new clsGridtb_items("", $MainPage);
+$tb_items1 = new clsRecordtb_items1("", $MainPage);
 $MainPage->tb_items = & $tb_items;
 $MainPage->tb_items1 = & $tb_items1;
 $tb_items->Initialize();

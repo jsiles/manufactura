@@ -60,19 +60,19 @@ class clsRecordtb_mercadosSearch { //tb_mercadosSearch Class @3-18EA1783
         if($this->Visible)
         {
             $this->ComponentName = "tb_mercadosSearch";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->s_mer_nombre = & new clsControl(ccsTextBox, "s_mer_nombre", "s_mer_nombre", ccsText, "", CCGetRequestParam("s_mer_nombre", $Method), $this);
-            $this->Hidden1 = & new clsControl(ccsHidden, "Hidden1", "Hidden1", ccsText, "", CCGetRequestParam("Hidden1", $Method), $this);
-            $this->ClearParameters = & new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
+            $this->s_mer_nombre = new clsControl(ccsTextBox, "s_mer_nombre", "s_mer_nombre", ccsText, "", CCGetRequestParam("s_mer_nombre", $Method), $this);
+            $this->Hidden1 = new clsControl(ccsHidden, "Hidden1", "Hidden1", ccsText, "", CCGetRequestParam("Hidden1", $Method), $this);
+            $this->ClearParameters = new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
             $this->ClearParameters->Parameters = CCGetQueryString("QueryString", array("s_mer_nombre", "ccsForm"));
             $this->ClearParameters->Page = "mercados.php";
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch = new clsButton("Button_DoSearch", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->Hidden1->Value) && !strlen($this->Hidden1->Value) && $this->Hidden1->Value !== false)
                     $this->Hidden1->SetText(CCGetParam("jue_id"));
@@ -254,21 +254,21 @@ class clsGridtb_mercados { //tb_mercados class @2-E0073AB9
         $this->SorterName = CCGetParam("tb_mercadosOrder", "");
         $this->SorterDirection = CCGetParam("tb_mercadosDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "mercados.php";
-        $this->mer_nombre = & new clsControl(ccsLabel, "mer_nombre", "mer_nombre", ccsText, "", CCGetRequestParam("mer_nombre", ccsGet), $this);
-        $this->mer_sw = & new clsControl(ccsLabel, "mer_sw", "mer_sw", ccsText, "", CCGetRequestParam("mer_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->mer_nombre = new clsControl(ccsLabel, "mer_nombre", "mer_nombre", ccsText, "", CCGetRequestParam("mer_nombre", ccsGet), $this);
+        $this->mer_sw = new clsControl(ccsLabel, "mer_sw", "mer_sw", ccsText, "", CCGetRequestParam("mer_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "mercados.php";
-        $this->Alt_mer_nombre = & new clsControl(ccsLabel, "Alt_mer_nombre", "Alt_mer_nombre", ccsText, "", CCGetRequestParam("Alt_mer_nombre", ccsGet), $this);
-        $this->Alt_mer_sw = & new clsControl(ccsLabel, "Alt_mer_sw", "Alt_mer_sw", ccsText, "", CCGetRequestParam("Alt_mer_sw", ccsGet), $this);
-        $this->tb_mercados_TotalRecords = & new clsControl(ccsLabel, "tb_mercados_TotalRecords", "tb_mercados_TotalRecords", ccsText, "", CCGetRequestParam("tb_mercados_TotalRecords", ccsGet), $this);
-        $this->Sorter_mer_nombre = & new clsSorter($this->ComponentName, "Sorter_mer_nombre", $FileName, $this);
-        $this->Sorter_mer_sw = & new clsSorter($this->ComponentName, "Sorter_mer_sw", $FileName, $this);
-        $this->tb_mercados_Insert = & new clsControl(ccsLink, "tb_mercados_Insert", "tb_mercados_Insert", ccsText, "", CCGetRequestParam("tb_mercados_Insert", ccsGet), $this);
+        $this->Alt_mer_nombre = new clsControl(ccsLabel, "Alt_mer_nombre", "Alt_mer_nombre", ccsText, "", CCGetRequestParam("Alt_mer_nombre", ccsGet), $this);
+        $this->Alt_mer_sw = new clsControl(ccsLabel, "Alt_mer_sw", "Alt_mer_sw", ccsText, "", CCGetRequestParam("Alt_mer_sw", ccsGet), $this);
+        $this->tb_mercados_TotalRecords = new clsControl(ccsLabel, "tb_mercados_TotalRecords", "tb_mercados_TotalRecords", ccsText, "", CCGetRequestParam("tb_mercados_TotalRecords", ccsGet), $this);
+        $this->Sorter_mer_nombre = new clsSorter($this->ComponentName, "Sorter_mer_nombre", $FileName, $this);
+        $this->Sorter_mer_sw = new clsSorter($this->ComponentName, "Sorter_mer_sw", $FileName, $this);
+        $this->tb_mercados_Insert = new clsControl(ccsLink, "tb_mercados_Insert", "tb_mercados_Insert", ccsText, "", CCGetRequestParam("tb_mercados_Insert", ccsGet), $this);
         $this->tb_mercados_Insert->Parameters = CCGetQueryString("QueryString", array("mer_id", "ccsForm"));
         $this->tb_mercados_Insert->Page = "mercados.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -539,7 +539,7 @@ class clsRecordtb_mercados1 { //tb_mercados1 Class @22-C0CF9CE8
         if($this->Visible)
         {
             $this->ComponentName = "tb_mercados1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -547,18 +547,18 @@ class clsRecordtb_mercados1 { //tb_mercados1 Class @22-C0CF9CE8
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->mer_nombre = & new clsControl(ccsTextBox, "mer_nombre", "Nombre", ccsText, "", CCGetRequestParam("mer_nombre", $Method), $this);
+            $this->mer_nombre = new clsControl(ccsTextBox, "mer_nombre", "Nombre", ccsText, "", CCGetRequestParam("mer_nombre", $Method), $this);
             $this->mer_nombre->Required = true;
-            $this->Hidden1 = & new clsControl(ccsHidden, "Hidden1", "Juego", ccsText, "", CCGetRequestParam("Hidden1", $Method), $this);
+            $this->Hidden1 = new clsControl(ccsHidden, "Hidden1", "Juego", ccsText, "", CCGetRequestParam("Hidden1", $Method), $this);
             $this->Hidden1->Required = true;
-            $this->mer_sw = & new clsControl(ccsListBox, "mer_sw", "Estado", ccsText, "", CCGetRequestParam("mer_sw", $Method), $this);
+            $this->mer_sw = new clsControl(ccsListBox, "mer_sw", "Estado", ccsText, "", CCGetRequestParam("mer_sw", $Method), $this);
             $this->mer_sw->DSType = dsListOfValues;
             $this->mer_sw->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->mer_sw->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->Hidden1->Value) && !strlen($this->Hidden1->Value) && $this->Hidden1->Value !== false)
                     $this->Hidden1->SetText(CCGetParam("jue_id"));
@@ -947,9 +947,9 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$tb_mercadosSearch = & new clsRecordtb_mercadosSearch("", $MainPage);
-$tb_mercados = & new clsGridtb_mercados("", $MainPage);
-$tb_mercados1 = & new clsRecordtb_mercados1("", $MainPage);
+$tb_mercadosSearch = new clsRecordtb_mercadosSearch("", $MainPage);
+$tb_mercados = new clsGridtb_mercados("", $MainPage);
+$tb_mercados1 = new clsRecordtb_mercados1("", $MainPage);
 $MainPage->tb_mercadosSearch = & $tb_mercadosSearch;
 $MainPage->tb_mercados = & $tb_mercados;
 $MainPage->tb_mercados1 = & $tb_mercados1;

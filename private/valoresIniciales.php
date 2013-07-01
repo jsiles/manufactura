@@ -115,7 +115,7 @@ $fldvai_jue_id= get_param("jue_id");
     return;
   }
   
-  $avai_sw = split(";", "A;Activo;I;Inactivo");
+  $avai_sw = explode(";", "A;Activo;I;Inactivo");
   $iRecordsPerPage = 10;
   $iCounter = 0;
   $iPage = get_param("FormvaloresGrid_Page");
@@ -590,7 +590,7 @@ if (!$bIsUpdateMode)
     $tpl->set_var("vai_periodo", tohtml($fldvai_periodo));
     $tpl->set_var("valoresRecordLBvai_sw", "");
     $tpl->set_var("vai_jue_id", get_param("jue_id"));
-    $LOV = split(";", ";Seleccionar Valor;A;Activo;I;Inactivo");
+    $LOV = explode(";", ";Seleccionar Valor;A;Activo;I;Inactivo");
   
     if(sizeof($LOV)%2 != 0) 
       $array_length = sizeof($LOV) - 1;

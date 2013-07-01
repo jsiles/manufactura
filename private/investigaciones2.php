@@ -57,7 +57,7 @@ function valoresRecord_action($sAction)
   {
   foreach ($eliminar as $key => $value)
   {
-	list($juego,$producto,$mercado,$periodo) = split("-",$value);
+	list($juego,$producto,$mercado,$periodo) = explode("-",$value);
 		
 		//$sSQL="update tb_investigaciones set inv_cantidad=0, inv_saldo=0.00, inv_costo=0.00, inv_costoexclusividad=0.00 where inv_jue_id=$juego and inv_pro_id=$producto and inv_mer_id= $mercado and inv_per_id=$periodo";
 		//$db->query($sSQL);

@@ -60,14 +60,14 @@ class clsRecordtb_operacionesSearch { //tb_operacionesSearch Class @3-23DA65DB
         if($this->Visible)
         {
             $this->ComponentName = "tb_operacionesSearch";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->s_ope_ite_idOperar = & new clsControl(ccsListBox, "s_ope_ite_idOperar", "s_ope_ite_idOperar", ccsInteger, "", CCGetRequestParam("s_ope_ite_idOperar", $Method), $this);
+            $this->s_ope_ite_idOperar = new clsControl(ccsListBox, "s_ope_ite_idOperar", "s_ope_ite_idOperar", ccsInteger, "", CCGetRequestParam("s_ope_ite_idOperar", $Method), $this);
             $this->s_ope_ite_idOperar->DSType = dsTable;
             list($this->s_ope_ite_idOperar->BoundColumn, $this->s_ope_ite_idOperar->TextColumn, $this->s_ope_ite_idOperar->DBFormat) = array("ite_id", "ite_nombre", "");
             $this->s_ope_ite_idOperar->DataSource = new clsDBsiges();
@@ -85,12 +85,12 @@ class clsRecordtb_operacionesSearch { //tb_operacionesSearch Class @3-23DA65DB
                  false, 
                  $this->s_ope_ite_idOperar->DataSource->wp->Criterion[1], 
                  $this->s_ope_ite_idOperar->DataSource->wp->Criterion[2]);
-            $this->s_ope_operacion = & new clsControl(ccsTextBox, "s_ope_operacion", "s_ope_operacion", ccsText, "", CCGetRequestParam("s_ope_operacion", $Method), $this);
-            $this->ite_id = & new clsControl(ccsHidden, "ite_id", "ite_id", ccsText, "", CCGetRequestParam("ite_id", $Method), $this);
-            $this->ClearParameters = & new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
+            $this->s_ope_operacion = new clsControl(ccsTextBox, "s_ope_operacion", "s_ope_operacion", ccsText, "", CCGetRequestParam("s_ope_operacion", $Method), $this);
+            $this->ite_id = new clsControl(ccsHidden, "ite_id", "ite_id", ccsText, "", CCGetRequestParam("ite_id", $Method), $this);
+            $this->ClearParameters = new clsControl(ccsLink, "ClearParameters", "ClearParameters", ccsText, "", CCGetRequestParam("ClearParameters", $Method), $this);
             $this->ClearParameters->Parameters = CCGetQueryString("QueryString", array("s_ope_ite_idOperar", "s_ope_operacion", "ccsForm"));
             $this->ClearParameters->Page = "operaciones.php";
-            $this->Button_DoSearch = & new clsButton("Button_DoSearch", $Method, $this);
+            $this->Button_DoSearch = new clsButton("Button_DoSearch", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->ite_id->Value) && !strlen($this->ite_id->Value) && $this->ite_id->Value !== false)
                     $this->ite_id->SetText(CCGetParam("ite_id"));
@@ -281,31 +281,31 @@ class clsGridtb_operaciones { //tb_operaciones class @2-9FA0E6F5
         $this->SorterName = CCGetParam("tb_operacionesOrder", "");
         $this->SorterDirection = CCGetParam("tb_operacionesDir", "");
 
-        $this->Detail = & new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
+        $this->Detail = new clsControl(ccsLink, "Detail", "Detail", ccsText, "", CCGetRequestParam("Detail", ccsGet), $this);
         $this->Detail->Page = "operaciones.php";
-        $this->ope_operacion = & new clsControl(ccsLabel, "ope_operacion", "ope_operacion", ccsText, "", CCGetRequestParam("ope_operacion", ccsGet), $this);
-        $this->ope_ite_idOperar = & new clsControl(ccsLabel, "ope_ite_idOperar", "ope_ite_idOperar", ccsInteger, "", CCGetRequestParam("ope_ite_idOperar", ccsGet), $this);
-        $this->ope_trimestre = & new clsControl(ccsLabel, "ope_trimestre", "ope_trimestre", ccsText, "", CCGetRequestParam("ope_trimestre", ccsGet), $this);
-        $this->ope_valor = & new clsControl(ccsLabel, "ope_valor", "ope_valor", ccsFloat, "", CCGetRequestParam("ope_valor", ccsGet), $this);
-        $this->ope_sw = & new clsControl(ccsLabel, "ope_sw", "ope_sw", ccsText, "", CCGetRequestParam("ope_sw", ccsGet), $this);
-        $this->Alt_Detail = & new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
+        $this->ope_operacion = new clsControl(ccsLabel, "ope_operacion", "ope_operacion", ccsText, "", CCGetRequestParam("ope_operacion", ccsGet), $this);
+        $this->ope_ite_idOperar = new clsControl(ccsLabel, "ope_ite_idOperar", "ope_ite_idOperar", ccsInteger, "", CCGetRequestParam("ope_ite_idOperar", ccsGet), $this);
+        $this->ope_trimestre = new clsControl(ccsLabel, "ope_trimestre", "ope_trimestre", ccsText, "", CCGetRequestParam("ope_trimestre", ccsGet), $this);
+        $this->ope_valor = new clsControl(ccsLabel, "ope_valor", "ope_valor", ccsFloat, "", CCGetRequestParam("ope_valor", ccsGet), $this);
+        $this->ope_sw = new clsControl(ccsLabel, "ope_sw", "ope_sw", ccsText, "", CCGetRequestParam("ope_sw", ccsGet), $this);
+        $this->Alt_Detail = new clsControl(ccsLink, "Alt_Detail", "Alt_Detail", ccsText, "", CCGetRequestParam("Alt_Detail", ccsGet), $this);
         $this->Alt_Detail->Page = "operaciones.php";
-        $this->Alt_ope_operacion = & new clsControl(ccsLabel, "Alt_ope_operacion", "Alt_ope_operacion", ccsText, "", CCGetRequestParam("Alt_ope_operacion", ccsGet), $this);
-        $this->Alt_ope_ite_idOperar = & new clsControl(ccsLabel, "Alt_ope_ite_idOperar", "Alt_ope_ite_idOperar", ccsInteger, "", CCGetRequestParam("Alt_ope_ite_idOperar", ccsGet), $this);
-        $this->Alt_ope_trimestre = & new clsControl(ccsLabel, "Alt_ope_trimestre", "Alt_ope_trimestre", ccsText, "", CCGetRequestParam("Alt_ope_trimestre", ccsGet), $this);
-        $this->Alt_ope_valor = & new clsControl(ccsLabel, "Alt_ope_valor", "Alt_ope_valor", ccsFloat, "", CCGetRequestParam("Alt_ope_valor", ccsGet), $this);
-        $this->Alt_ope_sw = & new clsControl(ccsLabel, "Alt_ope_sw", "Alt_ope_sw", ccsText, "", CCGetRequestParam("Alt_ope_sw", ccsGet), $this);
-        $this->item = & new clsControl(ccsLabel, "item", "item", ccsText, "", CCGetRequestParam("item", ccsGet), $this);
-        $this->tb_operaciones_TotalRecords = & new clsControl(ccsLabel, "tb_operaciones_TotalRecords", "tb_operaciones_TotalRecords", ccsText, "", CCGetRequestParam("tb_operaciones_TotalRecords", ccsGet), $this);
-        $this->Sorter_ope_operacion = & new clsSorter($this->ComponentName, "Sorter_ope_operacion", $FileName, $this);
-        $this->Sorter_ope_ite_idOperar = & new clsSorter($this->ComponentName, "Sorter_ope_ite_idOperar", $FileName, $this);
-        $this->Sorter1 = & new clsSorter($this->ComponentName, "Sorter1", $FileName, $this);
-        $this->Sorter_ope_valor = & new clsSorter($this->ComponentName, "Sorter_ope_valor", $FileName, $this);
-        $this->Sorter_ope_sw = & new clsSorter($this->ComponentName, "Sorter_ope_sw", $FileName, $this);
-        $this->tb_operaciones_Insert = & new clsControl(ccsLink, "tb_operaciones_Insert", "tb_operaciones_Insert", ccsText, "", CCGetRequestParam("tb_operaciones_Insert", ccsGet), $this);
+        $this->Alt_ope_operacion = new clsControl(ccsLabel, "Alt_ope_operacion", "Alt_ope_operacion", ccsText, "", CCGetRequestParam("Alt_ope_operacion", ccsGet), $this);
+        $this->Alt_ope_ite_idOperar = new clsControl(ccsLabel, "Alt_ope_ite_idOperar", "Alt_ope_ite_idOperar", ccsInteger, "", CCGetRequestParam("Alt_ope_ite_idOperar", ccsGet), $this);
+        $this->Alt_ope_trimestre = new clsControl(ccsLabel, "Alt_ope_trimestre", "Alt_ope_trimestre", ccsText, "", CCGetRequestParam("Alt_ope_trimestre", ccsGet), $this);
+        $this->Alt_ope_valor = new clsControl(ccsLabel, "Alt_ope_valor", "Alt_ope_valor", ccsFloat, "", CCGetRequestParam("Alt_ope_valor", ccsGet), $this);
+        $this->Alt_ope_sw = new clsControl(ccsLabel, "Alt_ope_sw", "Alt_ope_sw", ccsText, "", CCGetRequestParam("Alt_ope_sw", ccsGet), $this);
+        $this->item = new clsControl(ccsLabel, "item", "item", ccsText, "", CCGetRequestParam("item", ccsGet), $this);
+        $this->tb_operaciones_TotalRecords = new clsControl(ccsLabel, "tb_operaciones_TotalRecords", "tb_operaciones_TotalRecords", ccsText, "", CCGetRequestParam("tb_operaciones_TotalRecords", ccsGet), $this);
+        $this->Sorter_ope_operacion = new clsSorter($this->ComponentName, "Sorter_ope_operacion", $FileName, $this);
+        $this->Sorter_ope_ite_idOperar = new clsSorter($this->ComponentName, "Sorter_ope_ite_idOperar", $FileName, $this);
+        $this->Sorter1 = new clsSorter($this->ComponentName, "Sorter1", $FileName, $this);
+        $this->Sorter_ope_valor = new clsSorter($this->ComponentName, "Sorter_ope_valor", $FileName, $this);
+        $this->Sorter_ope_sw = new clsSorter($this->ComponentName, "Sorter_ope_sw", $FileName, $this);
+        $this->tb_operaciones_Insert = new clsControl(ccsLink, "tb_operaciones_Insert", "tb_operaciones_Insert", ccsText, "", CCGetRequestParam("tb_operaciones_Insert", ccsGet), $this);
         $this->tb_operaciones_Insert->Parameters = CCGetQueryString("QueryString", array("ope_ite_id", "ccsForm"));
         $this->tb_operaciones_Insert->Page = "operaciones.php";
-        $this->Navigator = & new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
+        $this->Navigator = new clsNavigator($this->ComponentName, "Navigator", $FileName, 10, tpCentered, $this);
     }
 //End Class_Initialize Event
 
@@ -626,7 +626,7 @@ class clsRecordtb_operaciones1 { //tb_operaciones1 Class @30-7560A9BE
         if($this->Visible)
         {
             $this->ComponentName = "tb_operaciones1";
-            $CCSForm = split(":", CCGetFromGet("ccsForm", ""), 2);
+            $CCSForm = explode(":", CCGetFromGet("ccsForm", ""), 2);
             if(sizeof($CCSForm) == 1)
                 $CCSForm[1] = "";
             list($FormName, $FormMethod) = $CCSForm;
@@ -634,7 +634,7 @@ class clsRecordtb_operaciones1 { //tb_operaciones1 Class @30-7560A9BE
             $this->FormEnctype = "application/x-www-form-urlencoded";
             $this->FormSubmitted = ($FormName == $this->ComponentName);
             $Method = $this->FormSubmitted ? ccsPost : ccsGet;
-            $this->ope_ite_idOperar = & new clsControl(ccsListBox, "ope_ite_idOperar", "Item", ccsInteger, "", CCGetRequestParam("ope_ite_idOperar", $Method), $this);
+            $this->ope_ite_idOperar = new clsControl(ccsListBox, "ope_ite_idOperar", "Item", ccsInteger, "", CCGetRequestParam("ope_ite_idOperar", $Method), $this);
             $this->ope_ite_idOperar->DSType = dsTable;
             list($this->ope_ite_idOperar->BoundColumn, $this->ope_ite_idOperar->TextColumn, $this->ope_ite_idOperar->DBFormat) = array("ite_id", "ite_nombre", "");
             $this->ope_ite_idOperar->DataSource = new clsDBsiges();
@@ -651,21 +651,21 @@ class clsRecordtb_operaciones1 { //tb_operaciones1 Class @30-7560A9BE
                  $this->ope_ite_idOperar->DataSource->wp->Criterion[2]);
             $this->ope_ite_idOperar->DataSource->Order = "ite_nombre";
             $this->ope_ite_idOperar->Required = true;
-            $this->ite_id = & new clsControl(ccsHidden, "ite_id", "Elemento", ccsText, "", CCGetRequestParam("ite_id", $Method), $this);
-            $this->trimestrenat = & new clsControl(ccsListBox, "trimestrenat", "Trimestre Anterior", ccsText, "", CCGetRequestParam("trimestrenat", $Method), $this);
+            $this->ite_id = new clsControl(ccsHidden, "ite_id", "Elemento", ccsText, "", CCGetRequestParam("ite_id", $Method), $this);
+            $this->trimestrenat = new clsControl(ccsListBox, "trimestrenat", "Trimestre Anterior", ccsText, "", CCGetRequestParam("trimestrenat", $Method), $this);
             $this->trimestrenat->DSType = dsListOfValues;
             $this->trimestrenat->Values = array(array("1", "Si"), array("0", "No"));
-            $this->ope_operacion = & new clsControl(ccsTextBox, "ope_operacion", "Operación", ccsText, "", CCGetRequestParam("ope_operacion", $Method), $this);
+            $this->ope_operacion = new clsControl(ccsTextBox, "ope_operacion", "Operación", ccsText, "", CCGetRequestParam("ope_operacion", $Method), $this);
             $this->ope_operacion->Required = true;
-            $this->ope_valor = & new clsControl(ccsTextBox, "ope_valor", "Valor", ccsFloat, "", CCGetRequestParam("ope_valor", $Method), $this);
-            $this->ope_sw = & new clsControl(ccsListBox, "ope_sw", "Estado", ccsText, "", CCGetRequestParam("ope_sw", $Method), $this);
+            $this->ope_valor = new clsControl(ccsTextBox, "ope_valor", "Valor", ccsFloat, "", CCGetRequestParam("ope_valor", $Method), $this);
+            $this->ope_sw = new clsControl(ccsListBox, "ope_sw", "Estado", ccsText, "", CCGetRequestParam("ope_sw", $Method), $this);
             $this->ope_sw->DSType = dsListOfValues;
             $this->ope_sw->Values = array(array("A", "Activo"), array("I", "Inactivo"));
             $this->ope_sw->Required = true;
-            $this->Button_Insert = & new clsButton("Button_Insert", $Method, $this);
-            $this->Button_Update = & new clsButton("Button_Update", $Method, $this);
-            $this->Button_Delete = & new clsButton("Button_Delete", $Method, $this);
-            $this->Button_Cancel = & new clsButton("Button_Cancel", $Method, $this);
+            $this->Button_Insert = new clsButton("Button_Insert", $Method, $this);
+            $this->Button_Update = new clsButton("Button_Update", $Method, $this);
+            $this->Button_Delete = new clsButton("Button_Delete", $Method, $this);
+            $this->Button_Cancel = new clsButton("Button_Cancel", $Method, $this);
             if(!$this->FormSubmitted) {
                 if(!is_array($this->ite_id->Value) && !strlen($this->ite_id->Value) && $this->ite_id->Value !== false)
                     $this->ite_id->SetText(CCGetParam("ite_id"));
@@ -1096,9 +1096,9 @@ $DBsiges = new clsDBsiges();
 $MainPage->Connections["siges"] = & $DBsiges;
 
 // Controls
-$tb_operacionesSearch = & new clsRecordtb_operacionesSearch("", $MainPage);
-$tb_operaciones = & new clsGridtb_operaciones("", $MainPage);
-$tb_operaciones1 = & new clsRecordtb_operaciones1("", $MainPage);
+$tb_operacionesSearch = new clsRecordtb_operacionesSearch("", $MainPage);
+$tb_operaciones = new clsGridtb_operaciones("", $MainPage);
+$tb_operaciones1 = new clsRecordtb_operaciones1("", $MainPage);
 $MainPage->tb_operacionesSearch = & $tb_operacionesSearch;
 $MainPage->tb_operaciones = & $tb_operaciones;
 $MainPage->tb_operaciones1 = & $tb_operaciones1;
