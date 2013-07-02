@@ -1,0 +1,29 @@
+CREATE TABLE `calidad`.`py_costos` (
+`cos_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`cos_mantenimiento` DOUBLE( 32, 1 ) NOT NULL ,
+`cos_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `calidad`.`py_parametros` (
+`par_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`par_descripcion` VARCHAR( 100 ) NOT NULL ,
+`par_value` DOUBLE( 32, 2 ) NOT NULL ,
+`par_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `calidad`.`py_proyectos` (
+`pro_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`pro_descripcion` VARCHAR( 100 ) NOT NULL ,
+`pro_duracion` int(11) NOT NULL,
+`pro_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+
+CREATE TABLE IF NOT EXISTS `py_proypar` (
+  `prp_pro_id` int(11) NOT NULL,
+  `prp_par_id` int(11) NOT NULL,
+  `prp_valor` double(32,2) NOT NULL,
+  `prp_jue_id` int(11) NOT NULL,
+  UNIQUE KEY `proypar` (`prp_pro_id`,`prp_par_id`,`prp_jue_id`)
+) ENGINE=MyISAM
+

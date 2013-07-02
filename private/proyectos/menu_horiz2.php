@@ -7,7 +7,6 @@
                         </div>
                         <div id="nav3">
                             <ul id="navmenu3">
-                                <li><a <?=$idActive11?> href="costos.php?jue_id=<?=$jue_id?>">Costos</a></li>
-                                <li><a <?=$idActive12?> href="parametros.php?jue_id=<?=$jue_id?>">Par&aacute;metros de Mejora</a></li>
+                                <li><a <?=$idActive11?> href="proyectos.php?jue_id=<?=$jue_id?>">Proyectos</a></li>
                             </ul>
                         </div>

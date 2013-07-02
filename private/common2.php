@@ -1,8 +1,8 @@
 <?php
-error_reporting (E_ALL ^ E_NOTICE);
 include("template2.php");
 include("db_mysql2.inc");
 include("config.php");
+
 define("DATABASE_NAME", DB_NAME);
 define("DATABASE_USER", DB_USER);
 define("DATABASE_PASSWORD", DB_PASSWORD);

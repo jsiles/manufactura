@@ -3,55 +3,56 @@ include ("../config.php");
 include ("../common2.php");
 session_start();
 $jue_id= get_param("jue_id");
-$cos_id= get_param("cos_id");
+$par_id= get_param("par_id");
 
 $FormAction= get_param("FormAction");
 
 if ($FormAction=='insert') insert($jue_id);
-if ($FormAction=='update') update($jue_id, $cos_id);
-if ($FormAction=='delete') delete($jue_id, $cos_id);
+if ($FormAction=='update') update($jue_id, $par_id);
+if ($FormAction=='delete') delete($jue_id, $par_id);
 
 
 function insert ($jue_id)
 {
 	global $db;
-	$fldCostos = get_param("costo");
-	$valCant = get_db_value("select count(*) from py_costos where cos_jue_id=". tosql($jue_id,"Number"));
+	$fldDescripcion = get_param("descripcion");
+	$fldValor = get_param("valor");
+	$valCant = get_db_value("select count(*) from py_parametros where par_jue_id=". tosql($jue_id,"Number"));
 	if($valCant==0) {
 	$iniValue=1;
 	}
 	else {
-		$maxValue = get_db_value("select max(cos_id) from py_costos where cos_jue_id=". tosql($jue_id,"Number"));
+		$maxValue = get_db_value("select max(par_id) from py_parametros where par_jue_id=". tosql($jue_id,"Number"));
 		$iniValue=$maxValue+1;
 	}
 	
-	$sSQL="insert into py_costos values(". tosql($iniValue,"Number") .", ". tosql($fldCostos,"Text").", ". tosql($jue_id,"Text").")";
+	$sSQL="insert into py_parametros values(". tosql($iniValue,"Number") .", ". tosql($fldDescripcion,"Text").", ". tosql($fldValor,"Number").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
-	header("location: costos.php?jue_id=$jue_id");
+	header("location: parametros.php?jue_id=$jue_id");
 	
 }
 
-function update($jue_id, $cos_id)
+function update($jue_id, $par_id)
 {
 	global $db;
-	$fldCosto = get_param("costo");
-	$sSQL="update py_costos set cos_mantenimiento=". tosql($fldCosto,"Number")." where cos_jue_id=". tosql($jue_id,"Text")." and cos_id=". tosql($cos_id,"Number");
+	$fldDescripcion = get_param("descripcion");
+	$fldValor = get_param("valor");
+	$sSQL="update py_parametros set par_descripcion=". tosql($fldDescripcion,"Text").", par_valor=". tosql($fldValor,"Number")." where par_jue_id=". tosql($jue_id,"Text")." and par_id=". tosql($par_id,"Number");
 	$db->query($sSQL);
-	header("location: costos.php?jue_id=$jue_id");	
+	header("location: parametros.php?jue_id=$jue_id");	
 }
 
-function delete($jue_id, $cos_id)
+function delete($jue_id, $par_id)
 {
 	global $db;
-	$fldCosto = get_param("costo");
-	$sSQL="delete from py_costos where cos_jue_id=". tosql($jue_id,"Text")." and cos_id=". tosql($cos_id,"Number");
+	$sSQL="delete from py_parametros where par_jue_id=". tosql($jue_id,"Text")." and par_id=". tosql($par_id,"Number");
 	$db->query($sSQL);
-	header("location: costos.php?jue_id=$jue_id");	
+	header("location: parametros.php?jue_id=$jue_id");	
 }
 ?>
 <html>
         <head>
-                <title>Costos</title>
+                <title>Par&aacute;metros</title>
                
                 <link rel="stylesheet" href="../Themes/style.css" />
                 <link href="../Themes/navmenu.css" type="text/css" rel="stylesheet">
@@ -63,7 +64,7 @@ function delete($jue_id, $cos_id)
                 <div id="tabs">
                 		<?php
 							$idActive1 = "id=\"active\"";
-							$idActive11 = "id=\"active\"";
+							$idActive12 = "id=\"active\"";
 							
                         	include("menu_horiz.php");
 						?>                            
@@ -72,16 +73,17 @@ function delete($jue_id, $cos_id)
                                 <div id="tabs-1-1" >
                                 <p>
                                     <font class="ClearFormHeaderFont">Lista
-                                    de Costos </font><br>
+                                    de Parametros de Mejora</font><br>
                                     </p>
                                  <table>
 									<tr>
                                       <td class="ClearColumnTD" nowrap="nowrap">&nbsp;&nbsp;</td>	
                                       <td class="ClearColumnTD" nowrap="nowrap">Id</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Costos</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Par&aacute;metro</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Valor Inicial</td>
                                     </tr>
                                     <?php
-										$sSQL="select * from py_costos where cos_jue_id=$jue_id order by cos_id asc";
+										$sSQL="select * from py_parametros where par_jue_id=$jue_id order by par_id asc";
 										$db->query($sSQL);
 										if($db->num_rows()>0)
 										{
@@ -89,9 +91,10 @@ function delete($jue_id, $cos_id)
 											{
 									?>
                                             <tr>  
-                                              <td class="ClearDataTD"><a href="costos.php?cos_id=<?=$db->f("cos_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
-                                              <td class="ClearDataTD"><?= $db->f("cos_id")?></td>
-                                              <td class="ClearDataTD"><?= $db->f("cos_mantenimiento")?></td>
+                                              <td class="ClearDataTD"><a href="parametros.php?par_id=<?=$db->f("par_id")?>&jue_id=<?=$jue_id?>">Detalles</a></td>
+                                              <td class="ClearDataTD"><?= $db->f("par_id")?></td>
+                                              <td class="ClearDataTD"><?= $db->f("par_descripcion")?></td>
+                                              <td class="ClearDataTD"><?= $db->f("par_valor")?></td>
                                              </tr>
 									<?php
 											}
@@ -99,7 +102,7 @@ function delete($jue_id, $cos_id)
 										else{
 									?>
                                     		<tr>  
-                                              <td class="ClearDataTD" colspan="3">No hay Registros</td>
+                                              <td class="ClearDataTD" colspan="4">No hay Registros</td>
                                              </tr>
                                     	
                                     <?php
@@ -107,25 +110,36 @@ function delete($jue_id, $cos_id)
 									?>
                                  </table>
                                  <br>
-                                  <form method="Get" action="costos.php" name="valoresRecord">
-                                  <font class="ClearFormHeaderFont">Agregar/Editar Costos&nbsp; </font> 
-                                  <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
+                                  <form method="Get" action="parametros.php" name="valoresRecord">
+                                  <font class="ClearFormHeaderFont">Agregar/Editar Parametros de Mejora&nbsp; </font> 
+                                 <table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="0">
                                      <tr>
                                       <td class="ClearErrorDataTD" colspan="2"></td>
                                      </tr>
                                      <tr>
-                                      <td class="ClearFieldCaptionTD">Costo de mantenimiento ($M/Gesti&oacute;n)</td>
+                                      <td class="ClearFieldCaptionTD">Par&aacute;metro</td>
                                       <?php
-									  	if($cos_id!=NULL) $fldCosto = get_db_value("select cos_mantenimiento from py_costos where cos_id=$cos_id and cos_jue_id=$jue_id");
+									  	if($par_id!=NULL) {
+										
+										$fldDescripcion = get_db_value("select par_descripcion from py_parametros where par_id=$par_id and par_jue_id=$jue_id");
+										$fldValor = get_db_value("select par_valor from py_parametros where par_id=$par_id and par_jue_id=$jue_id");
+										
+										}
 									  ?>
-                                      <td class="ClearDataTD"><input name="costo" value="<?=$fldCosto?>"></td>
+                                      <td class="ClearDataTD"><input name="descripcion" value="<?=$fldDescripcion?>"></td>
                                      </tr>
+                                     <tr>
+                                      <td class="ClearFieldCaptionTD">Valor inicial</td>
+                                      <td class="ClearDataTD"><input name="valor" value="<?=$fldValor?>"></td>
+                                     </tr>
+                                     
+                                     
                                      <tr>
                                       <td class="ClearFooterTD" nowrap align="right" colspan="2">
                                 
                                       <!-- ***   Buttons   *** -->
                                       <?php
-									  if($cos_id==NULL)
+									  if($par_id==NULL)
 									  {
 									  ?>
 									  
@@ -150,13 +164,13 @@ function delete($jue_id, $cos_id)
 									  }
 									  ?>
                                       <!--BeginvaloresRecordCancel-->
-                                      <input class="ClearButton" type="submit" value="Cancelar" onClick="document.valoresRecord.FormAction.value = 'cancel';document.valoresRecord.cos_id.value = '';"/>
+                                      <input class="ClearButton" type="submit" value="Cancelar" onClick="document.valoresRecord.FormAction.value = 'cancel';document.valoresRecord.par_id.value = '';"/>
                                       <!--EndvaloresRecordCancel-->
                                       
                                       <input type="hidden" name="FormName" value="valoresRecord"/>
                                       <input type="hidden" name="FormAction" value=""/> 
                                       <input type="hidden" name="jue_id" value="<?=$jue_id?>"/>
-                                      <input type="hidden" name="cos_id" value="<?=$cos_id?>"/>
+                                      <input type="hidden" name="par_id" value="<?=$par_id?>"/>
                                       
                                      </td>
                                     </tr>
