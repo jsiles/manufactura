@@ -100,9 +100,9 @@ function delete($jue_id, $pro_id)
                                 <div id="tabs-1-1" >
                                 <p>
                                     <font class="ClearFormHeaderFont">Lista
-                                    de Proyectos</font><br>
+                                  de Proyectos</font><br>
                                     </p>
-                                 <table>
+                                <table>
 									<tr>
                                       <td class="ClearColumnTD" nowrap="nowrap">&nbsp;&nbsp;</td>	
                                       <td class="ClearColumnTD" nowrap="nowrap">Id</td>

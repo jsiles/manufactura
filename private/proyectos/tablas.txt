@@ -27,3 +27,12 @@ CREATE TABLE IF NOT EXISTS `py_proypar` (
   UNIQUE KEY `proypar` (`prp_pro_id`,`prp_par_id`,`prp_jue_id`)
 ) ENGINE=MyISAM
 
+CREATE TABLE `calidad`.`py_datos` (
+`dat_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`dat_pro_id` INT NOT NULL ,
+`dat_inversion` DOUBLE( 32, 2 ) NOT NULL ,
+`dat_mantenimiento` DOUBLE( 32, 2 ) NOT NULL ,
+`dat_gestion` INT NOT NULL ,
+`dat_jue_id` INT NOT NULL
+) ENGINE = MYISAM
+
