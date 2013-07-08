@@ -315,7 +315,7 @@ $scripDin1="";
 		</tr>
 		
 		<tr style="display:;">
-		<td class="title2"> Beneficio Esperado:</td><td class="title"><?=$db->f("cel_beneficio")?>%</td>
+		<!--<td class="title2"> Beneficio Esperado:</td><td class="title"><?=$db->f("cel_beneficio")?>%</td>-->
 		</tr>
 		<?php
 		if(($timeInicio>0)&&($timeFin>0))

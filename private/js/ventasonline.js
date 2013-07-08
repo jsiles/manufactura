@@ -13,7 +13,7 @@ function addVen()
 	$("#frmDinamico").find("#ven_nombre0").each(function (x,el){$(el).attr("id","ven_nombre"+k)});
 	$("#frmDinamico").find("#ven_precio0").each(function (x,el){$(el).attr("id","ven_precio"+k)});
 	$("#frmDinamico").find("#ven_cantidad0").each(function (x,el){$(el).attr("id","ven_cantidad"+k)});
-	$("#frmDinamico").find("#ven_unidad0").each(function (x,el){$(el).attr("id","ven_unidad"+k)});
+	//$("#frmDinamico").find("#ven_unidad0").each(function (x,el){$(el).attr("id","ven_unidad"+k)});
 	$("#frmDinamico").find("#idInv0").each(function (x,el){$(el).attr("id","idInv"+k)});
 
 	$("#frmDinamico").find("#fechaI0").each(function (x,el){$(el).attr("id","fechaI"+k)});
@@ -25,7 +25,7 @@ function addVen()
 	$("#frmDinamico").find("#ven_nombre"+k).each(function (x,el){$(el).val("")}); 
  	$("#frmDinamico").find("#ven_precio"+k).each(function (x,el){$(el).val("")}); 
  	$("#frmDinamico").find("#ven_cantidad"+k).each(function (x,el){$(el).val("")}); 
- 	$("#frmDinamico").find("#ven_unidad"+k).each(function (x,el){$(el).val("")}); 
+ 	//$("#frmDinamico").find("#ven_unidad"+k).each(function (x,el){$(el).val("")}); 
  	$("#frmDinamico").find("#idInv"+k).each(function (x,el){$(el).val("")});
 	$("#frmDinamico").find("#fechaI"+k).each(function (x,el){$(el).html("")});
 	$("#frmDinamico").find("#horaI"+k).each(function (x,el){$(el).html("")});

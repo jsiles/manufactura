@@ -11,7 +11,7 @@ function addInv()
 	$("#frmDinamico").append($("#dataInvestigacionX").html());
 	$("#frmDinamico").find("#investigacionX").each(function (x,el){$(el).attr("id","investigacion"+k)});
 	$("#frmDinamico").find("#costoX").each(function (x,el){$(el).attr("id","costo"+k)});
-	$("#frmDinamico").find("#costo_exclusividadX").each(function (x,el){$(el).attr("id","costo_exclusividad"+k)});
+	//$("#frmDinamico").find("#costo_exclusividadX").each(function (x,el){$(el).attr("id","costo_exclusividad"+k)});
 	$("#frmDinamico").find("#cantidadX").each(function (x,el){$(el).attr("id","cantidad"+k)});
 	$("#frmDinamico").find("#pdfX").each(function (x,el){$(el).attr("id","pdf"+k)});
 	$("#frmDinamico").find("#idInvX").each(function (x,el){$(el).attr("id","idInv"+k)});
@@ -20,7 +20,7 @@ function addInv()
 
 	$("#frmDinamico").find("#investigacion"+k).each(function (x,el){$(el).val("")}); 
  	$("#frmDinamico").find("#costo"+k).each(function (x,el){$(el).val("")}); 
- 	$("#frmDinamico").find("#costo_exclusividad"+k).each(function (x,el){$(el).val("")}); 
+ 	//$("#frmDinamico").find("#costo_exclusividad"+k).each(function (x,el){$(el).val("")}); 
  	$("#frmDinamico").find("#cantidad"+k).each(function (x,el){$(el).val("")}); 
  	$("#frmDinamico").find("#pdf"+k).each(function (x,el){$(el).val("")}); 
  	$("#frmDinamico").find("#idInv"+k).each(function (x,el){$(el).val("")});

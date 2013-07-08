@@ -55,32 +55,32 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 	for($x=0;$x<$fldCantidad;$x++)
 	{
 		
-		$inversionMat[$iPeriodoVal] = get_db_value("select dat_inversion from py_datos where dat_jue_id=$iJue_id and dat_pro_id=".$iProyecto." and dat_gestion=". tosql($iPeriodoVal, "Number"));
-		$mantenimientoMat[$iPeriodoVal] = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$iJue_id and dat_pro_id=".$iProyecto." and dat_gestion=". tosql($iPeriodoVal, "Number"));
+		$inversionMat[$iPeriodoVal][$iProyecto] = get_db_value("select dat_inversion from py_datos where dat_jue_id=$iJue_id and dat_pro_id=".$iProyecto." and dat_gestion=". tosql($iPeriodoVal, "Number"));
+		$mantenimientoMat[$iPeriodoVal][$iProyecto] = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$iJue_id and dat_pro_id=".$iProyecto." and dat_gestion=". tosql($iPeriodoVal, "Number"));
 
-		$auxInvMat[$iPeriodoVal] = 0;
-		$auxManMat[$iPeriodoVal] = 0;
+		$auxInvMat[$iPeriodoVal][$iProyecto] = 0;
+		$auxManMat[$iPeriodoVal][$iProyecto] = 0;
 
 		if($iPeriodoVal==1)
 		{
-			if($inversionMat[$iPeriodoVal]>0) $auxInvMat[$iPeriodoVal] = 1;
-			if($mantenimientoMat[$iPeriodoVal]==$costoMantenimiento) $auxManMat[$iPeriodoVal] = 1;
+			if($inversionMat[$iPeriodoVal][$iProyecto]>0) $auxInvMat[$iPeriodoVal][$iProyecto] = 1;
+			if($mantenimientoMat[$iPeriodoVal][$iProyecto]==$costoMantenimiento) $auxManMat[$iPeriodoVal][$iProyecto] = 1;
 			
-			$auxMat[$iPeriodoVal] =$auxInvMat[$iPeriodoVal]+ $auxManMat[$iPeriodoVal];
+			$auxMat[$iPeriodoVal][$iProyecto] =$auxInvMat[$iPeriodoVal][$iProyecto]+ $auxManMat[$iPeriodoVal][$iProyecto];
 			
-			if(($auxMat[$iPeriodoVal]>0)&&($auxMat[$iPeriodoVal]>$iDuracion)) $valor = $dValor;
+			if(($auxMat[$iPeriodoVal][$iProyecto]>0)&&($auxMat[$iPeriodoVal][$iProyecto]>$iDuracion)) $valor = $dValor;
 		}
 		if($iPeriodo>1)
 		{
-			if($inversionMat[$iPeriodoVal]>0) $auxInvMat[$iPeriodoVal] = 1 ;
-			$auxInvMat[$iPeriodoVal]+=$auxInvMat[$iPeriodoVal-1];
-			if($mantenimientoMat[$iPeriodoVal]==$costoMantenimiento) $auxManMat[$iPeriodoVal] = 1;
-			$auxManMat[$iPeriodoVal]+=$auxManMat[$iPeriodoVal-1];
+			if($inversionMat[$iPeriodoVal][$iProyecto]>0) $auxInvMat[$iPeriodoVal][$iProyecto] = 1 ;
+			$auxInvMat[$iPeriodoVal][$iProyecto]+=$auxInvMat[$iPeriodoVal-1][$iProyecto];
+			if($mantenimientoMat[$iPeriodoVal][$iProyecto]==$costoMantenimiento) $auxManMat[$iPeriodoVal][$iProyecto] = 1;
+			$auxManMat[$iPeriodoVal][$iProyecto]+=$auxManMat[$iPeriodoVal-1][$iProyecto];
 			
-			$aux2[$iPeriodoVal] = $inversionMat[$iPeriodoVal] + $mantenimientoMat[$iPeriodoVal];
-			$auxMat[$iPeriodoVal] =$auxInvMat[$iPeriodoVal]+ $auxManMat[$iPeriodoVal];
+			$aux2[$iPeriodoVal][$iProyecto] = $inversionMat[$iPeriodoVal][$iProyecto] + $mantenimientoMat[$iPeriodoVal][$iProyecto];
+			$auxMat[$iPeriodoVal][$iProyecto] =$auxInvMat[$iPeriodoVal][$iProyecto]+ $auxManMat[$iPeriodoVal][$iProyecto];
 			
-			if(($aux2[$iPeriodoVal]>0)&&($auxMat[$iPeriodoVal]>$auxMat[$iPeriodoVal-1])&&($auxMat[$iPeriodoVal]>$iDuracion)) $valor = $dValor;
+			if(($aux2[$iPeriodoVal][$iProyecto]>0)&&($auxMat[$iPeriodoVal][$iProyecto]>$auxMat[$iPeriodoVal-1][$iProyecto])&&($auxMat[$iPeriodoVal][$iProyecto]>$iDuracion)) $valor = $dValor;
 
 		}
 		
@@ -88,8 +88,6 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 		$iPeriodoVal++;
 				
 	}
-	
-	
 	//print_r($auxManMat);
 	return $valor;
 }
