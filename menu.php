@@ -212,6 +212,10 @@ function elementos_show()
               $tpl->set_var("ele_nombre","LICITACIÓN PROYECTOS");
               $tpl->parse("Row",true);
             
+				$tpl->set_var("Detail_Src", "datosproyecto.php?jue_id=$jue_id&per_periodo=$dat_periodo&");
+              $tpl->set_var("ele_nombre","DATOS PROYECTOS");
+              $tpl->parse("Row",true);
+			  	
 			  $tpl->set_var("Detail_Src", "compramateriales.php?id=$jue_id&per_periodo=$dat_periodo&apl=1&dat_periodo=$dat_periodo&");
               $tpl->set_var("ele_nombre","COMPRA DE MATERIALES");
               $tpl->parse("Row",true);

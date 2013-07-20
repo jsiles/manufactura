@@ -1,6 +1,6 @@
 <?php
-include ("../config.php");
-include ("../common2.php");
+include ("private/config.php");
+include ("private/common2.php");
 session_start();
 $jue_id= get_param("jue_id");
 $pro_id= get_param("pro_id");
@@ -96,11 +96,11 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
         <head>
                 <title>Datos de Proyecto</title>
                
-                <link rel="stylesheet" href="../Themes/style.css" />
-                <link href="../Themes/navmenu.css" type="text/css" rel="stylesheet">
-                <link href="../Themes/navmenu3.css" type="text/css" rel="stylesheet">
-				<link href="../Themes/style.css" type="text/css" rel="stylesheet">
-                <link href="../Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+                <link rel="stylesheet" href="private/Themes/style.css" />
+                <link href="private/Themes/navmenu.css" type="text/css" rel="stylesheet">
+                <link href="private/Themes/navmenu3.css" type="text/css" rel="stylesheet">
+				<link href="private/Themes/style.css" type="text/css" rel="stylesheet">
+                <link href="private/Themes/Clear/Style.css" type="text/css" rel="stylesheet">
         </head>
         <body>
                 <div id="tabs">
@@ -108,7 +108,7 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 							$idActive3 = "id=\"active\"";
 							$idActive11 = "id=\"active\"";
 							
-                        	include("menu_horiz3.php");
+                        	include("private/proyectos/menu_horiz3.php");
 							$sSQL="select par_descripcion from py_parametros where par_jue_id=$jue_id order by par_id asc";
 							$db1->query($sSQL);
 							$cantidadRegistros1 = $db1->num_rows();
@@ -120,7 +120,7 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
                                     <font class="ClearFormHeaderFont">Lista
                                     de Datos de Proyectos</font><br>
                                     </p>
-                               <form method="Get" action="datos.php" name="valoresRecord">
+                               <form method="Get" action="private/proyectos/datos.php" name="valoresRecord">
                                  <table>
                                  <tr>
                                     <td class="ClearFieldCaptionTD" width="136"> Periodo:<select name="per_id" onChange="submit();">

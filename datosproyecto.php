@@ -1,6 +1,5 @@
 <?php
-include ("../config.php");
-include ("../common2.php");
+include ("common.php");
 session_start();
 $jue_id= get_param("jue_id");
 $pro_id= get_param("pro_id");
@@ -22,6 +21,8 @@ function update($jue_id, $pro_id, $fldperiodo)
 	global $db;
 	$fldInversion = get_param("inversion");
 	$fldMantenimiento = get_param("mantenimiento");
+	$fldCliId = get_session("cliID");
+	
 	$sSQL="delete from py_datos where dat_jue_id=". tosql($jue_id,"Number") ." and dat_gestion=". tosql($fldperiodo,"Number");
 	$db->query($sSQL);
 	$valCant = get_db_value("select count(*) from py_datos where dat_jue_id=". tosql($jue_id,"Number"));
@@ -39,12 +40,12 @@ function update($jue_id, $pro_id, $fldperiodo)
 		if($fldInversion[$x]==NULL) $fldInversion[$x]=0;
 		if($fldMantenimiento[$x]==NULL) $fldMantenimiento[$x]=0;
 		
-		$sSQL="insert into py_datos values(". tosql($iniValue,"Number") .",  ". tosql($pro_id[$x],"Number").", ". tosql($fldInversion[$x],"Number").", ". tosql($fldMantenimiento[$x],"Number").",  ". tosql($fldperiodo,"Number").", ". tosql($jue_id,"Number").")";
+		$sSQL="insert into py_datos values(". tosql($iniValue,"Number") .",  ". tosql($pro_id[$x],"Number").", ". tosql($fldInversion[$x],"Number").", ". tosql($fldMantenimiento[$x],"Number").",  ". tosql($fldperiodo,"Number").", ". tosql($jue_id,"Number").", ". tosql($fldCliId,"Number").")";
 		$db->query($sSQL);
 		
 		$iniValue++;
 	}
-	header("location: datos.php?jue_id=$jue_id");	
+	header("location: datosproyecto.php?jue_id=$jue_id");	
 }
 function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 {
@@ -96,11 +97,7 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
         <head>
                 <title>Datos de Proyecto</title>
                
-                <link rel="stylesheet" href="../Themes/style.css" />
-                <link href="../Themes/navmenu.css" type="text/css" rel="stylesheet">
-                <link href="../Themes/navmenu3.css" type="text/css" rel="stylesheet">
-				<link href="../Themes/style.css" type="text/css" rel="stylesheet">
-                <link href="../Themes/Clear/Style.css" type="text/css" rel="stylesheet">
+				<link href="Styles/Coco/Style1.css" type="text/css" rel="stylesheet">
         </head>
         <body>
                 <div id="tabs">
@@ -108,7 +105,7 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 							$idActive3 = "id=\"active\"";
 							$idActive11 = "id=\"active\"";
 							
-                        	include("menu_horiz3.php");
+                        	//include("private/proyectos/menu_horiz3.php");
 							$sSQL="select par_descripcion from py_parametros where par_jue_id=$jue_id order by par_id asc";
 							$db1->query($sSQL);
 							$cantidadRegistros1 = $db1->num_rows();
@@ -117,12 +114,14 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
                                
                                 <div id="tabs-1-1" >
                                 <p>
-                                    <font class="ClearFormHeaderFont">Lista
-                                    de Datos de Proyectos</font><br>
+                                    <br>
                                     </p>
-                               <form method="Get" action="datos.php" name="valoresRecord">
-                                 <table>
+                               <form method="Get" action="datosproyecto.php" name="valoresRecord">
+                                 <table cellspacing="0" cellpadding="0" border="0">
                                  <tr>
+                                   <td valign="top">
+  <table class="Grid" cellspacing="0" cellpadding="0" border="1">
+                                 <tr class="Caption">
                                     <td class="ClearFieldCaptionTD" width="136"> Periodo:<select name="per_id" onChange="submit();">
                                     <?php
                                           for($i=0;$i<$fldCantidad;$i++)
@@ -152,8 +151,8 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
                                          </td>
                                           <td class="ClearFieldCaptionTD" colspan="<?=4+$cantidadRegistros1?>" align="center">Juego: <?=$juego?></td>
                                           </tr>
-									<tr>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Id</td>
+									<tr class="Row">
+                                      <!--<td class="ClearColumnTD" nowrap="nowrap">Id</td>-->
                                       <td class="ClearColumnTD" nowrap="nowrap">Proyecto</td>
                                       <td class="ClearColumnTD" nowrap="nowrap">Duraci&oacute;n</td>
                                       <td class="ClearColumnTD" nowrap="nowrap">Inversi&oacute;n</td>
@@ -172,19 +171,20 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 										?>
                                     </tr>
                                     <?php
+										$fldCliId = get_session("cliID");
 										$sSQL="select * from py_proyectos where pro_jue_id=$jue_id order by pro_id asc";
 										$db->query($sSQL);
 										if($db->num_rows()>0)
 										{
 											while($result=$db->next_record())
 											{
-												$inversion = get_db_value("select dat_inversion from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_gestion=". tosql($fldperiodo, "Number"));
-												$mantenimiento = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_gestion=". tosql($fldperiodo, "Number"));				
+												$inversion = get_db_value("select dat_inversion from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_gestion=". tosql($fldperiodo, "Number"));
+												$mantenimiento = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_gestion=". tosql($fldperiodo, "Number"));				
 												if($inversion==NULL) $inversion=0;
 												if($mantenimiento==NULL) $mantenimiento=0;								
 									?>
-                                            <tr>  
-                                              	<td class="ClearDataTD"><?= $db->f("pro_id")?></td>
+                                            <tr class="Row">  
+                                              	<!--<td class="ClearDataTD"><?= $db->f("pro_id")?></td>-->
                                               	<td class="ClearDataTD"><?= $db->f("pro_descripcion")?></td>
                                               	<td class="ClearDataTD"><?= $db->f("pro_duracion")?></td>
                       							<td class="ClearDataTD"><input name="inversion[]" type="text" size="4" value="<?=$inversion?>" ></td>
@@ -211,7 +211,7 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 										}
 										else{
 									?>
-                                    		<tr>  
+                                    		<tr class="Row">  
                                               <td class="ClearDataTD" colspan="<?=5+$cantidadRegistros1?>">No hay Registros</td>
                                              </tr>
                                     	
@@ -219,7 +219,7 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 										}
 									?>
                                     
-                                    <tr>
+                                    <tr class="Row">
                                       <td class="ClearFooterTD" nowrap align="right" colspan="<?=5+$cantidadRegistros1?>">
                                 
                                       <!--BeginvaloresRecordEdit-->
@@ -234,6 +234,10 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
                                       
                                       </td>
                                     </tr>
+                                    </table>
+                                    </td>
+                                    </tr>
+                                   
                                  </table>
                                 </form>
                                  <br>

@@ -174,7 +174,8 @@ function eliminarFila(e)
 <table>
 <tr>
   <td>
-<a href="adicionar" class="lnkAddfam" onClick="return addVen();">Adicionar venta online</a><br><br>
+<a href="adicionar" class="lnkAddfam" onClick="return addVen();">Adicionar proyecto </a><br>
+<br>
 
 </td>
 </tr>
@@ -226,15 +227,15 @@ function eliminarFila(e)
       <td class="ClearFieldCaptionTD" colspan="8" align="center">Juego: <?=$juego?></td>
       </tr>
      <tr>
-     <td class="ClearFieldCaptionTD" width="153" >Producto
+     <td class="ClearFieldCaptionTD" width="153" >Proyecto
      </td>
       <!--BeginEtiquetas-->
    
      
-     <td width="134" class="ClearFieldCaptionTD">Unidad&nbsp; </td>
+     <!--<td width="134" class="ClearFieldCaptionTD">Unidad&nbsp; </td>-->
      <td width="134" class="ClearFieldCaptionTD">Cantidad&nbsp; </td> 
      
-     <td class="ClearFieldCaptionTD"  width="124">Precio m&aacute;ximo/unidad&nbsp;
+     <td class="ClearFieldCaptionTD"  width="124">Costo m&iacute;nimo&nbsp;
      </td> 
      <td width="163" class="ClearFieldCaptionTD">Fecha de inicio</td>
      <td width="163" class="ClearFieldCaptionTD">Hora de inicio</td>
@@ -260,8 +261,8 @@ function eliminarFila(e)
       <td width="150" class="ClearFieldCaptionTD"><input name="ven_nombre[]" onClick="clean(this);" id="ven_nombre<?=$l?>" type="text" size="20" value="<?=$db->f("ven_nombre")?>"></td>
     
       
-      <td width="140" class="ClearDataTD"  ><input name="ven_unidad[]" id="ven_unidad<?=$l?>" onClick="clean(this);" type="text" size="10" value="<?=$db->f("ven_unidad")?>">
-      </td>
+      <!--<td width="140" class="ClearDataTD"  ><input name="ven_unidad[]" id="ven_unidad<?=$l?>" onClick="clean(this);" type="text" size="10" value="<?=$db->f("ven_unidad")?>">
+      </td>-->
   <td width="140" class="ClearDataTD"  ><input name="ven_cantidad[]" id="ven_cantidad<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("ven_cantidad")?>">
       </td>
   <td width="124" class="ClearDataTD"><input name="ven_precio[]" id="ven_precio<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("ven_precio")?>">
@@ -288,8 +289,8 @@ function eliminarFila(e)
       <td width="150" class="ClearFieldCaptionTD"><input name="ven_nombre[]" onClick="clean(this);" id="ven_nombre0" type="text" size="20" value=""></td>
       
       
-      <td width="140" class="ClearDataTD"  ><input name="ven_unidad[]" id="ven_unidad0" onClick="clean(this);" type="text" size="10" value="">
-      </td>
+      <!--<td width="140" class="ClearDataTD"  ><input name="ven_unidad[]" id="ven_unidad0" onClick="clean(this);" type="text" size="10" value="">
+      </td>-->
       
       <td width="140" class="ClearDataTD"  ><input name="ven_cantidad[]" id="ven_cantidad0" onClick="clean(this);" type="text" size="3" value="">
       </td>

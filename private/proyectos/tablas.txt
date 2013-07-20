@@ -36,3 +36,6 @@ CREATE TABLE `calidad`.`py_datos` (
 `dat_jue_id` INT NOT NULL
 ) ENGINE = MYISAM
 
+# 11/07/2013
+
+ALTER TABLE `py_datos` ADD `dat_usu_id` INT NOT NULL 

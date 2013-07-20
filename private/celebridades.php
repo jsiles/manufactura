@@ -246,7 +246,7 @@ function eliminarFila(e)
 <table>
 <tr>
   <td>
-<a href="adicionar" class="lnkAddfam" onClick="return addCel();">Adicionar celebridad</a><br><br>
+<a href="adicionar" class="lnkAddfam" onClick="return addCel();">Adicionar proyecto</a><br><br>
 
 </td>
 </tr>
@@ -298,12 +298,12 @@ function eliminarFila(e)
       <td class="ClearFieldCaptionTD" colspan="8" align="center">Juego: <?=$juego?></td>
       </tr>
      <tr>
-     <td class="ClearFieldCaptionTD" width="150" >Celebridad
+     <td class="ClearFieldCaptionTD" width="150" >Proyecto
      </td>
       <!--BeginEtiquetas-->
      <td class="ClearFieldCaptionTD"  width="124">Costo&nbsp;
      </td>
-     <td width="134" class="ClearFieldCaptionTD">Beneficio  %&nbsp; </td>
+     <!--<td width="134" class="ClearFieldCaptionTD">Beneficio  %&nbsp; </td>-->
      <td width="163" class="ClearFieldCaptionTD">Fecha de inicio</td>
      <td width="163" class="ClearFieldCaptionTD">Hora de inicio</td>
      
@@ -327,8 +327,8 @@ function eliminarFila(e)
       <td width="150" class="ClearFieldCaptionTD"><input name="investigacion[]" onClick="clean(this);" id="investigacion<?=$l?>" type="text" size="20" value="<?=$db->f("cel_nombre")?>"></td>
       <td width="124" class="ClearDataTD"><input name="costo[]" id="costo<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("cel_precio")?>">
       </td>
-      <td width="140" class="ClearDataTD"  ><input name="costo_exclusividad[]" id="costo_exclusividad<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("cel_beneficio")?>">
-      </td>
+      <!--<td width="140" class="ClearDataTD"  ><input name="costo_exclusividad[]" id="costo_exclusividad<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("cel_beneficio")?>">
+      </td>-->
 
         <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI<?=$l?>" type="text" size="8" value="<?=changeFormatDate(substr($db->f("cel_fecha"),0,10),2)?>" readonly><a id="calendar<?=$l?>" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI<?=$l?>);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
       <td width="163" class="ClearDataTD"><input name="horaI[]" id="horaI<?=$l?>"  type="text" size="8" value="<?=substr($db->f("cel_fecha"),11)?>"></td>
@@ -360,8 +360,8 @@ function eliminarFila(e)
       <td width="150" class="ClearFieldCaptionTD"><input name="investigacion[]" onClick="clean(this);" id="investigacion0" type="text" size="20" value=""></td>
       <td width="124" class="ClearDataTD"><input name="costo[]" id="costo0" onClick="clean(this);" type="text" size="3" value="">
       </td>
-      <td width="140" class="ClearDataTD"  ><input name="costo_exclusividad[]" id="costo_exclusividad0" onClick="clean(this);" type="text" size="3" value="">
-      </td>
+      <!--<td width="140" class="ClearDataTD"  ><input name="costo_exclusividad[]" id="costo_exclusividad0" onClick="clean(this);" type="text" size="3" value="">
+      </td>-->
       
         <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI0" type="text" size="8" value="" readonly><a id="calendar0" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI0);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
       <td width="163" class="ClearDataTD"><input name="horaI[]" id="horaI0"  type="text" size="8" value=""></td>
