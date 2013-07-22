@@ -122,7 +122,7 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
                                    <td valign="top">
   <table class="Grid" cellspacing="0" cellpadding="0" border="1">
                                  <tr class="Caption">
-                                    <td class="ClearFieldCaptionTD" width="136"> Periodo:<select name="per_id" onChange="submit();">
+                                    <td class="ClearFieldCaptionTD" width="136"> Gesti&oacute;n:<select name="per_id" onChange="submit();">
                                     <?php
                                           for($i=0;$i<$fldCantidad;$i++)
                                             {            

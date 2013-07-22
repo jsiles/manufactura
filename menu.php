@@ -195,38 +195,46 @@ function elementos_show()
  $db->query($sSQL);
  $next_record=$db->next_record();
  $i=0;
- 
+ $z=1;
   			  $tpl->set_var("Detail_Src", "investigaciones.php?id=$jue_id&dat_periodo=$dat_periodo&apl=1");
+			  $tpl->set_var("idMenu",$z++);
               $tpl->set_var("ele_nombre","INFORMACIÓN DISPONIBLE");
               $tpl->parse("Row",true);
  
 			  $tpl->set_var("Detail_Src", "responsabilidad.php?id=$jue_id&per_periodo=$dat_periodo&");
+			  $tpl->set_var("idMenu",$z++);
               $tpl->set_var("ele_nombre","RESPONSABILIDAD SOCIAL");
               $tpl->parse("Row",true);
 			  
  			  $tpl->set_var("Detail_Src", "celebridades.php?id=$jue_id&per_periodo=$dat_periodo&");
+			  $tpl->set_var("idMenu",$z++);
               $tpl->set_var("ele_nombre","SUBASTA PROYECTOS");
               $tpl->parse("Row",true);
 			  
 			  $tpl->set_var("Detail_Src", "ventasonline.php?id=$jue_id&per_periodo=$dat_periodo&");
+			  $tpl->set_var("idMenu",$z++);
               $tpl->set_var("ele_nombre","LICITACIÓN PROYECTOS");
               $tpl->parse("Row",true);
             
-				$tpl->set_var("Detail_Src", "datosproyecto.php?jue_id=$jue_id&per_periodo=$dat_periodo&");
-              $tpl->set_var("ele_nombre","DATOS PROYECTOS");
+			  $tpl->set_var("Detail_Src", "datosproyecto.php?jue_id=$jue_id&per_periodo=$dat_periodo&");
+              $tpl->set_var("idMenu",$z++);
+			  $tpl->set_var("ele_nombre","ACTIVACIÓN PROYECTOS");
               $tpl->parse("Row",true);
 			  	
-			  $tpl->set_var("Detail_Src", "compramateriales.php?id=$jue_id&per_periodo=$dat_periodo&apl=1&dat_periodo=$dat_periodo&");
-              $tpl->set_var("ele_nombre","COMPRA DE MATERIALES");
-              $tpl->parse("Row",true);
+			  //$tpl->set_var("Detail_Src", "compramateriales.php?id=$jue_id&per_periodo=$dat_periodo&apl=1&dat_periodo=$dat_periodo&");
+			  //$tpl->set_var("idMenu",$z++);
+              //$tpl->set_var("ele_nombre","COMPRA DE MATERIALES");
+              //$tpl->parse("Row",true);
 			  
 			  $tpl->set_var("Detail_Src", "compramateriales3.php?id=$jue_id&per_periodo=$dat_periodo&apl=1&dat_periodo=$dat_periodo&");
-              $tpl->set_var("ele_nombre","COMPRAS");
+			  $tpl->set_var("idMenu",$z++);
+              $tpl->set_var("ele_nombre","COMPRAS MATERIA PRIMA");
               $tpl->parse("Row",true);
 			  
 			  
               $tpl->set_var("Detail_Src", "datos2.php?id=$jue_id&per_periodo=$dat_periodo&apl=2&ele_id=96&");
-              $tpl->set_var("ele_nombre","MANUFACTURA");
+              $tpl->set_var("idMenu",$z++);
+			  $tpl->set_var("ele_nombre","MANUFACTURA");
               $tpl->parse("Row",true);
 
  while($next_record){
@@ -236,6 +244,7 @@ function elementos_show()
 
 
               $tpl->set_var("Detail_Src", "datos2.php?ele_id=$id&id=$jue_id&dat_periodo=$dat_periodo&apl=$apl");
+			  $tpl->set_var("idMenu",$z++);
               $tpl->set_var("ele_nombre",$nombre);
               $tpl->parse("Row",true);
          $tpl->set_var("NavigatorNavigator", "" );
@@ -249,6 +258,7 @@ function elementos_show()
 
 
               $tpl->set_var("Detail_Src", "reporte2.php?id=$jue_id&dat_periodo=$dat_periodo&apl=1");
+			  $tpl->set_var("idMenu",$z++);
               $tpl->set_var("ele_nombre","INDICADORES DE GESTION");
               $tpl->parse("Row",true);
 
@@ -258,7 +268,8 @@ function elementos_show()
         if ($activo_resumen=='A')
             {
               $tpl->set_var("Detail_Src", "reporte.php?ele_id=$id&id=$jue_id&dat_periodo=$dat_periodo&apl=$apl");
-              $tpl->set_var("ele_nombre","REPORTE RESÚMEN");   
+              $tpl->set_var("idMenu",$z++);
+			  $tpl->set_var("ele_nombre","REPORTE RESÚMEN");   
               $tpl->parse("Row",true);
             }
     

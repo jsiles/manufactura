@@ -10,9 +10,9 @@
 <script language="JavaScript" src="js/jquery.cycle.js" type="text/JavaScript"></script>
 <script>
 $(document).ready(function(){
-displayImg(14);
+displayImg('INFORMACIÓN DISPONIBLE',1);
 });
-function displayImg(e)
+function displayImg(e,f)
 {
 	if(e=='INFORMACIÓN DISPONIBLE') 
 	{
@@ -30,6 +30,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo1').fadeIn('slow');
 	}
 	else if(e=='RESPONSABILIDAD SOCIAL') 
@@ -48,6 +52,11 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	//$('#1').removeClass("submenuHover").addClass("submenu");
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo2').fadeIn('slow');
 	}
 	else if(e=='SUBASTA PROYECTOS') 
@@ -66,6 +75,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo3').fadeIn('slow');
 	} 
 	else if(e=='LICITACIÓN PROYECTOS') 
@@ -84,9 +97,13 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");	
     $('#dibujo4').fadeIn('slow');
 	} 
-	else if(e=='DATOS PROYECTOS') 
+	else if(e=='ACTIVACIÓN PROYECTOS') 
 	{
 	$('#dibujo1').hide();
 	$('#dibujo2').hide();
@@ -102,6 +119,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");	
     $('#dibujo4').fadeIn('slow');
 	} 
 	else if(e=='COMPRA DE MATERIALES')
@@ -120,6 +141,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");	
     $('#dibujo5').fadeIn('slow');
 	} 	
 	else if(e=='MANUFACTURA') 
@@ -138,6 +163,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo6').fadeIn('slow');
 	} 		
 	else if(e=='GASTOS GENERALES') 
@@ -156,6 +185,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo7').fadeIn('slow');
 	} 			
 	else if(e=='FINANZAS PERDIDAS Y GANANCIAS') 
@@ -174,6 +207,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");	
     $('#dibujo8').fadeIn('slow');
 	} 			
 	else if(e=='BALANCE GENERAL') 
@@ -192,6 +229,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo9').fadeIn('slow');
 	} 				
 	else if(e=='EBITDA') 
@@ -210,6 +251,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo10').fadeIn('slow');
 	}
 	else if(e=='VALOR COMERCIAL DE LA EMPRESA') 
@@ -228,6 +273,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");	
     $('#dibujo11').fadeIn('slow');
 	}
 	else if(e=='FLUJO DE EFECTIVO') 
@@ -246,6 +295,10 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo12').fadeIn('slow');
 	}
 	else if(e=='INDICADORES DE GESTION') 
@@ -264,6 +317,10 @@ function displayImg(e)
 	$('#dibujo12').hide();
 	$('#dibujo14').hide();
 	$('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo13').fadeIn('slow');
 	}
 	else if(e=='REPORTE RESÚMEN') 
@@ -282,9 +339,13 @@ function displayImg(e)
 	$('#dibujo12').hide();
     $('#dibujo13').hide();
     $('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
 	$('#dibujo14').fadeIn('slow');
 	} 
-	else if(e=='COMPRAS')
+	else if(e=='COMPRAS MATERIA PRIMA')
 	{
 	$('#dibujo1').hide();
 	$('#dibujo2').hide();
@@ -300,6 +361,10 @@ function displayImg(e)
 	$('#dibujo12').hide();
     $('#dibujo13').hide();
     $('#dibujo14').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
 	$('#dibujo17').fadeIn('slow');
 	
 	}			
@@ -320,6 +385,7 @@ function displayImg(e)
 	$('#dibujo13').hide();
     $('#dibujo14').hide();
     $('#dibujo17').hide();
+	$('#1').removeClass("submenu").addClass("submenuHover");	
 	} 				
 		
 }
@@ -331,7 +397,7 @@ function displayImg(e)
           <td class="blueCell"><span class="subtitle">MENÚ</span><br>
         <!--BeginRow-->
           <br>
-          <a href="{Detail_Src}" onClick="displayImg('{ele_nombre}');" class="submenu" target="cuerpo">{ele_nombre}&nbsp;</a><br>
+          <a href="{Detail_Src}" onClick="displayImg('{ele_nombre}', this.id);" id="{idMenu}" class="submenu" target="cuerpo">{ele_nombre}&nbsp;</a><br>
         <!--EndRow-->
           </td>
         </tr>
