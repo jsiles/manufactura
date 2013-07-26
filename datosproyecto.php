@@ -154,9 +154,9 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 									<tr class="Row">
                                       <!--<td class="ClearColumnTD" nowrap="nowrap">Id</td>-->
                                       <td class="ClearColumnTD" nowrap="nowrap">Proyecto</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Duraci&oacute;n</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Inversi&oacute;n</td>
-                                      <td class="ClearColumnTD" nowrap="nowrap">Mantenimiento</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Gestiones antes beneficios</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Inversi&oacute;n (M$)</td>
+                                      <td class="ClearColumnTD" nowrap="nowrap">Mantenimiento (M$)</td>
                                       	<?php
 											  
 												if($cantidadRegistros1>0)
@@ -224,7 +224,7 @@ function calcValores($dValor, $iDuracion, $iPeriodo, $iJue_id, $iProyecto)
                                 
                                       <!--BeginvaloresRecordEdit-->
                                       <!--BeginvaloresRecordUpdate-->
-                                      <input class="ClearButton" type="submit" value="Modificar" onClick="document.valoresRecord.FormAction.value = 'update';"/>
+                                      <input class="ClearButton" type="submit" value="Aceptar" onClick="document.valoresRecord.FormAction.value = 'update';"/>
                                       <!--EndvaloresRecordUpdate-->
                                        
                                       <input type="hidden" name="FormName" value="valoresRecord"/>

@@ -156,7 +156,7 @@ $scripDin1="";
         
 	<tr><td colspan="2"><hr></td></tr>
 		<tr>
-		<td class="title2">Producto:&nbsp;</td><td class="title" align="left"><?=$db->f("ven_nombre")?></td>
+		<td class="title2">Proyecto:&nbsp;</td><td class="title" align="left"><?=$db->f("ven_nombre")?></td>
 	</tr>
     
     <?php
@@ -256,7 +256,8 @@ $scripDin1="";
 		{
 			?>
 			<tr>
-			  <td colspan="2" class="title2">No existen ventas online para este periodo.</td></tr>
+			  <td colspan="2" class="title2">No existen proyectos para esta gesti&oacute;n.</td>
+			</tr>
 			
 			<?php
 			}

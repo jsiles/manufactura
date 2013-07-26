@@ -353,7 +353,9 @@ $scripDin1="";
 		else
 		{
 			?>
-			<tr><td colspan="2" class="title2">No existen celebridades para este periodo.</td></tr>
+			<tr>
+			  <td colspan="2" class="title2">No existen proyectos para esta gesti&oacute;n.</td>
+			</tr>
 			
 			<?php
 			}
