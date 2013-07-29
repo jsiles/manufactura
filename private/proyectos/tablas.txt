@@ -39,3 +39,6 @@ CREATE TABLE `calidad`.`py_datos` (
 # 11/07/2013
 
 ALTER TABLE `py_datos` ADD `dat_usu_id` INT NOT NULL 
+
+#27/072013
+ALTER TABLE  `py_parametros` CHANGE  `par_value`  `par_valor` DOUBLE( 32, 2 ) NOT NULL

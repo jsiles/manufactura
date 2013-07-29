@@ -28,9 +28,9 @@ function validar(e)
 {
 		var valueBid = $("#valor"+e).val()*1;
 		var valueCantidad = $("#cantidad"+e).val()*1;
-		var cantidadLB = $("#unidad"+e).html();
-		if((valueBid>0)&&(valueCantidad>0)) {
-			var message="Para proceder con su oferta de "+valueBid+" $M y cantidad "+valueCantidad+ " " + cantidadLB+", la misma que debe ser confirmada. Está seguro del monto y cantidad ofertada?";
+		var valuePrecio = $("#precio"+e).val()*1;
+		if((valueBid>0)&&(valuePrecio<=valueBid)) {
+			var message="Para proceder con su oferta de "+valueBid+" $M, la misma debe ser confirmada. Está seguro del monto ofertado?";
 			if(confirm(message)) {
 				
 					$.ajax({
@@ -41,14 +41,14 @@ function validar(e)
 						 //$("#bid"+e).hide();
 						 //$("#boton"+e).attr("disabled", "disabled");
 						 $("#win"+e).show();	
-						 $("#win"+e).html('<td colspan="2" class="title2">Su oferta es de '+valueBid+' $M y cantidad '+valueCantidad+' ' + cantidadLB +'</td>');
+						 $("#win"+e).html('<td colspan="2" class="title2">Su oferta es de '+valueBid+' $M </td>');
 						 $("#win"+e).show();
 						 //alert(html);
 					   }
 					 });
 					 
 				}else return false;
-			} else alert("El monto o la cantidad ofertado, es un valor no permitido");
+			} else alert("El monto ofertado, es un valor menor al Precio mínimo");
 }
 </script>
 </head>
@@ -115,7 +115,7 @@ $scripDin1="";
 			}*/
 			$timeInicio = time_diff($dateInicio,$dateAhora);
 			$timeFin = time_diff($dateFin,$dateAhora);
-			//echo $timeInicio;
+			//echo $dateInicio."--".$dateAhora."--Dif=".$timeInicio;
 			if($timeInicio>0)
 			{
 				$scripDin0 .= "var austDay$id = new Date();
@@ -166,7 +166,7 @@ $scripDin1="";
 	$precioOfert = get_db_value("select ofe_monto from tb_ofertas where ofe_ven_id=$id and ofe_usu_id =$userId limit 1");
 	$unidadOfert = get_db_value("select ven_unidad from tb_ventas where ven_id=$id");
 	
-	$winOfert ='<td colspan="2" class="title2">Su oferta es de '.$precioOfert.' $M y cantidad '.$cantidadOfert.' '.$unidadOfert.'</td>';}
+	$winOfert ='<td colspan="2" class="title2">Su oferta es de '.$precioOfert.' $M</td>';}
 	if($timeFin<=0)
 		{
 			//echo "#";
@@ -211,9 +211,12 @@ $scripDin1="";
         <tr id="bid<?=$id?>" style="display:;">
 		<td class="title2">&nbsp;</td>
 		<td class="title">
-	    <span class="title2">Precio ($M/<?=$db->f("ven_unidad")?>):</span>
-	    <input name="valor<?=$id?>" id="valor<?=$id?>" value="" size="11"><br /><span class="title2">Cantidad (<span id="unidad<?=$id?>"><?=$db->f("ven_unidad")?></span>):</span>
-		  <input name="cantidad<?=$id?>" id="cantidad<?=$id?>" value="" size="11">&nbsp;<input type="button" class="compra" value="Ofertar" id="boton<?=$id?>" disabled onClick="javascript:validar(<?=$id?>);"></td>
+	    <span class="title2">Precio M&iacute;nimo ($M/<?=$db->f("ven_precio")?>):</span>
+	    <input name="valor<?=$id?>" id="valor<?=$id?>" value="" size="11"><br />
+	    <span class="title2">Cantidad Expertos:<span id="unidad<?=$id?>"><?=$db->f("ven_cantidad")?></span></span>
+		  <input type="hidden" name="cantidad<?=$id?>" id="cantidad<?=$id?>" value="<?=$db->f("ven_cantidad")?>" size="11">
+          <input type="hidden" name="precio<?=$id?>" id="precio<?=$id?>" value="<?=$db->f("ven_precio")?>" size="11">
+          &nbsp;<input type="button" class="compra" value="Ofertar" id="boton<?=$id?>" disabled onClick="javascript:validar(<?=$id?>);"></td>
 		</tr>
         <tr id="win<?=$id?>" style="display:"> 
         </tr>
@@ -233,10 +236,12 @@ $scripDin1="";
         <tr id="bid<?=$id?>" style="display:<?=$displayStatus?>" >
 		<td class="title2">&nbsp;</td>
 		<td class="title">
-	    <span class="title2">Precio ($M/<?=$db->f("ven_unidad")?>):</span>
+	    <span class="title2">Precio M&iacute;nimo ($M/<?=$db->f("ven_precio")?>):</span>
 	    <input name="valor<?=$id?>" id="valor<?=$id?>" value="" size="11"><br />
-        <span class="title2">Cantidad (<span id="unidad<?=$id?>"><?=$db->f("ven_unidad")?></span>):</span>
-		  <input name="cantidad<?=$id?>" id="cantidad<?=$id?>" value="" size="11">&nbsp;<input type="button" class="compra" value="Ofertar" id="boton<?=$id?>" onClick="javascript:validar(<?=$id?>);" <?=$enabledInput?>></td>
+        <span class="title2">Cantidad Expertos: <span id="unidad<?=$id?>"><?=$db->f("ven_cantidad")?></span></span>
+		  <input type="hidden" name="cantidad<?=$id?>" id="cantidad<?=$id?>" value="<?=$db->f("ven_cantidad")?>" size="11">
+          <input type="hidden" name="precio<?=$id?>" id="precio<?=$id?>" value="<?=$db->f("ven_precio")?>" size="11">
+          &nbsp;<input type="button" class="compra" value="Ofertar" id="boton<?=$id?>" onClick="javascript:validar(<?=$id?>);" <?=$enabledInput?>></td>
 		</tr>
     	
         <tr id="win<?=$id?>" style="display:"><?=$winOfert?>

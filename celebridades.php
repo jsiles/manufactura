@@ -219,6 +219,7 @@ $scripDin1="";
 			$dateFin = $db->f("cel_fechafin");
 			$precioBase = $db->f("cel_precio");
 			$precioFlag = false;
+			$celNombreProy = get_db_value("select pro_descripcion from py_proyectos where pro_id=".$db->f("cel_nombre")." and pro_jue_id=$dat_juego");
 			$valPrecioBase = get_db_value("select count(*) from tb_pujas where puj_cel_id=$id");
 			if($valPrecioBase>0) {
 				$maxPrecioPuja = get_db_value("select max(puj_monto) from tb_pujas where puj_cel_id=$id");
@@ -282,7 +283,7 @@ $scripDin1="";
 		?> <img border="0" src="private/temp/<?=$db->f("cel_foto")?>">
         <?php
 		}
-		?>&nbsp;</td><td class="title" align="left"><?=$db->f("cel_nombre")?></td>
+		?>&nbsp;</td><td class="title" align="left"><?=$celNombreProy?></td>
 	</tr>
     
     <?php

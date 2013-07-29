@@ -25,14 +25,8 @@ Grupo
 Precio Ofertado
 </td>
 <td>
-Cantidad Ofertada
+Cantidad Expertos
 </td>
-<td>
-Cantidad aceptada</td>
-<td>
-Cantidad rechazada</td>
-<td>
-Cantidad Entregada</td>
 </tr>
 
 
@@ -58,103 +52,7 @@ Cantidad Entregada</td>
 </td>
 <td class="title"><?=$ofe_cantidad?>
 </td>
-                           <?php
-						   $cantidadTemp = $cantidadMaxAceptada + $ofe_cantidad;
-						   if(($ofe_monto<=$precioMax)&&($cantidadTemp<=$cantidadMax)&&($ofe_monto!=0)&&($ofe_cantidad!=0))
-						   {
-?>
-<td class="title"><?=$ofe_cantidad?></td><td class="title">0</td>
-<?php
-$sessionUserId = get_param("user_id");
-if($sessionUserId==$ofe_usu_id)
-{
-?>
-<script language="javascript">
-function onClickEntrega<?=$ofe_id?>(e)
-{
-	var entrega = document.getElementById("ofe_entrega<?=$ofe_id?>").value;
-	entrega = entrega*1;
-		if(entrega><?=$ofe_cantidad?>)
-		alert("La cantidad entregada no puede ser mayor a la cantidad aceptada.");
-		else
-		{
-			$.ajax({
-					   type: "POST",
-					   url: "valEntrega.php",
-					   data: "id="+e+"&valEntrega="+entrega,
-					   success: function(html){
-					  // $("#ofe_button<?=$ofe_id?>").disabled="disabled";
-					   //$("#ofe_entregada<?=$ofe_id?>").value="";
-					   }
-					 });
-		}
-}
-</script>
-<td class="title"><input name="ofe_entregada" id="ofe_entrega<?=$ofe_id?>" size="2" value="<?=$ofe_entrega?>" type="text"/><input name="ofe_button<?=$ofe_id?>" id="ofe_button<?=$ofe_id?>" onclick="onClickEntrega<?=$ofe_id?>(<?=$ofe_id?>)" value="entrega" type="button"/></td>
-<?php
-}else
-{
-?>
-<td class="title"><?=$ofe_entrega?>&nbsp;</td>
-<?php	
-}
-						   $cantidadMaxAceptada += $ofe_cantidad;
-						   }else
-						   {
-
-$cantidaParcialAcep = $cantidadMax - $cantidadMaxAceptada;
-if(($ofe_monto<=$precioMax)&&($cantidaParcialAcep>0))
-{
-	$cantidaParcialRechazado = $ofe_cantidad - $cantidaParcialAcep;
-	$cantidadMaxAceptada += $cantidaParcialAcep;
-
-?>
-<td class="title"><?=$cantidaParcialAcep?></td><td class="title"><?=$cantidaParcialRechazado?></td>
-<?php
-$sessionUserId = get_param("user_id");
-if($sessionUserId==$ofe_usu_id)
-{
-?>
-<script language="javascript">
-function onClickEntrega<?=$ofe_id?>(e)
-{
-	var entrega = document.getElementById("ofe_entrega<?=$ofe_id?>").value;
-	entrega = entrega*1;
-		if(entrega><?=$ofe_cantidad?>)
-		alert("La cantidad entregada no puede ser mayor a la cantidad aceptada.");
-		else
-		{
-			$.ajax({
-					   type: "POST",
-					   url: "valEntrega.php",
-					   data: "id="+e+"&valEntrega="+entrega,
-					   success: function(html){
-					   //$("#ofe_button<?=$ofe_id?>").disabled="";
-					   $("#ofe_entregada<?=$ofe_id?>").value="";
-					   }
-					 });
-		}
-}
-</script>
-<td class="title"><input name="ofe_entregada" id="ofe_entrega<?=$ofe_id?>" size="2" value="<?=$ofe_entrega?>" type="text"/><input name="ofe_button<?=$ofe_id?>" id="ofe_button<?=$ofe_id?>" onclick="onClickEntrega<?=$ofe_id?>(<?=$ofe_id?>)" value="entrega" type="button"/></td>
-<?php
-}else
-{
-?>
-<td class="title">&nbsp;</td>
-<?php	
-}
-}else{
-?>
-<td class="title">0</td><td class="title"><?=$ofe_cantidad?></td>
-<td class="title">0</td>
-<?php	
-	}
-
-						      }
-                        
-   					   $i++;
-?>
+                       
 </tr>
 <?php
 					  }

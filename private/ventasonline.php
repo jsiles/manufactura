@@ -56,7 +56,7 @@ function valoresRecord_action($sAction)
 	if(!$value) $value='';
 	if(!$ven_precio[$key]) $ven_precio[$key]=0;  
 	if(!$ven_cantidad[$key]) $ven_cantidad[$key]=0;  
-	if(!$ven_unidad[$key]) $ven_unidad[$key]='';  
+	if(!$ven_unidad[$key]) $ven_unidad[$key]=1;  
 	if(!$ven_tiempo[$key]) $ven_tiempo[$key]=0;  
 
 	$fechaInicio = changeFormatDate(trim($fechaI[$key]),1) . " " .trim($horaI[$key]);
@@ -78,7 +78,7 @@ function valoresRecord_action($sAction)
 		  	if(!$value) $value='';
 			if(!$ven_precio[$key]) $ven_precio[$key]=0;  
 			if(!$ven_cantidad[$key]) $ven_cantidad[$key]=0;  
-			if(!$ven_unidad[$key]) $ven_unidad[$key]='';  
+			if(!$ven_unidad[$key]) $ven_unidad[$key]=1;  
 			if(!$ven_tiempo[$key]) $ven_tiempo[$key]=0;  
 
 		  $fechaInicio = changeFormatDate(trim($fechaI[$key]),1) . " " .trim($horaI[$key]);
@@ -89,13 +89,13 @@ function valoresRecord_action($sAction)
 			$minuteFI = substr($fechaInicio,14,2);
 			$secondFI = substr($fechaInicio,17,2);//echo $yearFI;exit;
 			$fechaFin = date("Y-m-d H:i:s", mktime($hourFI,$minuteFI + $ven_tiempo[$key],$secondFI,$monthFI,$dayFI,$yearFI));		  
-		if(($idInv[$key])&&($value)&&($ven_precio[$key])&&($ven_cantidad[$key])&&(strlen($ven_unidad[$key])>0)&&($ven_tiempo[$key]))
+		if(($idInv[$key])&&($value)&&($ven_precio[$key])&&($ven_cantidad[$key])&&($ven_tiempo[$key]))
 		  {
 			  $sSQL = "update tb_ventas set  ven_nombre='$value', ven_precio=".$ven_precio[$key].", ven_cantidad=".$ven_cantidad[$key].", ven_unidad='".$ven_unidad[$key]."', ven_fecha='$fechaInicio', ven_fechafin='$fechaFin', ven_tiempo=".$ven_tiempo[$key]." where ven_jue_id=$fldjuego and ven_per_id=$fldperiodo and ven_id=".$idInv[$key];
 		  $sSQL1="delete from tb_ofertas where ofe_ven_id=".$idInv[$key];
 		$db->query($sSQL1);
 		  }
-		  elseif((!$idInv[$key])&&($value)&&($ven_precio[$key])&&($ven_cantidad[$key])&&($ven_unidad[$key])&&($ven_tiempo[$key]))
+		  elseif((!$idInv[$key])&&($value)&&($ven_precio[$key])&&($ven_cantidad[$key])&&($ven_tiempo[$key]))
 		 $sSQL = "insert into tb_ventas values(null, $fldjuego, $fldperiodo, '$value', ".$ven_precio[$key].", ".$ven_cantidad[$key].", '".$ven_unidad[$key]."', ".$ven_tiempo[$key].", '$fechaInicio','$fechaFin',1) ";
 		//echo $sSQL;
 		$db->query($sSQL);  
@@ -233,9 +233,9 @@ function eliminarFila(e)
    
      
      <!--<td width="134" class="ClearFieldCaptionTD">Unidad&nbsp; </td>-->
-     <td width="134" class="ClearFieldCaptionTD">Cantidad&nbsp; </td> 
+     <td width="134" class="ClearFieldCaptionTD">Cantidad Expertos&nbsp; </td> 
      
-     <td class="ClearFieldCaptionTD"  width="124">Costo m&iacute;nimo&nbsp;
+     <td class="ClearFieldCaptionTD"  width="124">Precio m&iacute;nimo&nbsp;
      </td> 
      <td width="163" class="ClearFieldCaptionTD">Fecha de inicio</td>
      <td width="163" class="ClearFieldCaptionTD">Hora de inicio</td>
