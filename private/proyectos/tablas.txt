@@ -42,3 +42,6 @@ ALTER TABLE `py_datos` ADD `dat_usu_id` INT NOT NULL
 
 #27/072013
 ALTER TABLE  `py_parametros` CHANGE  `par_value`  `par_valor` DOUBLE( 32, 2 ) NOT NULL
+
+#09/08/2013
+ALTER TABLE  `tb_ventas` ADD  `ven_foto` VARCHAR( 255 ) NULL DEFAULT NULL AFTER  `ven_fechafin`

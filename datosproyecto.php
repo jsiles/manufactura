@@ -50,7 +50,7 @@ function update($jue_id, $pro_id, $fldperiodo)
 	}
 	header("location: datosproyecto.php?jue_id=$jue_id");	
 }
-function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto)
+function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 {
 	//echo "$".$iDuracion. "<br>";
 	global $fldCantidad, $fldInicial;
@@ -61,8 +61,8 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto)
 	for($x=0;$x<$iPeriodo;$x++)
 	{
 		
-		$inversionMat[$iPeriodoVal][$iProyecto] = get_db_value("select dat_inversion from py_datos where dat_jue_id=$iJue_id and dat_pro_id=".$iProyecto." and dat_gestion=". tosql($iPeriodoVal, "Number"));
-		$mantenimientoMat[$iPeriodoVal][$iProyecto] = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$iJue_id and dat_pro_id=".$iProyecto." and dat_gestion=". tosql($iPeriodoVal, "Number"));
+		$inversionMat[$iPeriodoVal][$iProyecto] = get_db_value("select dat_inversion from py_datos where dat_jue_id=$iJue_id and dat_pro_id=".$iProyecto." and dat_gestion=". tosql($iPeriodoVal, "Number")." and dat_usu_id=". tosql($iUserId, "Number"));
+		$mantenimientoMat[$iPeriodoVal][$iProyecto] = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$iJue_id and dat_pro_id=".$iProyecto." and dat_gestion=". tosql($iPeriodoVal, "Number")." and dat_usu_id=". tosql($iUserId, "Number"));
 		$auxInvMat[$iPeriodoVal][$iProyecto] = 0;
 		$auxManMat[$iPeriodoVal][$iProyecto] = 0;
 		$aux2[$iPeriodoVal][$iProyecto] = 0;
@@ -214,7 +214,7 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto)
                                                 
                                                 <input type="hidden" name="pro_id[]" value="<?= $db->f("pro_id")?>"/></td>
                                               <?php
-											  $valor = calcValores($db->f("pro_duracion"), $fldperiodo, $jue_id, $db->f("pro_id"));
+											  $valor = calcValores($db->f("pro_duracion"), $fldperiodo, $jue_id, $db->f("pro_id"), $fldCliId);
 											  $sSQL="select prp_valor from py_proypar where prp_jue_id=$jue_id and prp_pro_id=". tosql($db->f("pro_id"),"Number")." order by prp_par_id asc";
 											  $db2->query($sSQL);
 											  $cantidadRegistros = $db2->num_rows();

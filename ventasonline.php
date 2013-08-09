@@ -156,7 +156,13 @@ $scripDin1="";
         
 	<tr><td colspan="2"><hr></td></tr>
 		<tr>
-		<td class="title2">Proyecto:&nbsp;</td><td class="title" align="left"><?=$db->f("ven_nombre")?></td>
+		<td class="title2"><?php
+		if(file_exists("private/temp/".$db->f("ven_foto"))&&(strlen($db->f("ven_foto"))>0))
+		{
+		?> <img border="0" src="private/temp/<?=$db->f("ven_foto")?>">
+        <?php
+		}
+		?>&nbsp;</td><td class="title" align="left"><?=$db->f("ven_nombre")?></td>
 	</tr>
     
     <?php
@@ -172,7 +178,7 @@ $scripDin1="";
 			//echo "#";
 			$valPrecioBase = get_db_value("select count(*) from tb_ofertas where ofe_ven_id=$id");
 			if($valPrecioBase==0) {
-				$etiqueta="<td colspan=\"2\" class=\"title2\">Venta online desierta</td>";
+				$etiqueta="<td colspan=\"2\" class=\"title2\">Licitación de proyecto desierto</td>";
 				$includeFile='';
 				}
 				else

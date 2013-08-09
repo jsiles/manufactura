@@ -47,6 +47,11 @@ function valoresRecord_action($sAction)
   $ven_cantidad= get_param("ven_cantidad"); //costo_exclusividad x cantidad
   $ven_tiempo =  get_param("ven_tiempo"); //nuevo
   
+  $pdf = get_param("pdf");
+  $TMPFILES = $_FILES["pdf"]["tmp_name"];
+  $FILES = $_FILES["pdf"]["name"];
+  
+  
 //  echo "POST:"; print_r($_POST); echo "END POST";
  
   $cantidadDat = get_db_value("select count(*) from tb_ventas where ven_jue_id=$fldjuego and ven_per_id=$fldperiodo");
@@ -68,9 +73,37 @@ function valoresRecord_action($sAction)
 			$secondFI = substr($fechaInicio,17,2);//echo $yearFI;exit;
 			$fechaFin = date("Y-m-d H:i:s", mktime($hourFI,$minuteFI + $ven_tiempo[$key],$secondFI,$monthFI,$dayFI,$yearFI));
 
-	$sSQL = "insert into tb_ventas values(null, $fldjuego, $fldperiodo, '$value', ".$ven_precio[$key].", ".$ven_cantidad[$key].", '".$ven_unidad[$key]."', ".$ven_tiempo[$key].", '$fechaInicio','$fechaFin',1) ";
+	$sSQL = "insert into tb_ventas values(null, $fldjuego, $fldperiodo, '$value', ".$ven_precio[$key].", ".$ven_cantidad[$key].", '".$ven_unidad[$key]."', ".$ven_tiempo[$key].", '$fechaInicio','$fechaFin','',1) ";
 	//echo $sSQL;
 	$db->query($sSQL);  
+	$uidInv =get_db_value("Select last_insert_id()");
+	//echo $FILES[$key];
+	 if($FILES[$key]!='')
+		{
+			  $nombrepdf= 'temp/ven-'. imageName($value)."-".$fldjuego."-".$fldperiodo.'.jpg';
+			  $nombrepdf1= 'ven-'.imageName($value)."-".$fldjuego."-".$fldperiodo.'.jpg';
+		
+		  
+					$sSQL="update tb_ventas set ven_foto='$nombrepdf1' where ven_jue_id=$fldjuego and ven_per_id=$fldperiodo and ven_id=$uidInv";
+					$db->query($sSQL);
+					move_uploaded_file($TMPFILES[$key] , $nombrepdf);
+  	    	$nombrepdfThumb= 'temp/thumb_ven-'. imageName($value)."-".$fldjuego."-".$fldperiodo.'.jpg';
+
+		$mythumb = new thumb(); 
+	
+		list($width, $height) = getimagesize($nombrepdf);
+
+		if ($width >= $height) $Prioridad='width';
+		else $Prioridad='height';
+		$mythumb->loadImage($nombrepdf); 
+		$mythumb->resize(132,$Prioridad); 
+		$mythumb->save( $nombrepdf ,100 );	
+		$mythumb->resize(47,$Prioridad); 
+		$mythumb->save( $nombrepdfThumb ,100 );
+
+		chmod( $nombrepdf , 0755 );
+		chmod( $nombrepdfThumb , 0755 );
+		}
 	}
 	else
 	foreach($ven_nombre as $key => $value)
@@ -96,9 +129,38 @@ function valoresRecord_action($sAction)
 		$db->query($sSQL1);
 		  }
 		  elseif((!$idInv[$key])&&($value)&&($ven_precio[$key])&&($ven_cantidad[$key])&&($ven_tiempo[$key]))
-		 $sSQL = "insert into tb_ventas values(null, $fldjuego, $fldperiodo, '$value', ".$ven_precio[$key].", ".$ven_cantidad[$key].", '".$ven_unidad[$key]."', ".$ven_tiempo[$key].", '$fechaInicio','$fechaFin',1) ";
+		 $sSQL = "insert into tb_ventas values(null, $fldjuego, $fldperiodo, '$value', ".$ven_precio[$key].", ".$ven_cantidad[$key].", '".$ven_unidad[$key]."', ".$ven_tiempo[$key].", '$fechaInicio','$fechaFin','',1) ";
 		//echo $sSQL;
 		$db->query($sSQL);  
+		
+		if($idInv[$key]) $uidInv = $idInv[$key];
+		else $uidInv =get_db_value("Select last_insert_id()");
+		//echo $FILES[$key]; 
+		 if($FILES[$key]!='')
+			{
+			  $nombrepdf= 'temp/ven-'. imageName($value)."-".$fldjuego."-".$fldperiodo.'.jpg';
+			  $nombrepdf1= 'ven-'.imageName($value)."-".$fldjuego."-".$fldperiodo.'.jpg';
+			  
+						$sSQL="update tb_ventas set ven_foto='$nombrepdf1' where ven_jue_id=$fldjuego and ven_per_id=$fldperiodo and ven_id=$uidInv";
+						$db->query($sSQL);
+						//echo $sSQL;
+						move_uploaded_file($TMPFILES[$key] , $nombrepdf);
+						$nombrepdfThumb= 'temp/thumb_ven-'. imageName($value)."-".$fldjuego."-".$fldperiodo.'.jpg';
+				
+						$mythumb = new thumb(); 
+					
+						list($width, $height) = getimagesize($nombrepdf);
+				
+						if ($width >= $height) $Prioridad='width';
+						else $Prioridad='height';
+						$mythumb->loadImage($nombrepdf); 
+						$mythumb->resize(132,$Prioridad); 
+						$mythumb->save( $nombrepdf ,100 );	
+						$mythumb->resize(47,$Prioridad); 
+						$mythumb->save( $nombrepdfThumb ,100 );	
+						chmod( $nombrepdf , 0755 );
+						chmod( $nombrepdfThumb , 0755 );
+			}
 		
 		 }		 
 //  header("Location: investigaciones.php?jue_id=$fldjuego&per_ini=$fldperiodoinicial&cant=$fldcantidad");
@@ -242,7 +304,8 @@ function eliminarFila(e)
      
      <td class="ClearFieldCaptionTD" width="94">Tiempo duraci&oacute;n&nbsp;
      </td>
-    
+    <td width="193" class="ClearFieldCaptionTD">Fotograf&iacute;a&nbsp;
+     (jpg)</td>
     <td width="50" class="ClearFieldCaptionTD">
       </td> 
      
@@ -269,10 +332,22 @@ function eliminarFila(e)
       </td>
     
 
-        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI<?=$l?>" type="text" size="8" value="<?=changeFormatDate(substr($db->f("ven_fecha"),0,10),2)?>" readonly><a id="calendar<?=$l?>" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI<?=$l?>);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
+        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI<?=$l?>" type="text" size="12" value="<?=changeFormatDate(substr($db->f("ven_fecha"),0,10),2)?>" readonly><a id="calendar<?=$l?>" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI<?=$l?>);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
       <td width="163" class="ClearDataTD"><input name="horaI[]" id="horaI<?=$l?>"  type="text" size="8" value="<?=substr($db->f("ven_fecha"),11)?>"></td>
      
       <td width="94" class="ClearDataTD"  ><input name="ven_tiempo[]" id="ven_tiempo<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("ven_tiempo")?>">
+      <input name="idInv[]" id="idInv<?=$l?>" type="hidden" value="<?=$db->f("ven_id")?>" >
+      </td>
+      
+      <td width="193" class="ClearDataTD">
+      <?php if(file_exists($nombrepdfThumb= 'temp/thumb_'.$db->f("ven_foto"))) 
+	  {
+	  ?>
+      <img border="0" src="<?='temp/thumb_'.$db->f("ven_foto")?>">
+      <?php
+	  }
+	  ?>
+      <input name="pdf[]" id="pdf<?=$l?>" class="multi-pt" type="file" size="15"><span id="pdflabel<?=$k?>"><?=$db->f("ven_foto")?></span>
       <input name="idInv[]" id="idInv<?=$l?>" type="hidden" value="<?=$db->f("ven_id")?>" >
       </td>
     <td width="50" class="ClearDataTD">
@@ -298,12 +373,14 @@ function eliminarFila(e)
       <td width="124" class="ClearDataTD"><input name="ven_precio[]" id="ven_precio0" onClick="clean(this);" type="text" size="3" value="">
       </td>
          
-        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI0" type="text" size="8" value="" readonly><a id="calendar0" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI0);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
+        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI0" type="text" size="12" value="" readonly><a id="calendar0" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI0);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
       <td width="163" class="ClearDataTD"><input name="horaI[]" id="horaI0"  type="text" size="8" value=""></td>
     
       <td width="94" class="ClearDataTD"  ><input name="ven_tiempo[]" id="ven_tiempo0" onClick="clean(this);" type="text" size="3" value="">
       <input name="idInv[]" id="idInv0" type="hidden" value="" >
       </td>
+      <td width="193" class="ClearDataTD"><input name="pdf[]" id="pdf0" class="multi-pt" type="file" size="15"><span id="pdflabel0"></span>
+      <input name="idInv[]" id="idInv0" type="hidden" value="" >
   <td width="50" class="ClearDataTD">
        <img id="eliminar_off" src="./lib/delete_off_es.gif" alt="Eliminar" title="Eliminar" border="0" >
       </td>

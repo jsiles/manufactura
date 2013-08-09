@@ -349,7 +349,7 @@ function eliminarFila(e)
       <!--<td width="140" class="ClearDataTD"  ><input name="costo_exclusividad[]" id="costo_exclusividad<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("cel_beneficio")?>">
       </td>-->
 
-        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI<?=$l?>" type="text" size="8" value="<?=changeFormatDate(substr($db->f("cel_fecha"),0,10),2)?>" readonly><a id="calendar<?=$l?>" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI<?=$l?>);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
+        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI<?=$l?>" type="text" size="12" value="<?=changeFormatDate(substr($db->f("cel_fecha"),0,10),2)?>" readonly><a id="calendar<?=$l?>" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI<?=$l?>);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
       <td width="163" class="ClearDataTD"><input name="horaI[]" id="horaI<?=$l?>"  type="text" size="8" value="<?=substr($db->f("cel_fecha"),11)?>"></td>
      
       <td width="94" class="ClearDataTD"  ><input name="cantidad[]" id="cantidad<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("cel_tiempo")?>">
@@ -394,7 +394,7 @@ function eliminarFila(e)
       <!--<td width="140" class="ClearDataTD"  ><input name="costo_exclusividad[]" id="costo_exclusividad0" onClick="clean(this);" type="text" size="3" value="">
       </td>-->
       
-        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI0" type="text" size="8" value="" readonly><a id="calendar0" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI0);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
+        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI0" type="text" size="12" value="" readonly><a id="calendar0" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI0);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
       <td width="163" class="ClearDataTD"><input name="horaI[]" id="horaI0"  type="text" size="8" value=""></td>
     
       <td width="94" class="ClearDataTD"  ><input name="cantidad[]" id="cantidad0" onClick="clean(this);" type="text" size="3" value="">

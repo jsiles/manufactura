@@ -20,7 +20,9 @@ function addVen()
 	$("#frmDinamico").find("#horaI0").each(function (x,el){$(el).attr("id","horaI"+k)});
 	$("#frmDinamico").find("#calendar0").each(function (x,el){$(el).attr("id","calendar"+k); $(el).attr("onClick","if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI"+k+");return false;");});
 	$("#frmDinamico").find("#ven_tiempo0").each(function (x,el){$(el).attr("id","ven_tiempo"+k)});
-
+	$("#frmDinamico").find("#pdf0").each(function (x,el){$(el).attr("id","pdf"+k)});
+	$("#frmDinamico").find("#idInv0").each(function (x,el){$(el).attr("id","idInv"+k)});
+	$("#frmDinamico").find("#pdflabel0").each(function (x,el){$(el).attr("id","pdflabel"+k)});
 
 	$("#frmDinamico").find("#ven_nombre"+k).each(function (x,el){$(el).val("")}); 
  	$("#frmDinamico").find("#ven_precio"+k).each(function (x,el){$(el).val("")}); 
@@ -30,6 +32,10 @@ function addVen()
 	$("#frmDinamico").find("#fechaI"+k).each(function (x,el){$(el).html("")});
 	$("#frmDinamico").find("#horaI"+k).each(function (x,el){$(el).html("")});
 	$("#frmDinamico").find("#ven_tiempo"+k).each(function (x,el){$(el).val("")});
+	$("#frmDinamico").find("#pdf"+k).each(function (x,el){$(el).val("")}); 
+ 	$("#frmDinamico").find("#idInv"+k).each(function (x,el){$(el).val("")});
+	$("#frmDinamico").find("#pdflabel"+k).each(function (x,el){$(el).html("")});
+	
 	return false;
 	}	
 		
