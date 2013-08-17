@@ -93,7 +93,7 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 					$worksheet->write(2,0,"Producto",$format_title);
 					$worksheet->write(2,1,"Grupo",$format_title);
 					$worksheet->write(2,2,"Precio Ofertado", $format_title);
-                    $worksheet->write(2,3,"Cantidad Ofertada",$format_title);
+//                    $worksheet->write(2,3,"Cantidad Ofertada",$format_title);
 					$worksheet->setColumn(0,0,10);
 					$worksheet->setColumn(0,1,10);
 					$worksheet->setColumn(0,2,15);
@@ -128,13 +128,13 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 					   if ($i%2==0) {
 					       $worksheet->write($i,1, $nombre, $format_grid);
 					       $worksheet->write($i,2, $ofe_monto, $format_grid);
-					       $worksheet->write($i,3, $ofe_cantidad, $format_grid);
+					    //   $worksheet->write($i,3, $ofe_cantidad, $format_grid);
 	 					  
                         }
                         else{
 					       $worksheet->write($i,1, $nombre, $format_gridiz);
                            $worksheet->write($i,2, $ofe_monto, $format_gridiz);
-                           $worksheet->write($i,3, $ofe_cantidad, $format_gridiz);
+                          // $worksheet->write($i,3, $ofe_cantidad, $format_gridiz);
                           
 
                          }

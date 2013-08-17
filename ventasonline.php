@@ -30,7 +30,7 @@ function validar(e)
 		var valueCantidad = $("#cantidad"+e).val()*1;
 		var valuePrecio = $("#precio"+e).val()*1;
 		if((valueBid>0)&&(valuePrecio<=valueBid)) {
-			var message="Para proceder con su oferta de "+valueBid+" $M, la misma debe ser confirmada. Está seguro del monto ofertado?";
+			var message="Para proceder con su oferta "+valueBid+" $M, la misma debe ser confirmada. Está seguro del monto ofertado?";
 			if(confirm(message)) {
 				
 					$.ajax({
@@ -41,7 +41,7 @@ function validar(e)
 						 //$("#bid"+e).hide();
 						 //$("#boton"+e).attr("disabled", "disabled");
 						 $("#win"+e).show();	
-						 $("#win"+e).html('<td colspan="2" class="title2">Su oferta es de '+valueBid+' $M </td>');
+						 $("#win"+e).html('<td colspan="2" class="title2">Su oferta es '+valueBid+' $M </td>');
 						 $("#win"+e).show();
 						 //alert(html);
 					   }
@@ -108,6 +108,7 @@ $scripDin1="";
 			$dateFin = $db->f("ven_fechafin");
 			$precioBase = $db->f("ven_precio");
 			$precioFlag = false;
+			$celNombreProy = get_db_value("select pro_descripcion from py_proyectos where pro_id=".$db->f("ven_nombre")." and pro_jue_id=$dat_juego");
 			/*$valPrecioBase = get_db_value("select count(*) from tb_ofertas where ofe_ven_id=$id");
 			if($valPrecioBase>0) {
 				$maxPrecioPuja = get_db_value("select max(puj_monto) from tb_ofertas where puj_cel_id=$id");
@@ -139,7 +140,7 @@ $scripDin1="";
 				{
 					/*$(\"#bid$id\").hide();*/
 					$(\"#boton$id\").attr(\"disabled\", \"disabled\");
-					$(\"#win$id\").html(\"<td colspan='2' class='title2'>La subasta fue concluida, gracias por participar!. \");
+					$(\"#win$id\").html(\"<td colspan='2' class='title2'>La licitación fue concluida, gracias por participar!. \");
 					$.ajax({
 					   type: \"POST\",
 					   url: \"ofertastbl.php\",
@@ -162,7 +163,7 @@ $scripDin1="";
 		?> <img border="0" src="private/temp/<?=$db->f("ven_foto")?>">
         <?php
 		}
-		?>&nbsp;</td><td class="title" align="left"><?=$db->f("ven_nombre")?></td>
+		?>&nbsp;</td><td class="title" align="left"><?=$celNombreProy?></td>
 	</tr>
     
     <?php
@@ -172,7 +173,7 @@ $scripDin1="";
 	$precioOfert = get_db_value("select ofe_monto from tb_ofertas where ofe_ven_id=$id and ofe_usu_id =$userId limit 1");
 	$unidadOfert = get_db_value("select ven_unidad from tb_ventas where ven_id=$id");
 	
-	$winOfert ='<td colspan="2" class="title2">Su oferta es de '.$precioOfert.' $M</td>';}
+	$winOfert ='<td colspan="2" class="title2">Su oferta es '.$precioOfert.' $M</td>';}
 	if($timeFin<=0)
 		{
 			//echo "#";
@@ -183,7 +184,7 @@ $scripDin1="";
 				}
 				else
 				{
-				$etiqueta="<td colspan=\"2\" class=\"title2\">La subasta fue concluida, gracias por participar!.";// <a href='ofertas.php?id=$id' target='_blank'>Listado de Ofertas <img src='./image/excel.jpg' border=0></a></td>
+				$etiqueta="<td colspan=\"2\" class=\"title2\">La licitación fue concluida, gracias por participar!.";// <a href='ofertas.php?id=$id' target='_blank'>Listado de Ofertas <img src='./image/excel.jpg' border=0></a></td>
 				$displayStatus ="";
 				
 				$includeFile = file_get_contents("http://".$_SERVER['HTTP_HOST']."/calidad/ofertastbl.php?id=$id&user_id=$userId");		
@@ -217,13 +218,14 @@ $scripDin1="";
         <tr id="bid<?=$id?>" style="display:;">
 		<td class="title2">&nbsp;</td>
 		<td class="title">
-	    <span class="title2">Precio M&iacute;nimo ($M/<?=$db->f("ven_precio")?>):</span>
+	    <span class="title2">Precio M&iacute;nimo (<?=$db->f("ven_precio")?>
+	    /$M):</span>
 	    <input name="valor<?=$id?>" id="valor<?=$id?>" value="" size="11"><br />
 	    <span class="title2">Cantidad Expertos:<span id="unidad<?=$id?>"><?=$db->f("ven_cantidad")?></span></span>
 		  <input type="hidden" name="cantidad<?=$id?>" id="cantidad<?=$id?>" value="<?=$db->f("ven_cantidad")?>" size="11">
           <input type="hidden" name="precio<?=$id?>" id="precio<?=$id?>" value="<?=$db->f("ven_precio")?>" size="11">
           &nbsp;<input type="button" class="compra" value="Ofertar" id="boton<?=$id?>" disabled onClick="javascript:validar(<?=$id?>);"></td>
-		</tr>
+	</tr>
         <tr id="win<?=$id?>" style="display:"> 
         </tr>
         <tr>

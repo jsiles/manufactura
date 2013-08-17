@@ -24,9 +24,7 @@ Grupo
 <td>
 Precio Ofertado
 </td>
-<td>
-Cantidad Expertos
-</td>
+
 </tr>
 
 
@@ -50,8 +48,7 @@ Cantidad Expertos
 </td> 
 <td class="title"><?=$ofe_monto?>
 </td>
-<td class="title"><?=$ofe_cantidad?>
-</td>
+
                        
 </tr>
 <?php

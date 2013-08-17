@@ -121,10 +121,10 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
                         <div id="tabs-1">
                                
                                 <div id="tabs-1-1" >
-                                <p>
-                                    <br>
-                                    </p>
-                               <form method="Get" action="datosproyecto.php" name="valoresRecord">
+                                <p class="title3">MEJORA PORCENTUAL DE PARAMETROS</p>
+                                <p><br>
+                                </p>
+                                <form method="Get" action="datosproyecto.php" name="valoresRecord">
                                  <table cellspacing="0" cellpadding="0" border="0">
                                  <tr>
                                    <td valign="top">
@@ -214,7 +214,7 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
                                                 
                                                 <input type="hidden" name="pro_id[]" value="<?= $db->f("pro_id")?>"/></td>
                                               <?php
-											  $valor = calcValores($db->f("pro_duracion"), $fldperiodo, $jue_id, $db->f("pro_id"), $fldCliId);
+											  $valor = 1;//calcValores($db->f("pro_duracion"), $fldperiodo, $jue_id, $db->f("pro_id"), $fldCliId);
 											  $sSQL="select prp_valor from py_proypar where prp_jue_id=$jue_id and prp_pro_id=". tosql($db->f("pro_id"),"Number")." order by prp_par_id asc";
 											  $db2->query($sSQL);
 											  $cantidadRegistros = $db2->num_rows();
