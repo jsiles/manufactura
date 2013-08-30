@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta name="GENERATOR" content="CodeCharge Studio 3.0.1.6">
+<meta http-equiv="content-type" content="text/html; charset=windows-1252">
+<title>Reporte</title>
+<meta content="CodeCharge Studio 3.0.1.6" name="GENERATOR">
+<link href="Styles/Coco/Style1.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+<!--
+.style1 {
+    font-size: 16;
+    font-weight: bold;
+}
+.style2 {
+    font-size: 14;
+    font-weight: bold;
+}
+-->
+</style>
+</head>
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff">
+<table width="100%" border="0">
+<tr>
+<td width="55%" align="right"><a href="export3.php?&id={id}&id_usuario={id_usuario}&"><img src="./image/excel.jpg" width="20" height="18" border="0"></a></td>
+<td width="45%">&nbsp;</td>
+</tr>
+</table>
+<form name="consolidado" action="reporte3.php" method="get">
+<!--BeginGriddatos1-->
+<!--BeginDatos-->              
+<p><font class="style1">Datos</font><br>
+</p>
+<table class="ClearFormTABLE" cellspacing="1" cellpadding="3" border="1">
+  <tr class="Caption">
+    <td class="ClearColumnTD" nowrap align="left" rowspan="2">&nbsp; 
+<font color="#0000ff">Items</font></td>
+    <td class="ClearColumnTD" nowrap align="left" rowspan="2">
+    <font color="#0000ff">Valor Inicial</font>
+    </td>
+    <td class="ClearColumnTD" nowrap colspan="10">&nbsp; 
+     <font color="#0000ff">Gestiones</font></td>
+  </tr>
+     <tr class="Caption">
+     <!--BeginPeriodos-->
+        <td class="ClearColumnTD" nowrap align="left" >{periodo}</td>
+     <!--EndPeriodos-->
+    </tr> 
+  <!--BeginRow-->
+  <tr class="Row">
+    <td class="ClearDataTD">{Label1}&nbsp;%</td> 
+    <td class="ClearDataTD">{Label2}&nbsp;</td>
+    <!--BeginTotal-->
+    <td class="ClearDataTD" align="right">{Label3}&nbsp;</td>
+    <!--EndTotal-->
+  </tr>
+ <!--EndRow-->
+ 
+ <!--BeginNoRecords-->
+  <tr class="Row">
+    <td class="ClearFooterTD" nowrap align="center" colspan="11"></td>
+  </tr>
+  <!--EndNoRecords-->
+</table>
+<!--EndDatos-->             
+<!--EndGriddatos1-->
+<p><br>
+</form>
+&nbsp;</p>
+</body>
+</html>

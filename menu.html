@@ -323,6 +323,28 @@ function displayImg(e,f)
 	$('#'+f).removeClass("submenu").addClass("submenuHover");
     $('#dibujo13').fadeIn('slow');
 	}
+	else if(e=='MEJORA PARÁMETROS') 
+	{
+	$('#dibujo1').hide();
+	$('#dibujo2').hide();
+	$('#dibujo3').hide();
+	$('#dibujo4').hide();
+	$('#dibujo5').hide();
+	$('#dibujo6').hide();
+	$('#dibujo7').hide();
+	$('#dibujo8').hide();
+	$('#dibujo9').hide();	
+    $('#dibujo10').hide();
+	$('#dibujo11').hide();
+	$('#dibujo12').hide();
+    $('#dibujo13').hide();
+    $('#dibujo17').hide();
+	for(z=1;z<15;z++)
+	$('#'+z).removeClass("submenuHover").addClass("submenu");
+	
+	$('#'+f).removeClass("submenu").addClass("submenuHover");
+	$('#dibujo14').fadeIn('slow');
+	} 
 	else if(e=='REPORTE RESÚMEN') 
 	{
 	$('#dibujo1').hide();

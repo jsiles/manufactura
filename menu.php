@@ -262,6 +262,10 @@ function elementos_show()
               $tpl->set_var("ele_nombre","INDICADORES DE GESTION");
               $tpl->parse("Row",true);
 
+			  $tpl->set_var("Detail_Src", "reporte3.php?ele_id=$id&id=$jue_id&dat_periodo=$dat_periodo&apl=$apl");
+              $tpl->set_var("idMenu",$z++);
+			  $tpl->set_var("ele_nombre","MEJORA PARÁMETROS");   
+              $tpl->parse("Row",true);
 
     $activo_resumen= get_db_value("select jue_resumen from tb_juegos where jue_id=$jue_id");
     
