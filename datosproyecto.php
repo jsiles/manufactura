@@ -52,11 +52,9 @@ function update($jue_id, $pro_id, $fldperiodo)
 }
 function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 {
-	//echo "$".$iDuracion. "<br>";
-	global $fldCantidad, $fldInicial;
+	global $fldCantidad, $fldInicial, $db3, $db4;
 	$costoMantenimiento = get_db_value("select cos_mantenimiento from py_costos where cos_jue_id=$iJue_id order by cos_id limit 1");
 	$iPeriodoVal = $fldInicial;
-	//echo "<br>";
 	$valor=0;
 	for($x=0;$x<$iPeriodo;$x++)
 	{
@@ -73,7 +71,6 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 			if($mantenimientoMat[$iPeriodoVal][$iProyecto]==$costoMantenimiento) $auxManMat[$iPeriodoVal][$iProyecto] = 1;
 			
 			$auxMat[$iPeriodoVal][$iProyecto] =$auxInvMat[$iPeriodoVal][$iProyecto]+ $auxManMat[$iPeriodoVal][$iProyecto];
-		//	echo $auxMat[$iPeriodoVal][$iProyecto]. ">0 -- ".$auxMat[$iPeriodoVal][$iProyecto].">".$iDuracion."<br>";
 			if(($auxMat[$iPeriodoVal][$iProyecto]>0)&&($auxMat[$iPeriodoVal][$iProyecto]>$iDuracion)) $valor = 1; else $valor=0;
 		}
 		if($iPeriodoVal>1)
@@ -85,19 +82,23 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 			
 			$aux2[$iPeriodoVal][$iProyecto] = $inversionMat[$iPeriodoVal][$iProyecto] + $mantenimientoMat[$iPeriodoVal][$iProyecto];
 			$auxMat[$iPeriodoVal][$iProyecto] =$auxInvMat[$iPeriodoVal][$iProyecto]+ $auxManMat[$iPeriodoVal][$iProyecto];
-		//	echo $aux2[$iPeriodoVal][$iProyecto] .">0 --".$auxMat[$iPeriodoVal][$iProyecto].">".$auxMat[$iPeriodoVal-1][$iProyecto]."--". $auxMat[$iPeriodoVal][$iProyecto].">".$iDuracion."<br>";
 			if(($aux2[$iPeriodoVal][$iProyecto]>0)&&($auxMat[$iPeriodoVal][$iProyecto]>$auxMat[$iPeriodoVal-1][$iProyecto])&&($auxMat[$iPeriodoVal][$iProyecto]>$iDuracion)) $valor = 1;else $valor=0;
 
 		}
-		
-	
 		$iPeriodoVal++;
-				
 	}
-	//print_r($auxInvMat);
-	//print_r($auxMat);
-	
-	//echo $valor . "#";
+	if($valor==1){
+					$sSQL="select prp_par_id, prp_valor from py_proypar where prp_jue_id=$iJue_id and prp_pro_id=$iProyecto order by prp_par_id asc";
+ 				    $db3->query($sSQL);
+					while($db3->next_record())
+					{
+					 //$iPeriodo, $iJue_id, $iProyecto, $iUserId
+					 $cantCal= get_db_value("select count(*) from py_calculos where cal_jue_id=$iJue_id and cal_per_id=$iPeriodo and cal_usu_id=$iUserId and cal_pro_id=$iProyecto and cal_par_id=".tosql($db3->f("prp_par_id"), "Number"));
+					 if($cantCal>0) $db4->query("delete from py_calculos where cal_jue_id=$iJue_id and cal_per_id=$iPeriodo and cal_usu_id=$iUserId and cal_pro_id=$iProyecto and cal_par_id=".tosql($db3->f("prp_par_id"), "Number"));
+					 $sSQL="insert into py_calculos values(null, $iPeriodo, $iProyecto, ".tosql($db3->f("prp_par_id"), "Number").", $iUserId, ".tosql($db3->f("prp_valor"), "Number").", $iJue_id)";
+					 $db4->query($sSQL);
+					}
+	}
 	return $valor;
 }
 ?>
@@ -179,9 +180,11 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 										$fldCliId = get_session("cliID");
 										$mantValue = get_db_value("select cos_mantenimiento from py_costos where cos_jue_id=$jue_id limit 1");
 										$sSQL="select * from py_proyectos where pro_jue_id=$jue_id order by pro_id asc";
+										//echo $sSQL;
 										$db->query($sSQL);
 										if($db->num_rows()>0)
 										{
+										   //echo $db->num_rows();
 											while($result=$db->next_record())
 											{
 												$inversion = get_db_value("select dat_inversion from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_gestion=". tosql($fldperiodo, "Number"));
@@ -214,7 +217,7 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
                                                 
                                                 <input type="hidden" name="pro_id[]" value="<?= $db->f("pro_id")?>"/></td>
                                               <?php
-											  $valor = 1;//calcValores($db->f("pro_duracion"), $fldperiodo, $jue_id, $db->f("pro_id"), $fldCliId);
+											  calcValores($db->f("pro_duracion"), $fldperiodo, $jue_id, $db->f("pro_id"), $fldCliId);
 											  $sSQL="select prp_valor from py_proypar where prp_jue_id=$jue_id and prp_pro_id=". tosql($db->f("pro_id"),"Number")." order by prp_par_id asc";
 											  $db2->query($sSQL);
 											  $cantidadRegistros = $db2->num_rows();
@@ -222,17 +225,9 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 												{
 												  while($db2->next_record())
 												  {
-												  	if($valor==1)
-													{
 												  ?>
                                                   <td class="ClearDataTD"><?= $db2->f("prp_valor")?></td>
 												  <?php
-													}else{
-													?>
-                                                  <td class="ClearDataTD">0.00</td>
-												  <?php
-														
-													}
 												  }
 											    }
 											  ?>

@@ -45,3 +45,16 @@ ALTER TABLE  `py_parametros` CHANGE  `par_value`  `par_valor` DOUBLE( 32, 2 ) NO
 
 #09/08/2013
 ALTER TABLE  `tb_ventas` ADD  `ven_foto` VARCHAR( 255 ) NULL DEFAULT NULL AFTER  `ven_fechafin`
+
+
+03/09/2013
+CREATE TABLE IF NOT EXISTS `py_calculos` (
+  `cal_id` int(11) NOT NULL AUTO_INCREMENT,
+  `cal_per_id` int(11) NOT NULL,
+  `cal_pro_id` int(11) NOT NULL,
+  `cal_par_id` int(11) NOT NULL,
+  `cal_usu_id` int(11) NOT NULL,
+  `cal_valor` double(32,2) NOT NULL,
+  `cal_jue_id` int(11) NOT NULL,
+  PRIMARY KEY (`cal_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 ;
