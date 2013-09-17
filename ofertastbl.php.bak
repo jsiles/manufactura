@@ -24,15 +24,12 @@ Grupo
 <td>
 Precio Ofertado
 </td>
-<td>
-Cantidad Expertos Obtenidos
-</td>
 
 </tr>
 
 
 <?php
-	$db->query("SELECT ofe_id, ofe_usu_id, ofe_cantidad, ofe_monto, ofe_entrega FROM tb_ofertas where ofe_ven_id=$id order by ofe_monto desc, ofe_id asc");
+	$db->query("SELECT ofe_id, ofe_usu_id, ofe_cantidad, ofe_monto, ofe_entrega FROM tb_ofertas where ofe_ven_id=$id order by ofe_monto asc, ofe_id asc");
                     $i=3;
 					$cantidadMaxAceptada=0;
 					$precioMax = get_db_value("select ven_precio from tb_ventas where ven_id=$id");
@@ -51,26 +48,8 @@ Cantidad Expertos Obtenidos
 </td> 
 <td class="title"><?=$ofe_monto?>
 </td>
-                           <?php
-						   $cantidadTemp = $cantidadMaxAceptada + $ofe_cantidad;
-						   if(($ofe_monto>=$precioMax)&&($cantidadTemp<=$cantidadMax)&&($ofe_monto!=0)&&($ofe_cantidad!=0))
-						   {
-?>
-<td class="title"><?=$ofe_cantidad?></td>
-<?php
-$sessionUserId = get_param("user_id");
 
-						   $cantidadMaxAceptada += $ofe_cantidad;
-						   }else{
-						   
-						   ?>
-<td class="title">0</td>
-<?php
-						   
-						   }
-                        
-   					   $i++;
-?>
+                       
 </tr>
 <?php
 					  }

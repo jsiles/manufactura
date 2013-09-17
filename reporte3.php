@@ -55,7 +55,7 @@ function reporte()
                         $tpl->set_var("periodo", $valor);
                         $tpl->parse("Periodos", true);
                     }    
-				$sSQL="select par_valor, par_descripcion from py_parametros where par_jue_id=$dat_juego order by par_id asc";
+				$sSQL="select par_id, par_valor, par_descripcion from py_parametros where par_jue_id=$dat_juego order by par_id asc";
   			    $db->query($sSQL);
 				$cantidadRegistros1 = $db->num_rows();
 				if($cantidadRegistros1>0)
@@ -69,8 +69,9 @@ function reporte()
                         $valorInicial =  $db->f("par_valor");
                         if ($valorInicial=='') $valorInicial=0;
                          $tpl->set_var("Label2", $valorInicial); 
-						$acumuladoProcentaje= 0;	
-                        $tpl->set_var("Label3", $valor . $acumuladoProcentaje);
+						$acumuladoProcentaje= get_db_value("select sum(cal_valor) from py_calculos where cal_per_id=$valor and cal_par_id=". tosql($db->f("par_id"),"Number")." and cal_usu_id=$dat_usuario and cal_jue_id=$dat_juego");	
+						if(!$acumuladoProcentaje) $acumuladoProcentaje=0;
+                        $tpl->set_var("Label3", $valorInicial * (1+ $acumuladoProcentaje/100));
 						$tpl->parse ("Total" , true);
                     }
 					$tpl->parse ("Row" , true);
