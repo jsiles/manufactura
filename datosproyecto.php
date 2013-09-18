@@ -191,31 +191,48 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 												$mantenimiento = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_gestion=". tosql($fldperiodo, "Number"));				
 												if($inversion==NULL) $inversion=0;
 												if($mantenimiento==NULL) $mantenimiento=0;	
+												if( $db->f("pro_duracion")==$fldperiodo-1)
+												{
+												$fldRedIn="<font color=\"#FF0000\">";
+												$fldRedFin="</font>";
+												}else
+												{
+												$fldRedIn="";
+												$fldRedFin="";
+												}			
 												
-																			
-									?>
-                                            <tr class="Row">  
-                                              	<!--<td class="ClearDataTD"><?= $db->f("pro_id")?></td>-->
-                                              	<td class="ClearDataTD"><?= $db->f("pro_descripcion")?></td>
-                                              	<td class="ClearDataTD"><?= $db->f("pro_duracion")?></td>
-                      							<td class="ClearDataTD"><input name="inversion[]" type="text" size="4" value="<?=$inversion?>" ></td>
-                                               	<td class="ClearDataTD">
-                                      <?php
-									  			$selected="";
+												if($fldperiodo>1)
+												{
+												
+												$inversionAnt = get_db_value("select dat_inversion from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_gestion=". tosql($fldperiodo-1, "Number"));
+												$mantenimientoAnt = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_gestion=". tosql($fldperiodo-1, "Number"));		
+												
+												$selected="";
 												$selected2="";
 												
 												if($mantValue==$mantenimiento)
 			                                       $selected="SELECTED"; else $selected2="SELECTED";
 												   
-												  // echo $mantValue. "#" .$mantenimiento;
-                                    ?>
-                                    
+												if(($inversionAnt>0)||($mantenimientoAnt>0))
+												{
+												  $ListBoxMan = "<option value=\"$mantValue\" $selected>$mantValue</option>";
+												}else $ListBoxMan = "";
+
+												
+												}				
+									?>
+                                            <tr class="Row">  
+                                              	<!--<td class="ClearDataTD"><?= $db->f("pro_id")?></td>-->
+                                              	<td class="ClearDataTD"><?=$fldRedIn?><?= $db->f("pro_descripcion")?><?=$fldRedFin?></td>
+                                              	<td class="ClearDataTD"><?=$fldRedIn?><?= $db->f("pro_duracion")?><?=$fldRedFin?></td>
+                      							<td class="ClearDataTD"><?=$fldRedIn?><input name="inversion[]" type="text" size="4" value="<?=$inversion?>" ><?=$fldRedFin?></td>
+                                               	<td class="ClearDataTD"><?=$fldRedIn?>
                                                 <select name="mantenimiento[]" >
                                                 	<option value="0" <?=$selected2?>>0</option>
-                                  	            	<option value="<?=$mantValue?>" <?=$selected?>><?=$mantValue?></option>
+												    <?=$ListBoxMan?>                                  	            	
                                     		    </select>
-                                                
-                                                <input type="hidden" name="pro_id[]" value="<?= $db->f("pro_id")?>"/></td>
+                                                <?=$fldRedFin?>
+                                              <input type="hidden" name="pro_id[]" value="<?= $db->f("pro_id")?>"/></td>
                                               <?php
 											  calcValores($db->f("pro_duracion"), $fldperiodo, $jue_id, $db->f("pro_id"), $fldCliId);
 											  $sSQL="select prp_valor from py_proypar where prp_jue_id=$jue_id and prp_pro_id=". tosql($db->f("pro_id"),"Number")." order by prp_par_id asc";
@@ -226,7 +243,7 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 												  while($db2->next_record())
 												  {
 												  ?>
-                                                  <td class="ClearDataTD"><?= $db2->f("prp_valor")?></td>
+                                                  <td class="ClearDataTD"><?=$fldRedIn?><?= $db2->f("prp_valor")?><?=$fldRedFin?></td>
 												  <?php
 												  }
 											    }
@@ -246,11 +263,19 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 									?>
                                     
                                     <tr class="Row">
-                                      <td class="ClearFooterTD" nowrap align="left" colspan="<?=5+$cantidadRegistros1?>">
+                                      <td class="ClearFooterTD" nowrap align="left" colspan="<?=5+$cantidadRegistros1?>">&nbsp;
                                 
                                       <!--BeginvaloresRecordEdit-->
                                       <!--BeginvaloresRecordUpdate-->
+                                      <?php
+                                      $maxPeriodo2 = get_db_value("select max(per_periodo) from tb_periodos where per_jue_id=$jue_id and per_estado='A'"); //modif
+                                      if ($maxPeriodo2==$fldperiodo)
+									  {
+									  ?>
                                       <input class="ClearButton" type="submit" value="Aceptar" onClick="document.valoresRecord.FormAction.value = 'update';"/>
+                                      <?php 
+									  }
+									  ?>
                                       <!--EndvaloresRecordUpdate-->
                                        
                                       <input type="hidden" name="FormName" value="valoresRecord"/>
