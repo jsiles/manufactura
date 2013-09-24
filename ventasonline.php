@@ -55,7 +55,7 @@ function validar(e)
 <body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff">
 <table width="100%" border="0">
 <tr>
-<td width="50%" align="right">Resumen<a href="ofertas.php?jue_id=<?=$dat_juego?>&per_id=<?=$per_periodo?>" title="Venta online resumen"><img src="./image/excel.jpg" alt="Licitación Proyectos Resumen" border="0"></a>&nbsp;</td>
+<td width="50%" align="right">Resumen<a href="ofertas.php?jue_id=<?=$dat_juego?>&per_id=<?=$per_periodo?>" title="Licitación Proyectos Resumen"><img src="./image/excel.jpg" alt="Licitación Proyectos Resumen" border="0"></a>&nbsp;</td>
     <td width="10%" align="center">
        
     </td>

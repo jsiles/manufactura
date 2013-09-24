@@ -98,6 +98,14 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 					 $sSQL="insert into py_calculos values(null, $iPeriodo, $iProyecto, ".tosql($db3->f("prp_par_id"), "Number").", $iUserId, ".tosql($db3->f("prp_valor"), "Number").", $iJue_id)";
 					 $db4->query($sSQL);
 					}
+	}else{
+		$sSQL="select prp_par_id, prp_valor from py_proypar where prp_jue_id=$iJue_id and prp_pro_id=$iProyecto order by prp_par_id asc";
+ 		$db3->query($sSQL);
+			while($db3->next_record())
+			{
+				$db4->query("delete from py_calculos where cal_jue_id=$iJue_id and cal_per_id=$iPeriodo and cal_usu_id=$iUserId and cal_pro_id=$iProyecto and cal_par_id=".tosql($db3->f("prp_par_id"), "Number"));
+			}
+	
 	}
 	return $valor;
 }
@@ -193,8 +201,14 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 												if($mantenimiento==NULL) $mantenimiento=0;	
 												if( $db->f("pro_duracion")==$fldperiodo-1)
 												{
-												$fldRedIn="<font color=\"#FF0000\">";
-												$fldRedFin="</font>";
+													if(($inversion>0)||($mantenimiento>0))
+													{
+														$fldRedIn="<font color=\"#FF0000\">";
+														$fldRedFin="</font>";
+													 }else{
+														$fldRedIn="";
+														$fldRedFin="";
+													 }
 												}else
 												{
 												$fldRedIn="";
