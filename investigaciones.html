@@ -25,15 +25,21 @@
 $(function () {
 var austDay = new Date();
 austDay = new Date(austDay.getFullYear() ,austDay.getMonth() ,austDay.getDate(), austDay.getHours(), austDay.getMinutes(),austDay.getSeconds()+seconds);
-
 $("#defaultCountdown").countdown({until: austDay, format: 'HMS',onExpiry: subastaBegin});
-function subastaBegin()
-{
-	$("#defaultDown").hide();
-}
+if(seconds<=0) subastaBegin();
 });
 
- var seconds={clock};
+var seconds={clock};
+
+function subastaBegin()
+{
+
+
+    $("#clock2").hide();
+	$("#defaultCountdown").hide();
+	$(".compra").attr("disabled","");
+}
+
 function valida(e,f)
  {
        var message = "Está realizando una compra ";
