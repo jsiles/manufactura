@@ -19,35 +19,21 @@
 -->
 </style> 
 <script language="javascript" type="text/javascript" src="js/jquery.js"></script>
-<script>
- var milisec=0;
- var seconds={clock};
- var sw=false;
- if (document.getElementById("clock2"))
- document.getElementById("clock2").innerHTML='{clock}';
+<script src="js/jquery.countdown.js" type="text/javascript"></script>
+<script src="js/jquery.countdown-es.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+$(function () {
+var austDay = new Date();
+austDay = new Date(austDay.getFullYear() ,austDay.getMonth() ,austDay.getDate(), austDay.getHours(), austDay.getMinutes(),austDay.getSeconds()+seconds);
 
-function display(){ 
- if (milisec<=0){ 
-    milisec=9 
-    seconds-=1 
- } 
- if (seconds<=-1){ 
-    milisec=0 
-    seconds+=1
-	if(seconds==0&&sw==false) {
-	sw=true;
-	document.getElementById("clock2").style.display= "none";
-	//document.getElementById("comprar").disabled="";
-	$(".compra").attr('disabled','');
-	}
- } 
- else 
-    milisec-=1 
-	 if (document.getElementById("clock2"))
-    document.getElementById("clock2").innerHTML=seconds+"."+milisec 
-	if(sw==false)
-    setTimeout("display()",100) 
-} 
+$("#defaultCountdown").countdown({until: austDay, format: 'HMS',onExpiry: subastaBegin});
+function subastaBegin()
+{
+	$("#defaultDown").hide();
+}
+});
+
+ var seconds={clock};
 function valida(e,f)
  {
        var message = "Está realizando una compra ";
@@ -80,7 +66,7 @@ function valida(e,f)
   }                                                    
 </script>
 </head>
-<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff" onLoad="display();">
+<body class="ClearPageBODY" text="#000000" vlink="#000099" alink="#ff0000" link="#000099" bgcolor="#ffffff" >
 <table width="100%" border="0">
 <tr>
 <td width="50%" align="right" rowspan="2">Resumen<a href="comprasResumen.php?jue_id={jue_idLink}&usu_id={usu_idLink}" title="Compra resumen"><img src="./image/excel.jpg" alt="Reporte resumen" border="0"></a>&nbsp;<img name="chart" src="image/chart.gif" alt="Carrito de compra" title="Carrito de compra">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -120,7 +106,11 @@ function valida(e,f)
 </tr>
 
 <tr>
-<td colspan="2" align="center" height="30px"><div><div id="clock2" style="float:center" class="title2"></div><div></div></div>&nbsp;
+<td colspan="2" align="center" height="30px"><div>
+<div id="clock2" style="float:center" class="title2">Inicio en:</div>
+</div>&nbsp;
+
+<div id="defaultCountdown" class="defCountDown"></div>
 </td>
 </tr>
 <!--BeginDatos--> 

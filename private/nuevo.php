@@ -149,7 +149,36 @@ function alta()
         
         $sSQL = "insert into tb_periodos (select null, $max_juego, per_periodo, per_estado, per_inv_estado, per_compra, per_tiempo, per_datetime from tb_periodos where per_jue_id=$juego order by per_id)";
         $db->query($sSQL);      
+        /****************************************
+                Alta todos los modulos v3 David Cabrera
+        ****************************************/
+		
+		/****************************************
+                Alta Proyectos
+        ****************************************/
+		//COSTOS
+		$sSQL="insert into py_costos (select cos_id, cos_mantenimiento, $max_juego from py_costos where cos_jue_id=$juego order by cos_id)";
+    	$db->query($sSQL);
+
+		//PARAMETROS
+		$sSQL="insert into py_parametros (select par_id, par_descripcion, par_valor, $max_juego from py_parametros where par_jue_id=$juego order by par_id)";
+    	$db->query($sSQL);
+		
+		//PROYECTOS
+		$sSQL="insert into py_proyectos (select pro_id, pro_descripcion, pro_duracion, $max_juego from py_proyectos where pro_jue_id=$juego order by pro_id)";
+    	$db->query($sSQL);
+
+		$sSQL="insert into py_proypar (select prp_pro_id, prp_par_id, prp_valor, $max_juego from py_proypar where prp_jue_id=$juego order by prp_pro_id)";
+    	$db->query($sSQL);
+		
+		/****************************************
+                Alta INFORMACION DISPONIBLE
+        ****************************************/
+        //INFORMACION DISPONIBLE
+		$sSQL = "insert into tb_investigacion (select null, $max_juego, inv_per_id, inv_investigacion, inv_costo, inv_costoexclusividad, inv_cantidad, inv_saldo, inv_pdf, inv_sw from  tb_investigacion where inv_jue_id=$juego order by inv_per_id) ";
+		$db->query($sSQL);      
         
+		
 		/****************************************
                 Alta de Compras Materiales V2
         ****************************************/
@@ -167,17 +196,41 @@ function alta()
         $db->query($sSQL);  
 		//SUMINISTRO ELIMNADO V3
 //		$sSQL = "insert into tb_suministro (select sum_id, sum_name, sum_cost, sum_time, $max_juego from tb_suministro where sum_jue_id=$juego order by sum_id)";
-//        $db->query($sSQL);  
+//        $db->query($sSQL);
+		//GESTION NO CORRESPONDE  
 		//MESA PROVEEDORES
 		$sSQL = "insert into tb_mesaproveedores (select mes_id, mes_com_id, mes_pro_id, mes_precio, mes_pedido, $max_juego, mes_inc_id, mes_tiempo from tb_mesaproveedores where mes_jue_id=$juego order by mes_id)"; //V3
         $db->query($sSQL);
+		//ALTER TABLE `tb_mesaproveedores` CHANGE `mes_id` `mes_id` INT( 11 ) NOT NULL ; ALTER TABLE `calidad`.`tb_mesaproveedores` DROP PRIMARY KEY , ADD PRIMARY KEY ( `mes_id` , `mes_jue_id` ) 
+		
 		//DESCUENTOS NO CORRESPONDE
 		//INCOTRAN
 		$sSQL = "insert into tb_incotran (select int_id, int_inc_id, int_tra_id, int_factorTra, int_tiempoTra, $max_juego from tb_incotran where int_jue_id=$juego order by int_id)";   //V3
         $db->query($sSQL);
 		//COMPRAS2 NO CORRESPONDE
 		
-                 
+		/****************************************
+                Alta de Subastas
+        ****************************************/		
+		$sSQL = "insert into tb_celebridades (select null, $max_juego, cel_per_id, cel_nombre,  cel_precio, cel_beneficio, cel_tiempo, cel_fecha, cel_fechafin, cel_foto, cel_sw from tb_celebridades where cel_jue_id=$juego order by cel_per_id)";
+        $db->query($sSQL);
+		
+		/****************************************
+                Alta de Licitacion proyectos
+        ****************************************/		
+		$sSQL = "insert into tb_ventas (select null, $max_juego, ven_per_id, ven_nombre,  ven_precio, ven_cantidad, ven_unidad, ven_tiempo, ven_fecha, ven_fechafin, ven_foto, ven_sw from tb_ventas where ven_jue_id=$juego order by ven_per_id)";
+        $db->query($sSQL);
+		
+		/****************************************
+                Alta de Responsabilidad Social
+        ****************************************/		
+		$sSQL = "insert into tb_responsabilidad (select null, $max_juego, res_per_id, res_nombre,  res_precio, res_beneficio0, res_beneficio1, res_beneficio2, res_beneficio3, res_beneficio4, res_beneficio5, res_beneficio6, res_tiempo, res_fecha, res_fechafin, res_foto, res_sw from tb_responsabilidad where res_jue_id=$juego order by res_per_id)";
+        $db->query($sSQL);
+		
+		$sSQL = "insert into tb_responsabilidadgeneral (select null, $max_juego, reg_per_id, reg_pdf,  reg_beneficio1, reg_beneficio2, reg_beneficio3, reg_beneficio4, reg_beneficioDirecto from tb_responsabilidadgeneral where reg_jue_id=$juego order by reg_per_id)";
+        $db->query($sSQL);
+		
+		
         echo "<script>javascript:window.opener.location.reload();</script>";
     }
 }

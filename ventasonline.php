@@ -17,7 +17,7 @@ if(!in_array($per_periodo,$periodo))
 <head>
 <meta name="CREATOR" content="Jsiles">
 <meta http-equiv="content-type" content="text/html; charset=windows-1252">
-<title>lICITACI&Oacute;N PROYECTOS</title>
+<title>LICITACI&Oacute;N PROYECTOS</title>
 <meta content="Jorge Siles" name="GENERATOR">
 <link href="Styles/Coco/Style1.css" type="text/css" rel="stylesheet">
 <script language="javascript" type="text/javascript" src="js/jquery.js"></script>
