@@ -160,7 +160,8 @@ function reporte()
 	//	echo "select per_datetime from tb_periodos where per_jue_id=$dat_juego and per_inv_estado='A'";
 		//echo $dateGame."<br>";
 		$difDate = time_diff($dateGame , date("Y-m-d H:i:s"));
-		//echo $difDate."<br>";
+		
+		//echo $difDate."<br>".date("Y-m-d H:i:s")."<br>".$dateGame ;
 		/*$dateGameY = substr($dateGame,0,4);
 		$dateGameM = substr($dateGame,5,2);
 		$dateGameD = substr($dateGame,8,2);
