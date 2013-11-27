@@ -124,6 +124,7 @@ function reporte()
 
         $tpl->set_var("id",$dat_juego);
         $maxPeriodoActive=get_db_value("select per_periodo from tb_periodos where per_jue_id=$dat_juego and per_inv_estado='A' order by per_periodo desc limit 1");    
+		if(!$maxPeriodoActive) $maxPeriodoActive=0;
         $periodo = db_fill_array("select per_periodo, per_periodo from tb_periodos where per_jue_id=$dat_juego and per_periodo <= $maxPeriodoActive limit $per_cantidad ");
 		if(in_array($fldperiodo,$periodo))
 		$active_periodo = $fldperiodo;
