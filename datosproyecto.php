@@ -197,13 +197,13 @@ function calcValores($iDuracion, $iPeriodo, $iJue_id, $iProyecto, $iUserId)
 											{
 												$inversion = get_db_value("select dat_inversion from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_gestion=". tosql($fldperiodo, "Number"));
 												$mantenimiento = get_db_value("select dat_mantenimiento from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_gestion=". tosql($fldperiodo, "Number"));				
-												$periodoInversion = get_db_value("select min(dat_gestion) from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId ");				
+												$periodoInversion = get_db_value("select min(dat_gestion) from py_datos where dat_jue_id=$jue_id and dat_pro_id=".$db->f("pro_id")." and dat_usu_id=$fldCliId and dat_inversion>0 ");				
 								
 												if($inversion==NULL) $inversion=0;
 												if($mantenimiento==NULL) $mantenimiento=0;	
 												if($periodoInversion==NULL) $periodoInversion=0;	
 												$calcVal = $fldperiodo - $periodoInversion - $db->f("pro_duracion");
-												//echo $periodoInversion."#" . $calcVal ."@";
+												//echo $periodoInversion."#" . $calcVal ."@In:". $inversion ." man:".$mantenimiento. "<br />";
 												if(($periodoInversion>0)&&($calcVal>=0))//||($db->f("pro_duracion")==0))
 												{
 												
