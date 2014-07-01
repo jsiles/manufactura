@@ -93,15 +93,11 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 					$worksheet->write(2,0,"Producto",$format_title);
 					$worksheet->write(2,1,"Grupo",$format_title);
 					$worksheet->write(2,2,"Precio Ofertado", $format_title);
-                    $worksheet->write(2,3,"Cantidad Ofertada",$format_title);
-					$worksheet->write(2,4,"Cantidad aceptada", $format_title);
-					$worksheet->write(2,5,"Cantidad rechazada", $format_title);
-					$worksheet->write(2,6,"Cantidad entregada", $format_title);
-					$worksheet->write(2,7,"Ingreso por Ventas ONLINE", $format_title);
-					$worksheet->setColumn(0,0,10);
-					$worksheet->setColumn(0,1,10);
+                    $worksheet->write(2,3,"Cantidad Expertos Obtenidos",$format_title);
+					$worksheet->setColumn(0,0,45);
+					$worksheet->setColumn(0,1,20);
 					$worksheet->setColumn(0,2,15);
-					$worksheet->setColumn(0,3,15);
+					$worksheet->setColumn(0,3,35);
 					$worksheet->setColumn(0,4,30);
 					$worksheet->setColumn(0,5,30);
 					$worksheet->setColumn(0,6,30);
@@ -109,110 +105,44 @@ $format_end =& $workbook->addFormat(array('Size' => 8,
 					$fldven_jue_id = get_param("jue_id");
 					$fldven_per_id = get_param("per_id");
 					 $i=3;
-					$db->query("SELECT ven_id, ven_nombre FROM tb_ventas where ven_jue_id=$fldven_jue_id and ven_per_id=$fldven_per_id  and ven_sw=1 order by ven_id");
+					$db->query("SELECT ven_id, ven_nombre FROM tb_ventas, tb_ofertas where ven_id=ofe_ven_id and ven_jue_id=$fldven_jue_id and ven_per_id=$fldven_per_id  and ven_sw=1 GROUP BY ven_id, ven_nombre ORDER BY ven_id");
 					while($db->next_record())
 					{
-					$id = $db->f("ven_id");
-					$fldven_nombre = $db->f("ven_nombre");
-					$worksheet->write($i,0, $fldven_nombre, $format_grid);
-					if(!isset($id)) $id=0;
-					$db1->query("SELECT ofe_id, ofe_usu_id, ofe_cantidad, ofe_monto,ofe_entrega FROM tb_ofertas where ofe_ven_id=$id order by ofe_id");
+ 					  $fldven_nombre = $db->f("ven_nombre");
+  					  $celNombreProy = get_db_value("select pro_descripcion from py_proyectos where pro_id=".$db->f("ven_nombre")." and pro_jue_id=$fldven_jue_id");
+
+					$db1->query("SELECT ofe_id, ofe_usu_id, ofe_cantidad, ofe_monto, ofe_entrega FROM tb_ofertas where ofe_ven_id=".$db->f("ven_id")." order by ofe_monto desc, ofe_id asc");
                    
 					$cantidadMaxAceptada=0;
-					$precioMax = get_db_value("select ven_precio from tb_ventas where ven_id=$id");
-					$cantidadMax = get_db_value("select ven_cantidad from tb_ventas where ven_id=$id");
+					$precioMax = get_db_value("select ven_precio from tb_ventas where ven_id=".$db->f("ven_id"));
+					$cantidadMax = get_db_value("select ven_cantidad from tb_ventas where ven_id=".$db->f("ven_id"));
 					  while($db1->next_record())
 					  {
+					  
 					   $ofe_usu_id = $db1->f("ofe_usu_id");
 					   $ofe_cantidad = $db1->f("ofe_cantidad");
 					   $ofe_monto = $db1->f("ofe_monto");
 					   $ofe_entregada = $db1->f("ofe_entrega");
 					   $nombre = get_db_value("select usu_nombre from tb_usuarios where usu_id=$ofe_usu_id");
-					   $worksheet->write($i,6, $ofe_entregada, $format_grid);	
-					   $worksheet->write($i,7, $ofe_entregada*$ofe_monto, $format_grid);	
-					  
-					   if ($i%2==0) {
+					   $cantidadTemp = $cantidadMaxAceptada + $ofe_cantidad;
+   					   $worksheet->write($i,0, $celNombreProy, $format_grid);
+							
 					       $worksheet->write($i,1, $nombre, $format_grid);
 					       $worksheet->write($i,2, $ofe_monto, $format_grid);
-					       $worksheet->write($i,3, $ofe_cantidad, $format_grid);
-	 					  // $cantidadTemp = $cantidadMaxAceptada + $ofe_cantidad;
-						 /*  if(($ofe_monto<=$precioMax)&&($cantidadTemp<=$cantidadMax)&&($ofe_monto!=0)&&($ofe_cantidad!=0))
-						   {
-						   $worksheet->write($i,3, "Aceptado", $format_grid);
-						   $cantidadMaxAceptada += $ofe_cantidad;
-						   }else
-						   {
-							$worksheet->write($i,3, "Rechazado", $format_grid);							
-						      }*/
-							  /************************************************/
-						   $cantidadTemp = $cantidadMaxAceptada + $ofe_cantidad;
-						   if(($ofe_monto<=$precioMax)&&($cantidadTemp<=$cantidadMax)&&($ofe_monto!=0)&&($ofe_cantidad!=0))
-						   {
-							$worksheet->write($i,4, $ofe_cantidad, $format_grid);
-							$worksheet->write($i,5, 0, $format_grid);							
- 						    $cantidadMaxAceptada += $ofe_cantidad;
-						   }else
-						   {
-
-							$cantidaParcialAcep = $cantidadMax - $cantidadMaxAceptada;
-							if(($ofe_monto<=$precioMax)&&($cantidaParcialAcep>0))
+					   	/************************************************/
+							if(($ofe_monto>=$precioMax)&&($cantidadTemp<=$cantidadMax)&&($ofe_monto!=0)&&($ofe_cantidad!=0))
 							{
-								$cantidaParcialRechazado = $ofe_cantidad - $cantidaParcialAcep;
-								$cantidadMaxAceptada += $cantidaParcialAcep;
-								$worksheet->write($i,4, $cantidaParcialAcep, $format_grid);
-								$worksheet->write($i,5, $cantidaParcialRechazado, $format_grid);							
-							}else{
-								$worksheet->write($i,3, 0, $format_grid);
-								$worksheet->write($i,4, $ofe_cantidad, $format_grid);							
-								}
-
-						      }
-							  /************************************************/
-                        }
-                        else{
-					       $worksheet->write($i,1, $nombre, $format_gridiz);
-                           $worksheet->write($i,2, $ofe_monto, $format_gridiz);
-                           $worksheet->write($i,3, $ofe_cantidad, $format_gridiz);
-                           //$cantidadTemp = $cantidadMaxAceptada + $ofe_cantidad;
-						   /*if(($ofe_monto<=$precioMax)&&($cantidadTemp<=$cantidadMax))
-						   {
-						   $worksheet->write($i,3, "Aceptado", $format_gridiz);
-						   $cantidadMaxAceptada += $ofe_cantidad;
-						   }
-						   else
-						   {
-							$worksheet->write($i,3, "Rechazado", $format_gridiz);
-						      }*/
-							  /************************************************/
-							  
-						   $cantidadTemp = $cantidadMaxAceptada + $ofe_cantidad;
-						   if(($ofe_monto<=$precioMax)&&($cantidadTemp<=$cantidadMax)&&($ofe_monto!=0)&&($ofe_cantidad!=0))
-						   {
-							$worksheet->write($i,4, $ofe_cantidad, $format_gridiz);
-							$worksheet->write($i,5, 0, $format_gridiz);							
- 						    $cantidadMaxAceptada += $ofe_cantidad;
-						   }else
-						   {
-
-							$cantidaParcialAcep = $cantidadMax - $cantidadMaxAceptada;
-							if(($ofe_monto<=$precioMax)&&($cantidaParcialAcep>0))
+							  $worksheet->write($i,3, $ofe_cantidad, $format_grid);
+							  $cantidadMaxAceptada += $ofe_cantidad;
+							}else
 							{
-								$cantidaParcialRechazado = $ofe_cantidad - $cantidaParcialAcep;
-								$cantidadMaxAceptada += $cantidaParcialAcep;
-								$worksheet->write($i,4, $cantidaParcialAcep, $format_gridiz);
-								$worksheet->write($i,5, $cantidaParcialRechazado, $format_gridiz);							
-							}else{
-								$worksheet->write($i,4, 0, $format_gridiz);
-								$worksheet->write($i,5, $ofe_cantidad, $format_gridiz);							
-								}
-
-						      }
-							  /************************************************/
-
-                         }
-   					   
+							   $worksheet->write($i,3, 0, $format_grid);
+							}
+						/************************************************/
+	 					
+						$i++; 
 					  }
-					  $i++;
+					  
 					}
 $workbook->close();
 ?>

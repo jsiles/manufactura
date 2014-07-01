@@ -6,7 +6,9 @@ $sAction = get_param("FormAction");
 $sForm = get_param("FormName");
 $svaloresRecordErr = "";
 $sDeleteValue = get_param("deleteValue");
+$fldjuego = get_param("jue_id"); 
 
+$arrayProyecto = db_fill_array("select pro_id, pro_descripcion from py_proyectos where pro_jue_id=$fldjuego");
 //print_r($_GET);
 
 switch ($sForm) {
@@ -49,11 +51,11 @@ function valoresRecord_action($sAction)
   $idInv = get_param("idInv");
   $fechaI = get_param("fechaI");   
   $horaI = get_param("horaI");   
- // print_r($investigacion);
- // print_r($FILES);
- // print_r($costo);
+  //print_r($investigacion);//
+  //print_r($FILES);
+  //print_r($costo);//
   //print_r($costo_exclusividad);
-//  print_r($idInv);
+  //print_r($idInv);//
  
   $cantidadDat = get_db_value("select count(*) from tb_celebridades where cel_jue_id=$fldjuego and cel_per_id=$fldperiodo");
   if($cantidadDat==0)
@@ -114,7 +116,9 @@ function valoresRecord_action($sAction)
 	//		  $nombrepdf1= imageName($fldjuego)."-".$value."-".$fldperiodo.'.jpg';
 			  
 		 // if($cantidad[$key])
-		  //echo $idInv[$key].$value.$costo[$key].$costo_exclusividad[$key].$cantidad[$key];
+		 
+		  if(!$costo_exclusividad[$key]) $costo_exclusividad[$key]=0;  
+		  //echo $idInv[$key]."--".$value."--".$costo[$key]."--".$costo_exclusividad[$key]."--".$cantidad[$key]."::";
 		  if(($fechaI[$key])&&($horaI[$key]))
 		  {
 		  $fechaInicio = changeFormatDate(trim($fechaI[$key]),1) . " " .trim($horaI[$key]);
@@ -129,13 +133,15 @@ function valoresRecord_action($sAction)
 			//echo $yearFI."/".$monthFI."/".$dayFI." ".$hourFI.":".$minuteFI.":".$secondFI;die;	
 			//echo $fechaInicio."$$".$fechaFin;
 		  }
-		  if(($idInv[$key])&&($value)&&($costo[$key])&&($costo_exclusividad[$key])&&(strlen($cantidad[$key])>0))
+		  //if(($idInv[$key])&&($value)&&($costo[$key])&&($costo_exclusividad[$key])&&(strlen($cantidad[$key])>0))
+		  if(($idInv[$key])&&($value)&&($costo[$key])&&(strlen($cantidad[$key])>0))
 		  {
 			  $sSQL = "update tb_celebridades set  cel_nombre='$value', cel_precio=".$costo[$key].", cel_beneficio=".$costo_exclusividad[$key].", cel_tiempo=".$cantidad[$key].", cel_fecha='$fechaInicio', cel_fechafin='$fechaFin' where cel_jue_id=$fldjuego and cel_per_id=$fldperiodo and cel_id=".$idInv[$key];
 		  $sSQL1="delete from tb_pujas where puj_cel_id=".$idInv[$key];
 		$db->query($sSQL1);
+			//echo ";l;l;l;";
 		  }
-		  elseif((!$idInv[$key])&&($value)&&($costo[$key])&&($costo_exclusividad[$key])&&($cantidad[$key]))
+		  elseif((!$idInv[$key])&&($value)&&($costo[$key])&&($cantidad[$key]))
 		 $sSQL = "insert into tb_celebridades values(null, $fldjuego, $fldperiodo, '$value', ".$costo[$key].", ".$costo_exclusividad[$key].", ".$cantidad[$key].", '$fechaInicio','$fechaFin','',1)";
 		 //else $idInv[$key];
 		//echo $sSQL;
@@ -324,13 +330,26 @@ function eliminarFila(e)
 	 {
 	?>
      <tr>
-      <td width="150" class="ClearFieldCaptionTD"><input name="investigacion[]" onClick="clean(this);" id="investigacion<?=$l?>" type="text" size="20" value="<?=$db->f("cel_nombre")?>"></td>
+      <td width="150" class="ClearFieldCaptionTD">
+      <select name="investigacion[]"  id="investigacion<?=$l?>">
+         <option value="">Seleccionar</option>
+      <?php
+		  foreach($arrayProyecto as $key=>$value)
+		  {
+			  if($key==$db->f("cel_nombre")) $selValue="Selected"; else $selValue="";
+		  ?>
+		  <option value="<?=$key?>" <?=$selValue?>><?=$value?></option>
+		  <?
+		  }
+	  ?>
+      </select>
+     <!-- <input name="investigacion[]" onClick="clean(this);" id="investigacion<?=$l?>" type="text" size="20" value="<?=$db->f("cel_nombre")?>">--></td>
       <td width="124" class="ClearDataTD"><input name="costo[]" id="costo<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("cel_precio")?>">
       </td>
       <!--<td width="140" class="ClearDataTD"  ><input name="costo_exclusividad[]" id="costo_exclusividad<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("cel_beneficio")?>">
       </td>-->
 
-        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI<?=$l?>" type="text" size="8" value="<?=changeFormatDate(substr($db->f("cel_fecha"),0,10),2)?>" readonly><a id="calendar<?=$l?>" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI<?=$l?>);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
+        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI<?=$l?>" type="text" size="12" value="<?=changeFormatDate(substr($db->f("cel_fecha"),0,10),2)?>" readonly><a id="calendar<?=$l?>" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI<?=$l?>);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
       <td width="163" class="ClearDataTD"><input name="horaI[]" id="horaI<?=$l?>"  type="text" size="8" value="<?=substr($db->f("cel_fecha"),11)?>"></td>
      
       <td width="94" class="ClearDataTD"  ><input name="cantidad[]" id="cantidad<?=$l?>" onClick="clean(this);" type="text" size="3" value="<?=$db->f("cel_tiempo")?>">
@@ -357,13 +376,25 @@ function eliminarFila(e)
 	</table>
     <table id="dataInvestigacion0" class="ClearFormTABLE">
      <tr>
-      <td width="150" class="ClearFieldCaptionTD"><input name="investigacion[]" onClick="clean(this);" id="investigacion0" type="text" size="20" value=""></td>
+      <td width="150" class="ClearFieldCaptionTD">
+      <select name="investigacion[]"  id="investigacion0">
+	      <option value="" selected>Seleccionar</option>
+      <?php
+		  foreach($arrayProyecto as $key=>$value)
+		  {
+		  ?>
+		  <option value="<?=$key?>"><?=$value?></option>
+		  <?
+		  }
+	  ?>
+      </select>
+      <!--<input name="investigacion[]" onClick="clean(this);" id="investigacion0" type="text" size="20" value="">--></td>
       <td width="124" class="ClearDataTD"><input name="costo[]" id="costo0" onClick="clean(this);" type="text" size="3" value="">
       </td>
       <!--<td width="140" class="ClearDataTD"  ><input name="costo_exclusividad[]" id="costo_exclusividad0" onClick="clean(this);" type="text" size="3" value="">
       </td>-->
       
-        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI0" type="text" size="8" value="" readonly><a id="calendar0" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI0);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
+        <td width="163" class="ClearDataTD"><input name="fechaI[]" id="fechaI0" type="text" size="12" value="" readonly><a id="calendar0" href="javascript:void(0)" onClick="if(self.gfPop)gfPop.fPopCalendar(document.valoresRecord.fechaI0);return false;" ><img border="0" src="calendario/icon_calendar.gif">				</a></td>
       <td width="163" class="ClearDataTD"><input name="horaI[]" id="horaI0"  type="text" size="8" value=""></td>
     
       <td width="94" class="ClearDataTD"  ><input name="cantidad[]" id="cantidad0" onClick="clean(this);" type="text" size="3" value="">

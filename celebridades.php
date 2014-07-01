@@ -122,7 +122,7 @@ function validar(e)
 		var valueBid = $("#valor"+e).val()*1;
 		var valueBase = $("#price"+e).html()*1;
 		if(valueBid>valueBase) {
-			var message="Para proceder con su oferta de "+valueBid+" $M, la misma que debe ser confirmada. Está seguro del monto ofertado?";
+			var message="Para proceder con su oferta de "+valueBid+" M$, la misma que debe ser confirmada. Está seguro del monto ofertado?";
 			if(confirm(message)) {
 				
 					$.ajax({
@@ -138,6 +138,17 @@ function validar(e)
 					 
 				}else return false;
 			} else alert("El monto ofertado, es menor al precio base");
+}
+function ganador(e){
+			$.ajax({
+					   type: "POST",
+					   url: "valBids2.php",
+					   data: "id="+e+"&",
+					   success: function(valBids){
+						 $("#win"+e).html(valBids);
+					   }
+					 });
+return false;
 }
 function bidsControl()
 {
@@ -219,6 +230,7 @@ $scripDin1="";
 			$dateFin = $db->f("cel_fechafin");
 			$precioBase = $db->f("cel_precio");
 			$precioFlag = false;
+			$celNombreProy = get_db_value("select pro_descripcion from py_proyectos where pro_id=".$db->f("cel_nombre")." and pro_jue_id=$dat_juego");
 			$valPrecioBase = get_db_value("select count(*) from tb_pujas where puj_cel_id=$id");
 			if($valPrecioBase>0) {
 				$maxPrecioPuja = get_db_value("select max(puj_monto) from tb_pujas where puj_cel_id=$id");
@@ -270,6 +282,8 @@ $scripDin1="";
 						}
 					 });
 					$(\"#leftTime$id\").html(\"<td colspan='2' class='title2'>La subasta fue concluida, gracias por participar!</td>\");
+					ganador($id);
+					
 				}
 				";
 		?>
@@ -282,7 +296,7 @@ $scripDin1="";
 		?> <img border="0" src="private/temp/<?=$db->f("cel_foto")?>">
         <?php
 		}
-		?>&nbsp;</td><td class="title" align="left"><?=$db->f("cel_nombre")?></td>
+		?>&nbsp;</td><td class="title" align="left"><?=$celNombreProy?></td>
 	</tr>
     
     <?php
@@ -290,7 +304,7 @@ $scripDin1="";
 		{
 			
 			$valPrecioBase = get_db_value("select count(*) from tb_pujas where puj_cel_id=$id");
-			//echo $valPrecioBase."|".$id;
+			//revisar aca para el ganador nombre
 			if($valPrecioBase>0) {
 				$maxPrecioPuja = get_db_value("select max(puj_monto) from tb_pujas where puj_cel_id=$id");
 				$uidGanador = get_db_value("select puj_usu_id from tb_pujas where puj_cel_id=$id and puj_monto=$maxPrecioPuja order by puj_id asc limit 1");
@@ -311,7 +325,8 @@ $scripDin1="";
        
      
 		<tr>
-		<td class="title2"> Precio <?php if($precioFlag) echo "Actual";else echo "Base"; ?> ($M):</td><td class="title" id="price<?=$id?>"><?=$precioBase?></td>
+		<td class="title2"> Precio <?php if($precioFlag) echo "Actual";else echo "Base"; ?>	      (M$):</td>
+		<td class="title" id="price<?=$id?>"><?=$precioBase?></td>
 		</tr>
 		
 		<tr style="display:;">
@@ -353,7 +368,9 @@ $scripDin1="";
 		else
 		{
 			?>
-			<tr><td colspan="2" class="title2">No existen celebridades para este periodo.</td></tr>
+			<tr>
+			  <td colspan="2" class="title2">No existen proyectos para esta gesti&oacute;n.</td>
+			</tr>
 			
 			<?php
 			}

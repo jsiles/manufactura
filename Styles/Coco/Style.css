@@ -206,6 +206,15 @@ a.submenu:hover {
     padding-left: 10px;
     }
 
+a.submenuHover:link, a.submenuHover:visited { 
+    COLOR: #fdd700;
+    text-decoration: none; 
+    background-image: url(../lib/bullet.gif);
+    background-repeat: no-repeat;
+    background-position: left;
+    font-size: 9px;
+    padding-left: 10px;
+    }
 /* Fin CSS */
 
 

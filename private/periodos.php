@@ -57,7 +57,8 @@ function valoresRecord_action($sAction)
     if ($fldperiodo!=null&&$fldinvestigacion!=null)
     { 
 //          print_r($fldinvestigacion);
-            $sSQL = "update tb_periodos set per_estado='I', per_inv_estado='I', per_tiempo=$fldtiempo, per_datetime='".date("Y-m-d h:i:s",mktime(date("h"),date("i")+ $fldtiempo,date("s"),date("m"),date("d"),date("Y")))."' where per_jue_id=$fldjuego ";
+            $sSQL = "update tb_periodos set per_estado='I', per_inv_estado='I', per_tiempo=$fldtiempo, per_datetime='".date("Y-m-d H:i:s",mktime(date("H"),date("i")+ $fldtiempo,date("s"),date("m"),date("d"),date("Y")))."' where per_jue_id=$fldjuego ";
+		//	echo $sSQL;
             $db->query($sSQL);     
 	        foreach ($fldperiodo as $key => $value)
             {
@@ -73,7 +74,8 @@ function valoresRecord_action($sAction)
     }
     elseif ($fldinvestigacion!=null&&$fldperiodo==null)
     {
-        $sSQL = "update tb_periodos set per_inv_estado='I', per_tiempo=$fldtiempo, per_datetime='".date("Y-m-d h:i:s",mktime(date("h"),date("i")+ $fldtiempo,date("s"),date("m"),date("d"),date("Y")))."' where per_jue_id=$fldjuego ";
+        $sSQL = "update tb_periodos set per_inv_estado='I', per_tiempo=$fldtiempo, per_datetime='".date("Y-m-d H:i:s",mktime(date("H"),date("i")+ $fldtiempo,date("s"),date("m"),date("d"),date("Y")))."' where per_jue_id=$fldjuego ";
+	//	echo $sSQL;
         $db->query($sSQL); 
 	
 		$sSQL = "update tb_periodos set per_estado='I' where per_jue_id=$fldjuego ";
@@ -91,7 +93,8 @@ function valoresRecord_action($sAction)
 			$sSQL = "update tb_periodos set per_inv_estado='I' where per_jue_id=$fldjuego ";
 			$db->query($sSQL); 
 		
-			$sSQL = "update tb_periodos set per_estado='I', per_tiempo=$fldtiempo, per_datetime='".date("Y-m-d h:i:s",mktime(date("h"),date("i")+ $fldtiempo,date("s"),date("m"),date("d"),date("Y")))."' where per_jue_id=$fldjuego ";
+			$sSQL = "update tb_periodos set per_estado='I', per_tiempo=$fldtiempo, per_datetime='".date("Y-m-d H:i:s",mktime(date("H"),date("i")+ $fldtiempo,date("s"),date("m"),date("d"),date("Y")))."' where per_jue_id=$fldjuego ";
+//			echo $sSQL;
             $db->query($sSQL); 
                 foreach ($fldperiodo as $key => $value)
             {
