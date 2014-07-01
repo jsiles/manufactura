@@ -1,0 +1,108 @@
+26/06/2014
+Modulo de Produccion
+use calidad;
+
+CREATE TABLE `calidad`.`pd_costos` (
+`cos_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`cos_descripcion` VARCHAR( 255 ) NOT NULL ,
+`cos_valor` DOUBLE( 32, 2 ) NOT NULL,
+`cos_jue_id` INT NOT NULL
+) ENGINE = MYISAM;
+
+INSERT INTO `pd_costos` (`cos_id`, `cos_descripcion`, `cos_valor`, `cos_jue_id`) VALUES
+(1, 'Costo Total MPM Inicial(M$)', 0.00, 0),
+(2, 'Cantidad inicial unidades MP', 0.00, 0),
+(3, 'Costo ajuste (M$/Hora)', 0.00, 0),
+(4, 'Costo hora normal MO (M$/Hora)', 0.00, 0),
+(5, 'Costo hora extra MO (M$/Hora)', 0.00, 0),
+(6, 'Costo contratación (M$)', 0.00, 0),
+(7, 'Costo despido (M$)', 0.00, 0),
+(8, 'Costo capacitación (M$/empleado/día)', 0.00, 0),
+(9, 'Costo Almacenaje MP (M$/Unidad/Periodo)', 0.00, 0),
+(10, 'Último Producto en Maquina 1', 0.00, 0),
+(11, 'Último Producto en Maquina 2', 0.00, 0),
+(12, 'Último Producto en Maquina 3', 0.00, 0),
+(13, 'Último Producto en Maquina 4', 0.00, 0),
+(14, 'Último Producto en Maquina 5', 0.00, 0),
+(15, 'Último Producto en Maquina 6', 0.00, 0),
+(16, 'Último Producto en Maquina 7', 0.00, 0),
+(17, 'Último Producto en Maquina 8', 0.00, 0),
+(18, 'Factor de costo MO Despido Contratación y Capacitación Supervisor/Operador', 0.00, 0);
+
+
+CREATE TABLE `calidad`.`pd_demanda` (
+`dem_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`dem_pro_id` INT NOT NULL ,
+`dem_per_id` INT NOT NULL ,
+`dem_jue_id` INT NOT NULL ,
+`dem_valor` INT NOT NULL
+) ENGINE = MYISAM 
+
+
+CREATE TABLE `calidad`.`pd_preciodemanda` (
+`pre_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`pre_pro_id` INT NOT NULL ,
+`pre_per_id` INT NOT NULL ,
+`pre_jue_id` INT NOT NULL ,
+`pre_valor` INT NOT NULL
+) ENGINE = MYISAM
+
+
+CREATE TABLE `calidad`.`pd_producto` (
+`pro_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`pro_pro_id` INT NOT NULL ,
+`pro_unidadesreq` INT NOT NULL ,
+`pro_prodmedia` INT NOT NULL ,
+`pro_cantinter` INT NOT NULL ,
+`pro_cantfinal` INT NOT NULL ,
+`pro_costointer` INT NOT NULL ,
+`pro_costofinal` INT NOT NULL ,
+`pro_multa` INT NOT NULL ,
+`pro_almacenaje` DOUBLE( 32, 2 ) NOT NULL ,
+`pro_tiempo` INT NOT NULL ,
+`pro_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `calidad`.`pd_rrhhfac` (
+`fac_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`fac_evaluacion` INT NOT NULL ,
+`fac_operador` DOUBLE( 32, 2 ) NOT NULL ,
+`fac_supervisor` DOUBLE( 32, 2 ) NOT NULL ,
+`fac_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+
+CREATE TABLE `calidad`.`pd_rrhhoperadores` (
+`ope_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`ope_operdador` VARCHAR( 20 ) NOT NULL ,
+`ope_trabajo` INT NOT NULL ,
+`ope_capacitacion` INT NOT NULL ,
+`ope_eva_id` INT NOT NULL ,
+`ope_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `calidad`.`pd_rrhhsupervisor` (
+`sup_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`sup_supervisor` VARCHAR( 20 ) NOT NULL ,
+`sup_trabajo` INT NOT NULL ,
+`sup_capacitacion` INT NOT NULL ,
+`sup_eva_id` INT NOT NULL ,
+`sup_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `calidad`.`pd_confiabilidad` (
+`con_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`con_nivel` INT NOT NULL ,
+`con_periodo` INT NOT NULL ,
+`con_maquina` INT NOT NULL ,
+`con_per_id` INT NOT NULL ,
+`con_valor` INT NOT NULL,
+`con_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
+
+CREATE TABLE `calidad`.`pd_balance` (
+`bal_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`bal_val_id` INT NOT NULL ,
+`bal_valor` INT NOT NULL ,
+`bal_jue_id` INT NOT NULL
+) ENGINE = MYISAM 
