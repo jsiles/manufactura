@@ -288,7 +288,7 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
         $this->Link21->Page = "proyectos/costos.php";
 
 		$this->Link23 = new clsControl(ccsLink, "Link23", "Link23", ccsText, "", CCGetRequestParam("Link23", ccsGet), $this);
-        $this->Link23->Page = "produccion/costos.php";
+        $this->Link23->Page = "produccion/producto.php";
 		
 
         $this->jue_nombre = new clsControl(ccsLabel, "jue_nombre", "jue_nombre", ccsText, "", CCGetRequestParam("jue_nombre", ccsGet), $this);
@@ -334,7 +334,7 @@ class clsGridtb_juegos { //tb_juegos class @2-35D5730B
 		$this->Link22 = new clsControl(ccsLink, "Link22", "Link22", ccsText, "", CCGetRequestParam("Link22", ccsGet), $this);
         $this->Link22->Page = "proyectos/costos.php";      
 		$this->Link24 = new clsControl(ccsLink, "Link24", "Link24", ccsText, "", CCGetRequestParam("Link24", ccsGet), $this);
-        $this->Link24->Page = "produccion/costos.php";      
+        $this->Link24->Page = "produccion/producto.php";      
 	
 
         $this->Alt_jue_nombre = new clsControl(ccsLabel, "Alt_jue_nombre", "Alt_jue_nombre", ccsText, "", CCGetRequestParam("Alt_jue_nombre", ccsGet), $this);

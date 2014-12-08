@@ -1,3 +1,29 @@
+08/12/2014
+Modulo de Produccion
+use calidad;
+
+ALTER TABLE `pd_producto` CHANGE `pro_pro_id` `pro_producto` VARCHAR( 11 ) NOT NULL;
+
+
+ALTER TABLE `pd_demanda` ADD `dem_periodo1` INT NOT NULL AFTER `dem_pro_id` ,
+ADD `dem_periodo2` INT NOT NULL AFTER `dem_periodo1` ,
+ADD `dem_periodo3` INT NOT NULL AFTER `dem_periodo2` 
+
+ALTER TABLE `pd_demanda` CHANGE `dem_per_id` `dem_periodo4` INT( 11 ) NOT NULL 
+
+ALTER TABLE `pd_demanda` DROP `dem_valor;
+
+ALTER TABLE `pd_preciodemanda`
+  DROP `pre_per_id`,
+  DROP `pre_valor`;
+  
+  
+ALTER TABLE `pd_preciodemanda` ADD `pre_periodo1` INT NOT NULL AFTER `pre_pro_id` ,
+ADD `pre_periodo2` INT NOT NULL AFTER `pre_periodo1` ,
+ADD `pre_periodo3` INT NOT NULL AFTER `pre_periodo2` ,
+ADD `pre_periodo4` INT NOT NULL AFTER `pre_periodo3` 
+
+
 26/06/2014
 Modulo de Produccion
 use calidad;
@@ -50,7 +76,7 @@ CREATE TABLE `calidad`.`pd_preciodemanda` (
 
 CREATE TABLE `calidad`.`pd_producto` (
 `pro_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
-`pro_pro_id` INT NOT NULL ,
+`pro_producto` INT NOT NULL ,
 `pro_unidadesreq` INT NOT NULL ,
 `pro_prodmedia` INT NOT NULL ,
 `pro_cantinter` INT NOT NULL ,
