@@ -1,6 +1,6 @@
 <?php
 include ("./common2.php");
-session_start();
+@session_start();
 $filename = "periodos.php";
 $template_filename = "periodos.html";
 $sAction = get_param("FormAction");
@@ -172,7 +172,7 @@ function valoresRecord_show()
   }
   else
   {
-    if($valoresRecordErr == "")
+    if(!isset($valoresRecordErr))
     {
       $fldvai_id = tohtml(get_param("vai_id"));
     }

@@ -1,5 +1,5 @@
 <?php
-include ("private/config.php");
+include ("private/config_mysql.php");
 include ("private/common2.php");
 session_start();
 $jue_id= get_param("jue_id");

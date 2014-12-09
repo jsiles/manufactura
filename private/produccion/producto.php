@@ -1,10 +1,20 @@
 <?php
-include ("../config.php");
-include ("../common2.php");
-session_start();
+include_once ("../common2.php");
+@session_start();
 $jue_id= get_param("jue_id");
 $pro_id= get_param("pro_id");
-
+	$fldproducto = get_param("producto");
+	$fldunidadesreq = get_param("unidadesreq");
+	$fldprodmedia = get_param("prodmedia");
+	$fldcantinter = get_param("cantinter");
+	$fldcantfinal = get_param("cantfinal");
+	$fldcostointer = get_param("costointer");
+	$fldcostofinal = get_param("costofinal");
+	$fldmulta = get_param("multa");
+	$fldalmacenaje = get_param("almacenaje");
+	$fldtiempo = get_param("tiempo");
+	
+	
 $FormAction= get_param("FormAction");
 
 if ($FormAction=='insert') insert($jue_id);
@@ -99,6 +109,13 @@ function delete($jue_id, $pro_id)
                 		<?php
 							$idActive1 = "id=\"active\"";
 							$idActive11 = "id=\"active\"";
+							$idActive12 = "";
+							$idActive13 = "";
+							$idActive14 = "";
+							
+							$idActive2 = "";
+							$idActive3 = "";
+							$idActive4 = "";
 							
                         	include("menu_horiz.php");
 						?>                            

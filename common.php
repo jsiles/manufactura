@@ -2,7 +2,7 @@
 error_reporting (E_ALL ^ E_NOTICE);
 include("./template.php");
 include("./db_mysql.inc");
-include("./private/config.php");
+include("private/config_mysql.php");
 define("DATABASE_NAME", DB_NAME);
 define("DATABASE_USER", DB_USER);
 define("DATABASE_PASSWORD", DB_PASSWORD); 

@@ -1,3 +1,7 @@
+<?php
+@session_start();
+$jue_id = get_param("jue_id");
+?>
 						<div id="nav2">
                             <ul id="navmenu2">
                                     <li><a <?=$idActive1?> href="producto.php?jue_id=<?=$jue_id?>">Param&eacute;tricas</a></li>

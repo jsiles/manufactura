@@ -1,9 +1,14 @@
 <?php
-include ("../config.php");
+//include ("../config_mysql.php");
 include ("../common2.php");
-session_start();
+@session_start();
 $jue_id= get_param("jue_id");
 $pre_id= get_param("pre_id");
+$fldpro_id = get_param("pro_id");
+$fldperiodo1 = get_param("periodo1");
+$fldperiodo2 = get_param("periodo2");
+$fldperiodo3 = get_param("periodo3");
+$fldperiodo4 = get_param("periodo4");
 
 $FormAction= get_param("FormAction");
 
@@ -83,6 +88,13 @@ function delete($jue_id, $pre_id)
                 		<?php
 							$idActive1 = "id=\"active\"";
 							$idActive13 = "id=\"active\"";
+							$idActive12 = "";
+							$idActive11 = "";
+							$idActive14 = "";
+							
+							$idActive2 = "";
+							$idActive3 = "";
+							$idActive4 = "";
 							
                         	include("menu_horiz.php");
 						?>                            
@@ -110,7 +122,7 @@ function delete($jue_id, $pre_id)
 										{
 											while($result=$db->next_record())
 											{
-												$fldproducto = get_db_value("select pro_producto from pd_producto where pro_id=".$db->f("pre_pro_id"));
+												$fldproducto = get_db_value("select pro_producto from pd_producto where pro_id=".$db->f("pre_pro_id") . " and pro_jue_id=$jue_id");
 											
 									?>
                                             <tr>  
@@ -165,6 +177,7 @@ function delete($jue_id, $pre_id)
                                      <tr>
                                       <td class="ClearFieldCaptionTD">Demanda Producto</td>
                                       <td class="ClearDataTD"><select name="pro_id">
+                                      <option value="">Seleccionar Producto</option>
                                     <?php
                                         $sSQL="select pro_id, pro_producto from pd_producto where pro_jue_id=$jue_id";
 										$db->query($sSQL);
@@ -172,9 +185,6 @@ function delete($jue_id, $pre_id)
 										{
 											while($result=$db->next_record())
 											{
-											?>
-											 <option value="">Seleccionar Producto</option>
-											<?php
                                                         if($db->f("pro_id") == $fldpro_id)
                                                           $selected="SELECTED"; else $selected="";
                                     		?>

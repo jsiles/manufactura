@@ -1,7 +1,6 @@
 <?php
-include ("../config.php");
 include ("../common2.php");
-session_start();
+@session_start();
 $jue_id= get_param("jue_id");
 $cos_id= get_param("cos_id");
 

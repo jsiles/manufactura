@@ -3,7 +3,7 @@
 //Include Files @0-6CA7C540
 include(RelativePath . "/Classes.php");
 include(RelativePath . "/db_mysql.php");
-include(RelativePath . "/config.php");
+include_once(RelativePath . "/config_mysql.php");
 //End Include Files
 
 //Connection Settings @0-3511B515
