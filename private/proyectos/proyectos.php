@@ -1,9 +1,12 @@
 <?php
-include ("../config_mysql.php");
 include ("../common2.php");
-session_start();
+@session_start();
 $jue_id= get_param("jue_id");
 $pro_id= get_param("pro_id");
+	$fldDescripcion = get_param("descripcion");
+	$fldValor = get_param("valor");
+	$fldIdPar = get_param("id");
+	$fldProyPar = get_param("proypar");
 
 $FormAction= get_param("FormAction");
 
@@ -92,7 +95,8 @@ function delete($jue_id, $pro_id)
                 		<?php
 							$idActive2 = "id=\"active\"";
 							$idActive11 = "id=\"active\"";
-							
+							$idActive1 = "";
+							$idActive12 = "";
                         	include("menu_horiz2.php");
 						?>                            
                         <div id="tabs-1">
@@ -196,6 +200,7 @@ function delete($jue_id, $pro_id)
 												{
 												  while($db1->next_record())
 												  {
+													  $valIdProyPar="";
 												  		if($pro_id!=NULL) {
 												  		$valIdProyPar= get_db_value("select prp_valor from py_proypar where prp_jue_id=$jue_id and prp_pro_id= $pro_id and prp_par_id=". tosql($db1->f("par_id"),"Number"));
 														if($valIdProyPar==NULL) $valIdProyPar= '0.00';

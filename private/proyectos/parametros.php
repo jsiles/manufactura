@@ -1,10 +1,10 @@
 <?php
-include ("../config_mysql.php");
 include ("../common2.php");
-session_start();
+@session_start();
 $jue_id= get_param("jue_id");
 $par_id= get_param("par_id");
-
+$fldDescripcion = get_param("descripcion");
+$fldValor = get_param("valor");
 $FormAction= get_param("FormAction");
 
 if ($FormAction=='insert') insert($jue_id);
@@ -65,7 +65,8 @@ function delete($jue_id, $par_id)
                 		<?php
 							$idActive1 = "id=\"active\"";
 							$idActive12 = "id=\"active\"";
-							
+							$idActive11 = "";
+							$idActive2 = "";
                         	include("menu_horiz.php");
 						?>                            
                         <div id="tabs-1">

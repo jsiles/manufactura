@@ -1,6 +1,6 @@
 <?php
 include ("./common2.php");
-session_start();
+@session_start();
 $jue_id= get_param("jue_id");
 $pro_id= get_param("pro_id");
 
@@ -63,6 +63,15 @@ function delete($jue_id, $pro_id)
                 		<?php
 							$idActive1 = "id=\"active\"";
 							$idActive11 = "id=\"active\"";
+							$idActive2 = "";
+							$idActive3 = "";
+							$idActive4 = "";
+							$idActive12 = "";
+							$idActive13 = "";
+							$idActive14 = "";
+							$idActive15 = "";
+							$idActive16 = "";
+							
 							
                         	include("menu_horiz.php");
 						?>                            

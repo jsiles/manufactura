@@ -3,6 +3,7 @@ include ("../common2.php");
 @session_start();
 $jue_id= get_param("jue_id");
 $cos_id= get_param("cos_id");
+$fldCosto = get_param("costo");
 
 $FormAction= get_param("FormAction");
 
@@ -14,7 +15,7 @@ if ($FormAction=='delete') delete($jue_id, $cos_id);
 function insert ($jue_id)
 {
 	global $db;
-	$fldCostos = get_param("costo");
+	$fldCosto = get_param("costo");
 	$valCant = get_db_value("select count(*) from py_costos where cos_jue_id=". tosql($jue_id,"Number"));
 	if($valCant==0) {
 	$iniValue=1;
@@ -24,7 +25,7 @@ function insert ($jue_id)
 		$iniValue=$maxValue+1;
 	}
 	
-	$sSQL="insert into py_costos values(". tosql($iniValue,"Number") .", ". tosql($fldCostos,"Text").", ". tosql($jue_id,"Text").")";
+	$sSQL="insert into py_costos values(". tosql($iniValue,"Number") .", ". tosql($fldCosto,"Text").", ". tosql($jue_id,"Text").")";
 	$db->query($sSQL);
 	header("location: costos.php?jue_id=$jue_id");
 	
@@ -63,6 +64,8 @@ function delete($jue_id, $cos_id)
                 		<?php
 							$idActive1 = "id=\"active\"";
 							$idActive11 = "id=\"active\"";
+							$idActive12 = "";
+							$idActive2 = "";
 							
                         	include("menu_horiz.php");
 						?>                            

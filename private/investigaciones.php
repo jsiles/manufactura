@@ -1,6 +1,6 @@
 <?php
 include ("./common2.php");
-session_start();
+@session_start();
 $sAction = get_param("FormAction");
 $sForm = get_param("FormName");
 $svaloresRecordErr = "";
