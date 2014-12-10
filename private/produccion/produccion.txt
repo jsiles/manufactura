@@ -1,3 +1,31 @@
+10/12/2014
+
+
+DROP TABLE IF EXISTS `pd_costosIniciales`;
+CREATE TABLE IF NOT EXISTS `pd_costosIniciales` (
+  `cos_id` int(11) NOT NULL,
+  `cos_total` double(32,2) NOT NULL,
+  `cos_cantidadini` int(11) NOT NULL,
+  `cos_ajuste` int(11) NOT NULL,
+  `cos_hora` int(11) NOT NULL,
+  `cos_horaextra` int(11) NOT NULL,
+  `cos_contratacion` int(11) NOT NULL,
+  `cos_despido` int(11) NOT NULL,
+  `cos_capacitacion` int(11) NOT NULL,
+  `cos_almacenaje` double(32,3) NOT NULL,
+  `cos_maq1` int(11) NOT NULL,
+  `cos_maq2` int(11) NOT NULL,
+  `cos_maq3` int(11) NOT NULL,
+  `cos_maq4` int(11) NOT NULL,
+  `cos_maq5` int(11) NOT NULL,
+  `cos_maq6` int(11) NOT NULL,
+  `cos_maq7` int(11) NOT NULL,
+  `cos_maq8` int(11) NOT NULL,
+  `cos_factor` int(11) NOT NULL,
+  `cos_jue_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 08/12/2014
 Modulo de Produccion
 use calidad;
