@@ -189,7 +189,7 @@ function reporte()
 		//echo $inv_per_id;
         if ($inv_per_id!=null)
         {
-		//echo 23;
+		//echo 2;
            $sSQL= "select inv_id, inv_investigacion, inv_costo, inv_costoexclusividad, inv_saldo from tb_investigacion where inv_jue_id=$dat_juego and inv_sw=1 and inv_per_id=$inv_per_id and inv_saldo>0";
 		   $db->query($sSQL);
 		   //echo("#".$db->num_rows());
@@ -206,14 +206,14 @@ function reporte()
 				$saldo = $db->f("inv_saldo");	
 				$inv_id = $db->f("inv_id");	
 				$nombre = $db->f("inv_investigacion");
-				//echo $costo."$$".$costoexclusividad."$$".$saldo."$$".$inv_id;
+				//echo $costo."$$".$costoexclusividad."$$".$saldo."$$".$inv_id."<br>";
 				if ($inv_id!=null)
 				{
 				$check = get_db_value("select count(*) from tb_compras where com_inv_id=$inv_id and com_usu_id=$dat_usuario");
 				//echo $check;
 				if ($check>0) $error = "Ya compro la información ddisponible";
 	//			if (($costo!=null&&$costo!=0)&&($costoexclusividad!=null&&$costoexclusividad!=0)&&($saldo>0)&&($check==0)) original
-				if (($costo!=null&&$costo!=0)&&($costoexclusividad!=null)&&($saldo>0)&&($check==0))
+				if (($costo!=null&&$costo!=null)&&($costoexclusividad!=null)&&($saldo>0)&&($check==0))
 				{
 					
 					//echo "<br>"."2";
@@ -224,8 +224,8 @@ function reporte()
 					$tpl->set_var("costo",$costo);
 					$tpl->set_var("pro_nombre",$nombre);
 					//echo $costoexclusividad."<br>";
-					if($costoexclusividad==0)
-					{
+						if($costoexclusividad==0)
+						{
 						$tpl->set_var("costoEE","disabled");
 						$tpl->set_var("costoexclusividad","Opci&oacute;n no disponible");
 						}else
@@ -238,6 +238,7 @@ function reporte()
 				
 				}else 
 				{
+					//echo "3";die;
 					$tpl->set_var("DatosInfo","");
 					$tpl->set_var("NoDatos","");                    
 					if ($check>0) 
